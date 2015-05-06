@@ -1,2 +1,1 @@
-# CLRS
-Solutions to exercise and problems of Introduction to Algorithms
+A Bootstrap based blog template 

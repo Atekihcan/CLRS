@@ -1,0 +1,30 @@
+---
+layout:     page
+title:      Solution Index
+desc:       "Solutions to exercise and problems of Introduction to Algorithms by Cormen, Leiserson, Rivest, and Stein"
+keywords:   "CLRS, algorithms, solutions, Cormen"
+---
+{% for post in site.posts reversed %}
+    {% if post.clrs %}
+        {% assign current_chapter = post.clrs[0] %}
+        {% if current_chapter != chapter %}
+            {% unless forloop.first %}</table><br/>{% endunless %}
+            <h3 id="{{ current_chapter }}">Chapter {{ current_chapter }}</h3>
+            {% assign chapter = current_chapter %}
+        {% endif %}
+        {% assign current_section = post.clrs[1] %}
+        {% if current_section != section %}
+            {% unless forloop.first %}</tr>{% endunless %}
+                <table>
+                {% if current_section > 0 %}
+                    <tr>
+                        <td style="width: 120px; padding: 2px 20px"><b>Section {{ current_section }}</b></td>
+                {% else %}
+                    <tr>
+                        <td style="width: 120px; padding: 2px 20px"><b>Problems</b></td>
+                {% endif %}
+                {% assign section = current_section %}
+        {% endif %}
+                        <td style="padding: 2px 10px"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title | remove: "Exercise " | remove: "Problem " }}</a></td>
+    {% endif %}
+{% endfor %}

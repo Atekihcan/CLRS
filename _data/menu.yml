@@ -1,0 +1,16 @@
+mainmenu:
+  home:
+    url: "/"
+    text: "Home"
+  aboutme:
+    url: "/about/"
+    text: "About"
+  categories:
+    url: "/categories/"
+    text: "Categories"
+  archive:
+    url: "/archive/"
+    text: "Archive"
+  clrs:
+    url: "/CLRS/"
+    text: "CLRS"

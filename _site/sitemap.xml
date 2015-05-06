@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    
+        
+            <url>
+                <loc>/P01-01/</loc>
+                
+                    <lastmod>2012-08-19T20:25:00+05:30</lastmod>
+                
+                <changefreq>weekly</changefreq>
+                <priority>0.5</priority>
+            </url>
+        
+    
+        
+            <url>
+                <loc>/E01.01-05/</loc>
+                
+                    <lastmod>2012-08-19T20:20:00+05:30</lastmod>
+                
+                <changefreq>weekly</changefreq>
+                <priority>0.5</priority>
+            </url>
+        
+    
+        
+            <url>
+                <loc>/E01.01-04/</loc>
+                
+                    <lastmod>2012-08-19T20:15:00+05:30</lastmod>
+                
+                <changefreq>weekly</changefreq>
+                <priority>0.5</priority>
+            </url>
+        
+    
+        
+            <url>
+                <loc>/E01.01-03/</loc>
+                
+                    <lastmod>2012-08-19T20:10:00+05:30</lastmod>
+                
+                <changefreq>weekly</changefreq>
+                <priority>0.5</priority>
+            </url>
+        
+    
+        
+            <url>
+                <loc>/E01.01-02/</loc>
+                
+                    <lastmod>2012-08-19T20:05:00+05:30</lastmod>
+                
+                <changefreq>weekly</changefreq>
+                <priority>0.5</priority>
+            </url>
+        
+    
+        
+            <url>
+                <loc>/E01.01-01/</loc>
+                
+                    <lastmod>2012-08-19T20:00:00+05:30</lastmod>
+                
+                <changefreq>weekly</changefreq>
+                <priority>0.5</priority>
+            </url>
+        
+    
+    
+        
+            <url>
+                <loc>/feed.xml</loc>
+                
+                    <lastmod>2015-05-06T20:35:21+05:30</lastmod>
+                
+                <changefreq>weekly</changefreq>
+                <priority>0.5</priority>
+            </url>
+        
+    
+        
+            <url>
+                <loc>/index.html</loc>
+                
+                    <lastmod>2015-05-06T20:35:21+05:30</lastmod>
+                
+                <changefreq>weekly</changefreq>
+                <priority>0.5</priority>
+            </url>
+        
+    
+        
+    
+</urlset>

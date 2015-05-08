@@ -22,7 +22,6 @@ blockquote{
 
 /* navigation bar */
 .title-holder{
-    display: block;
     margin: -36px 0px 0px 55px;
     padding: 0px 10px;
     color : #002E62;
@@ -30,9 +29,27 @@ blockquote{
     text-shadow: 2px 2px 4px rgba(150, 150, 150, 1);
 }
 
+.title-holder-small{
+    display: none;
+}
+
+.title-holder-large{
+    display: block;
+}
+
 @media (max-width: 992px) {
     .title-holder{
         font-size: 1.4em;
+    }
+}
+
+@media (max-width: 400px) {
+    .title-holder-small{
+        display: block;
+    }
+
+    .title-holder-large{
+        display: none;
     }
 }
 
@@ -75,6 +92,13 @@ blockquote{
 .page-content{
     font-size: 1.0em;
     text-align: justify;
+    hyphens: auto;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+}
+
+.show-hide-button{
+    font-weight: bold;
 }
 
  .page-footer{
@@ -109,27 +133,6 @@ blockquote{
  .page-footer .right-small{
     text-align: right;
     font-size: 0.9em;
-}
-
-/* for landing page */
-.blog-short{
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 30px;
-    font-size: 1.2em;
-    text-align: justify;
-}
-
-.blog-short h3, small{
-    font-family: 'Josefin Sans', sans-serif;
-}
-
-.blog-short .excerpt{
-    min-height: 100px;
-}
-
-.margin10{
-    margin-bottom: 10px;
-    margin-right: 10px;
 }
 
 /* footer */

@@ -14,7 +14,6 @@ markdown:           kramdown
 kramdown:
     input:          GFM
 highlighter:        pygments
-excerpt_separator:  <!--more-->
 
 # Serving
 url:                "http://atekihcan.github.io"

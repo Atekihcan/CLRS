@@ -18,13 +18,19 @@ keywords:   "CLRS, algorithms, solutions, Cormen"
                 <table>
                 {% if current_section > 0 %}
                     <tr>
-                        <td style="padding: 2px 20px"><div style="width: 80px"><b>Section {{ current_section }}</b></div></td>
+                        <td>
+							<div class="clrs-section"><b>Section {{ current_section }}</b></div>
+						</td>
                 {% else %}
                     <tr>
-                        <td style="padding: 2px 20px"><div style="width: 80px"><b>Problems</b></div></td>
+                        <td>
+							<div class="clrs-section"><b>Problems</b>
+						</div></td>
                 {% endif %}
                 {% assign section = current_section %}
         {% endif %}
-                        <td style="padding: 2px 10px"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title | remove: "Exercise " | remove: "Problem " }}</a></td>
+                        <td>
+							<div class="clrs-cell"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title | remove: "Exercise " | remove: "Problem " }}</a></div>
+						</td>
     {% endif %}
 {% endfor %}

@@ -131,11 +131,17 @@ blockquote{
 }
 
 .graph-box{
-    margin: 10px auto;
+    margin: 10px auto 2px auto;
     width: 400px;
     height: 400px;
     border: 1px solid #999;
     border-radius: 5px;
+}
+
+.graph-credit{
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 0.8em;
 }
 
 @media (max-width: 480px){

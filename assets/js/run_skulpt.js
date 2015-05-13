@@ -21,7 +21,13 @@ function runit() {
         return Sk.importMainWithBody("<stdin>", false, prog, true);
     });
     myPromise.then(
-        function(mod) {console.log('success');},
-        function(err) {console.log(err.toString());
+        function(mod) {
+            mypre.style.color = "#333";
+            console.log('success');
+        },
+        function(err) {
+            mypre.style.color = "#f00";
+            mypre.innerHTML = err.toString();
+            console.log(err.toString());
     });
 }

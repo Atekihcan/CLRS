@@ -97,6 +97,7 @@ blockquote{
 }
 
 .show-hide-button{
+    cursor: pointer;
     font-weight: bold;
 }
 
@@ -109,9 +110,13 @@ blockquote{
     width: 100%;
 }
 
+.clrs-button-wrapper{
+    padding: 5px 50px;
+    overflow: hidden;
+}
+
 .clrs-button{
-    margin: 10px 5px;
-    width: 70%;
+    width: 40%;
     border: 2px solid #999;
 }
 

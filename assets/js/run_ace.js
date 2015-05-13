@@ -11,14 +11,19 @@ $(function () {
 
         textarea.css('visibility', 'hidden');
         var editor = ace.edit(editDiv[0]);
+        var original = textarea.val();
         editor.renderer.setShowGutter(true);
-        editor.getSession().setValue(textarea.val());
+        editor.getSession().setValue(original);
         editor.getSession().setMode("ace/mode/" + mode);
         editor.setTheme("ace/theme/xcode");
         
         // copy back to textarea on form submit...
-        textarea.closest('form').submit(function () {
+        editor.getSession().on('change', function () {
             textarea.val(editor.getSession().getValue());
+        })
+        
+        $('#clrs-reset').on("click", function() {
+            editor.getSession().setValue(original);
         })
     });
 });

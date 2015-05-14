@@ -17,7 +17,7 @@ layout: default
                 <table style="width: 100%;">
                     <tr>
                         <td class="left">
-                            {% if page.previous != nil and page.previous.clrs %}
+                            {% if page.previous != nil %}
                                 <a href="{{ page.previous.url | prepend: site.baseurl }}"><i class="fa fa-arrow-left"></i></a>
                             {% endif %}
                         </td>
@@ -25,19 +25,19 @@ layout: default
                             <a href="{{ '/' | prepend: site.baseurl }}">Solution Index</a>
                         </td>
                         <td class="right">
-                            {% if page.next != nil and page.next.clrs %}
+                            {% if page.next != nil %}
                                 <a href="{{ page.next.url | prepend: site.baseurl }}"><i class="fa fa-arrow-right"></i></a>
                             {% endif %}
                         </td>
                     </tr>
                     <tr>
                         <td class="left-small">
-                            {% if page.previous != nil and page.previous.clrs %}
+                            {% if page.previous != nil %}
                                 {{ page.previous.title | truncate: 20 }}
                             {% endif %}
                         </td>
                         <td class="right-small">
-                            {% if page.next != nil and page.next.clrs %}
+                            {% if page.next != nil %}
                                 {{ page.next.title | truncate: 20 }}
                             {% endif %}
                         </td>

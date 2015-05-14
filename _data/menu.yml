@@ -1,17 +1,17 @@
 mainmenu:
   home:
-    url: "http://atekihcan.github.io/"
+    url: "/"
     text: "Home"
     icon: fa-home
   projects:
-    url: "http://atekihcan.github.io/projects/"
+    url: "/projects/"
     text: "Projects"
     icon: fa-briefcase
   blog:
-    url: "http://atekihcan.github.io/blog/"
+    url: "/blog/"
     text: "Blog"
     icon: fa-list-alt
   contact:
-    url: "http://atekihcan.github.io/contact/"
+    url: "/contact/"
     text: "Contact"
     icon: fa-paper-plane

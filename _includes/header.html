@@ -16,7 +16,7 @@
             <div class="collapse navbar-collapse" id="navbar">
                 <ul id="main-menu" class="nav navbar-nav navbar-right">
                     {% for menuItem in site.data.menu.mainmenu %}
-                        <li><a href="{{ menuItem[1].url | prepend: site.baseurl }}">
+                        <li><a href="{{ menuItem[1].url }}">
                             <i class="fa {{ menuItem[1].icon }}"></i> {{ menuItem[1].text }}</a>
                         </li>
                     {% endfor %}

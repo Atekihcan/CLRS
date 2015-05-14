@@ -1,16 +1,17 @@
 mainmenu:
   home:
-    url: "/"
+    url: "http://atekihcan.github.io/"
     text: "Home"
-  aboutme:
-    url: "/about/"
-    text: "About"
-  categories:
-    url: "/categories/"
-    text: "Categories"
-  archive:
-    url: "/archive/"
-    text: "Archive"
-  clrs:
-    url: "/CLRS/"
-    text: "CLRS"
+    icon: fa-home
+  projects:
+    url: "http://atekihcan.github.io/projects/"
+    text: "Projects"
+    icon: fa-briefcase
+  blog:
+    url: "http://atekihcan.github.io/blog/"
+    text: "Blog"
+    icon: fa-list-alt
+  contact:
+    url: "http://atekihcan.github.io/contact/"
+    text: "Contact"
+    icon: fa-paper-plane

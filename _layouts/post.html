@@ -21,8 +21,8 @@ layout: default
                                 <a href="{{ page.previous.url | prepend: site.baseurl }}"><i class="fa fa-arrow-left"></i></a>
                             {% endif %}
                         </td>
-                        <td class="middle" rowspan="2">
-                            <a href="{{ '/' | prepend: site.baseurl }}">Solution Index</a>
+                        <td class="middle">
+                            <a href="{{ '/' | prepend: site.baseurl }}"><strong>Solution Index</strong></a>
                         </td>
                         <td class="right">
                             {% if page.next != nil %}
@@ -35,6 +35,9 @@ layout: default
                             {% if page.previous != nil %}
                                 {{ page.previous.title | truncate: 20 }}
                             {% endif %}
+                        </td>
+                        <td class="middle">
+                            <a href="" class="popupBox_open">Report Error</a>
                         </td>
                         <td class="right-small">
                             {% if page.next != nil %}

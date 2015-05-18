@@ -22,8 +22,8 @@ blockquote{
 
 /* navigation bar */
 .title-holder{
-	display: inline-block;
-	padding-top: 15px;
+    display: inline-block;
+    padding-top: 15px;
     color : #002E62;
     font-size: 1.8em;
     text-shadow: 2px 2px 4px rgba(150, 150, 150, 1);
@@ -36,6 +36,7 @@ blockquote{
 .navbar .navbar-brand {
     padding: 0px;
 }
+
 .navbar .navbar-brand img {
     float: left;
     width: 50px;
@@ -192,4 +193,42 @@ blockquote{
     min-height: 10px;
     position: fixed;
     width: 100%;
+}
+
+/* popup */
+.popup-box {
+    display: none;
+}
+
+#popupBox {
+    transform: scale(0.8);
+}
+
+.popup_visible #popupBox {
+    transform: scale(1);
+}
+
+.popup-content {
+    padding: 10px 20px;
+    border: 1px solid Black;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.popup-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.popup-title  a{
+    cursor: pointer;
+}
+
+.contact-field {
+    width: 100%;
+    padding: 5px;
+    margin: 4px auto;
+    border: 1px solid #33b5e5;
 }

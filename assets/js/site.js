@@ -5,4 +5,9 @@ $(document).ready(function() {
         var text_len   = text_label.length;
         ($(".show-hide-button", this).text().slice(0, 1) == "\u25B6") ? $(".show-hide-button", this).text("\u25BC " + text_label.slice(1, text_len)) : $(".show-hide-button", this).text("\u25B6 " + text_label.slice(1, text_len));
     });
+
+    // Initialize the plugin
+    $('#popupBox').popup({
+        transition: 'all 0.3s'
+    });
 });

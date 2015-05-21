@@ -77,6 +77,21 @@ blockquote{
     -moz-hyphens: auto;
 }
 
+.post-content table{
+    margin: 0px auto;
+}
+
+.post-content th{
+    background: #ddd;
+    padding: 2px 10px;
+    border: 1px solid black;
+}
+
+.post-content td{
+    padding: 2px 10px;
+    border: 1px solid black;
+}
+
 .clrs-section{
 	width: 100px;
 	padding: 2px 10px;

@@ -6,20 +6,21 @@ $(document).ready(function() {
         ($(".show-hide-button", this).text().slice(0, 1) == "\u25B6") ? $(".show-hide-button", this).text("\u25BC " + text_label.slice(1, text_len)) : $(".show-hide-button", this).text("\u25B6 " + text_label.slice(1, text_len));
     });
 
-    // Capitalize first letter of each word
-    capitalizeFirst('.cflew');
-
     // Initialize the plugin
     $('#popupBox').popup({
         transition: 'all 0.3s'
     });
 });
 
-function capitalizeFirst(elem) {
-    var words = $(elem).text().split(' ');
+function capitalizeFirst(elem, method, sep) {
+    var words = $(elem).text().split(sep);
     var html = '';
-    $.each(words, function() {
-        html += this.substring(0,1)+'<span style="font-size:80%">'+this.substring(1)+'</span> ';
+    $.each(words, function(i, val) {
+        if (method && i < words.length - 1) {
+            html += this.substring(0,1)+'<span style="font-size:80%">'+this.substring(1)+'</span>-';
+        } else {
+            html += this.substring(0,1)+'<span style="font-size:80%">'+this.substring(1)+'</span> ';
+        }
     });
     $(elem).html(html);
 }

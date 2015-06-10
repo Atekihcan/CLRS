@@ -122,7 +122,13 @@ blockquote code{
 }
 
 .clrs-cell{
-    padding: 0px 5px;
+	padding-left: 10px;
+}
+
+.clrs-divider{
+    width: 70%;
+    margin: 20px auto;
+    border-bottom: 1px solid #ccc;
 }
 
 .show-hide-button{
@@ -179,36 +185,36 @@ blockquote code{
     }
 }
 
- .page-footer{
+.page-footer{
     margin-top: 20px;
     padding-top: 5px;
     font-size: 1.2em;
     font-family: 'Josefin Sans', sans-serif;
  }
 
- .page-footer .left{
+.page-footer .left{
     width: 15%;
     text-align: left;
     font-size: 1.8em;
 }
 
- .page-footer .middle{
+.page-footer .middle{
     width: 70%;
     text-align: center;
 }
 
- .page-footer .right{
+.page-footer .right{
     width: 15%;
     text-align: right;
     font-size: 1.8em;
 }
 
- .page-footer .left-small{
+.page-footer .left-small{
     text-align: left;
     font-size: 0.9em;
 }
 
- .page-footer .right-small{
+.page-footer .right-small{
     text-align: right;
     font-size: 0.9em;
 }

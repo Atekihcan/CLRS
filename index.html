@@ -14,7 +14,12 @@ title:      Solution Index
         {% if current_chapter != chapter %}
             {% unless forloop.first %}<br/>{% endunless %}
             <div class="clrs-chapter">
-                <h3 id="{{ current_chapter }}">Chapter {{ current_chapter }}</h3>
+                {% assign chapter_int = current_chapter | minus: 0 %}
+                {% if chapter_int > 0 %}
+                    <h3 id="{{ current_chapter }}">Chapter {{ current_chapter }}</h3>
+                {% else %}
+                    <h3 id="{{ current_chapter }}">Appendix {{ current_chapter }}</h3>
+                {% endif %}
             </div>
             {% assign chapter = current_chapter %}
         {% endif %}

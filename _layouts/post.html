@@ -13,7 +13,7 @@ layout: default
                 {{ content }}
                 {% include comment_message.html %}
             </article>
-            <div class="page-footer">
+            <div class="row page-footer">
                 <hr/>
                 <table style="width: 100%;">
                     <tr>
@@ -37,9 +37,7 @@ layout: default
                                 {{ page.previous.title | truncate: 20 }}
                             {% endif %}
                         </td>
-                        <td class="middle">
-                            <a href="" class="popupBox_open"></a>
-                        </td>
+                        <td class="middle"></td>
                         <td class="right-small">
                             {% if page.next != nil %}
                                 {{ page.next.title | truncate: 20 }}

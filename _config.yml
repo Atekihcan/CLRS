@@ -13,7 +13,7 @@ exclude:            ['README.md', 'LICENSE.md']
 markdown:           kramdown
 kramdown:
     input:          GFM
-highlighter:        pygments
+    highlighter:    rouge
 
 # Serving
 url:                "http://atekihcan.github.io"

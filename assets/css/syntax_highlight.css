@@ -3,25 +3,44 @@
  * Courtesy of GitHub.com
  */
 
-.highlight pre, pre, .highlight .hll {
-    background-color: #f8f8f8;
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    border-radius: 3px;
-    margin-bottom: 20px;
-}
-
-/* Make code block overflow */
-.highlight pre code * {
-    white-space: nowrap;
-}
+.highlight { background-color: #ffffcc } /* RIGHT */
 
 .highlight pre {
-    overflow-x: auto;
+    padding: 0px;
 }
 
-.highlight pre code {
-    white-space: pre;
+.highlight pre.lineno {
+    border: none;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+
+.highlight .lineno {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.highlight .gutter {
+    width: 15px;
+    border: none;
+    border-right: 1px solid #ccc;
+}
+
+.highlight pre pre {
+    border: none;
+    margin-bottom: 0px;
+}
+
+.highlight table {
+    width: 100%;
+}
+
+.highlight td {
+    border: none;
 }
 
 .highlight .c { color: #999988; font-style: italic; }

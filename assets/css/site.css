@@ -31,8 +31,8 @@ code {
 
 blockquote {
     font-size: 1.2em;
-    background: #f7f7f7;
-    border-left: 5px solid #ddd;
+    background: hsla(32, 70%, 70%, 20%);
+    border-left: 5px solid hsl(32, 70%, 70%);
 }
 
 blockquote code {
@@ -200,7 +200,7 @@ blockquote code {
 
 .page-footer {
     margin-top: 20px;
-    padding-top: 5px;
+    padding: 15px;
     font-size: 1.2em;
     font-family: 'Josefin Sans', sans-serif;
 }
@@ -230,6 +230,10 @@ blockquote code {
 .page-footer .right-small {
     text-align: right;
     font-size: 0.9em;
+}
+
+.comment-message {
+    text-align: center;
 }
 
 

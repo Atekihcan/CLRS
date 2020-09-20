@@ -8,37 +8,38 @@ title:      Solution Index
         {% assign current_section = post.clrs[1] %}
         {% if current_section != section %}
             {% if section != NIL %}
-                </div></div>
-            {% endif %}
-        {% endif %}
-        {% if current_chapter != chapter %}
-            {% unless forloop.first %}<br/>{% endunless %}
-            <div class="clrs-chapter">
-                {% assign chapter_int = current_chapter | minus: 0 %}
-                {% if chapter_int > 0 %}
-                    <h3 id="{{ current_chapter }}">Chapter {{ current_chapter }}</h3>
-                {% else %}
-                    <h3 id="{{ current_chapter }}">Appendix {{ current_chapter }}</h3>
-                {% endif %}
             </div>
-            {% assign chapter = current_chapter %}
+        </div>
+    {% endif %}
+{% endif %}
+{% if current_chapter != chapter %}
+    {% unless forloop.first %}<br/>{% endunless %}
+    <div class="clrs-chapter">
+        {% assign chapter_int = current_chapter | minus : 0 %}
+        {% if chapter_int > 0 %}
+            <h3 id="{{ current_chapter }}">Chapter {{ current_chapter }}</h3>
+        {% else %}
+            <h3 id="{{ current_chapter }}">Appendix {{ current_chapter }}</h3>
         {% endif %}
-        {% if current_section != section %}
-            <div class="row clrs-row">             
-            {% if current_section > 0 %}
-                <div class="col-md-2 col-sm-2 col-xs-6 clrs-section">
-                    <b>Section {{ current_section }}</b>
-                </div>
-            {% else %}
-                <div class="col-md-2 col-sm-2 col-xs-6 clrs-section">
-                    <b>Problems</b>
-                </div>
-            {% endif %}
-            {% assign section = current_section %}
-                <div class="col-md-10 col-sm-10 col-xs-12">
+    </div>
+    {% assign chapter = current_chapter %}
+{% endif %}
+{% if current_section != section %}
+    <div class="row clrs-row">
+        {% if current_section > 0 %}
+            <div class="col-md-2 col-sm-2 col-xs-6 clrs-section">
+                <b>Section {{ current_section }}</b>
+            </div>
+        {% else %}
+            <div class="col-md-2 col-sm-2 col-xs-6 clrs-section">
+                <b>Problems</b>
+            </div>
         {% endif %}
-                    <div class="col-md-2 col-sm-2 col-xs-3 clrs-cell">
-                        <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title | remove: "Exercise " | remove: "Problem " }}</a>
-                    </div>
+        {% assign section = current_section %}
+        <div class="col-md-10 col-sm-10 col-xs-12">
+        {% endif %}
+        <div class="col-md-2 col-sm-2 col-xs-3 clrs-cell">
+            <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title | remove: "Exercise " | remove: "Problem " }}</a>
+        </div>
     {% endif %}
 {% endfor %}

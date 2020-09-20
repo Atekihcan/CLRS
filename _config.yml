@@ -1,7 +1,7 @@
 # Site Settings
-title:              CLRS
+title:              CLRS Solutions
 author:             Atekihcan
-email:              com.atekihcan@gmail.com
+email:              contact@atekihcan.com
 description:        "Solutions to exercise and problems of Introduction to Algorithms by Cormen, Leiserson, Rivest, and Stein"
 keywords:           "CLRS, algorithms, solutions, Cormen, python"
 disqus_shortname:   atekihcan
@@ -16,7 +16,7 @@ kramdown:
     highlighter:    rouge
 
 # Serving
-url:                "http://atekihcan.github.io"
+url:                "https://atekihcan.github.io"
 baseurl:            "/CLRS"
 
 # Outputting

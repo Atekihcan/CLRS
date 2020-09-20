@@ -1,5 +1,4 @@
 @import url(https://fonts.googleapis.com/css?family=Josefin+Sans:400,400italic,700,700italic);
-
 html {
     height: 100%;
 }
@@ -17,7 +16,9 @@ body {
     }
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -28,27 +29,30 @@ code {
     font-family: 'Courier New', Courier, monospace;
 }
 
-blockquote{
+blockquote {
     font-size: 1.2em;
     background: #f7f7f7;
     border-left: 5px solid #ddd;
 }
 
-blockquote code{
+blockquote code {
     font-size: 100%;
 }
 
+
 /* navigation bar */
-.title-holder{
+
+.title-holder {
     display: inline-block;
     padding-top: 15px;
-    color : #002E62;
+    color: #002E62;
     font-size: 1.8em;
     text-shadow: 2px 2px 4px rgba(150, 150, 150, 1);
 }
 
-.navbar{
+.navbar {
     font-family: 'Josefin Sans', sans-serif;
+    padding-bottom: 10px;
 }
 
 .navbar .navbar-brand {
@@ -60,12 +64,12 @@ blockquote code{
     width: 50px;
 }
 
-.navbar-right li{
+.navbar-right li {
     font-size: 1.6em;
 }
 
 @media (max-width: 992px) {
-    #main-menu li{
+    #main-menu li {
         font-size: 1.4em;
     }
     #main-menu li a {
@@ -74,19 +78,23 @@ blockquote code{
     }
 }
 
+
 /* page */
-.page-header{
-    margin: 10px 0;
+
+.page-header {
+    margin: 10px auto;
     text-align: center;
-    padding-bottom: 25px;
+    padding-bottom: 30px;
     font-family: 'Josefin Sans', sans-serif;
+    border: none;
 }
 
-.page-header h1{
+.page-header h1 {
     margin: 0;
+    font-size: 1.8em;
 }
 
-.page-content{
+.page-content {
     font-size: 1.0em;
     text-align: justify;
     hyphens: auto;
@@ -94,83 +102,83 @@ blockquote code{
     -moz-hyphens: auto;
 }
 
-.post-content table{
+.post-content table {
     margin: 0px auto;
 }
 
-.post-content th{
+.post-content th {
     background: #ddd;
     padding: 2px 10px;
     border: 1px solid black;
 }
 
-.post-content td{
+.post-content td {
     padding: 2px 10px;
     border: 1px solid black;
 }
 
-.clrs-chapter{
+.clrs-chapter {
     background: #f4f4f9;
     border-radius: 5px;
 }
 
-.clrs-chapter h3{
+.clrs-chapter h3 {
     padding: 5px;
 }
 
-.clrs-row{
+.clrs-row {
     padding: 5px 20px;
 }
 
-.clrs-section{
+.clrs-section {
     padding-left: 10px;
 }
 
-.clrs-cell{
-	padding-left: 10px;
+.clrs-cell {
+    padding-left: 10px;
 }
 
-.clrs-divider{
+.clrs-divider {
     width: 70%;
     margin: 20px auto;
     border-bottom: 1px solid #ccc;
 }
 
-.show-hide-button{
+.show-hide-button {
     cursor: pointer;
     font-weight: bold;
 }
 
-.clrs-code-wrapper{
+.clrs-code-wrapper {
     padding: 6px 0px 0px 6px;
     border: 2px solid #999;
 }
 
-#clrs-code{
+#clrs-code {
     width: 100%;
 }
 
-.clrs-button-wrapper{
+.clrs-button-wrapper {
     padding: 5px 50px;
     overflow: hidden;
 }
 
-.clrs-button{
+.clrs-button {
     width: 40%;
     border: 2px solid #999;
 }
 
-.clrs-output-wrapper{
+.clrs-output-wrapper {
     height: 100px;
     border: 2px solid #999;
 }
 
-#clrs-output{
+#clrs-output {
     height: 96px;
     border: 0px;
 }
 
-.graph-box{
+.graph-box {
     margin: 10px auto 2px auto;
     width: 400px;
     height: 400px;
@@ -178,53 +186,55 @@ blockquote code{
     border-radius: 5px;
 }
 
-.graph-credit{
+.graph-credit {
     margin-bottom: 15px;
     text-align: center;
     font-size: 0.8em;
 }
 
-@media (max-width: 480px){
-    .graph-box{
+@media (max-width: 480px) {
+    .graph-box {
         width: 90%;
     }
 }
 
-.page-footer{
+.page-footer {
     margin-top: 20px;
     padding-top: 5px;
     font-size: 1.2em;
     font-family: 'Josefin Sans', sans-serif;
- }
+}
 
-.page-footer .left{
+.page-footer .left {
     width: 15%;
     text-align: left;
     font-size: 1.8em;
 }
 
-.page-footer .middle{
+.page-footer .middle {
     width: 70%;
     text-align: center;
 }
 
-.page-footer .right{
+.page-footer .right {
     width: 15%;
     text-align: right;
     font-size: 1.8em;
 }
 
-.page-footer .left-small{
+.page-footer .left-small {
     text-align: left;
     font-size: 0.9em;
 }
 
-.page-footer .right-small{
+.page-footer .right-small {
     text-align: right;
     font-size: 0.9em;
 }
 
+
 /* footer */
+
 .footer {
     background-color: #f5f5f5;
     position: absolute;

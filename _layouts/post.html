@@ -5,10 +5,6 @@ layout: default
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
         <div class="page">
-            <header class="page-header">
-                <h4><i class="fa fa-database"></i>&nbsp;&nbsp;Solutions for CLRS&nbsp;&nbsp;<i class="fa fa-database"></i></h4>
-                <h1 class="page-title"> {{ page.title }} </h1>
-            </header>
             <article class="page-content post-content">
                 {{ content }}
                 {% include comment_message.html %}
@@ -19,15 +15,21 @@ layout: default
                     <tr>
                         <td class="left">
                             {% if page.previous != nil %}
-                                <a href="{{ page.previous.url | prepend: site.baseurl }}"><i class="fa fa-arrow-left"></i></a>
+                                <a href="{{ page.previous.url | prepend: site.baseurl }}">
+                                    <i class="fa fa-arrow-left"></i>
+                                </a>
                             {% endif %}
                         </td>
                         <td class="middle">
-                            <a href="{{ '/' | prepend: site.baseurl }}"><strong>Solution Index</strong></a>
+                            <a href="{{ '/' | prepend: site.baseurl }}">
+                                <strong>Solution Index</strong>
+                            </a>
                         </td>
                         <td class="right">
                             {% if page.next != nil %}
-                                <a href="{{ page.next.url | prepend: site.baseurl }}"><i class="fa fa-arrow-right"></i></a>
+                                <a href="{{ page.next.url | prepend: site.baseurl }}">
+                                    <i class="fa fa-arrow-right"></i>
+                                </a>
                             {% endif %}
                         </td>
                     </tr>

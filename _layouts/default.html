@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-{% include head.html %}
-<body>
-    <div class="container">
-        {% include header.html %}
-        {{ content }}
-    </div>
-    {% include footer.html%}
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script src="{{ '/assets/js/site.js' | prepend: site.baseurl }}"></script>
-    {% if page.code %}
-    <script src="{{ '/assets/js/run_skulpt.js' | prepend: site.baseurl }}"></script>
-    <script src="{{ '/assets/js/run_ace.js' | prepend: site.baseurl }}"></script>
-    {% endif %}
-</body>
+    {% include head.html %}
+    <body>
+        <div class="container">
+            {% include header.html %}
+            {{ content }}
+        </div>
+        {% include footer.html%}
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="{{ '/assets/js/site.js' | prepend: site.baseurl }}"></script>
+        {% if page.code %}
+            <script src="{{ '/assets/js/run_skulpt.js' | prepend: site.baseurl }}"></script>
+            <script src="{{ '/assets/js/run_ace.js' | prepend: site.baseurl }}"></script>
+        {% endif %}
+    </body>
 </html>

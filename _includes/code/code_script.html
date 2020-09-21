@@ -1,0 +1,78 @@
+<script>
+    // append some text to a pre element.
+    function prependOut(text) {
+        var mypre = document.getElementById("clrs-output");
+        mypre.innerHTML = mypre.innerHTML + text;
+    }
+
+    function builtinRead(x) {
+        if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined) 
+            throw "File not found: '" + x + "'";
+        return Sk.builtinFiles["files"][x];
+    }
+
+    // Grab the code, get a reference to output
+    // configure the output function and call Sk.importMainWithBody()
+    function runit() {
+        var prog = document
+            .getElementById("clrs-code")
+            .value;
+        var mypre = document.getElementById("clrs-output");
+        mypre.innerHTML = '';
+        Sk.pre = "output";
+        Sk.configure({output: prependOut, read: builtinRead, __future__: Sk.python3});
+        var myPromise = Sk
+            .misceval
+            .asyncToPromise(function () {
+                return Sk.importMainWithBody("<stdin>", false, prog, true);
+            });
+        myPromise.then(function (mod) {
+            console.log('success');
+        }, function (err) {
+            mypre.style.color = "#f00";
+            mypre.innerHTML = err.toString();
+            console.log(err.toString());
+        });
+    }
+
+    $(function () {
+        $('textarea[data-editor]').each(function () {
+            var textarea = $(this);
+            var mode = textarea.data('editor');
+            var editDiv = $('<div>', {
+                position: 'absolute',
+                width: textarea.width(),
+                height: textarea.height(),
+                'class': textarea.attr('class')
+            }).insertBefore(textarea);
+
+            textarea.css('visibility', 'hidden');
+            var editor = ace.edit(editDiv[0]);
+            var original = textarea.val();
+            editor
+                .renderer
+                .setShowGutter(true);
+            editor
+                .getSession()
+                .setValue(original);
+            editor
+                .getSession()
+                .setMode("ace/mode/" + mode);
+            editor.setTheme("ace/theme/nord_dark");
+            editor.setFontSize("16px");
+
+            // copy back to textarea on form submit...
+            editor
+                .getSession()
+                .on('change', function () {
+                    textarea.val(editor.getSession().getValue());
+                })
+
+            $('#clrs-reset').on("click", function () {
+                editor
+                    .getSession()
+                    .setValue(original);
+            })
+        });
+    });
+</script>

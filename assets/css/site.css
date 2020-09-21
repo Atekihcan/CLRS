@@ -7,7 +7,7 @@ body {
     min-height: 100%;
     position: relative;
     font-family: 'Verdana', Helvetica, sans-serif;
-    padding: 60px 0px;
+    padding: 20px 0px;
 }
 
 @media (max-width: 992px) {
@@ -18,8 +18,31 @@ body {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
     font-family: 'Josefin Sans', sans-serif;
+    font-weight: 700;
+    margin-top: 30px;
+}
+
+h1 {
+    font-size: 2.0em;
+}
+
+h2 {
+    font-size: 1.6em;
+}
+
+h3 {
+    font-size: 1.4em;
+}
+
+h4 {
+    font-size: 1.2em;
+}
+
+li {
+    padding: 5px 0px;
 }
 
 code {
@@ -40,63 +63,29 @@ blockquote code {
 }
 
 
-/* navigation bar */
-
-.title-holder {
-    display: inline-block;
-    padding-top: 15px;
-    color: #002E62;
-    font-size: 1.8em;
-    text-shadow: 2px 2px 4px rgba(150, 150, 150, 1);
-}
-
-.navbar {
-    font-family: 'Josefin Sans', sans-serif;
-    padding-bottom: 10px;
-}
-
-.navbar .navbar-brand {
-    padding: 0px;
-}
-
-.navbar .navbar-brand img {
-    float: left;
-    width: 50px;
-}
-
-.navbar-right li {
-    font-size: 1.6em;
-}
-
-@media (max-width: 992px) {
-    #main-menu li {
-        font-size: 1.4em;
-    }
-    #main-menu li a {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-}
-
-
 /* page */
 
 .page-header {
-    margin: 10px auto;
+    margin: 0px auto;
     text-align: center;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
     font-family: 'Josefin Sans', sans-serif;
-    border: none;
 }
 
 .page-header h1 {
     margin: 0;
-    font-size: 1.8em;
+    font-weight: 400;
+}
+
+.page-header h4 {
+    margin: 0;
+    margin-bottom: 10px;
+    font-weight: 400;
 }
 
 .page-content {
     font-size: 1.0em;
-    text-align: justify;
+    margin-top: 30px;
     hyphens: auto;
     -ms-hyphens: auto;
     -moz-hyphens: auto;
@@ -149,13 +138,19 @@ blockquote code {
     font-weight: bold;
 }
 
+
+/* Code editor */
+
 .clrs-code-wrapper {
-    padding: 6px 0px 0px 6px;
-    border: 2px solid #999;
+    padding: 0px;
+    margin: 10px -15px 10px -15px;
 }
 
 #clrs-code {
     width: 100%;
+    position: absolute;
+    padding: 0;
+    border: 0;
 }
 
 .clrs-button-wrapper {
@@ -168,26 +163,33 @@ blockquote code {
     border: 2px solid #999;
 }
 
-.clrs-output-wrapper {
-    height: 100px;
-    border: 2px solid #999;
+#clrs-output {
+    height: 64px;
+    border: 0px;
+    border-radius: unset;
+    border-top: 2px solid #999;
+    color: #d8dee9;
+    background-color: #2e3440;
 }
 
-#clrs-output {
-    height: 96px;
-    border: 0px;
+#clrs-output,
+.ace-editor {
+    font-size: 1.2em;
 }
+
+
+/* Graph stuff */
 
 .graph-box {
-    margin: 10px auto 2px auto;
+    margin: 20px auto;
     width: 400px;
     height: 400px;
-    border: 1px solid #999;
-    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
 .graph-credit {
-    margin-bottom: 15px;
+    position: relative;
+    margin: -40px 0 15px 0;
     text-align: center;
     font-size: 0.8em;
 }

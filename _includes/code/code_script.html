@@ -38,6 +38,7 @@
     $(function () {
         $('textarea[data-editor]').each(function () {
             var textarea = $(this);
+            var output = document.getElementById("clrs-output");
             var mode = textarea.data('editor');
             var editDiv = $('<div>', {
                 position: 'absolute',
@@ -72,6 +73,7 @@
                 editor
                     .getSession()
                     .setValue(original);
+                output.innerHTML = "";
             })
         });
     });

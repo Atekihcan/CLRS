@@ -1,0 +1,251 @@
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:400,400italic,700,700italic);
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    position: relative;
+    font-family: 'Verdana', Helvetica, sans-serif;
+    padding: 20px 0px;
+}
+
+@media (max-width: 992px) {
+    body {
+        padding-bottom: 120px;
+    }
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 700;
+    margin-top: 30px;
+}
+
+h1 {
+    font-size: 2.0em;
+}
+
+h2 {
+    font-size: 1.6em;
+}
+
+h3 {
+    font-size: 1.4em;
+}
+
+h4 {
+    font-size: 1.2em;
+}
+
+li {
+    padding: 5px 0px;
+}
+
+code {
+    color: #084275;
+    background-color: #f4f4f9;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+blockquote {
+    font-size: 1.2em;
+    background: hsla(32, 70%, 70%, 20%);
+    border-left: 5px solid hsl(32, 70%, 70%);
+}
+
+blockquote code {
+    font-size: 100%;
+}
+
+
+/* page */
+
+.page-header {
+    margin: 0px auto;
+    text-align: center;
+    padding-bottom: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.page-header h1 {
+    margin: 0;
+    font-weight: 400;
+}
+
+.page-header h4 {
+    margin: 0;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.page-content {
+    font-size: 1.0em;
+    margin-top: 30px;
+    hyphens: auto;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+}
+
+.post-content table {
+    margin: 0px auto;
+}
+
+.post-content th {
+    background: #ddd;
+    padding: 2px 10px;
+    border: 1px solid black;
+}
+
+.post-content td {
+    padding: 2px 10px;
+    border: 1px solid black;
+}
+
+.clrs-chapter {
+    background: #f4f4f9;
+    border-radius: 5px;
+}
+
+.clrs-chapter h3 {
+    padding: 5px;
+}
+
+.clrs-row {
+    padding: 5px 20px;
+}
+
+.clrs-section {
+    padding-left: 10px;
+}
+
+.clrs-cell {
+    padding-left: 10px;
+}
+
+.clrs-divider {
+    width: 70%;
+    margin: 20px auto;
+    border-bottom: 1px solid #ccc;
+}
+
+.show-hide-button {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+/* Code editor */
+
+.clrs-code-wrapper {
+    padding: 0px;
+    margin: 10px -15px 10px -15px;
+}
+
+#clrs-code {
+    width: 100%;
+    position: absolute;
+    padding: 0;
+    border: 0;
+}
+
+.clrs-button-wrapper {
+    padding: 5px 50px;
+    overflow: hidden;
+}
+
+.clrs-button {
+    width: 40%;
+    border: 2px solid #999;
+}
+
+#clrs-output {
+    height: 64px;
+    border: 0px;
+    border-radius: unset;
+    border-top: 2px solid #999;
+    color: #d8dee9;
+    background-color: #2e3440;
+}
+
+#clrs-output,
+.ace-editor {
+    font-size: 1.2em;
+}
+
+
+/* Graph stuff */
+
+.graph-box {
+    margin: 20px auto;
+    width: 400px;
+    height: 400px;
+    border: 1px solid #ccc;
+}
+
+.graph-credit {
+    position: relative;
+    margin: -40px 0 15px 0;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+@media (max-width: 480px) {
+    .graph-box {
+        width: 90%;
+    }
+}
+
+.page-footer {
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 1.2em;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.page-footer .left {
+    width: 15%;
+    text-align: left;
+    font-size: 1.8em;
+}
+
+.page-footer .middle {
+    width: 70%;
+    text-align: center;
+}
+
+.page-footer .right {
+    width: 15%;
+    text-align: right;
+    font-size: 1.8em;
+}
+
+.page-footer .left-small {
+    text-align: left;
+    font-size: 0.9em;
+}
+
+.page-footer .right-small {
+    text-align: right;
+    font-size: 0.9em;
+}
+
+.comment-message {
+    text-align: center;
+}
+
+
+/* footer */
+
+.footer {
+    background-color: #f5f5f5;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    min-height: 10px;
+    width: 100%;
+}

@@ -1,0 +1,36 @@
+# Site Settings
+title:              CLRS Solutions
+author:             Atekihcan
+email:              contact@atekihcan.com
+description:        "Solutions to exercise and problems of Introduction to Algorithms by Cormen, Leiserson, Rivest, and Stein"
+keywords:           "CLRS, algorithms, solutions, Cormen, python"
+disqus_shortname:   atekihcan
+
+# Handling Reading
+exclude:            ['README.md', 'LICENSE.md']
+
+# Conversion
+markdown:           kramdown
+kramdown:
+    input:          GFM
+    highlighter:    rouge
+
+# Serving
+url:                "https://atekihcan.github.io"
+baseurl:            "/CLRS"
+
+# Outputting
+permalink:          /:title/
+
+# Google Analytics
+google_analytics_id: "UA-57470252-4"
+
+# Default Values
+defaults:
+  -
+    scope:
+        path:       ""
+        type:       "posts"
+    values:
+        layout:     "post"
+        author:     "Atekihcan"

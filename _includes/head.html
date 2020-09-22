@@ -25,8 +25,8 @@
 
     <!-- If code editor is to be shown -->
     {% if page.code %}
-        <script src="https://www.skulpt.org/js/skulpt.min.js" type="text/javascript"></script>
-        <script src="https://www.skulpt.org/js/skulpt-stdlib.js" type="text/javascript"></script>
+        <script src="{{ '/assets/js/skulpt.min.js' | prepend: site.baseurl }}" type="text/javascript"></script>
+        <script src="{{ '/assets/js/skulpt-stdlib.js' | prepend: site.baseurl }}" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.min.js" integrity="sha512-GoORoNnxst42zE3rYPj4bNBm0Q6ZRXKNH2D9nEmNvVF/z24ywVnijAWVi/09iBiVDQVf3UlZHpzhAJIdd9BXqw==" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/mode-python.min.js" integrity="sha512-2Ke4vMGrMfYRM55pT1aA5bw7Pl82Sc7K5Hg8XZYZu+EQrb0AO1mNYTagwZm+MFVAImYS9Mlnm73zcgc01wPXxA==" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/theme-nord_dark.min.js" integrity="sha512-Yrb8fdpeml10Onax7VERUl9ea2bAU/OPQ3IASUNqed9o+EotsVU9L4mgB4jXZQWDjav4VD2HSjiWlwOmfKeJRQ==" crossorigin="anonymous"></script>

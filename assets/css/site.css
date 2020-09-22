@@ -86,9 +86,6 @@ blockquote code {
 .page-content {
     font-size: 1.0em;
     margin-top: 30px;
-    hyphens: auto;
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
 }
 
 .post-content table {
@@ -187,7 +184,7 @@ blockquote code {
 
 #clrs-output,
 .ace-editor {
-    font-size: 1.2em;
+    font-size: 1.0em;
 }
 
 

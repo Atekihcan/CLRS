@@ -1,8 +1,8 @@
 <script>
     // append some text to a pre element.
     function prependOut(text) {
-        var mypre = document.getElementById("clrs-output");
-        mypre.innerHTML = mypre.innerHTML + text;
+        var output = document.getElementById("clrs-output");
+        output.innerHTML = output.innerHTML + text;
     }
 
     function builtinRead(x) {
@@ -17,8 +17,8 @@
         var prog = document
             .getElementById("clrs-code")
             .value;
-        var mypre = document.getElementById("clrs-output");
-        mypre.innerHTML = '';
+        var output = document.getElementById("clrs-output");
+        output.innerHTML = '';
         Sk.pre = "output";
         Sk.configure({output: prependOut, read: builtinRead, __future__: Sk.python3});
         var myPromise = Sk
@@ -29,8 +29,8 @@
         myPromise.then(function (mod) {
             console.log('success');
         }, function (err) {
-            mypre.style.color = "#f00";
-            mypre.innerHTML = err.toString();
+            output.style.color = "#f00";
+            output.innerHTML = err.toString();
             console.log(err.toString());
         });
     }

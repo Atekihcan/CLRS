@@ -2,20 +2,13 @@
 
 <script type="text/javascript">
     JXG.Options.text.useMathJax = true;
-    var board = JXG
-        .JSXGraph
-        .initBoard('graph-box', {
-            boundingbox: [
-                -5, 50, 50, -5
-            ],
-            axis: true,
-            showCopyright: false,
-            showNavigation: false
-        });
-    var m_sort = board.create('functiongraph', [function (x) {
-            return x;
-        }
-    ], {
+    var board = JXG.JSXGraph.initBoard('graph-box', {
+        boundingbox: [-5, 50, 50, -5],
+        axis: true,
+        showCopyright: false,
+        showNavigation: false
+    });
+    var m_sort = board.create('functiongraph', [function (x) { return x; }], {
         withLabel: true,
         name: "$$n$$",
         label: {
@@ -24,11 +17,7 @@
         strokeColor: '#0f0',
         strokeWidth: 2
     });
-    var i_sort = board.create('functiongraph', [
-        function (x) {
-            return Math.pow(2, x / 8.0);
-        }
-    ], {
+    var i_sort = board.create('functiongraph', [function (x) { return Math.pow(2, x / 8.0); }], {
         withLabel: true,
         name: "$$2^{n/8}$$",
         label: {
@@ -37,6 +26,18 @@
         strokeColor: '#00f',
         strokeWidth: 2
     });
-    var ans_1 = board.create('intersection', [m_sort, i_sort, 0]);
-    var ans_2 = board.create('intersection', [m_sort, i_sort, 1]);
+    var ans_1 = board.create('intersection', [m_sort, i_sort, 0], {
+        withLabel: true,
+        name: "(1.10, 1.10)",
+        label: {
+            offset: [0, 10]
+        },
+    });
+    var ans_2 = board.create('intersection', [m_sort, i_sort, 1], {
+        withLabel: true,
+        name: "(43.56, 43.56)",
+        label: {
+            offset: [-80, -2]
+        },
+    });
 </script>

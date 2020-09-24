@@ -61,6 +61,12 @@ blockquote code {
     font-size: 100%;
 }
 
+img {
+    display: block;
+    max-width: 100%;
+    margin: 0px auto;
+}
+
 
 /* page */
 

@@ -1,0 +1,76 @@
+<script src="{{ '/assets/js/skulpt.min.js' | prepend: site.baseurl }}" type="text/javascript"></script>
+<script src="{{ '/assets/js/skulpt-stdlib.js' | prepend: site.baseurl }}" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.min.js" integrity="sha512-GoORoNnxst42zE3rYPj4bNBm0Q6ZRXKNH2D9nEmNvVF/z24ywVnijAWVi/09iBiVDQVf3UlZHpzhAJIdd9BXqw==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/mode-python.min.js" integrity="sha512-2Ke4vMGrMfYRM55pT1aA5bw7Pl82Sc7K5Hg8XZYZu+EQrb0AO1mNYTagwZm+MFVAImYS9Mlnm73zcgc01wPXxA==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/theme-nord_dark.min.js" integrity="sha512-Yrb8fdpeml10Onax7VERUl9ea2bAU/OPQ3IASUNqed9o+EotsVU9L4mgB4jXZQWDjav4VD2HSjiWlwOmfKeJRQ==" crossorigin="anonymous"></script>
+
+<script>
+    // Output functions are configurable
+    // This one just appends some text to a pre element
+    function prependOut(text) {
+        var output = document.getElementById("code-output");
+        output.innerHTML = output.innerHTML + text;
+    }
+
+    function builtinRead(x) {
+        if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined) 
+            throw "File not found: '" + x + "'";
+        return Sk.builtinFiles["files"][x];
+    }
+
+    // Grab the code, get a reference to output
+    // configure the output function and call Sk.importMainWithBody()
+    function runCode() {
+        // Get code from Ace editor and clear output
+        var prog = (editor.getValue());
+        var output = document.getElementById("code-output");
+        output.innerHTML = '';
+
+        Sk.pre = "output";
+        Sk.configure({output: prependOut, read: builtinRead, __future__: Sk.python3});
+        var myPromise = Sk
+            .misceval
+            .asyncToPromise(function () {
+                return Sk.importMainWithBody("<stdin>", false, prog, true);
+            });
+        myPromise.then(function (mod) {
+            output.style.color = "#d8dee9";
+            console.log('success');
+        }, function (err) {
+            output.style.color = "#f00";
+            output.innerHTML = err.toString();
+            console.log(err.toString());
+        });
+    }
+</script>
+
+<div class="code-wrapper">
+    <div id="code-editor">{% include {{ include.file | default: '' }} %}</div>
+    <script>
+        var editor = ace.edit("code-editor");
+        editor
+            .renderer
+            .setShowGutter(true);
+        editor
+            .session
+            .setMode("ace/mode/python");
+        editor.setTheme("ace/theme/nord_dark");
+        editor.setFontSize("16px");
+        editor
+            .renderer
+            .setScrollMargin(15, 15)
+        editor.setOptions({autoScrollEditorIntoView: true, minLines: 8, maxLines: 20});
+        var code = editor.getValue();
+
+        function resetCode() {
+            editor.setValue(code);
+            var output = document.getElementById("code-output");
+            output.innerHTML = "";
+        }
+    </script>
+    <pre id="code-output" class="code-output"></pre>
+    <div class="code-button-wrapper">
+        <button id="code-run" class="code-button" type="button"  onclick="runCode()">Run</button>
+        <button id="code-reset" class="code-button" type="button" onclick="resetCode()">Reset</button>
+    </div>
+</div>

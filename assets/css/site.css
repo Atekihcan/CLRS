@@ -143,24 +143,29 @@ img {
 
 /* Code editor */
 
-.clrs-code-wrapper {
+.code-wrapper {
     padding: 0px;
     margin: 10px -15px 10px -15px;
 }
 
-#clrs-code {
-    width: 100%;
-    position: absolute;
-    padding: 0;
-    border: 0;
+.code-output {
+    min-height: 64px;
+    max-height: 128px;
+    border: 0px;
+    padding: 10px;
+    border-radius: unset;
+    border-top: 2px solid #999;
+    color: #d8dee9;
+    background-color: #2e3440;
+    font-size: 1.0em;
 }
 
-.clrs-button-wrapper {
+.code-button-wrapper {
     margin: 5px auto;
     width: 206px;
 }
 
-.clrs-button {
+.code-button {
     min-width: 100px;
     text-align: center;
     text-decoration: none;
@@ -172,24 +177,10 @@ img {
     border: unset;
 }
 
-.clrs-button:hover {
+.code-button:hover {
     color: #ccc;
     background-color: #000;
     box-shadow: 0 5px 5px 0 rgba(1, 1, 1, .3);
-}
-
-#clrs-output {
-    height: 64px;
-    border: 0px;
-    border-radius: unset;
-    border-top: 2px solid #999;
-    color: #d8dee9;
-    background-color: #2e3440;
-}
-
-#clrs-output,
-.ace-editor {
-    font-size: 1.0em;
 }
 
 

@@ -8,7 +8,7 @@
     // Output functions are configurable
     // This one just appends some text to a pre element
     function prependOut(text) {
-        var output = document.getElementById("code-output");
+        var output = document.getElementById("code-editor-output");
         output.innerHTML = output.innerHTML + text;
     }
 
@@ -23,7 +23,7 @@
     function runCode() {
         // Get code from Ace editor and clear output
         var prog = (editor.getValue());
-        var output = document.getElementById("code-output");
+        var output = document.getElementById("code-editor-output");
         output.innerHTML = '';
 
         Sk.pre = "output";
@@ -44,7 +44,7 @@
     }
 </script>
 
-<div class="code-wrapper">
+<div class="code-editor-wrapper">
     <div id="code-editor">{% include {{ include.file | default: '' }} %}</div>
     <script>
         var editor = ace.edit("code-editor");
@@ -63,14 +63,14 @@
         var code = editor.getValue();
 
         function resetCode() {
-            editor.setValue(code);
-            var output = document.getElementById("code-output");
+            editor.setValue(code, 1);
+            var output = document.getElementById("code-editor-output");
             output.innerHTML = "";
         }
     </script>
-    <pre id="code-output" class="code-output"></pre>
-    <div class="code-button-wrapper">
-        <button id="code-run" class="code-button" type="button"  onclick="runCode()">Run</button>
-        <button id="code-reset" class="code-button" type="button" onclick="resetCode()">Reset</button>
+    <pre id="code-editor-output" class="code-editor-output"></pre>
+    <div class="code-editor-buttons">
+        <button class="code-editor-button" type="button" onclick="runCode()">Run</button>
+        <button class="code-editor-button" type="button" onclick="resetCode()">Reset</button>
     </div>
 </div>

@@ -1,0 +1,128 @@
+<div class="latex-pseudo-code">
+{% assign latex = '$$' %}
+{% assign has_parameters = 0 %}
+{% if include.title contains '(' %}
+    {% assign has_parameters = 1 %}
+{% endif %}
+{% assign function_parts = include.title | split: '(' %}
+{% for part in function_parts %}
+    {% if forloop.index == 1 %}
+        {% if has_parameters == 0 %}
+            {% assign latex = latex | append: '\textsc {' | append: part | append: ' }' %}
+        {% else %}
+            {% assign latex = latex | append: '\textsc {' | append: part | append: ' }(' %}
+        {% endif %}
+    {% else %}
+        {% assign latex = latex | append: part %}
+    {% endif %}
+{% endfor %}
+{% assign latex = latex | append: '$$' %}
+
+{{ latex }}
+
+$$\begin{aligned}
+{% assign num_tabs = 1 %}
+{% assign booleans = "and,or" | split: ',' %}
+{% assign constants = "TRUE,FALSE,NIL" | split: ',' %}
+{% assign keywords = "swap,exchange,let,be,new,array" | split: ',' %}
+{% assign conditionals = "if,elseif,else,for,while,to,downto,contiune,break,return,error" | split: ',' %}
+{% assign symbols = "0,1,2,3,4,5,6,7,8,9,+,-,*,/,%,^,(,),[,],{,}" | split: ',' %}
+{% assign lines = code | newline_to_br | strip_newlines | split:"<br />" %}
+{% for line in lines %}
+    {% if forloop.index0 == 0 %}
+        {% continue %}
+    {% endif %}
+    {%comment%}
+    Prepare latex for tabs
+    {%endcomment%}
+    {% assign tabs = '\quad ' %}
+    {% assign len = line | size %}
+    {% assign indentation = 0 %}
+    {% for i in (1..len) %}
+        {% assign char = line | slice: forloop.index, 1 %}
+        {% if char == ' ' %}
+            {% assign indentation = indentation | plus: 1 %}
+        {% else %}
+            {% break %}
+        {% endif %}
+    {% endfor %}
+    {% assign indentation = indentation | plus: 1 | divided_by: 4 %}
+    {% for i in (1..indentation) %}
+        {%assign tabs = tabs | append: '\qquad ' %}
+    {% endfor %}
+
+    {%comment%}
+    Replace latex special operators
+    {%endcomment%}
+    {% assign latex_line = line %}
+    {% assign latex_line = latex_line | replace: '<=', '\leq' %}
+    {% assign latex_line = latex_line | replace: '>=', '\geq' %}
+    {% assign latex_line = latex_line | replace: '!=', '\not =' %}
+    {% assign latex_line = latex_line | replace: 'infinity', '\infty' %}
+
+    {%comment%}
+    Tokenize and parse
+    {%endcomment%}
+    {% assign latex = "" %}
+    {% assign tokens = latex_line | split: " " %}
+    {% assign is_comment = 0 %}
+    {% for token in tokens %}
+        {%comment%}
+        If starts with comment literal parse each word like text
+        {%endcomment%}
+        {% if forloop.index == 1 and token == '//' %}
+            {% assign is_comment = 1 %}
+        {% endif %}
+        {% if is_comment == 1 %}
+            {% if token == '//' %}
+                {% assign latex = latex | append: '\textbf {' | append: token | append: ' }' %}
+            {% else %}
+                {% assign is_word = 1 %}
+                {% for sym in symbols %}
+                    {% if token contains sym %}
+                        {% assign is_word = 0 %}
+                    {% endif %}
+                {% endfor %}
+                {% if is_word == 0 %}
+                    {% assign latex = latex | append: token %}
+                {% else %}
+                    {% assign latex = latex | append: '\text { ' | append: token | append: ' }' %}
+                {% endif %}
+            {% endif %}
+            {% continue %}
+        {% endif %}
+        {%comment%}
+        Otherwise parse like code
+        {%endcomment%}
+        {% if booleans contains token or constants contains token or keywords contains token %}
+            {% if forloop.index == 1 %}
+                {% assign latex = latex | append: '\text {' | append: token | append: ' }' %}
+            {% else %}
+                {% assign latex = latex | append: '\text { ' | append: token | append: ' }' %}
+            {% endif %}
+        {% elsif conditionals contains token %}
+            {% if forloop.index == 1 %}
+                {% assign latex = latex | append: '\textbf {' | append: token | append: ' }' %}
+            {% else %}
+                {% assign latex = latex | append: '\textbf { ' | append: token | append: ' }' %}
+            {% endif %}
+        {% else %}
+            {% if token contains '(' %}
+                {% assign function_parts = token | split: '(' %}
+                {% for part in function_parts %}
+                    {% if forloop.index == 1 %}
+                        {% assign latex = latex | append: '\textsc {' | append: part | append: ' }(' %}
+                    {% else %}
+                        {% assign latex = latex | append: part %}
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                {% assign latex = latex | append: token %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    {{ forloop.index0 }}& {{ tabs }} {{ latex }} \\
+{% endfor %}
+\end{aligned}$$
+</div>

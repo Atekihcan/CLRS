@@ -24,8 +24,13 @@
 
 .highlight .gutter {
     width: 15px;
+    padding-right: 10px;
     border: none;
     border-right: 1px solid #ccc;
+}
+
+.highlight .code {
+    padding-left: 5px;
 }
 
 .highlight pre pre {
@@ -35,6 +40,8 @@
 
 .highlight table {
     width: 100%;
+    border: none;
+    margin: 10px auto;
 }
 
 .highlight td {

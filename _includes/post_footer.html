@@ -1,0 +1,23 @@
+<div class="article-nav">
+    <div class="article-nav-left">
+        {% if page.previous != nil %}
+            <a href="{{ page.previous.url | prepend: site.baseurl }}">
+                <i class="fa fa-2x fa-arrow-left"></i>
+            </a>
+            <span>{{ page.previous.title | truncate: 20 }}</span>
+        {% endif %}
+    </div>
+    <div class="article-nav-middle">
+        <a href="{{ '/' | prepend: site.baseurl }}">
+            <strong>Solution Index</strong>
+        </a>
+    </div>
+    <div class="article-nav-right">
+        {% if page.next != nil %}
+            <span>{{ page.next.title | truncate: 20 }}</span>
+            <a href="{{ page.next.url | prepend: site.baseurl }}">
+                <i class="fa fa-2x fa-arrow-right"></i>
+            </a>
+        {% endif %}
+    </div>
+</div>

@@ -1,45 +1,52 @@
 ---
-layout:     page
+layout:     base
 title:      Solution Index
 ---
-{% for post in site.posts reversed %}
-    {% if post.clrs %}
-        {% assign current_chapter = post.clrs[0] %}
-        {% assign current_section = post.clrs[1] %}
-        {% if current_section != section %}
-            {% if section != NIL %}
+
+<div class="clrs-toc">
+    {% for post in site.posts reversed %}
+        {% if post.clrs %}
+            {% assign current_chapter = post.clrs[0] %}
+            {% assign current_section = post.clrs[1] %}
+            {% if current_section != section %}
+                {% if section != NIL %}
+                </div>
             </div>
-        </div>
+        {% endif %}
     {% endif %}
-{% endif %}
-{% if current_chapter != chapter %}
-    {% unless forloop.first %}<br/>{% endunless %}
+
+    {% if current_chapter != chapter %}
+        {% unless forloop.first %}
+        </div>
+        </div>
+    {% endunless %}
     <div class="clrs-chapter">
-        {% assign chapter_int = current_chapter | minus : 0 %}
-        {% if chapter_int > 0 %}
-            <h3 id="{{ current_chapter }}">Chapter {{ current_chapter }}</h3>
-        {% else %}
-            <h3 id="{{ current_chapter }}">Appendix {{ current_chapter }}</h3>
-        {% endif %}
-    </div>
-    {% assign chapter = current_chapter %}
-{% endif %}
-{% if current_section != section %}
-    <div class="row clrs-row">
-        {% if current_section > 0 %}
-            <div class="col-md-2 col-sm-2 col-xs-6 clrs-section">
-                <b>Section {{ current_section }}</b>
-            </div>
-        {% else %}
-            <div class="col-md-2 col-sm-2 col-xs-6 clrs-section">
-                <b>Problems</b>
-            </div>
-        {% endif %}
-        {% assign section = current_section %}
-        <div class="col-md-10 col-sm-10 col-xs-12">
-        {% endif %}
-        <div class="col-md-2 col-sm-2 col-xs-3 clrs-cell">
-            <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title | remove: "Exercise " | remove: "Problem " }}</a>
+        <div class="chapter-title">
+            {% assign chapter_int = current_chapter | minus : 0 %}
+            {% if chapter_int > 0 %}
+                <h4 id="{{ current_chapter }}">Chapter {{ current_chapter }}</h3>
+            {% else %}
+                <h4 id="{{ current_chapter }}">Appendix {{ current_chapter }}</h3>
+            {% endif %}
         </div>
+        <div class="chapter-entry">
+        {% assign chapter = current_chapter %}
     {% endif %}
-{% endfor %}
+    {% if current_section != section %}
+        <div class="clrs-section">
+            <div class="section-title">
+                {% if current_section > 0 %}
+                    <b>Section {{ current_section }}</b>
+                {% else %}
+                    <b>Problems</b>
+                {% endif %}
+            </div>
+            {% assign section = current_section %}
+            <div class="problem-list">
+            {% endif %}
+            <span>
+                <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title | remove: "Exercise " | remove: "Problem " }}</a>
+            </span>
+        {% endif %}
+    {% endfor %}
+</div>

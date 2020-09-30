@@ -1,55 +1,16 @@
 ---
-layout: default
+layout: base
 ---
 
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
-        <div class="page">
-            <article class="page-content post-content">
-                {{ content }}
-                {% include comment_message.html %}
-            </article>
-            <div class="row page-footer">
-                <hr/>
-                <table style="width: 100%;">
-                    <tr>
-                        <td class="left">
-                            {% if page.previous != nil %}
-                                <a href="{{ page.previous.url | prepend: site.baseurl }}">
-                                    <i class="fa fa-arrow-left"></i>
-                                </a>
-                            {% endif %}
-                        </td>
-                        <td class="middle">
-                            <a href="{{ '/' | prepend: site.baseurl }}">
-                                <strong>Solution Index</strong>
-                            </a>
-                        </td>
-                        <td class="right">
-                            {% if page.next != nil %}
-                                <a href="{{ page.next.url | prepend: site.baseurl }}">
-                                    <i class="fa fa-arrow-right"></i>
-                                </a>
-                            {% endif %}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="left-small">
-                            {% if page.previous != nil %}
-                                {{ page.previous.title | truncate: 20 }}
-                            {% endif %}
-                        </td>
-                        <td class="middle"></td>
-                        <td class="right-small">
-                            {% if page.next != nil %}
-                                {{ page.next.title | truncate: 20 }}
-                            {% endif %}
-                        </td>
-                    </tr>
-                </table>
-                <hr/>
-                {% include comment.html %}
-            </div>
-        </div>
+<article>
+    <div class="article-content">
+        {{ content }}
     </div>
-</div>
+    <hr class="solid"/>
+    <div class="article-footer">
+        {% include comment_message.html %}
+        {% include post_footer.html %}
+    </div>
+</article>
+
+{% include comment.html %}

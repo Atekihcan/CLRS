@@ -240,6 +240,34 @@ blockquote p {
 }
 
 
+/* aside */
+
+aside {
+    margin: 30px auto;
+}
+
+aside h4 {
+    margin-top: 0;
+    padding: 10px;
+    font-size: 0.9em;
+}
+
+aside div {
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+aside.info h4 {
+    color: var(--light-text);
+    background-color: var(--main-text);
+    border: 1px solid var(--main-text);
+}
+
+aside.info div {
+    border: 1px solid var(--main-text);
+}
+
+
 /* KaTeX override */
 
 .katex-display.fleqn>.katex {
@@ -253,23 +281,16 @@ blockquote p {
 
 /* CLRS pseudo code */
 
-.latex-pseudo-code {
-    max-width: calc(100vw - 60px);
-    overflow-x: auto;
-    font-size: 0.8em;
-    background-color: var(--code-body);
-    border: 1px solid var(--mute-light);
-    box-shadow: 2px 2px 5px 0 rgba(1, 1, 1, .3);
-}
-
+.latex-pseudo-code,
 figure.highlight {
     overflow-x: auto;
     max-width: calc(100vw - 60px);
-    text-align: left;
+    margin-bottom: 20px;
     font-size: 0.8em;
+    text-align: left;
     background-color: var(--code-body);
     border: 1px solid var(--mute-light);
-    box-shadow: 0 5px 5px 0 rgba(1, 1, 1, .3);
+    box-shadow: 0 1px 2px 0 rgba(1, 1, 1, .3);
 }
 
 
@@ -386,8 +407,7 @@ thead {
     margin: 0;
 }
 
-.chapter-entry {
-}
+.chapter-entry {}
 
 .clrs-section {
     display: flex;
@@ -399,7 +419,7 @@ thead {
     min-width: 100px;
 }
 
-.problem-list  {
+.problem-list {
     display: flex;
     flex-flow: row wrap;
 }
@@ -438,7 +458,6 @@ thead {
     .site-footer {
         width: 992px;
     }
-
     .clrs-toc {
         width: calc(992px - 40px);
     }

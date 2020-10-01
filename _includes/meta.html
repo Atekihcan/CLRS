@@ -1,0 +1,19 @@
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    {% assign description = "" %}
+    {% if page.clrs %}
+        {% assign description = content | strip_html | strip | prepend: '[CLRS] ' | truncate: 155 %}
+    {% else %}
+        {% assign description = site.description | strip_html | truncate: 155 %}
+    {% endif %}
+
+    <!-- Legacy meta -->
+    <meta name="description" content="{{ description }}">
+    <meta name="keywords" content="{{ site.keywords }}"/>
+
+    <!--Schema-->
+    <link rel="author" href="{{ site.author }}">
+    <link rel="publisher" href="{{ site.url }}">
+    <meta itemprop="name" content="{% if title %}{{ title }}{% else %}{{ site.title }}{% endif %}">
+    <meta itemprop="description" content="{{ description }}">

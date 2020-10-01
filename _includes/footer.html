@@ -3,3 +3,13 @@
         &copy; Atekihcan 2007 - {{ site.time | date: '%Y' }}
     </div>
 </footer>
+
+<script>
+    // Left align KaTeX for pseudo codes
+    document.addEventListener("DOMContentLoaded", function() { 
+        var docs = document.querySelectorAll('.latex-pseudo-code > span > span');
+        for (var i = 0; i < docs.length; i++) {
+            docs[i].classList.add('fleqn');
+        }
+    });
+</script>

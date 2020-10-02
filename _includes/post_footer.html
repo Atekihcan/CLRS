@@ -4,7 +4,9 @@
             <a href="{{ page.previous.url | prepend: site.baseurl }}">
                 <i class="fa fa-2x fa-arrow-left"></i>
             </a>
-            <span>{{ page.previous.title | truncate: 20 }}</span>
+            <span><strong>{{ page.previous.title | replace: 'Exercise', 'E' | replace: 'Problem', 'P' }}</strong></span>
+        {% else %}
+            <span></span>
         {% endif %}
     </div>
     <div class="article-nav-middle">
@@ -14,10 +16,12 @@
     </div>
     <div class="article-nav-right">
         {% if page.next != nil %}
-            <span>{{ page.next.title | truncate: 20 }}</span>
+            <span><strong>{{ page.next.title | replace: 'Exercise', 'E' | replace: 'Problem', 'P' }}</strong></span>
             <a href="{{ page.next.url | prepend: site.baseurl }}">
                 <i class="fa fa-2x fa-arrow-right"></i>
             </a>
+        {% else %}
+            <span></span>
         {% endif %}
     </div>
 </div>

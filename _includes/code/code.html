@@ -59,7 +59,8 @@
         editor
             .renderer
             .setScrollMargin(15, 15)
-        editor.setOptions({autoScrollEditorIntoView: true, minLines: 8, maxLines: 20, fontFamily: 'Courier New'});
+        editor.setOptions({autoScrollEditorIntoView: true, minLines: 8, maxLines: 20});
+        document.getElementById('code-editor').style.fontFamily = "'Courier New', Courier, monospace";
         var code = editor.getValue();
 
         function resetCode() {

@@ -1,7 +1,10 @@
+---
+---
+
 :root {
     /* Color Schemes */
-    --accent-dark: hsl(208, 60%, 30%);
-    --accent-light: hsl(208, 60%, 50%);
+    --accent-dark: hsl(208, 60%, 20%);
+    --accent-light: hsl(208, 60%, 40%);
     --accent-lighter: hsl(208, 60%, 80%);
     --mute-dark: #ccc;
     --mute-light: #eee;
@@ -380,6 +383,7 @@ thead {
 /* Disqus */
 
 #disqus_thread {
+    min-height: 100px;
     font-family: var(--thin-font);
 }
 

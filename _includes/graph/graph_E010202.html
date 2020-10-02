@@ -10,18 +10,20 @@
     });
     var m_sort = board.create('functiongraph', [function (x) { return x; }], {
         withLabel: true,
-        name: "$$n$$",
+        name: "$$y = x$$",
         label: {
-            offset: [50, 70]
+            offset: [24, 90],
+            fontSize: 20
         },
         strokeColor: '#0f0',
         strokeWidth: 2
     });
     var i_sort = board.create('functiongraph', [function (x) { return Math.pow(2, x / 8.0); }], {
         withLabel: true,
-        name: "$$2^{n/8}$$",
+        name: "$$y = 2^{x/8}$$",
         label: {
-            offset: [200, 50]
+            offset: [200, 50],
+            fontSize: 20
         },
         strokeColor: '#00f',
         strokeWidth: 2

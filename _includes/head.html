@@ -16,11 +16,7 @@
     <script defer src="{{ '/assets/katex/katex.min.js' | prepend: site.baseurl }}" ></script>
     <script defer src="{{ '/assets/katex/contrib/auto-render.min.js' | prepend: site.baseurl }}" onload="renderMathInElement(document.body, {trust: true});"></script>
 
-    <!-- If graph is to be shown -->
-    {% if page.graph %}
-    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jsxgraph/1.1.0/jsxgraph.css"/>
-    <script type="text/javascript" charset="UTF-8" src="//cdnjs.cloudflare.com/ajax/libs/jsxgraph/1.1.0/jsxgraphcore.js"></script>
-    {% endif %}
+    <!-- Google Analytics -->
     {% include analytics.html %}
 
     <!-- Load site specific stuff at last -->

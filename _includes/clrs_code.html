@@ -24,7 +24,7 @@ $$\begin{aligned}
 {% assign num_tabs = 1 %}
     {% assign booleans = "and,or" | split : ',' %}
     {% assign constants = "TRUE,FALSE,NIL" | split : ',' %}
-    {% assign keywords = "swap,exchange,let,be,new,array" | split : ',' %}
+    {% assign keywords = "swap,exchange,with,let,be,new,array" | split : ',' %}
     {% assign conditionals = "if,elseif,else,for,while,to,downto,contiune,break,return,error" | split : ',' %}
     {% assign symbols = "0,1,2,3,4,5,6,7,8,9,+,-,*,/,%,^,(,),[,],{,}" | split: ',' %}
     {% assign lines = code | newline_to_br | strip_newlines | split : "<br />" %}
@@ -56,6 +56,7 @@ $$\begin{aligned}
         Replace latex special operators
         {% endcomment %}
         {% assign latex_line = line %}
+        {% assign latex_line = latex_line | replace : '%', '\mod' %}
         {% assign latex_line = latex_line | replace : '<=', '\leq' %}
         {% assign latex_line = latex_line | replace : '>=', '\geq' %}
         {% assign latex_line = latex_line | replace : '!=', '\not =' %}
@@ -76,7 +77,7 @@ $$\begin{aligned}
             {% endif %}
             {% if is_comment == 1 %}
                 {% if token == '//' %}
-                    {% assign latex = latex | append : '\textbf {' | append: token | append : ' }' %}
+                    {% assign latex = latex | append : '\textbf {' | append: token | append : ' } ' %}
                 {% else %}
                     {% assign is_word = 1 %}
                     {% for sym in symbols %}

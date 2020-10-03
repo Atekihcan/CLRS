@@ -14,7 +14,7 @@
     --problem-accent: hsl(32, 70%, 50%);
     --code-body: hsl(32, 100%, 99%);
     /* Fonts */
-    --head-font: 'Arial Black', 'Gadget', sans-serif;
+    --head-font: 'Arial Black', 'Gadget', 'Roboto-Black', sans-serif;
     --thin-font: Arial, Helvetica, sans-serif;
     --body-font: 'Times New Roman', Times, serif;
     --mono-font: 'Courier New', Courier, monospace;
@@ -232,6 +232,13 @@ hr {
     background-image: none;
 }
 
+.article-content blockquote {
+    margin: 20px auto;
+    padding: 5px 0px 5px 15px;
+    font-size: 1.05em;
+    border-left: 5px solid var(--main-text);
+}
+
 .article-content blockquote:first-of-type {
     margin: 20px auto;
     padding: 10px 20px;
@@ -295,6 +302,10 @@ figure.highlight {
     text-align: left;
     background-color: var(--code-body);
     box-shadow: 0 1px 2px 0 rgba(1, 1, 1, .3);
+}
+
+.latex-pseudo-code .katex-display {
+    margin-top: 0.4em;
 }
 
 
@@ -424,7 +435,7 @@ thead {
 }
 
 .section-title {
-    min-width: 80px;
+    min-width: 84px;
 }
 
 .problem-list {
@@ -433,6 +444,7 @@ thead {
 }
 
 .problem-list>span {
+    min-width: 72px;
     padding: 0px 10px;
 }
 

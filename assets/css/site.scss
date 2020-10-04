@@ -235,7 +235,6 @@ hr {
 .article-content blockquote {
     margin: 20px auto;
     padding: 5px 0px 5px 15px;
-    font-size: 1.05em;
     border-left: 5px solid var(--main-text);
 }
 
@@ -298,7 +297,7 @@ figure.highlight {
     overflow-x: auto;
     max-width: calc(100vw - 60px);
     margin-bottom: 20px;
-    font-size: 0.8em;
+    font-size: 0.9em;
     text-align: left;
     background-color: var(--code-body);
     box-shadow: 0 1px 2px 0 rgba(1, 1, 1, .3);

@@ -3,9 +3,9 @@
 
     {% assign description = "" %}
     {% if page.clrs %}
-        {% assign description = content | strip_html | strip | prepend: '[CLRS] ' | truncate: 155 %}
+        {% assign description = content | strip_html | strip | prepend: '[CLRS Solutions] ' | truncate: 300 %}
     {% else %}
-        {% assign description = site.description | strip_html | truncate: 155 %}
+        {% assign description = site.description | strip_html | truncate: 300 %}
     {% endif %}
 
     <!-- Legacy meta -->

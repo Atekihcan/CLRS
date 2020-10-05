@@ -289,13 +289,18 @@ aside.info div {
     font-size: 1em !important;
 }
 
+.katex-display > .katex {
+    overflow-x: auto;
+    max-width: calc(100vw - 20px);
+}
 
 /* CLRS pseudo code */
 
 .latex-pseudo-code,
 figure.highlight {
     overflow-x: auto;
-    max-width: calc(100vw - 60px);
+    max-width: calc(100vw - 20px);
+    margin: 0px auto;
     margin-bottom: 20px;
     font-size: 0.9em;
     text-align: left;
@@ -304,7 +309,7 @@ figure.highlight {
 }
 
 .latex-pseudo-code .katex-display {
-    margin-top: 0.4em;
+    margin: 0.4em 0;
 }
 
 

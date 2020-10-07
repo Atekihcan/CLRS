@@ -1,6 +1,5 @@
 ---
 ---
-
 :root {
     /* Color Schemes */
     --accent-dark: hsl(255, 60%, 40%);
@@ -246,6 +245,19 @@ hr {
     border-left: 5px solid var(--problem-accent);
 }
 
+.article-content blockquote:first-of-type ol {
+    margin-bottom: 0px;
+}
+
+.article-content blockquote:first-of-type ol>li {
+    list-style: lower-alpha;
+}
+
+.article-content blockquote:first-of-type ol>li::marker {
+    font-style: italic;
+    font-weight: 700;
+}
+
 blockquote p {
     margin: 5px auto;
 }
@@ -289,10 +301,6 @@ aside.info div {
     font-size: 1em !important;
 }
 
-.katex-display > .katex {
-    overflow-x: auto;
-    max-width: calc(100vw - 20px);
-}
 
 /* CLRS pseudo code */
 

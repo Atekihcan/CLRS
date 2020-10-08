@@ -1,14 +1,14 @@
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics_id }}"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics_id }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-  gtag('config', '{{ site.google_analytics_id }}', {
-    cookie_domain: '{{ site.url }}',
-    cookie_flags: 'SameSite=None;Secure'
-  });
-</script>
+        gtag('config', '{{ site.google_analytics_id }}', {
+            cookie_domain: '{{ site.url }}',
+            cookie_flags: 'SameSite=None;Secure'
+        });
+    </script>

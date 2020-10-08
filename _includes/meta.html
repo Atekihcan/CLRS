@@ -1,12 +1,12 @@
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    {% assign description = "" %}
-    {% if page.clrs %}
-        {% assign description = content | strip_html | strip | strip_newlines | prepend: '[CLRS Solutions] ' | truncate: 300 %}
-    {% else %}
-        {% assign description = site.description | strip_html | truncate: 300 %}
-    {% endif %}
+    {%- assign description = "" -%}
+    {%- if page.clrs -%}
+        {%- assign description = content | strip_html | strip | strip_newlines | prepend: '[CLRS Solutions] ' | truncate: 255 -%}
+    {%- else -%}
+        {%- assign description = site.description | strip_html | truncate: 255 -%}
+    {%- endif -%}
 
     <!-- Legacy meta -->
     <meta name="description" content="{{ description }}">
@@ -15,5 +15,5 @@
     <!--Schema-->
     <link rel="author" href="{{ site.author }}">
     <link rel="publisher" href="{{ site.url }}">
-    <meta itemprop="name" content="{% if title %}{{ title }}{% else %}{{ site.title }}{% endif %}">
+    <meta itemprop="name" content="{%- if title -%}{{ title }}{%- else -%}{{ site.title }}{%- endif -%}">
     <meta itemprop="description" content="{{ description }}">

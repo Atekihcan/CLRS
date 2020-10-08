@@ -250,6 +250,10 @@ hr {
     border-left: 5px solid var(--problem-accent);
 }
 
+.article-content blockquote:first-of-type p {
+    margin: 20px auto;
+}
+
 .article-content blockquote:first-of-type ol {
     margin-bottom: 0px;
 }
@@ -264,7 +268,7 @@ hr {
 }
 
 blockquote p {
-    margin: 15px auto;
+    margin: 5px auto;
 }
 
 .indented {

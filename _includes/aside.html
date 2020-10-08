@@ -1,4 +1,4 @@
-<aside class="{{ include.type }}">
+<aside class="{{ include.type | default: 'info' }}">
     <h4>{{ include.title }} </h4>
     <div>{{ note | markdownify }}</div>
 </aside>

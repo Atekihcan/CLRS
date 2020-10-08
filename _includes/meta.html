@@ -3,7 +3,7 @@
 
     {% assign description = "" %}
     {% if page.clrs %}
-        {% assign description = content | strip_html | strip | prepend: '[CLRS Solutions] ' | truncate: 300 %}
+        {% assign description = content | strip_html | strip | strip_newlines | prepend: '[CLRS Solutions] ' | truncate: 300 %}
     {% else %}
         {% assign description = site.description | strip_html | truncate: 300 %}
     {% endif %}

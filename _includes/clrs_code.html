@@ -1,10 +1,12 @@
 <div class="latex-pseudo-code">
+{%- assign title = include.title | default: "" -%}
+{%- if title != "" -%}
     {%- assign latex = '$$' -%}
     {%- assign has_parameters = 0 -%}
-    {%- if include.title contains '(' -%}
+    {%- if title contains '(' -%}
         {%- assign has_parameters = 1 -%}
     {%- endif -%}
-    {%- assign function_parts = include.title | split : '(' -%}
+    {%- assign function_parts = title | split : '(' -%}
     {%- for part in function_parts -%}
         {%- if forloop.index == 1 -%}
             {%- if has_parameters == 0 -%}
@@ -18,138 +20,142 @@
     {%- endfor -%}
     {%- assign latex = latex | append : '$$' -%}
     {{ latex }}
+{%- endif -%}
+{%- assign code = include.code | default: code -%}
 $$\begin{aligned}
 {%- assign num_tabs = 1 -%}
-    {%- assign booleans = "and,or" | split : ',' -%}
-    {%- assign constants = "TRUE,FALSE,NIL" | split : ',' -%}
-    {%- assign keywords = "swap,exchange,with,let,be,new,array,arrays" | split : ',' -%}
-    {%- assign conditionals = "if,elseif,else,for,while,to,downto,contiune,break,return,error" | split : ',' -%}
-    {%- assign symbols = "0,1,2,3,4,5,6,7,8,9,+,-,*,/,%,^,(,),[,],{,}" | split: ',' -%}
-    {%- assign delimiters = "floor,ceil" | split : ',' -%}
-    {%- assign lines = code | newline_to_br | strip_newlines | split : "<br />" -%}
-    {%- for line in lines -%}
-        {%- if forloop.index0 == 0 -%}
-            {%- continue -%}
+{%- assign booleans = "and,or" | split : ',' -%}
+{%- assign constants = "TRUE,FALSE,NIL" | split : ',' -%}
+{%- assign keywords = "swap,exchange,with,let,be,new,array,arrays" | split : ',' -%}
+{%- assign conditionals = "if,elseif,else,for,while,to,downto,contiune,break,return,error" | split : ',' -%}
+{%- assign symbols = "0,1,2,3,4,5,6,7,8,9,+,-,*,/,%,^,(,),[,],{,}" | split: ',' -%}
+{%- assign delimiters = "floor,ceil" | split : ',' -%}
+{%- assign lines = code | newline_to_br | strip_newlines | split : "<br />" -%}
+{%- for line in lines -%}
+    {%- if forloop.index0 == 0 -%}
+        {%- continue -%}
+    {%- endif -%}
+    {%- assign delim_s= '' -%}
+    {%- assign delim_e= '' -%}
+    {%- assign brace_count = 0 -%}
+    {%- comment -%}
+    Prepare latex for tabs
+    {%- endcomment -%}
+    {%- assign tabs = '\quad ' -%}
+    {%- assign len = line | size -%}
+    {%- assign indentation = 0 -%}
+    {%- for i in (1..len) -%}
+        {%- assign char = line | slice: forloop.index,
+        1 -%}
+        {%- if char == ' ' -%}
+            {%- assign indentation = indentation | plus : 1 -%}
+        {%- else -%}
+            {%- break -%}
         {%- endif -%}
-        {%- assign delim_s= '' -%}
-        {%- assign delim_e= '' -%}
-        {%- assign brace_count = 0 -%}
+    {%- endfor -%}
+    {%- assign indentation = indentation | plus : 1 | divided_by : 4 -%}
+    {%- for i in (1..indentation) -%}
+        {%-assign tabs = tabs | append: '\qquad ' -%}
+    {%- endfor -%}
+
+    {%- comment -%}
+    Replace latex special operators
+    {%- endcomment -%}
+    {%- assign latex_line = line -%}
+    {%- assign latex_line = latex_line | replace : '*', '\cdot \,' -%}
+    {%- assign latex_line = latex_line | replace : '%', '\mod' -%}
+    {%- assign latex_line = latex_line | replace : '<=', '\leq \,' -%}
+    {%- assign latex_line = latex_line | replace : '>=', '\geq \,' -%}
+    {%- assign latex_line = latex_line | replace : '!=', '\not =' -%}
+    {%- assign latex_line = latex_line | replace : 'infinity', '\infty' -%}
+    {%- assign latex_line = latex_line | replace : 'INFINITY', '\infty' -%}
+
+    {%- comment -%}
+    Tokenize and parse
+    {%- endcomment -%}
+    {%- assign latex = "" -%}
+    {%- assign tokens = latex_line | split : " " -%}
+    {%- assign is_comment = 0 -%}
+    {%- for token in tokens -%}
         {%- comment -%}
-        Prepare latex for tabs
+        If starts with comment literal parse each word like text
         {%- endcomment -%}
-        {%- assign tabs = '\quad ' -%}
-        {%- assign len = line | size -%}
-        {%- assign indentation = 0 -%}
-        {%- for i in (1..len) -%}
-            {%- assign char = line | slice: forloop.index,
-            1 -%}
-            {%- if char == ' ' -%}
-                {%- assign indentation = indentation | plus : 1 -%}
+        {%- if forloop.index == 1 and token == '//' -%}
+            {%- assign is_comment = 1 -%}
+        {%- endif -%}
+        {%- if is_comment == 1 -%}
+            {%- if token == '//' -%}
+                {%- assign latex = latex | append : '\textbf {' | append: token | append : ' } ' -%}
             {%- else -%}
-                {%- break -%}
-            {%- endif -%}
-        {%- endfor -%}
-        {%- assign indentation = indentation | plus : 1 | divided_by : 4 -%}
-        {%- for i in (1..indentation) -%}
-            {%-assign tabs = tabs | append: '\qquad ' -%}
-        {%- endfor -%}
-
-        {%- comment -%}
-        Replace latex special operators
-        {%- endcomment -%}
-        {%- assign latex_line = line -%}
-        {%- assign latex_line = latex_line | replace : '%', '\mod' -%}
-        {%- assign latex_line = latex_line | replace : '<=', '\leq \,' -%}
-        {%- assign latex_line = latex_line | replace : '>=', '\geq \,' -%}
-        {%- assign latex_line = latex_line | replace : '!=', '\not =' -%}
-        {%- assign latex_line = latex_line | replace : 'infinity', '\infty' -%}
-
-        {%- comment -%}
-        Tokenize and parse
-        {%- endcomment -%}
-        {%- assign latex = "" -%}
-        {%- assign tokens = latex_line | split : " " -%}
-        {%- assign is_comment = 0 -%}
-        {%- for token in tokens -%}
-            {%- comment -%}
-            If starts with comment literal parse each word like text
-            {%- endcomment -%}
-            {%- if forloop.index == 1 and token == '//' -%}
-                {%- assign is_comment = 1 -%}
-            {%- endif -%}
-            {%- if is_comment == 1 -%}
-                {%- if token == '//' -%}
-                    {%- assign latex = latex | append : '\textbf {' | append: token | append : ' } ' -%}
-                {%- else -%}
-                    {%- assign is_word = 1 -%}
-                    {%- for sym in symbols -%}
-                        {%- if token contains sym -%}
-                            {%- assign is_word = 0 -%}
-                        {%- endif -%}
-                    {%- endfor -%}
-                    {%- if is_word == 0 -%}
-                        {%- assign latex = latex | append: token -%}
-                    {%- else -%}
-                        {%- assign latex = latex | append : '\text { ' | append: token | append : ' }' -%}
+                {%- assign is_word = 1 -%}
+                {%- for sym in symbols -%}
+                    {%- if token contains sym -%}
+                        {%- assign is_word = 0 -%}
                     {%- endif -%}
-                {%- endif -%}
-                {%- continue -%}
-            {%- endif -%}
-            {%- comment -%}
-            Otherwise parse like code
-            {%- endcomment -%}
-            {%- if booleans contains token or constants contains token or keywords contains token -%}
-                {%- if forloop.index == 1 -%}
-                    {%- assign latex = latex | append : '\text {' | append: token | append : ' }' -%}
+                {%- endfor -%}
+                {%- if is_word == 0 -%}
+                    {%- assign latex = latex | append: token -%}
                 {%- else -%}
                     {%- assign latex = latex | append : '\text { ' | append: token | append : ' }' -%}
                 {%- endif -%}
-                {%- elsif conditionals contains token -%}
-                {%- if forloop.index == 1 -%}
-                    {%- assign latex = latex | append : '\textbf {' | append: token | append : ' }' -%}
+            {%- endif -%}
+            {%- continue -%}
+        {%- endif -%}
+        {%- comment -%}
+        Otherwise parse like code
+        {%- endcomment -%}
+        {%- if booleans contains token or constants contains token or keywords contains token -%}
+            {%- if forloop.index == 1 -%}
+                {%- assign latex = latex | append : '\text {' | append: token | append : ' }' -%}
+            {%- else -%}
+                {%- assign latex = latex | append : '\text { ' | append: token | append : ' }' -%}
+            {%- endif -%}
+            {%- elsif conditionals contains token -%}
+            {%- if forloop.index == 1 -%}
+                {%- assign latex = latex | append : '\textbf {' | append: token | append : ' }' -%}
+            {%- else -%}
+                {%- assign latex = latex | append : '\textbf { ' | append: token | append : ' }' -%}
+            {%- endif -%}
+        {%- else -%}
+            {%- if token contains '(' -%}
+                {%-if delim_s != '' -%}
+                    {%- assign brace_count = brace_count | plus: 1 -%}
+                {%- endif -%}
+                {%- assign function_parts = token | split : '(' -%}
+                {%- for part in function_parts -%}
+                    {%- if forloop.index == 1 -%}
+                        {%- if delimiters contains part -%}
+                            {%- assign brace_count = 1 -%}
+                            {%- if part == 'floor' -%}
+                                {%- assign delim_s= '\lfloor ' -%}
+                                {%- assign delim_e= '\rfloor ' -%}
+                            {%- elsif part == 'ceil' -%}
+                                {%- assign delim_s= '\lceil ' -%}
+                                {%- assign delim_e= '\rceil ' -%}
+                            {%- endif -%}
+                            {%- assign latex = latex | append : delim_s -%}
+                        {%- else -%}
+                            {%- assign latex = latex | append : '\textsc {' | append: part | append : '}(' -%}
+                        {%- endif -%}
+                    {%- else -%}
+                        {%- assign latex = latex | append: part -%}
+                    {%- endif -%}
+                {%- endfor -%}
+            {%- elsif token contains ')' and delim_s != '' -%}
+                {%- if brace_count > 1 -%}
+                    {%- assign latex = latex | append: token -%}
+                    {%- assign brace_count = brace_count | minus: 1 -%}
                 {%- else -%}
-                    {%- assign latex = latex | append : '\textbf { ' | append: token | append : ' }' -%}
+                    {%- assign latex = latex | append: delim_e -%}
+                    {%- assign brace_count = 0 -%}
+                    {%- assign delim_s= '' -%}
+                    {%- assign delim_e= '' -%}
                 {%- endif -%}
             {%- else -%}
-                {%- if token contains '(' -%}
-                    {%-if delim_s != '' -%}
-                        {%- assign brace_count = brace_count | plus: 1 -%}
-                    {%- endif -%}
-                    {%- assign function_parts = token | split : '(' -%}
-                    {%- for part in function_parts -%}
-                        {%- if forloop.index == 1 -%}
-                            {%- if delimiters contains part -%}
-                                {%- assign brace_count = 1 -%}
-                                {%- if part == 'floor' -%}
-                                    {%- assign delim_s= '\lfloor ' -%}
-                                    {%- assign delim_e= '\rfloor ' -%}
-                                {%- elsif part == 'ceil' -%}
-                                    {%- assign delim_s= '\lceil ' -%}
-                                    {%- assign delim_e= '\rceil ' -%}
-                                {%- endif -%}
-                                {%- assign latex = latex | append : delim_s -%}
-                            {%- else -%}
-                                {%- assign latex = latex | append : '\textsc {' | append: part | append : '}(' -%}
-                            {%- endif -%}
-                        {%- else -%}
-                            {%- assign latex = latex | append: part -%}
-                        {%- endif -%}
-                    {%- endfor -%}
-                {%- elsif token contains ')' and delim_s != '' -%}
-                    {%- if brace_count > 1 -%}
-                        {%- assign latex = latex | append: token -%}
-                        {%- assign brace_count = brace_count | minus: 1 -%}
-                    {%- else -%}
-                        {%- assign latex = latex | append: delim_e -%}
-                        {%- assign brace_count = 0 -%}
-                        {%- assign delim_s= '' -%}
-                        {%- assign delim_e= '' -%}
-                    {%- endif -%}
-                {%- else -%}
-                    {%- assign latex = latex | append: token -%}
-                {%- endif -%}
+                {%- assign latex = latex | append: token -%}
             {%- endif -%}
-        {%- endfor -%}
-        {{ forloop.index0 | plus: include.offset }}& {{ tabs }} {{ latex }} \\
+        {%- endif -%}
+    {%- endfor -%}
+    {{ forloop.index0 | plus: include.offset }}& {{ tabs }} {{ latex }} \\
 {%- endfor -%}
 \end{aligned}$$</div>

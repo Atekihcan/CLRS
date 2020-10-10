@@ -328,12 +328,16 @@ aside.info div {
 /* CLRS pseudo code */
 
 .latex-pseudo-code,
-figure.highlight {
+.highlight {
     width:0;
     min-width:100%;
     margin: 30px auto;
     font-size: 0.9em;
     text-align: left;
+}
+
+.latex-pseudo-code .katex-display {
+    margin: 0.5em 0;
 }
 
 

@@ -40,5 +40,17 @@
 			"{% include clrs_code.html title='' %}"
 		],
 		"description": "Include CLRS style pseudocode"
+	},
+	"Include Ads": {
+		"scope": "markdown,liquid",
+		"prefix": [
+			"ads"
+		],
+		"body": [
+			"{% include ads.html %}",
+			"",
+			"$0",
+		],
+		"description": "Include ads"
 	}
 }

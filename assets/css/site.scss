@@ -182,6 +182,10 @@ figure {
     margin-bottom: 60px;
 }
 
+.article-content h4+h5 {
+    margin-top: 0px;
+}
+
 .article-footer {
     margin: 20px auto;
     text-align: center;
@@ -315,8 +319,8 @@ aside.info div {
 }
 
 .katex-display {
-    width:0;
-    min-width:100%;
+    width: 0;
+    min-width: 100%;
     overflow: auto;
     overflow-x: auto;
     overflow-y: hidden;
@@ -328,8 +332,8 @@ aside.info div {
 
 .latex-pseudo-code,
 .highlight {
-    width:0;
-    min-width:100%;
+    width: 0;
+    min-width: 100%;
     margin: 30px auto;
     font-size: 0.9em;
     text-align: left;

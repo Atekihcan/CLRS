@@ -1,4 +1,4 @@
----
+--- 
 ---
 :root {
     /* Color Schemes */
@@ -337,6 +337,7 @@ aside.info div {
     margin: 30px auto;
     font-size: 0.9em;
     text-align: left;
+    overflow-x: auto;
 }
 
 .latex-pseudo-code .katex-display {

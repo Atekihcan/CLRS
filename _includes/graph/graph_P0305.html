@@ -1,0 +1,19 @@
+{% include graph/graph.html %}
+
+<script type="text/javascript">
+    JXG.Options.text.useMathJax = true;
+    var board = JXG.JSXGraph.initBoard('graph-box', {
+        boundingbox: [-5, 4, 50, -1],
+        axis: true,
+        showCopyright: false,
+        showNavigation: false
+    });
+    var a = board.create('functiongraph', [function (x) { return 2; }], {
+        strokeColor: '#0f0',
+        strokeWidth: 2
+    });
+    var b = board.create('functiongraph', [function (x) { return 2 + Math.sin(x); }], {
+        strokeColor: '#00f',
+        strokeWidth: 2
+    });
+</script>

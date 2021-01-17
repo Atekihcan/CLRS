@@ -1,4 +1,4 @@
---- 
+---
 ---
 :root {
     /* Color Schemes */
@@ -325,6 +325,11 @@ aside.info div {
     overflow-x: auto;
     overflow-y: hidden;
     outline: none;
+}
+
+h4 .katex,
+h5 .katex {
+    text-transform: initial;
 }
 
 

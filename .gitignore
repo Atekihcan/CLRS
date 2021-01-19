@@ -1,2 +1,6 @@
+# Jekyll build stuff
 _site/
 .jekyll-cache/
+
+# Any other temporary build files
+.out

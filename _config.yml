@@ -38,3 +38,7 @@ defaults:
     values:
         layout:     "post"
         author:     "Atekihcan"
+
+# Plugins
+plugins: 
+  - jemoji

@@ -1,5 +1,6 @@
 ---
 ---
+
 :root {
     /* Color Schemes */
     --accent-dark: hsl(255, 60%, 40%);
@@ -114,6 +115,10 @@ img {
     display: block;
     max-width: 100%;
     margin: 0px auto;
+}
+
+img.emoji {
+    display: inline;
 }
 
 figure {
@@ -343,6 +348,8 @@ h5 .katex {
     font-size: 0.9em;
     text-align: left;
     overflow-x: auto;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
 }
 
 .latex-pseudo-code .katex-display {
@@ -487,6 +494,17 @@ thead {
 .problem-list>span {
     min-width: 72px;
     padding: 0px 10px;
+}
+
+
+/* Extra stuff */
+
+.rainbow {
+    background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2), color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22));
+    background-image: gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2), color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22));
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
 }
 
 

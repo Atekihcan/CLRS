@@ -26,7 +26,7 @@ $$\begin{aligned}
 {%- assign num_tabs = 1 -%}
 {%- assign booleans = "and,or" | split : ',' -%}
 {%- assign constants = "TRUE,FALSE,NIL" | split : ',' -%}
-{%- assign keywords = "swap,exchange,with,let,be,new,array,arrays" | split : ',' -%}
+{%- assign keywords = "swap,exchange,with,let,be,a,new,array,arrays,matrix,matrices,partition" | split : ',' -%}
 {%- assign conditionals = "if,elseif,else,for,while,to,downto,contiune,break,return,error" | split : ',' -%}
 {%- assign symbols = "0,1,2,3,4,5,6,7,8,9,+,-,*,/,%,^,(,),[,],{,}" | split: ',' -%}
 {%- assign delimiters = "floor,ceil" | split : ',' -%}
@@ -69,6 +69,9 @@ $$\begin{aligned}
     {%- assign latex_line = latex_line | replace : '!=', '\not =' -%}
     {%- assign latex_line = latex_line | replace : 'infinity', '\infty' -%}
     {%- assign latex_line = latex_line | replace : 'INFINITY', '\infty' -%}
+    {%- assign latex_line = latex_line | replace : 'X', '\times \,' -%}
+    {%- assign latex_line = latex_line | replace : ',', ', \,' -%}
+    {%- assign latex_line = latex_line | replace : '...', '\dots' -%}
 
     {%- comment -%}
     Tokenize and parse
@@ -105,6 +108,9 @@ $$\begin{aligned}
         Otherwise parse like code
         {%- endcomment -%}
         {%- if booleans contains token or constants contains token or keywords contains token -%}
+            {%- comment -%}
+            Handle keywords
+            {%- endcomment -%}
             {%- if forloop.index == 1 -%}
                 {%- assign latex = latex | append : '\text {' | append: token | append : ' }' -%}
             {%- else -%}
@@ -118,6 +124,9 @@ $$\begin{aligned}
             {%- endif -%}
         {%- else -%}
             {%- if token contains '(' -%}
+                {%- comment -%}
+                Handle function names if there are parentheses
+                {%- endcomment -%}
                 {%-if delim_s != '' -%}
                     {%- assign brace_count = brace_count | plus: 1 -%}
                 {%- endif -%}
@@ -138,10 +147,21 @@ $$\begin{aligned}
                             {%- assign latex = latex | append : '\textsc {' | append: part | append : '}(' -%}
                         {%- endif -%}
                     {%- else -%}
-                        {%- assign latex = latex | append: part -%}
+                        {%- if part contains '_' -%}
+                            {%- comment -%}
+                            Handle subscript
+                            {%- endcomment -%}
+                            {%- assign token_parts = part | split : '_' -%}
+                            {%- assign latex = latex | append: token_parts[0] | append: '_{' | append: token_parts[1] | append: '}' -%}
+                        {%- else -%}
+                            {%- assign latex = latex | append: part -%}
+                        {%- endif -%}
                     {%- endif -%}
                 {%- endfor -%}
             {%- elsif token contains ')' and delim_s != '' -%}
+                {%- comment -%}
+                Handle function ending
+                {%- endcomment -%}
                 {%- if brace_count > 1 -%}
                     {%- assign latex = latex | append: token -%}
                     {%- assign brace_count = brace_count | minus: 1 -%}
@@ -151,6 +171,12 @@ $$\begin{aligned}
                     {%- assign delim_s= '' -%}
                     {%- assign delim_e= '' -%}
                 {%- endif -%}
+            {%- elsif token contains '_' -%}
+                {%- comment -%}
+                Handle subscript
+                {%- endcomment -%}
+                {%- assign token_parts = token | split : '_' -%}
+                {%- assign latex = latex | append: token_parts[0] | append: '_{' | append: token_parts[1] | append: '}' -%}
             {%- else -%}
                 {%- assign latex = latex | append: token -%}
             {%- endif -%}

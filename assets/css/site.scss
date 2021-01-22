@@ -1,6 +1,5 @@
 ---
 ---
-
 :root {
     /* Color Schemes */
     --accent-dark: hsl(255, 60%, 40%);
@@ -477,26 +476,36 @@ thead {
     margin: 0;
 }
 
-.chapter-entry {}
+.chapter-entry {
+    padding-left: 25px;
+}
 
 .clrs-section {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-rows: 25px auto;
+    grid-template-columns: 36px 1fr;
+    grid-template-areas: "section-id section-title" ".          problem-list";
     padding: 10px;
 }
 
+.section-id {
+    grid-area: section-id;
+    font-weight: 700;
+}
+
 .section-title {
-    min-width: 84px;
+    grid-area: section-title;
+    font-weight: 700;
 }
 
 .problem-list {
+    grid-area: problem-list;
     display: flex;
     flex-flow: row wrap;
 }
 
 .problem-list>span {
     min-width: 72px;
-    padding: 0px 10px;
 }
 
 

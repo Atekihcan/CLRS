@@ -10,7 +10,7 @@ title:      Solution Index
             {% assign current_section = post.clrs[1] %}
             {% if current_section != section %}
                 {% if section != NIL %}
-                </div>
+                </div> <!-- end section {{ section }} -->
             </div>
         {% endif %}
     {% endif %}
@@ -18,15 +18,17 @@ title:      Solution Index
     {% if current_chapter != chapter %}
         {% unless forloop.first %}
         </div>
-        </div>
-    {% endunless %}
+        </div> <!-- end chapter {{ chapter }} -->
+        {% endunless %}
     <div class="clrs-chapter">
         <div class="chapter-title">
             {% assign chapter_int = current_chapter | minus : 0 %}
             {% if chapter_int > 0 %}
-                <h4 id="{{ current_chapter }}">Chapter {{ current_chapter }}</h3>
+                {% assign chapter_index = current_chapter | minus : 1 %}
+                <h4 id="{{ current_chapter }}">{{ current_chapter }} &nbsp;{{ site.data.toc.chapters[chapter_index].name }}</h3>
             {% else %}
-                <h4 id="{{ current_chapter }}">Appendix {{ current_chapter }}</h3>
+                {% assign appendix_index = current_chapter | minus : 'A' %}
+                <h4 id="{{ current_chapter }}">{{ current_chapter }} &nbsp;{{ site.data.toc.appendices[appendix_index].name }}</h3>
             {% endif %}
         </div>
         <div class="chapter-entry">
@@ -34,13 +36,17 @@ title:      Solution Index
     {% endif %}
     {% if current_section != section %}
         <div class="clrs-section">
-            <div class="section-title">
-                {% if current_section > 0 %}
-                    <b>Section {{ current_section }}</b>
+            {% if current_section > 0 %}
+                {% assign section_index = current_section | minus : 1 %}
+                <div class="section-id">{{ current_chapter}}.{{ current_section }}</div>
+                {% if chapter_int > 0 %}
+                    <div class="section-title">{{ site.data.toc.chapters[chapter_index].sections[section_index].name }}</div>
                 {% else %}
-                    <b>Problems</b>
+                    <div class="section-title">{{ site.data.toc.appendices[appendix_index].sections[section_index].name }}</div>
                 {% endif %}
-            </div>
+            {% else %}
+                <div class="section-id">Problems</div>
+            {% endif %}
             {% assign section = current_section %}
             <div class="problem-list">
             {% endif %}

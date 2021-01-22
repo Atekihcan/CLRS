@@ -1,0 +1,68 @@
+{
+    "chapters": [{
+            "name": "The Role of Algorithms in Computing",
+            "sections": [{
+                    "name": "Algorithms"
+                },
+                {
+                    "name": "Algorithms as a technology"
+                }
+            ]
+        },
+        {
+            "name": "Getting Started",
+            "sections": [{
+                    "name": "Insertion sort"
+                },
+                {
+                    "name": "Analyzing algorithms"
+                },
+                {
+                    "name": "Designing algorithms"
+                }
+            ]
+        },
+        {
+            "name": "Growth of Functions",
+            "sections": [{
+                    "name": "Asymptotic notation"
+                },
+                {
+                    "name": "Standard notations and common functions"
+                }
+            ]
+        },
+        {
+            "name": "Divide-and-Conquer",
+            "sections": [{
+                    "name": "The maximum-subarray problem"
+                },
+                {
+                    "name": "Strassen's algorithm for matrix multiplication"
+                },
+                {
+                    "name": "The substitution method for solving recurrences"
+                },
+                {
+                    "name": "The recursion-tree method for solving recurrences"
+                },
+                {
+                    "name": "The master method for solving recurrences"
+                },
+                {
+                    "name": "Proof of the master theorem"
+                }
+            ]
+        }
+    ],
+    "appendices": [{
+        "name": "Summations",
+        "sections": [{
+                "name": "Summation formulas and properties"
+            },
+            {
+                "name": "Bounding summations"
+            }
+        ]
+    }]
+}

@@ -354,6 +354,11 @@ h5 .katex {
     border-bottom: 2px solid black;
 }
 
+blockquote .latex-pseudo-code {
+    border-top: none;
+    border-bottom: none;
+}
+
 .latex-pseudo-code .katex-display {
     margin: 0.5em 0;
 }

@@ -1,9 +1,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
+    {%- assign image_url = "" -%}
     {%- assign description = "" -%}
+    {%- assign title = "CLRS Solutions - " | append : page.title -%}
     {%- if page.clrs -%}
-        {%- assign description = content | strip_html | strip | strip_newlines | prepend: '[CLRS Solutions] ' | truncate: 255 -%}
+        {%- assign description = content | strip_html | strip | strip_newlines | truncate: 255 -%}
+        {%- assign description = description | replace : '\(', '' -%}
+        {%- assign description = description | replace : '\)', '' -%}
+        {%- assign description = description | replace : '\left', '' -%}
+        {%- assign description = description | replace : '\right', '' -%}
+        {%- assign description = description | replace : '\begin {aligned}', '' -%}
+        {%- assign description = description | replace : '\end {aligned}', '' -%}
+        {%- assign description = description | replace : ' \times ', 'x' -%}
+        {%- assign description = description | replace : '\', '' -%}
+        {%- assign image_url = page.clrs[0] -%}
+        {% assign chapter_int = page.clrs[0] | minus : 0 %}
+        {% if chapter_int > 0 %}
+            {%- assign image_url = page.clrs[0] | prepend: '00' | slice: -2, 2 -%}
+        {% endif %}
+        {%- assign title_parts = page.title | split: ' ' -%}
+        {%- assign image_url = image_url | prepend: '/assets/img/' | append: '/' | append: title_parts[1] | append: ".jpg" -%}
     {%- else -%}
         {%- assign description = site.description | strip_html | truncate: 255 -%}
     {%- endif -%}
@@ -17,3 +34,10 @@
     <link rel="publisher" href="{{ site.url }}">
     <meta itemprop="name" content="{%- if title -%}{{ title }}{%- else -%}{{ site.title }}{%- endif -%}">
     <meta itemprop="description" content="{{ description }}">
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{{ page.url | prepend: site.baseurl | prepend: site.url  }}" />
+    <meta property="og:image" content="{{ image_url | prepend: site.baseurl }}" />
+    <meta property="og:description" content="{{ description }}" />

@@ -5,52 +5,87 @@
                     "name": "Algorithms"
                 },
                 {
-                    "name": "Algorithms as a technology"
+                    "name": "Algorithms as a Technology"
                 }
-            ]
+            ],
+            "problems": [{
+                "name": "Comparison of Running Times"
+            }]
         },
         {
             "name": "Getting Started",
             "sections": [{
-                    "name": "Insertion sort"
+                    "name": "Insertion Sort"
                 },
                 {
-                    "name": "Analyzing algorithms"
+                    "name": "Analyzing Algorithms"
                 },
                 {
-                    "name": "Designing algorithms"
+                    "name": "Designing Algorithms"
+                }
+            ],
+            "problems": [{
+                    "name": "Insertion Sort on Small Arrays in Merge Sort"
+                },
+                {
+                    "name": "Correctness of Bubblesort"
+                },
+                {
+                    "name": "Correctness of Horner’s Rule"
+                },
+                {
+                    "name": "Inversions"
                 }
             ]
         },
         {
             "name": "Growth of Functions",
             "sections": [{
-                    "name": "Asymptotic notation"
+                    "name": "Asymptotic Notation"
                 },
                 {
-                    "name": "Standard notations and common functions"
+                    "name": "Standard Notations and Common Functions"
+                }
+            ],
+            "problems": [{
+                    "name": "Asymptotic Behavior of Polynomials"
+                },
+                {
+                    "name": "Relative Asymptotic Growths"
+                },
+                {
+                    "name": "Ordering by Asymptotic Growth Rates"
+                },
+                {
+                    "name": "Asymptotic Notation Properties"
+                },
+                {
+                    "name": "Variations of O and Ω"
+                },
+                {
+                    "name": "Iterated Functions"
                 }
             ]
         },
         {
             "name": "Divide-and-Conquer",
             "sections": [{
-                    "name": "The maximum-subarray problem"
+                    "name": "The Maximum Subarray Problem"
                 },
                 {
-                    "name": "Strassen's algorithm for matrix multiplication"
+                    "name": "Strassen's Algorithm for Matrix Multiplication"
                 },
                 {
-                    "name": "The substitution method for solving recurrences"
+                    "name": "The Substitution Method for Solving Recurrences"
                 },
                 {
-                    "name": "The recursion-tree method for solving recurrences"
+                    "name": "The Recursion-tree Method for Solving Recurrences"
                 },
                 {
-                    "name": "The master method for solving recurrences"
+                    "name": "The Master Method for Solving Recurrences"
                 },
                 {
-                    "name": "Proof of the master theorem"
+                    "name": "Proof of the Master Theorem"
                 }
             ]
         }
@@ -58,10 +93,10 @@
     "appendices": [{
         "name": "Summations",
         "sections": [{
-                "name": "Summation formulas and properties"
+                "name": "Summation Formulas and Properties"
             },
             {
-                "name": "Bounding summations"
+                "name": "Bounding Summations"
             }
         ]
     }]

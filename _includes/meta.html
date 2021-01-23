@@ -41,3 +41,21 @@
     <meta property="og:url" content="{{ page.url | prepend: site.baseurl | prepend: site.url  }}" />
     <meta property="og:image" content="{{ image_url | prepend: site.baseurl }}" />
     <meta property="og:description" content="{{ description }}" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "{{ title }}",
+        "image": [
+            "{{ image_url | prepend: site.baseurl }}"
+        ],
+        "datePublished": "{{ page.date | date_to_xmlschema }}",
+        "dateModified": "{{ site.time | date_to_xmlschema }}",
+        "author": {
+            "@type": "Person",
+            "name": "{{ site.author }}"
+        }
+    }
+    </script>

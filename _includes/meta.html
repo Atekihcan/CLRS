@@ -4,7 +4,7 @@
     {%- assign image_url = "" -%}
     {%- assign description = "" -%}
     {%- assign title = "CLRS Solutions - " | append : page.title -%}
-    {%- if page.clrs -%}
+    {%- if page.collection -%}
         {%- assign description = content | strip_html | strip | strip_newlines | truncate: 255 -%}
         {%- assign description = description | replace : '\(', '' -%}
         {%- assign description = description | replace : '\)', '' -%}
@@ -51,11 +51,11 @@
         "image": [
             "{{ image_url | prepend: site.baseurl }}"
         ],
-        "datePublished": "{{ page.date | date_to_xmlschema }}",
-        {%- if page.edit -%}
-        "dateModified": "{{ page.edit | date_to_xmlschema }}",
+        "datePublished": "{{ page.published | date_to_xmlschema }}",
+        {%- if page.modified -%}
+        "dateModified": "{{ page.modified | date_to_xmlschema }}",
         {%- else -%}
-        "dateModified": "{{ page.date | date_to_xmlschema }}",
+        "dateModified": "{{ page.published | date_to_xmlschema }}",
         {%- endif -%}
         "author": {
             "@type": "Person",

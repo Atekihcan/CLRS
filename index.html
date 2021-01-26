@@ -3,56 +3,91 @@ layout:     base
 title:      Table of Contents
 ---
 
-<div class="clrs-toc">
-    {% for post in site.posts reversed %}
-        {% if post.clrs %}
-            {% assign current_chapter = post.clrs[0] %}
-            {% assign current_section = post.clrs[1] %}
-            {% if current_section != section %}
-                {% if section != NIL %}
-                </div> <!-- end section {{ section }} -->
-            </div>
-        {% endif %}
-    {% endif %}
 
-    {% if current_chapter != chapter %}
-        {% unless forloop.first %}
-        </div>
-        </div> <!-- end chapter {{ chapter }} -->
-        {% endunless %}
+<div class="clrs-toc">
+<!-- Chapters -->
+{%- for chapter in site.data.toc.chapters -%}
+    {%- assign chapter_id = forloop.index -%}
     <div class="clrs-chapter">
         <div class="chapter-title">
-            {% assign chapter_int = current_chapter | minus : 0 %}
-            {% if chapter_int > 0 %}
-                {% assign chapter_index = current_chapter | minus : 1 %}
-                <h4 id="{{ current_chapter }}">{{ current_chapter }} &nbsp;{{ site.data.toc.chapters[chapter_index].name }}</h3>
-            {% else %}
-                {% assign appendix_index = current_chapter | minus : 'A' %}
-                <h4 id="{{ current_chapter }}">{{ current_chapter }} &nbsp;{{ site.data.toc.appendices[appendix_index].name }}</h3>
-            {% endif %}
+            <h4 id="{{ chapter_id }}">{{ chapter_id }} &nbsp;{{ chapter.name }}</h3>
         </div>
         <div class="chapter-entry">
-        {% assign chapter = current_chapter %}
-    {% endif %}
-    {% if current_section != section %}
-        <div class="clrs-section">
-            {% if current_section > 0 %}
-                {% assign section_index = current_section | minus : 1 %}
-                <div class="section-id">{{ current_chapter}}.{{ current_section }}</div>
-                {% if chapter_int > 0 %}
-                    <div class="section-title">{{ site.data.toc.chapters[chapter_index].sections[section_index].name }}</div>
-                {% else %}
-                    <div class="section-title">{{ site.data.toc.appendices[appendix_index].sections[section_index].name }}</div>
-                {% endif %}
-            {% else %}
+        {%- for section in chapter.sections -%}
+            {%- assign section_id = forloop.index -%}
+            <div class="clrs-section">
+                <div class="section-id">{{ chapter_id }}.{{ section_id }}</div>
+                <div class="section-title">{{ section.name }}</div>
+                <div class="problem-list">
+                {%- for problem_id in (1..section.exercise_count) -%}
+                    <span>
+                        {%- assign c22 = chapter_id | prepend: '00' | slice: -2, 2 -%}
+                        {%- assign s22 = section_id | prepend: '00' | slice: -2, 2 -%}
+                        {%- assign p22 = problem_id | prepend: '00' | slice: -2, 2 -%}
+                        {%- assign solution_url = "_solutions/" | append: c22 | append: "/E" | append: c22 | append: "." | append: s22 | append: "-" | append: p22 | append: ".md" -%}
+                        <a href="{% link {{ solution_url }} %}">{{ chapter_id }}.{{ section_id }}-{{ problem_id }}</a>
+                    </span>
+                {%- endfor -%}
+                </div>
+            </div>
+        {%- endfor -%}
+            <div class="clrs-section">
                 <div class="section-id">Problems</div>
-            {% endif %}
-            {% assign section = current_section %}
-            <div class="problem-list">
-            {% endif %}
-            <span>
-                <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title | remove: "Exercise " | remove: "Problem " }}</a>
-            </span>
-        {% endif %}
-    {% endfor %}
+                <div class="problem-list">
+                {%- for problem in chapter.problems -%}
+                    {%- assign problem_id = forloop.index -%}
+                    <span>
+                        {%- assign c22 = chapter_id | prepend: '00' | slice: -2, 2 -%}
+                        {%- assign p22 = problem_id | prepend: '00' | slice: -2, 2 -%}
+                        {%- assign solution_url = "_solutions/" | append: c22 | append: "/P" | append: c22 | append: "-" | append: p22 | append: ".md" -%}
+                        <a href="{% link {{ solution_url }} %}">{{ chapter_id }}-{{ problem_id }}</a>
+                    </span>
+                {%- endfor -%}
+                </div>
+            </div>
+        </div>
+    </div>
+{%- endfor -%}
+
+<!-- Appndices -->
+{%- for chapter in site.data.toc.appendices -%}
+    {%- assign chapter_id = chapter.id -%}
+    <div class="clrs-chapter">
+        <div class="chapter-title">
+            <h4 id="{{ chapter_id }}">{{ chapter_id }} &nbsp;{{ chapter.name }}</h3>
+        </div>
+        <div class="chapter-entry">
+        {%- for section in chapter.sections -%}
+            {%- assign section_id = forloop.index -%}
+            <div class="clrs-section">
+                <div class="section-id">{{ chapter_id }}.{{ section_id }}</div>
+                <div class="section-title">{{ section.name }}</div>
+                <div class="problem-list">
+                {%- for problem_id in (1..section.exercise_count) -%}
+                    <span>
+                        {%- assign s22 = section_id | prepend: '00' | slice: -2, 2 -%}
+                        {%- assign p22 = problem_id | prepend: '00' | slice: -2, 2 -%}
+                        {%- assign solution_url = "_solutions/" | append: chapter_id | append: "/E" | append: chapter_id | append: "." | append: s22 | append: "-" | append: p22 | append: ".md" -%}
+                        <a href="{% link {{ solution_url }} %}">{{ chapter_id }}.{{ section_id }}-{{ problem_id }}</a>
+                    </span>
+                {%- endfor -%}
+                </div>
+            </div>
+        {%- endfor -%}
+            <div class="clrs-section">
+                <div class="section-id">Problems</div>
+                <div class="problem-list">
+                {%- for problem in chapter.problems -%}
+                    {%- assign problem_id = forloop.index -%}
+                    <span>
+                        {%- assign p22 = problem_id | prepend: '00' | slice: -2, 2 -%}
+                        {%- assign solution_url = "_solutions/" | append: chapter_id | append: "/P" | append: chapter_id | append: "-" | append: p22 | append: ".md" -%}
+                        <a href="{% link {{ solution_url }} %}">{{ chapter_id }}-{{ problem_id }}</a>
+                    </span>
+                {%- endfor -%}
+                </div>
+            </div>
+        </div>
+    </div>
+{%- endfor -%}
 </div>

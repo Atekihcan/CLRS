@@ -2,10 +2,12 @@
     "chapters": [{
             "name": "The Role of Algorithms in Computing",
             "sections": [{
-                    "name": "Algorithms"
+                    "name": "Algorithms",
+                    "exercise_count": 5
                 },
                 {
-                    "name": "Algorithms as a Technology"
+                    "name": "Algorithms as a Technology",
+                    "exercise_count": 3
                 }
             ],
             "problems": [{
@@ -15,13 +17,16 @@
         {
             "name": "Getting Started",
             "sections": [{
-                    "name": "Insertion Sort"
+                    "name": "Insertion Sort",
+                    "exercise_count": 4
                 },
                 {
-                    "name": "Analyzing Algorithms"
+                    "name": "Analyzing Algorithms",
+                    "exercise_count": 4
                 },
                 {
-                    "name": "Designing Algorithms"
+                    "name": "Designing Algorithms",
+                    "exercise_count": 7
                 }
             ],
             "problems": [{
@@ -41,10 +46,12 @@
         {
             "name": "Growth of Functions",
             "sections": [{
-                    "name": "Asymptotic Notation"
+                    "name": "Asymptotic Notation",
+                    "exercise_count": 8
                 },
                 {
-                    "name": "Standard Notations and Common Functions"
+                    "name": "Standard Notations and Common Functions",
+                    "exercise_count": 8
                 }
             ],
             "problems": [{
@@ -70,34 +77,46 @@
         {
             "name": "Divide-and-Conquer",
             "sections": [{
-                    "name": "The Maximum Subarray Problem"
+                    "name": "The Maximum Subarray Problem",
+                    "exercise_count": 5
                 },
                 {
-                    "name": "Strassen's Algorithm for Matrix Multiplication"
+                    "name": "Strassen's Algorithm for Matrix Multiplication",
+                    "exercise_count": 7
                 },
                 {
-                    "name": "The Substitution Method for Solving Recurrences"
+                    "name": "The Substitution Method for Solving Recurrences",
+                    "exercise_count": 9
                 },
                 {
-                    "name": "The Recursion-tree Method for Solving Recurrences"
+                    "name": "The Recursion-tree Method for Solving Recurrences",
+                    "exercise_count": 7
                 },
                 {
-                    "name": "The Master Method for Solving Recurrences"
+                    "name": "The Master Method for Solving Recurrences",
+                    "exercise_count": 4
                 },
                 {
-                    "name": "Proof of the Master Theorem"
+                    "name": "Proof of the Master Theorem",
+                    "exercise_count": 0
                 }
             ]
         }
     ],
     "appendices": [{
+        "id": "A",
         "name": "Summations",
         "sections": [{
-                "name": "Summation Formulas and Properties"
+                "name": "Summation Formulas and Properties",
+                "exercise_count": 8
             },
             {
-                "name": "Bounding Summations"
+                "name": "Bounding Summations",
+                "exercise_count": 5
             }
-        ]
+        ],
+        "problems": [{
+            "name": "Bounding Summations"
+        }]
     }]
 }

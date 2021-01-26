@@ -4,3 +4,6 @@ _site/
 
 # Any other temporary build files
 *.out
+
+# Ignore Gemfile stuff
+Gemfile*

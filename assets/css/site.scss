@@ -118,6 +118,7 @@ img {
 
 img.emoji {
     display: inline;
+    margin-bottom: -2px;
 }
 
 figure {
@@ -524,6 +525,22 @@ thead {
     background-clip: text;
 }
 
+.support-message {
+    display: none;
+    text-align: center;
+    font-size: 0.8em;
+    border: 1px dashed black;
+    padding: 16px;
+}
+
+.support-message header {
+    font-family: var(--head-font);
+    margin-bottom: 5px;
+}
+
+.support-message section p:last-of-type {
+    margin-bottom: 0px;
+}
 
 /* Extra small devices (phones, 600px and down) */
 

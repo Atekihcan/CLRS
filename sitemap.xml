@@ -9,9 +9,9 @@ sitemap:
     {% for post in site.posts %}
         {% unless post.published == false %}
             <url>
-                <loc>{{ post.url | prepend: site.baseurl}}</loc>
+                <loc>{{ post.url | prepend: site.baseurl | prepend: site.url }}</loc>
                 {% if post.sitemap.lastmod %}
-                    <lastmod>{{ post.lastmodified | date_to_xmlschema }}</lastmod>
+                    <lastmod>{{ post.edit | date_to_xmlschema }}</lastmod>
                 {% elsif post.date %}
                     <lastmod>{{ post.date | date_to_xmlschema  }}</lastmod>
                 {% else %}
@@ -25,9 +25,9 @@ sitemap:
     {% for page in site.pages %}
         {% unless page.sitemap.exclude == "yes" %}
             <url>
-                <loc>{{ page.url | prepend: site.baseurl }}</loc>
+                <loc>{{ page.url | prepend: site.baseurl | prepend: site.url }}</loc>
                 {% if page.lastmodified %}
-                    <lastmod>{{ page.lastmodified | date_to_xmlschema}}</lastmod>
+                    <lastmod>{{ page.edit | date_to_xmlschema}}</lastmod>
                 {% elsif page.date %}
                     <lastmod>{{ page.date | date_to_xmlschema }}</lastmod>
                 {% else %}

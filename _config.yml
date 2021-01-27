@@ -29,10 +29,6 @@ google_analytics_id: "UA-57470252-4"
 sass:
   style: compressed
 
-# Plugins
-plugins: 
-  - jemoji
-
 # Collection
 collections:
   solutions:
@@ -48,3 +44,8 @@ defaults:
     values:
       layout: "post"
       author:     "Atekihcan"
+
+# Plugins
+plugins: 
+  - jemoji
+  - jekyll-redirect-from

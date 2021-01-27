@@ -2,6 +2,8 @@
 title:      Exercise A.1-2
 clrs:       [A, 1]
 published:  2012-12-19 18:05
+redirect_from:
+  - /EA.01-02/
 ---
 
 >Show that $$\sum_{k = 1}^n 1/(2k - 1) = \ln(\sqrt n) + O(1)$$ by manipulating the harmonic series.

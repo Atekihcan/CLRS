@@ -2,6 +2,8 @@
 title:      Exercise A.2-5
 clrs:       [A, 2]
 published:  2012-12-19 19:25
+redirect_from:
+  - /EA.02-05/
 ---
 
 >Why didn’t we use the integral approximation (A.12) directly on $$\sum_{k = 1}^n 1/k$$ to obtain an upper bound on the $$n$$-th harmonic number?.

@@ -2,6 +2,8 @@
 title:      Exercise A.1-3
 clrs:       [A, 1]
 published:  2012-12-19 18:10
+redirect_from:
+  - /EA.01-03/
 ---
 
 >Show that $$\sum_{k = 0}^{\infty} k^2x^k = x(1 + x)/(1 - x)^3$$ for $$0 < \vert x \vert < 1$$.

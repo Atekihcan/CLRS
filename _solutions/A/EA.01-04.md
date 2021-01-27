@@ -2,6 +2,8 @@
 title:      Exercise A.1-4
 clrs:       [A, 1]
 published:  2012-12-19 18:15
+redirect_from:
+  - /EA.01-04/
 ---
 
 >Show that $$\sum_{k = 0}^{\infty} (k - 1)/2^k = 0$$.

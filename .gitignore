@@ -6,4 +6,4 @@ _site/
 *.out
 
 # Ignore Gemfile stuff
-Gemfile*
+Gemfile

@@ -25,10 +25,6 @@ permalink:          /:title/
 # Google Analytics
 google_analytics_id: "UA-57470252-4"
 
-# CSS Compression
-sass:
-  style: compressed
-
 # Collection
 collections:
   solutions:

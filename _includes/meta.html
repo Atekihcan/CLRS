@@ -3,8 +3,12 @@
 
     {{}}
     {%- assign image = "" -%}
+    {%- assign keywords = site.keywords -%}
     {%- assign description = page.description | default: "" -%}
     {%- assign title = "CLRS Solutions | " | append : page.title -%}
+    {%- if page.keywords -%}
+        {%- assign keywords = keywords | append: ", " | append: page.keywords -%}
+    {%- endif -%}
     {%- if page.collection -%}
         {%- if description == "" -%}
             {%- assign description = content | strip_html | strip | strip_newlines | truncate: 255 -%}
@@ -35,7 +39,7 @@
 
     <!-- Legacy meta -->
     <meta name="description" content="{{ description }}"/>
-    <meta name="keywords" content="{{ site.keywords }}"/>
+    <meta name="keywords" content="{{ keywords }}"/>
 
     <!--Schema-->
     <link rel="author" href="{{ site.author }}">

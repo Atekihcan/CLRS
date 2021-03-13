@@ -90,11 +90,11 @@
                 },
                 {
                     "name": "The Recursion-tree Method for Solving Recurrences",
-                    "exercise_count": 7
+                    "exercise_count": 9
                 },
                 {
                     "name": "The Master Method for Solving Recurrences",
-                    "exercise_count": 4
+                    "exercise_count": 5
                 },
                 {
                     "name": "Proof of the Master Theorem",

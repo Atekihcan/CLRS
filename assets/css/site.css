@@ -244,7 +244,8 @@ hr {
     background-image: none;
 }
 
-.article-content blockquote {
+.article-content blockquote,
+.page-content blockquote {
     margin: 20px auto;
     padding: 5px 0px 5px 15px;
     border-left: 5px solid var(--main-text);

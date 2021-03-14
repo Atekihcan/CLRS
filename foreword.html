@@ -1,0 +1,11 @@
+---
+layout:     base
+title:      Foreword
+---
+
+<article>
+    <div class="page-content">
+        {% capture readme %}{% include_relative README.md %}{% endcapture %}
+        {{ readme | markdownify }}
+    </div>
+</article>

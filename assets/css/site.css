@@ -478,12 +478,25 @@ thead {
     background-color: var(--mute-light);
 }
 
+.chapter-title:not(.ignore) {
+    cursor: pointer;
+}
+
 .chapter-title h4 {
     margin: 0;
 }
 
+.chapter-title-active:not(.ignore),
+.chapter-title:not(.ignore):hover {
+    color: var(--mute-light);
+    background-color: var(--main-text);
+}
+
 .chapter-entry {
     padding-left: 25px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
 }
 
 .clrs-section {

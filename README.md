@@ -56,4 +56,4 @@ In fact I myself follow most of these when I'm stuck on some problem or want to 
 
 You are welcome to leave comments on the particular solutions pages if you found any error or have a suggestion for better solution.
 
-Also if you want to clone and create PR for new solutions, I'd be happy to merge the changes provided the solution explanation is inline with my motivation.
+Also if you want to clone and create PR for new solutions, I'd be happy to merge the changes provided the explanations are inline with my [motivation](#motivation).

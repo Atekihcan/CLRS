@@ -2,8 +2,6 @@
 title:      Exercise A.2-4
 clrs:       [A, 2]
 published:  2012-12-19 19:15
-redirect_from:
-  - /EA.02-04/
 ---
 
 >Approximate $$\sum_{k = 1}^n k^3$$ with an integral.

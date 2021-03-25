@@ -2,8 +2,6 @@
 title:      Exercise A.1-8
 clrs:       [A, 1]
 published:  2012-12-19 18:35
-redirect_from:
-  - /EA.01-08/
 ---
 
 >Evaluate the product $$\prod_{k = 2}^n (1 - 1/k^2)$$.

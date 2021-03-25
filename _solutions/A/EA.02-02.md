@@ -2,8 +2,6 @@
 title:      Exercise A.2-2
 clrs:       [A, 2]
 published:  2012-12-19 19:05
-redirect_from:
-  - /EA.02-02/
 ---
 
 >Find an asymptotic upper bound on the summation $$\sum_{k = 0}^{\lfloor \lg n\rfloor} \lceil n/2^k\rceil$$.

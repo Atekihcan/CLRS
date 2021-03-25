@@ -6,36 +6,36 @@ sitemap:
 
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
-    {% for post in site.solutions %}
-        {% unless post.published == false %}
-            <url>
-                <loc>{{ post.url | prepend: site.baseurl | prepend: site.url }}</loc>
-                {% if post.modified %}
-                    <lastmod>{{ post.modified | date_to_xmlschema }}</lastmod>
-                {% elsif post.published %}
-                    <lastmod>{{ post.published | date_to_xmlschema  }}</lastmod>
-                {% else %}
-                    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
-                {% endif %}
-                <changefreq>weekly</changefreq>
-                <priority>0.5</priority>
-            </url>
-        {% endunless %}
-    {% endfor %}
-    {% for page in site.pages %}
-        {% unless page.sitemap.exclude == "yes" %}
-            <url>
-                <loc>{{ page.url | prepend: site.baseurl | prepend: site.url }}</loc>
-                {% if page.modified %}
-                    <lastmod>{{ page.modified | date_to_xmlschema}}</lastmod>
-                {% elsif page.published %}
-                    <lastmod>{{ page.published | date_to_xmlschema }}</lastmod>
-                {% else %}
-                    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
-                {% endif %}
-                <changefreq>weekly</changefreq>
-                <priority>0.5</priority>
-            </url>
-        {% endunless %}
-    {% endfor %}
+{%- for post in site.solutions -%}
+    {% unless post.published == false %}
+    <url>
+        <loc>{{ post.url | prepend: site.baseurl | prepend: site.url }}</loc>
+        {%- if post.modified %}
+        <lastmod>{{ post.modified | date_to_xmlschema }}</lastmod>
+        {%- elsif post.published %}
+        <lastmod>{{ post.published | date_to_xmlschema  }}</lastmod>
+        {%- else %}
+        <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+        {% endif %}
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    {% endunless %}
+{%- endfor -%}
+{%- for page in site.pages -%}
+    {% unless page.sitemap.exclude == "yes" %}
+    <url>
+        <loc>{{ page.url | prepend: site.baseurl | prepend: site.url }}</loc>
+        {%- if page.modified %}
+        <lastmod>{{ page.modified | date_to_xmlschema}}</lastmod>
+        {%- elsif page.published %}
+        <lastmod>{{ page.published | date_to_xmlschema }}</lastmod>
+        {%- else %}
+        <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+        {%- endif %}
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    {% endunless %}
+{%- endfor -%}
 </urlset>

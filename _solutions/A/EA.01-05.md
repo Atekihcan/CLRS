@@ -2,8 +2,6 @@
 title:      Exercise A.1-5
 clrs:       [A, 1]
 published:  2012-12-19 18:20
-redirect_from:
-  - /EA.01-05/
 ---
 
 >Evaluate the sum $$\sum_{k = 1}^{\infty} (2k + 1)x^{2k}$$.

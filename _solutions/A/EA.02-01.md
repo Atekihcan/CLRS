@@ -2,8 +2,6 @@
 title:      Exercise A.2-1
 clrs:       [A, 2]
 published:  2012-12-19 19:00
-redirect_from:
-  - /EA.02-01/
 ---
 
 >Show that $$\sum_{k = 1}^n 1/k^2$$ is bounded above by a constant.

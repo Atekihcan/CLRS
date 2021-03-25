@@ -2,8 +2,6 @@
 title:      Exercise A.1-1
 clrs:       [A, 1]
 published:  2012-12-19 18:00
-redirect_from:
-  - /EA.01-01/
 ---
 
 >Find a simple formula for $$\sum_{k = 1}^n (2k - 1)$$.

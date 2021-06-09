@@ -1,7 +1,9 @@
 {
-    "chapters": [{
+    "chapters": [
+        {
             "name": "The Role of Algorithms in Computing",
-            "sections": [{
+            "sections": [
+                {
                     "name": "Algorithms",
                     "exercise_count": 5
                 },
@@ -10,13 +12,16 @@
                     "exercise_count": 3
                 }
             ],
-            "problems": [{
-                "name": "Comparison of Running Times"
-            }]
+            "problems": [
+                {
+                    "name": "Comparison of Running Times"
+                }
+            ]
         },
         {
             "name": "Getting Started",
-            "sections": [{
+            "sections": [
+                {
                     "name": "Insertion Sort",
                     "exercise_count": 4
                 },
@@ -29,7 +34,8 @@
                     "exercise_count": 7
                 }
             ],
-            "problems": [{
+            "problems": [
+                {
                     "name": "Insertion Sort on Small Arrays in Merge Sort"
                 },
                 {
@@ -45,7 +51,8 @@
         },
         {
             "name": "Growth of Functions",
-            "sections": [{
+            "sections": [
+                {
                     "name": "Asymptotic Notation",
                     "exercise_count": 8
                 },
@@ -54,7 +61,8 @@
                     "exercise_count": 8
                 }
             ],
-            "problems": [{
+            "problems": [
+                {
                     "name": "Asymptotic Behavior of Polynomials"
                 },
                 {
@@ -76,7 +84,8 @@
         },
         {
             "name": "Divide-and-Conquer",
-            "sections": [{
+            "sections": [
+                {
                     "name": "The Maximum Subarray Problem",
                     "exercise_count": 5
                 },
@@ -100,23 +109,33 @@
                     "name": "Proof of the Master Theorem",
                     "exercise_count": 0
                 }
+            ],
+            "problems": [
+                {
+                    "name": "Recurrence Examples"
+                }
             ]
         }
     ],
-    "appendices": [{
-        "id": "A",
-        "name": "Summations",
-        "sections": [{
-                "name": "Summation Formulas and Properties",
-                "exercise_count": 8
-            },
-            {
-                "name": "Bounding Summations",
-                "exercise_count": 5
-            }
-        ],
-        "problems": [{
-            "name": "Bounding Summations"
-        }]
-    }]
+    "appendices": [
+        {
+            "id": "A",
+            "name": "Summations",
+            "sections": [
+                {
+                    "name": "Summation Formulas and Properties",
+                    "exercise_count": 8
+                },
+                {
+                    "name": "Bounding Summations",
+                    "exercise_count": 5
+                }
+            ],
+            "problems": [
+                {
+                    "name": "Bounding Summations"
+                }
+            ]
+        }
+    ]
 }

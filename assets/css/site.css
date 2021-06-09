@@ -493,7 +493,6 @@ thead {
 }
 
 .chapter-entry {
-    padding-left: 25px;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
@@ -501,7 +500,7 @@ thead {
 
 .clrs-section {
     display: grid;
-    grid-template-rows: 25px auto;
+    grid-template-rows: auto;
     grid-template-columns: 36px 1fr;
     grid-template-areas: "section-id section-title" ".          problem-list";
     padding: 10px;

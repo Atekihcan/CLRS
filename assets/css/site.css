@@ -33,6 +33,7 @@
 
 html,
 body {
+    height: 100%;
     font-size: 18px;
     color: var(--main-text);
     font-family: var(--body-font);
@@ -130,9 +131,8 @@ figure {
 
 .site-body {
     width: 100%;
-    display: grid;
-    grid-auto-columns: 1fr;
-    grid-template-areas: 'site-header' 'site-main' 'site-footer';
+    display: flex;
+    flex-direction: column;
 }
 
 .site-header,
@@ -144,21 +144,19 @@ figure {
 }
 
 .site-header {
-    grid-area: site-header;
     font-family: var(--body-font);
     text-align: center;
     border-bottom: 1px solid var(--mute-dark);
 }
 
 .site-main {
-    grid-area: site-main;
+    flex: 1 0 auto;
 }
 
 .site-footer {
-    grid-area: site-footer;
-    padding: 5px 20px;
+    flex-shrink: 0;
+    padding: 10px;
     font-family: var(--body-font);
-    margin-top: 40px;
     text-align: center;
     font-size: 0.8em;
     color: var(--light-text);

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Legacy meta -->
+    <meta name="description" content="Asymptotic behavior of polynomials: ... be a degree-ddd polynomial in n, and let k be a constant. Use the definitions of the asymptotic notations to prove the following properties."/>
+    <meta name="keywords" content="CLRS, solutions, algorithms, Cormen"/>
+
+    <!--Schema-->
+    <link rel="author" href="Atekihcan">
+    <link rel="publisher" href="https://atekihcan.github.io">
+    <meta itemprop="name" content="CLRS Solutions | Problem 3-1 | Growth of Functions"/>
+    <meta itemprop="description" content="Asymptotic behavior of polynomials: ... be a degree-ddd polynomial in n, and let k be a constant. Use the definitions of the asymptotic notations to prove the following properties."/>
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="CLRS Solutions | Problem 3-1 | Growth of Functions" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://atekihcan.github.io/CLRS/03/P03-01/" />
+    <meta property="og:image" content="/CLRS/assets/img/-1/3-1.jpg" />
+    <meta property="og:description" content="Asymptotic behavior of polynomials: ... be a degree-ddd polynomial in n, and let k be a constant. Use the definitions of the asymptotic notations to prove the following properties." />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "CLRS Solutions | Problem 3-1 | Growth of Functions",
+        "image": [
+            "/CLRS/assets/img/-1/3-1.jpg"
+        ],
+        "datePublished": "2012-08-25T23:00:00+00:00",
+        "dateModified": "2020-10-17T22:30:00+00:00",
+        "author": {
+            "@type": "Person",
+            "name": "Atekihcan"
+        }
+    }
+    </script>
+    
+    <title>CLRS Solutions | Problem 3-1 | Growth of Functions</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/CLRS/assets/img/favicon.png">
+
+    <!-- Normalize reset -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/normalize.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Katex -->
+    <link rel="stylesheet" href="/CLRS/assets/katex/katex.min.css" >
+    <script defer src="/CLRS/assets/katex/katex.min.js" ></script>
+    <script defer src="/CLRS/assets/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {trust: true});"></script>
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57470252-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-57470252-4', {
+            cookie_domain: 'https://atekihcan.github.io',
+            cookie_flags: 'SameSite=None;Secure'
+        });
+    </script>
+
+    <!-- Load site specific stuff at last -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/site.css">
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/syntax_highlight.css">
+
+    <script defer src="/CLRS/assets/js/site.js" ></script>
+</head>
+    <body class="site-body">
+        <header class="site-header">
+    <nav>
+        <i class="fa fa-database"></i>&nbsp;&nbsp;<a href="/CLRS/">Solutions for CLRS</a>&nbsp;&nbsp;<i class="fa fa-database"></i>
+    </nav>
+    <h1 class="page-title">
+        Problem 3-1
+    </h1>
+</header>
+        <main class="site-main">
+            <article>
+    <div class="article-content">
+        <blockquote>
+  <p><strong><em>Asymptotic behavior of polynomials</em></strong></p>
+
+  <p>Let</p>
+
+\[p(n) = \sum_{i = 0}^d a_in^i\]
+
+  <p>where \(a_d &gt; 0\), be a degree-\(d\) polynomial in \(n\), and let \(k\) be a constant. Use the definitions of the asymptotic notations to prove the following properties.</p>
+
+  <ol>
+    <li>If \(k \ge d\), then \(p(n) = O(n^k)\).</li>
+    <li>If \(k \le d\), then \(p(n) = \Omega(n^k)\).</li>
+    <li>If \(k = d\), then \(p(n) = \Theta(n^k)\).</li>
+    <li>If \(k &gt; d\), then \(p(n) = o(n^k)\).</li>
+    <li>If \(k &lt; d\), then \(p(n) = \omega(n^k)\).</li>
+  </ol>
+</blockquote>
+
+<aside id="keep-in-mind" class="info">
+    <h4>Keep in Mind </h4>
+    <div>
+<p>As some readers have pointed out in the comments section, we know for certain only \(a_d\) is positive. Other coefficients of the polynomial can be either positive, negative or even zero. We cannot make any assumption regarding them.</p>
+</div>
+</aside>
+
+<p>Before jumping on to the proofs, let’s revisit the polynomials related notes from section 3.2 in the book:</p>
+
+<p><img src="/CLRS/assets/img/03/3-1_asymptotic_polynomials.jpg" alt="Asymptotic behavior of polynomials" title="Asymptotic behavior of polynomials" /></p>
+
+<p>And this is exactly what we have here. An asymptotically positive polynomial! Which makes <strong><em>c</em></strong>, i.e. when \(k = d\), \(p(n)= \Theta(n^k)\), a trivial proof. And others can also be derived from the same.</p>
+
+<p>However, let’s assume the goal of this exercise is to prove the claim made in the book.</p>
+
+<p>We can prove each of these either with analytical logic or mathematical or derivation or using even more rigorous mathematics. I’ll limit myself to the first two category and leave some reference for the third one at the end of the solution.</p>
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<p><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7476503486911097" data-ad-slot="5416910574" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+<h4 id="c-theta-or-asymptotic-bound">C. Theta or Asymptotic Bound</h4>
+
+<p>Let’s try to prove <strong><em>c</em></strong> first as others can be followed from that.</p>
+
+<h5 id="analytical-approach">Analytical Approach</h5>
+
+<p>The largest term in the polynomial is \(a_dn^d\), so the polynomial cannot grow neither slower nor faster than \(n^d\). Hence, \(p(n) = \Theta(n^k)\).</p>
+
+<h5 id="mathematical-approach">Mathematical Approach</h5>
+
+<p>The polynomial can be written as:</p>
+
+\[\begin{aligned}
+p(n) &amp;= \sum_{i = 0}^d a_in^i \\
+     &amp;= a_dn^d + \sum_{i = 0}^{d - 1} a_in^i \\
+     &amp;= a_dn^d + n^d \sum_{i = 0}^{d - 1} a_in^{i -d} \\
+     &amp;= a_dn^d + n^d Q_n \\
+     &amp;= n^d(a_d + Q_n)
+\end{aligned}\]
+
+<p>Where, \(Q_n = \sum_{i = 0}^{d - 1} a_in^{i -d}\)</p>
+
+<p>Now note that \(Q_n\) is the sum of powers of \(n\) multiplied by some constants, and the powers of \(n\) are all less than or equal to -1. This follows from the fact that \((i - d) \leq -1\). Now for sufficiently large \(n\), \(Q_n\) approaches zero. And that in turn means, before it reaches zero, we can find a positive integer \(n_0\), such that: \(\vert Q_n \vert \leq 0.5a_d\) for all \(n \geq n_0\).</p>
+
+<p>Following from that,</p>
+
+\[-0.5a_d \leq Q_n \leq 0.5a_d \\[1ex]
+a_d - 0.5a_d \leq a_d + Q_n \leq a_d + 0.5a_d \\[1ex]
+n^d (a_d - 0.5a_d) \leq n^d (a_d + Q_n) \leq n^d (a_d + 0.5a_d) \\[1ex]
+0.5a_d \cdot n^d \leq n^d (a_d + Q_n) \leq 1.5a_d \cdot n^d \\[1ex]
+0.5a_d \cdot n^d \leq p(n) \leq 1.5a_d \cdot n^d\]
+
+<p>So, if we pick \(c_1 = 0.5a_d\) and \(c_2 = 1.5a_d\), we have \(c_1n^d \leq p(n) \leq c_2n^d\).</p>
+
+<p>In other words, \(p(n) = \Theta(n^d)\).</p>
+
+<p>And when \(k = d\), it means \(p(n) = \Theta(n^k)\).</p>
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<p><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7476503486911097" data-ad-slot="5416910574" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+<h4 id="a-asymptotic-upper-bound">A. Asymptotic Upper Bound</h4>
+
+<p>Analytically. as \(k \geq d\), asymptotically \(n^k\) grows faster or at same rate than \(n^d\) for sufficiently large \(n\). Hence, \(p(n) = O(n^k)\).</p>
+
+<p>Mathematically, from <strong><em>c</em></strong> we can write:</p>
+
+\[0 \leq p(n) \leq 1.5a_d \cdot n^d \leq 1.5a_d \cdot n^k\]
+
+<p>So, if we pick \(c_1 = 1.5a_d\), we have \(0 \leq p(n) \leq c_1n^k\).</p>
+
+<p>In other words, \(p(n) = O(n^k)\).</p>
+
+<h4 id="b-asymptotic-lower-bound">B. Asymptotic Lower Bound</h4>
+
+<p>Analytically. as \(k \leq d\), asymptotically \(n^k\) grows slower or at same rate than \(n^d\) for sufficiently large \(n\). Hence, \(p(n) = \Omega(n^k)\).</p>
+
+<p>Mathematically, from <strong><em>c</em></strong> we can write:</p>
+
+\[0 \leq 0.5a_d \cdot n^k \leq 0.5a_d \cdot n^d \leq p(n)\]
+
+<p>So, if we pick \(c_1 = 0.5a_d\), we have \(0 \leq c_1n^k \leq p(n)\).</p>
+
+<p>In other words, \(p(n) = \Omega(n^k)\).</p>
+
+<h4 id="d-asymptotic-non-tight-upper-bound">D. Asymptotic Non-tight Upper Bound</h4>
+
+<p>We can easily prove this by removing the equality from the proof of <strong><em>a</em></strong>.</p>
+
+<p>Other than that we can use the limit definition of \(o\)-notation:</p>
+
+\[\begin{aligned}
+\lim_{n \to \infty} \frac {p(n)} {n^k} &amp; = \lim_{n \to \infty} \frac {n^d(a_d + Q_n)} {n^k} \\
+&amp; = \lim_{n \to \infty} \frac {a_dn^d} {n^k} \\
+&amp; = \lim_{n \to \infty} \frac {a_d} {n^{k - d}} \\
+&amp; = 0
+\end {aligned}\]
+
+<p>Hence, \(p(n) = o(n)\).</p>
+
+<h4 id="e-asymptotic-non-tight-lower-bound">E. Asymptotic Non-tight Lower Bound</h4>
+
+<p>We can easily prove this by removing the equality from the proof of <strong><em>b</em></strong>.</p>
+
+<p>Other than that we can use the limit definition of \(\omega\)-notation:</p>
+
+\[\begin{aligned}
+\lim_{n \to \infty} \frac {p(n)} {n^k} &amp; = \lim_{n \to \infty} \frac {n^d(a_d + Q_n)} {n^k} \\
+&amp; = \lim_{n \to \infty} \frac {a_dn^d} {n^k} \\
+&amp; = \lim_{n \to \infty} a_d n^{d - k} \\
+&amp; = \infty
+\end {aligned}\]
+
+<p>Hence, \(p(n) = \omega(n)\).</p>
+
+<aside id="further-reading" class="info">
+    <h4>Further Reading </h4>
+    <div>
+<p>As mentioned in the beginning of the post, if you are interested in more rigorous mathematical derivation, check this <a href="https://cs.nyu.edu/courses/summer08/G22.1170-001/hw01-soln.pdf" target="_blank">solution handout from NYU</a>.</p>
+
+<p>Also some discussion on <a href="https://math.stackexchange.com/questions/3415031/asymptotic-behavior-of-polynomials" target="_blank">Mathematics Stack Exchange</a>.</p>
+</div>
+</aside>
+
+    </div>
+    <hr class="solid"/>
+    <div class="article-footer">
+        <div class="article-footer-message">
+    <span style="font-size: 0.8em;">If you have any question or suggestion or you have found any error in this solution, please leave a comment below.</span>
+</div>
+        <div class="article-nav">
+    <div class="article-nav-left">
+        
+            <a href="/CLRS/03/E03.02-08/">
+                <i class="fa fa-2x fa-arrow-left"></i>
+            </a>
+            <span><strong>E 3.2-8</strong></span>
+        
+    </div>
+    <div class="article-nav-middle">
+        <a href="/CLRS/">
+            <strong>Solution Index</strong>
+        </a>
+    </div>
+    <div class="article-nav-right">
+        
+            <span><strong>P 3-2</strong></span>
+            <a href="/CLRS/03/P03-02/">
+                <i class="fa fa-2x fa-arrow-right"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7476503486911097"
+     data-ad-slot="5416910574"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+    </div>
+</article>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_observer = new IntersectionObserver(function (entries) {
+        // comments section reached
+        // start loading Disqus now
+        if (entries[0].isIntersecting) {
+            var disqus_shortname = 'atekihcan';
+            var disqus_identifier = '/CLRS/03/P03-01/';
+            var disqus_title = 'Problem 3-1';
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+
+            // once executed, stop observing
+            disqus_observer.disconnect();
+        }
+    }, {threshold: [0]});
+    disqus_observer.observe(document.querySelector("#disqus_thread"));
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+        </main>
+        <footer class="site-footer">
+    <div>
+        &copy; Atekihcan 2007 - 2023
+    </div>
+</footer>
+
+<script>
+    // Left align KaTeX for pseudo codes
+    document.addEventListener("DOMContentLoaded", function() { 
+        var docs = document.querySelectorAll('.latex-pseudo-code > span > span');
+        for (var i = 0; i < docs.length; i++) {
+            docs[i].classList.add('fleqn');
+        }
+    });
+</script>
+
+    </body>
+</html>

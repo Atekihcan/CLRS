@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Legacy meta -->
+    <meta name="description" content="Use a recursion tree to give an asymptotically tight solution to the recurrence T(n) = T(αn) + T((1−α)n) + cn, where α is a constant in the range 0 < α < 1 and c > 0 is also a constant."/>
+    <meta name="keywords" content="CLRS, solutions, algorithms, Cormen, recursion tree"/>
+
+    <!--Schema-->
+    <link rel="author" href="Atekihcan">
+    <link rel="publisher" href="https://atekihcan.github.io">
+    <meta itemprop="name" content="CLRS Solutions | Exercise 4.4-9 | Divide-and-Conquer"/>
+    <meta itemprop="description" content="Use a recursion tree to give an asymptotically tight solution to the recurrence T(n) = T(αn) + T((1−α)n) + cn, where α is a constant in the range 0 < α < 1 and c > 0 is also a constant."/>
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="CLRS Solutions | Exercise 4.4-9 | Divide-and-Conquer" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://atekihcan.github.io/CLRS/04/E04.04-09/" />
+    <meta property="og:image" content="/CLRS/assets/img/04/4.4-9.jpg" />
+    <meta property="og:description" content="Use a recursion tree to give an asymptotically tight solution to the recurrence T(n) = T(αn) + T((1−α)n) + cn, where α is a constant in the range 0 < α < 1 and c > 0 is also a constant." />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "CLRS Solutions | Exercise 4.4-9 | Divide-and-Conquer",
+        "image": [
+            "/CLRS/assets/img/04/4.4-9.jpg"
+        ],
+        "datePublished": "2021-03-13T22:45:00+00:00",
+        "dateModified": "2021-03-13T22:45:00+00:00",
+        "author": {
+            "@type": "Person",
+            "name": "Atekihcan"
+        }
+    }
+    </script>
+    
+    <title>CLRS Solutions | Exercise 4.4-9 | Divide-and-Conquer</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/CLRS/assets/img/favicon.png">
+
+    <!-- Normalize reset -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/normalize.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Katex -->
+    <link rel="stylesheet" href="/CLRS/assets/katex/katex.min.css" >
+    <script defer src="/CLRS/assets/katex/katex.min.js" ></script>
+    <script defer src="/CLRS/assets/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {trust: true});"></script>
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57470252-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-57470252-4', {
+            cookie_domain: 'https://atekihcan.github.io',
+            cookie_flags: 'SameSite=None;Secure'
+        });
+    </script>
+
+    <!-- Load site specific stuff at last -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/site.css">
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/syntax_highlight.css">
+
+    <script defer src="/CLRS/assets/js/site.js" ></script>
+</head>
+    <body class="site-body">
+        <header class="site-header">
+    <nav>
+        <i class="fa fa-database"></i>&nbsp;&nbsp;<a href="/CLRS/">Solutions for CLRS</a>&nbsp;&nbsp;<i class="fa fa-database"></i>
+    </nav>
+    <h1 class="page-title">
+        Exercise 4.4-9
+    </h1>
+</header>
+        <main class="site-main">
+            <article>
+    <div class="article-content">
+        <blockquote>
+  <p>Use a recursion tree to give an asymptotically tight solution to the recurrence \(T(n) = T(\alpha n) + T((1 - \alpha)n) + cn\), where \(\alpha\) is a constant in the range \(0 &lt; \alpha &lt; 1\) and \(c &gt; 0\) is also a constant.</p>
+</blockquote>
+
+<p>Frankly speaking, solving it the “proper” way is way too mathematical and I don’t enjoy writing solutions for such problems.</p>
+
+<p>Intuitively if you think about it, we are subdividing the problems in two parts, \(\alpha n\) and \((1 - \alpha)n\), and in each stage we are having total cost of \(cn\). Depending upon which branch of subproblem is longer than the other, we’ll have a maximum of either \(\log_{1/\alpha} n\) or \(\log_{1/(1 - \alpha)} n\) levels.</p>
+
+<p>For example, merge sort has exactly same recurrence with \(\alpha = 1/2\). And we already know the solution to that is \(\Theta(n \lg n)\). And that can be a good guess for this problem as well.</p>
+
+<aside id="further-reading" class="info">
+    <h4>Further Reading </h4>
+    <div>
+<p>If you are interested in the rigorous mathematical proofs, please refer to any of the solutions below. Most of these are very similar to each other, follow whichever you are more comfortable with.</p>
+
+<ul>
+  <li><a href="https://www.isical.ac.in/~arijit/courses/autumn2008/dmathmidsem_sol.pdf" target="_blank">Question 9 of this handout</a></li>
+  <li><a href="https://ita.skanev.com/04/04/09.html" target="_blank">Solutions by Stefan Kanev</a></li>
+  <li><a href="https://donrwalsh.github.io/CLRS/solutions/04/e4.4-9.html" target="_blank">Solutions by Don R Walsh</a></li>
+</ul>
+
+</div>
+</aside>
+
+    </div>
+    <hr class="solid"/>
+    <div class="article-footer">
+        <div class="article-footer-message">
+    <span style="font-size: 0.8em;">If you have any question or suggestion or you have found any error in this solution, please leave a comment below.</span>
+</div>
+        <div class="article-nav">
+    <div class="article-nav-left">
+        
+            <a href="/CLRS/04/E04.04-08/">
+                <i class="fa fa-2x fa-arrow-left"></i>
+            </a>
+            <span><strong>E 4.4-8</strong></span>
+        
+    </div>
+    <div class="article-nav-middle">
+        <a href="/CLRS/">
+            <strong>Solution Index</strong>
+        </a>
+    </div>
+    <div class="article-nav-right">
+        
+            <span><strong>E 4.5-1</strong></span>
+            <a href="/CLRS/04/E04.05-01/">
+                <i class="fa fa-2x fa-arrow-right"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7476503486911097"
+     data-ad-slot="5416910574"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+    </div>
+</article>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_observer = new IntersectionObserver(function (entries) {
+        // comments section reached
+        // start loading Disqus now
+        if (entries[0].isIntersecting) {
+            var disqus_shortname = 'atekihcan';
+            var disqus_identifier = '/CLRS/04/E04.04-09/';
+            var disqus_title = 'Exercise 4.4-9';
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+
+            // once executed, stop observing
+            disqus_observer.disconnect();
+        }
+    }, {threshold: [0]});
+    disqus_observer.observe(document.querySelector("#disqus_thread"));
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+        </main>
+        <footer class="site-footer">
+    <div>
+        &copy; Atekihcan 2007 - 2023
+    </div>
+</footer>
+
+<script>
+    // Left align KaTeX for pseudo codes
+    document.addEventListener("DOMContentLoaded", function() { 
+        var docs = document.querySelectorAll('.latex-pseudo-code > span > span');
+        for (var i = 0; i < docs.length; i++) {
+            docs[i].classList.add('fleqn');
+        }
+    });
+</script>
+
+    </body>
+</html>

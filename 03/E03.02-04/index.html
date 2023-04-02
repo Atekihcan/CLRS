@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Legacy meta -->
+    <meta name="description" content="Is the function ⌈lg ⁡n⌉! polynomially bounded? Is the function ⌈lg⁡ lg⁡ n⌉! polynomially bounded?"/>
+    <meta name="keywords" content="CLRS, solutions, algorithms, Cormen"/>
+
+    <!--Schema-->
+    <link rel="author" href="Atekihcan">
+    <link rel="publisher" href="https://atekihcan.github.io">
+    <meta itemprop="name" content="CLRS Solutions | Exercise 3.2-4 | Growth of Functions"/>
+    <meta itemprop="description" content="Is the function ⌈lg ⁡n⌉! polynomially bounded? Is the function ⌈lg⁡ lg⁡ n⌉! polynomially bounded?"/>
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="CLRS Solutions | Exercise 3.2-4 | Growth of Functions" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://atekihcan.github.io/CLRS/03/E03.02-04/" />
+    <meta property="og:image" content="/CLRS/assets/img/03/3.2-4.jpg" />
+    <meta property="og:description" content="Is the function ⌈lg ⁡n⌉! polynomially bounded? Is the function ⌈lg⁡ lg⁡ n⌉! polynomially bounded?" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "CLRS Solutions | Exercise 3.2-4 | Growth of Functions",
+        "image": [
+            "/CLRS/assets/img/03/3.2-4.jpg"
+        ],
+        "datePublished": "2012-08-25T19:15:00+00:00",
+        "dateModified": "2020-10-12T22:30:00+00:00",
+        "author": {
+            "@type": "Person",
+            "name": "Atekihcan"
+        }
+    }
+    </script>
+    
+    <title>CLRS Solutions | Exercise 3.2-4 | Growth of Functions</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/CLRS/assets/img/favicon.png">
+
+    <!-- Normalize reset -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/normalize.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Katex -->
+    <link rel="stylesheet" href="/CLRS/assets/katex/katex.min.css" >
+    <script defer src="/CLRS/assets/katex/katex.min.js" ></script>
+    <script defer src="/CLRS/assets/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {trust: true});"></script>
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57470252-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-57470252-4', {
+            cookie_domain: 'https://atekihcan.github.io',
+            cookie_flags: 'SameSite=None;Secure'
+        });
+    </script>
+
+    <!-- Load site specific stuff at last -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/site.css">
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/syntax_highlight.css">
+
+    <script defer src="/CLRS/assets/js/site.js" ></script>
+</head>
+    <body class="site-body">
+        <header class="site-header">
+    <nav>
+        <i class="fa fa-database"></i>&nbsp;&nbsp;<a href="/CLRS/">Solutions for CLRS</a>&nbsp;&nbsp;<i class="fa fa-database"></i>
+    </nav>
+    <h1 class="page-title">
+        Exercise 3.2-4
+    </h1>
+</header>
+        <main class="site-main">
+            <article>
+    <div class="article-content">
+        <blockquote>
+  <p>Is the function \(\lceil\lg n\rceil!\) polynomially bounded? Is the function \(\lceil\lg \lg n\rceil!\) polynomially bounded?</p>
+</blockquote>
+
+<p>If a function \(f(n)\) is polynomially bounded then there exist constants \(c, k, n_0\) such that for all \(n \ge n_0\), \(f(n) \le cn^k\). this means,</p>
+
+\[\lg (f(n)) \le ck \lg n \iff \lg(f(n)) = O(\lg n)\]
+
+<p>Also make note of the following facts that we will use in our derivation:</p>
+
+<ol>
+  <li>
+    <p>\(\lg n! = \Theta(n \lg n)\) (see <a href="/CLRS/03/E03.02-03/" target="_blank">previous exercise</a>)</p>
+  </li>
+  <li>
+    <p>\(\lceil n \rceil = \Theta(n)\) because \(n \leq \lceil n \rceil \leq 2n\) for all \(n \ge 1\)</p>
+  </li>
+</ol>
+
+<hr />
+
+<p>We can analyze \(\lceil\lg n\rceil!\) as follows:</p>
+
+\[\begin {aligned}
+\lg\left(\lceil\lg n\rceil!\right) &amp; = \Theta(\lceil\lg n\rceil \lg \lceil\lg n\rceil) \\
+                                   &amp; = \Theta(\lg n \lg \lg n) \\
+                                   &amp; = \omega(\lg n)
+\end {aligned}\]
+
+<p>The last line comes from the fact that, for \(n &gt; 4\), \(\lg n \lg \lg n &gt; \lg n\). Hence, asymptotically \(\lg\left(\lceil\lg n\rceil!\right)\) is definitely larger than \(\lg n\).</p>
+
+<p>In other words, \(\lg\left(\lceil\lg n\rceil!\right) \ne O(\lg n)\), i.e.  \(\lceil\lg n\rceil!\) is not polynomially bounded.</p>
+
+<hr />
+
+<p>We can analyze \(\lceil\lg \lg n\rceil!\) as follows:</p>
+
+\[\begin {aligned}
+\lg\left(\lceil\lg \lg n\rceil!\right)
+    &amp; = \Theta(\lceil\lg \lg n\rceil \lg \lceil\lg \lg n\rceil) \\
+    &amp; = \Theta(\lg \lg n \cdot \lg \lg \lg n) \\
+    &amp; = o(\lg \lg n \cdot \lg \lg n) \\
+    &amp; = o((\lg \lg n)^2) \\
+    &amp; = o(\lg^2 \lg n) \\
+    &amp; = o(\lg n) \\
+    &amp; = O(\lg n) \\
+\end {aligned}\]
+
+<p>The last line comes from the fact that, \(\lg^b n = o(n^a)\), i.e. polylogarithmic functions grows slower than polynomial functions. In this case, \(a = 1\) and \(b = 2\).</p>
+
+<p>This derivation shows that, asymptotically \(\lg\left(\lceil\lg \lg n\rceil!\right)\) is definitely smaller than \(\lg n\). In other words, \(\lg\left(\lceil\lg \lg n\rceil!\right) = O(\lg n)\), i.e. \(\lceil\lg \lg n\rceil!\) is polynomially bounded.</p>
+
+    </div>
+    <hr class="solid"/>
+    <div class="article-footer">
+        <div class="article-footer-message">
+    <span style="font-size: 0.8em;">If you have any question or suggestion or you have found any error in this solution, please leave a comment below.</span>
+</div>
+        <div class="article-nav">
+    <div class="article-nav-left">
+        
+            <a href="/CLRS/03/E03.02-03/">
+                <i class="fa fa-2x fa-arrow-left"></i>
+            </a>
+            <span><strong>E 3.2-3</strong></span>
+        
+    </div>
+    <div class="article-nav-middle">
+        <a href="/CLRS/">
+            <strong>Solution Index</strong>
+        </a>
+    </div>
+    <div class="article-nav-right">
+        
+            <span><strong>E 3.2-5</strong></span>
+            <a href="/CLRS/03/E03.02-05/">
+                <i class="fa fa-2x fa-arrow-right"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7476503486911097"
+     data-ad-slot="5416910574"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+    </div>
+</article>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_observer = new IntersectionObserver(function (entries) {
+        // comments section reached
+        // start loading Disqus now
+        if (entries[0].isIntersecting) {
+            var disqus_shortname = 'atekihcan';
+            var disqus_identifier = '/CLRS/03/E03.02-04/';
+            var disqus_title = 'Exercise 3.2-4';
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+
+            // once executed, stop observing
+            disqus_observer.disconnect();
+        }
+    }, {threshold: [0]});
+    disqus_observer.observe(document.querySelector("#disqus_thread"));
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+        </main>
+        <footer class="site-footer">
+    <div>
+        &copy; Atekihcan 2007 - 2023
+    </div>
+</footer>
+
+<script>
+    // Left align KaTeX for pseudo codes
+    document.addEventListener("DOMContentLoaded", function() { 
+        var docs = document.querySelectorAll('.latex-pseudo-code > span > span');
+        for (var i = 0; i < docs.length; i++) {
+            docs[i].classList.add('fleqn');
+        }
+    });
+</script>
+
+    </body>
+</html>

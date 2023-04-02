@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Legacy meta -->
+    <meta name="description" content="Iterated Functions: We can apply the iteration operator ∗ used in the lg⁡∗ function to any monotonically increasing function f(n) over the reals. For a given constant c∈R, we define the iterated function..."/>
+    <meta name="keywords" content="CLRS, solutions, algorithms, Cormen, iterated functions, asymptotic bound"/>
+
+    <!--Schema-->
+    <link rel="author" href="Atekihcan">
+    <link rel="publisher" href="https://atekihcan.github.io">
+    <meta itemprop="name" content="CLRS Solutions | Problem 3-6 | Growth of Functions"/>
+    <meta itemprop="description" content="Iterated Functions: We can apply the iteration operator ∗ used in the lg⁡∗ function to any monotonically increasing function f(n) over the reals. For a given constant c∈R, we define the iterated function..."/>
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="CLRS Solutions | Problem 3-6 | Growth of Functions" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://atekihcan.github.io/CLRS/03/P03-06/" />
+    <meta property="og:image" content="/CLRS/assets/img/-6/3-6.jpg" />
+    <meta property="og:description" content="Iterated Functions: We can apply the iteration operator ∗ used in the lg⁡∗ function to any monotonically increasing function f(n) over the reals. For a given constant c∈R, we define the iterated function..." />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "CLRS Solutions | Problem 3-6 | Growth of Functions",
+        "image": [
+            "/CLRS/assets/img/-6/3-6.jpg"
+        ],
+        "datePublished": "2021-01-17T23:30:00+00:00",
+        "dateModified": "2021-01-17T23:30:00+00:00",
+        "author": {
+            "@type": "Person",
+            "name": "Atekihcan"
+        }
+    }
+    </script>
+    
+    <title>CLRS Solutions | Problem 3-6 | Growth of Functions</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/CLRS/assets/img/favicon.png">
+
+    <!-- Normalize reset -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/normalize.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Katex -->
+    <link rel="stylesheet" href="/CLRS/assets/katex/katex.min.css" >
+    <script defer src="/CLRS/assets/katex/katex.min.js" ></script>
+    <script defer src="/CLRS/assets/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {trust: true});"></script>
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57470252-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-57470252-4', {
+            cookie_domain: 'https://atekihcan.github.io',
+            cookie_flags: 'SameSite=None;Secure'
+        });
+    </script>
+
+    <!-- Load site specific stuff at last -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/site.css">
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/syntax_highlight.css">
+
+    <script defer src="/CLRS/assets/js/site.js" ></script>
+</head>
+    <body class="site-body">
+        <header class="site-header">
+    <nav>
+        <i class="fa fa-database"></i>&nbsp;&nbsp;<a href="/CLRS/">Solutions for CLRS</a>&nbsp;&nbsp;<i class="fa fa-database"></i>
+    </nav>
+    <h1 class="page-title">
+        Problem 3-6
+    </h1>
+</header>
+        <main class="site-main">
+            <article>
+    <div class="article-content">
+        <blockquote>
+  <p><strong><em>Iterated Functions</em></strong></p>
+
+  <p>We can apply the iteration operator \(^*\) used in the \(\lg^*\) function to any monotonically increasing function \(f(n)\) over the reals. For a given constant \(c \in \R\), we define the iterated function \(f_c^*\) by</p>
+
+  <p>\(f_c^*(n) = \min\{ i \geq 0 : f^{(i)}(n) \leq c \}\),</p>
+
+  <p>which need not be well defined in all cases. In other words, the quantity \(f_c^*(n)\) is the number of iterated applications of the function \(f\) required to reduce its argument down to \(c\) or less.</p>
+
+  <p>For each of the following functions \(f(n)\) and constants \(c\), give as tight a bound as possible on \(f_c^*(n)\).</p>
+</blockquote>
+
+\[\begin{array}{cccc}
+         &amp; \bm {f(n)} &amp; \bm {c}     &amp;  \bm {f_c^*(n)} \\
+\hline
+\bm {a.} &amp; n - 1      &amp; 0           &amp; \textcolor{blue}{\Theta(n) }      \\
+\bm {b.} &amp; \lg n      &amp; 1           &amp; \textcolor{blue}{\Theta(\lg^* n) }      \\
+\bm {c.} &amp; n/2        &amp; 1           &amp; \textcolor{blue}{\Theta(\lg n)}      \\
+\bm {d.} &amp; n/2        &amp; 2           &amp; \textcolor{blue}{\Theta(\lg n)}      \\
+\bm {e.} &amp; \sqrt n    &amp; 2           &amp; \textcolor{blue}{\Theta(\lg \lg n)}      \\
+\bm {f.} &amp; \sqrt n    &amp; 1           &amp; \text{\textcolor{blue}{NA}}      \\
+\bm {g.} &amp; n^{1/3}    &amp; 2           &amp; \textcolor{blue}{\Theta(\log_3 \lg n)}      \\
+\bm {h.} &amp; n / \lg n  &amp; 2           &amp; \textcolor{blue}{\omega(\lg \lg n), o(\lg n)}
+\end{array}\]
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<p><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7476503486911097" data-ad-slot="5416910574" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+<h4 id="what-sorcery-is-this">What sorcery is this?</h4>
+
+<p>As I have mentioned in the foreword, the goal of these solutions is not just providing the answer without engaging in the discussions required to understand the process.</p>
+
+<p>I’ll take few examples for now to explain how to find the tight bounds. For others, I’ll revisit later or add based on comments.</p>
+
+<p>Readers are encouraged to provide their own solutions as always.</p>
+
+<hr />
+
+<h5 id="a-bm-fn--n---1">A. \(\bm {f(n) = n - 1}\)</h5>
+
+<p>As \(c = 0\), we are looking for <em>how many times</em> \(f(n) = n - 1\) has to be applied on \(n\), to make \(f(n) \leq 0\).</p>
+
+\[\begin{array}{cccc}
+\textbf {Iteration} &amp; \bm {f(n)} \\
+\hline
+1                   &amp; n - 1      \\
+2                   &amp; n - 2      \\
+3                   &amp; n - 3      \\
+\vdots              &amp; \vdots     \\
+n                   &amp; n - n = 0  
+\end{array}\]
+
+<p>So, \(f_c^*(n) = n\), which is \(\Theta(n)\).</p>
+
+<hr />
+
+<h5 id="b-bm-fn--lg-n">B. \(\bm {f(n) = \lg n}\)</h5>
+
+<p>If you have read the section in the book where iterated logarithm functions is defined (page 58 in 3rd edition), you can see that this is exactly what was defined.</p>
+
+<p><img src="/CLRS/assets/img/03/3-6_iterated_functions.jpg" alt="Definition of iterated logarithm" title="Definition of iterated logarithm" /></p>
+
+<p>Since, \(c = 1\), \(f_c^*(n) = \lg^* n\), which is \(\Theta(\lg^* n)\).</p>
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<p><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7476503486911097" data-ad-slot="5416910574" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+<hr />
+
+<h5 id="cd-bm-fn--n2">CD. \(\bm {f(n) = n/2}\)</h5>
+
+<p>For \(c = 1\), the number of times a number \(n\) can be divided by 2, before it becomes less than or equal to 1 is \(\lg n\).</p>
+
+<p>And for \(c = 2\), it’ll be \(\lg n - 1\).</p>
+
+<p>Both of them are \(\Theta(\lg n)\).</p>
+
+<hr />
+
+<h5 id="ef-bm-fn--sqrt-n">EF. \(\bm {f(n) = \sqrt n}\)</h5>
+
+\[\begin{array}{cccc}
+\textbf {Iteration} &amp; \bm {f(n)} \\
+\hline
+1                   &amp; n^{1/2}      \\
+2                   &amp; n^{1/4}      \\
+3                   &amp; n^{1/8}      \\
+\vdots              &amp; \vdots     \\
+k                   &amp; n^{1/2^k}  
+\end{array}\]
+
+<p>For \(c = 2\), we need to find \(k\) for which \(n^{1/2^k} = 2\).</p>
+
+\[\begin{aligned}
+n^{1/2^k}           &amp;= 2 \\
+\lg (n^{1/2^k})     &amp;= \lg 2 \\
+\frac {\lg n} {2^k} &amp;= 1
+2^k                 &amp;= \lg n \\
+k                   &amp;= \lg \lg n
+\end{aligned}\]
+
+<p>So, \(f_c^*(n) = \lg \lg n\), which is \(\Theta(\lg \lg n)\).</p>
+
+<p>However, for \(c = 1\), there is no possible finite value of \(k\) that can make \(n^{1/2^k} = 1\). It is only possible when \(k \to \infty\).</p>
+
+    </div>
+    <hr class="solid"/>
+    <div class="article-footer">
+        <div class="article-footer-message">
+    <span style="font-size: 0.8em;">If you have any question or suggestion or you have found any error in this solution, please leave a comment below.</span>
+</div>
+        <div class="article-nav">
+    <div class="article-nav-left">
+        
+            <a href="/CLRS/03/P03-05/">
+                <i class="fa fa-2x fa-arrow-left"></i>
+            </a>
+            <span><strong>P 3-5</strong></span>
+        
+    </div>
+    <div class="article-nav-middle">
+        <a href="/CLRS/">
+            <strong>Solution Index</strong>
+        </a>
+    </div>
+    <div class="article-nav-right">
+        
+            <span><strong>E 4.1-1</strong></span>
+            <a href="/CLRS/04/E04.01-01/">
+                <i class="fa fa-2x fa-arrow-right"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7476503486911097"
+     data-ad-slot="5416910574"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+    </div>
+</article>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_observer = new IntersectionObserver(function (entries) {
+        // comments section reached
+        // start loading Disqus now
+        if (entries[0].isIntersecting) {
+            var disqus_shortname = 'atekihcan';
+            var disqus_identifier = '/CLRS/03/P03-06/';
+            var disqus_title = 'Problem 3-6';
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+
+            // once executed, stop observing
+            disqus_observer.disconnect();
+        }
+    }, {threshold: [0]});
+    disqus_observer.observe(document.querySelector("#disqus_thread"));
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+        </main>
+        <footer class="site-footer">
+    <div>
+        &copy; Atekihcan 2007 - 2023
+    </div>
+</footer>
+
+<script>
+    // Left align KaTeX for pseudo codes
+    document.addEventListener("DOMContentLoaded", function() { 
+        var docs = document.querySelectorAll('.latex-pseudo-code > span > span');
+        for (var i = 0; i < docs.length; i++) {
+            docs[i].classList.add('fleqn');
+        }
+    });
+</script>
+
+    </body>
+</html>

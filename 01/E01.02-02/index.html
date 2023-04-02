@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Legacy meta -->
+    <meta name="description" content="Insertion Sort vs Merge Sort: Suppose we are comparing implementations of insertion sort and merge sort on the same machine. For inputs of size n, insertion sort runs in 8n^2 steps, while merge sort runs in 64n lg⁡n steps. For which values of n does insertion sort beat merge sort?"/>
+    <meta name="keywords" content="CLRS, solutions, algorithms, Cormen, Insertion Sort, Merge Sort, Comparison of merge and Insertion Sort"/>
+
+    <!--Schema-->
+    <link rel="author" href="Atekihcan">
+    <link rel="publisher" href="https://atekihcan.github.io">
+    <meta itemprop="name" content="CLRS Solutions | Exercise 1.2-2 | The Role of Algorithms in Computing"/>
+    <meta itemprop="description" content="Insertion Sort vs Merge Sort: Suppose we are comparing implementations of insertion sort and merge sort on the same machine. For inputs of size n, insertion sort runs in 8n^2 steps, while merge sort runs in 64n lg⁡n steps. For which values of n does insertion sort beat merge sort?"/>
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="CLRS Solutions | Exercise 1.2-2 | The Role of Algorithms in Computing" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://atekihcan.github.io/CLRS/01/E01.02-02/" />
+    <meta property="og:image" content="/CLRS/assets/img/01/1.2-2.jpg" />
+    <meta property="og:description" content="Insertion Sort vs Merge Sort: Suppose we are comparing implementations of insertion sort and merge sort on the same machine. For inputs of size n, insertion sort runs in 8n^2 steps, while merge sort runs in 64n lg⁡n steps. For which values of n does insertion sort beat merge sort?" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "CLRS Solutions | Exercise 1.2-2 | The Role of Algorithms in Computing",
+        "image": [
+            "/CLRS/assets/img/01/1.2-2.jpg"
+        ],
+        "datePublished": "2012-08-19T21:05:00+00:00",
+        "dateModified": "2020-09-22T10:30:00+00:00",
+        "author": {
+            "@type": "Person",
+            "name": "Atekihcan"
+        }
+    }
+    </script>
+    
+    <title>CLRS Solutions | Exercise 1.2-2 | The Role of Algorithms in Computing</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/CLRS/assets/img/favicon.png">
+
+    <!-- Normalize reset -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/normalize.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Katex -->
+    <link rel="stylesheet" href="/CLRS/assets/katex/katex.min.css" >
+    <script defer src="/CLRS/assets/katex/katex.min.js" ></script>
+    <script defer src="/CLRS/assets/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {trust: true});"></script>
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57470252-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-57470252-4', {
+            cookie_domain: 'https://atekihcan.github.io',
+            cookie_flags: 'SameSite=None;Secure'
+        });
+    </script>
+
+    <!-- Load site specific stuff at last -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/site.css">
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/syntax_highlight.css">
+
+    <script defer src="/CLRS/assets/js/site.js" ></script>
+</head>
+    <body class="site-body">
+        <header class="site-header">
+    <nav>
+        <i class="fa fa-database"></i>&nbsp;&nbsp;<a href="/CLRS/">Solutions for CLRS</a>&nbsp;&nbsp;<i class="fa fa-database"></i>
+    </nav>
+    <h1 class="page-title">
+        Exercise 1.2-2
+    </h1>
+</header>
+        <main class="site-main">
+            <article>
+    <div class="article-content">
+        <blockquote>
+  <p>Suppose we are comparing implementations of insertion sort and merge sort on the same machine. For inputs of size \(n\), insertion sort runs in \(8n^2\) steps, while merge sort runs in \(64n \lg n\) steps. For which values of \(n\) does insertion sort beat merge sort?</p>
+</blockquote>
+
+<p>For insertion sort to beat merge sort for inputs of size \(n\), \(8n^2\) must be less than \(64n \lg n\).</p>
+
+\[\begin{alignedat}{2}
+               &amp; 8n^2                 &amp;&amp;&lt; 64n \lg n \\
+\Rightarrow \, &amp; \cancel {8n} \cdot n &amp;&amp;&lt; \cancel {8n} \cdot 8\lg n \\
+\Rightarrow \, &amp; n                    &amp;&amp;&lt; 8\lg n \\
+\Rightarrow \, &amp; n/8                  &amp;&amp;&lt; \lg n \\
+\Rightarrow \, &amp; 2^{n/8}              &amp;&amp;&lt; n
+\end{alignedat}\]
+
+<p>This is not a purely polynomial equation in \(n\). To find the required range of values of \(n\), there are a few different methods we can use…</p>
+
+<ul>
+  <li>Manually calculate the values of these expressions for different values of \(n\)</li>
+  <li>Use <a href="https://en.wikipedia.org/wiki/Newton%27s_method" target="_blank">Newton’s Method</a></li>
+  <li>Plot these functions and find their intersections</li>
+  <li>Write a piece of code to found the values.</li>
+</ul>
+
+<p>For this exercise, I’ll briefly describe all of these methods but going forward I’ll mostly use calculations that can be done with scientific calculator (to help the students visiting these pages) and python codes (to help myself).</p>
+
+<h4 id="calculation">Calculation</h4>
+
+<p>It is obvious that insertion sort runs at quadratic time which is definitely worse than merge sort’s linearithmic time for very large values of \(n\). We know for \(n = 1\), merge sort beats insertion sort. But for values greater than that, insertion sort beats merge sort. So, we will start checking from \(n = 2\) and go up to see for what value of \(n\) merge sort again starts to beat insertion sort.</p>
+
+<p>Notice that for \(n &lt; 8\), \(2^{n/8}\) will be a fraction. So, let’s start with \(n = 8\) and check for values of \(n\) which are powers of 2.</p>
+
+\[\begin{alignedat}{4}
+&amp;n = 8  &amp;&amp;\Rightarrow 2^{8/8}  &amp;&amp;= 2   &amp;&amp;&lt; n \\
+&amp;n = 16 &amp;&amp;\Rightarrow 2^{16/8} &amp;&amp;= 4   &amp;&amp;&lt; n \\
+&amp;n = 32 &amp;&amp;\Rightarrow 2^{32/8} &amp;&amp;= 16  &amp;&amp;&lt; n \\
+&amp;n = 64 &amp;&amp;\Rightarrow 2^{64/8} &amp;&amp;= 256 &amp;&amp;&gt; n
+\end{alignedat}\]
+
+<p>Note that we don’t need to continue anymore as we have found an approximate range of values for \(n\) where merge sort starts to beat insertion sort; somewhere between 32 and 64. Let’s do what we were doing but now we are going to try middle value of either range, repeatedly (or in other words, binary search, if you have been reading ahead).</p>
+
+\[\begin{alignedat}{2}
+&amp;n = 48 \Rightarrow 2^{48/8} = 64   &amp;&amp;&gt; n \\
+&amp;n = 40 \Rightarrow 2^{40/8} = 32   &amp;&amp;&lt; n \\
+&amp;n = 44 \Rightarrow 2^{44/8} = 44.8 &amp;&amp;&gt; n \\
+&amp;n = 42 \Rightarrow 2^{42/8} = 38.4 &amp;&amp;&lt; n \\
+&amp;n = 43 \Rightarrow 2^{43/8} = 42.4 &amp;&amp;&lt; n
+\end{alignedat}\]
+
+<p>So, at \(n = 44\), merge sort starts to beat insertion sort again. Therefore, for \(2 \le n \le 43\), insertion sort beats merge sort.</p>
+
+<aside id="want-some-more" class="info">
+    <h4>Want some more? </h4>
+    <div>
+<p>This problem is discussed in detail in the <a href="https://math.stackexchange.com/questions/2593003/how-to-solve-the-logarithmic-equation-which-has-both-n-and-logn" target="_blank">Mathematics Stack Exchange</a> forum. There you will find mention of <a href="https://en.wikipedia.org/wiki/Lambert_W_function" target="_blank">Lambert \(W\) functions</a> and some more methods that can be used  to solve this problem. Also a link to this page in the comments.</p>
+</div>
+</aside>
+
+<hr />
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<p><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7476503486911097" data-ad-slot="5416910574" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+<hr />
+
+<h4 id="newtons-method">Newton’s Method</h4>
+
+<p>To apply <a href="https://en.wikipedia.org/wiki/Newton%27s_method" target="_blank">Newton’s Method</a> of approximation, we need to ballpark two values of \(n\) on either side of the actual solution and hit-and-try for the actual one following binary search principle. This is the principle we have almost followed in the previous section but the proper process involves calculus and way too time consuming for me to write about.</p>
+
+<hr />
+
+<h4 id="graphical-plot">Graphical Plot</h4>
+
+<p>Another method to find the solutions is to plot the functions \(y = 2^{x/8}\) and \(y = x\) and finding points where they intersect.</p>
+
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jsxgraph/1.1.0/jsxgraph.css" />
+
+<script type="text/javascript" charset="UTF-8" src="//cdnjs.cloudflare.com/ajax/libs/jsxgraph/1.1.0/jsxgraphcore.js"></script>
+
+<div id="graph-box" class="graph-box"></div>
+<div class="graph-credit">Graph rendered by <a href="https://jsxgraph.org/" target="_blank">JSXGraph</a>
+</div>
+
+<script type="text/javascript">
+    JXG.Options.text.useMathJax = true;
+    var board = JXG.JSXGraph.initBoard('graph-box', {
+        boundingbox: [-5, 50, 50, -5],
+        axis: true,
+        showCopyright: false,
+        showNavigation: false
+    });
+    var m_sort = board.create('functiongraph', [function (x) { return x; }], {
+        withLabel: true,
+        name: "$$y = x$$",
+        label: {
+            offset: [24, 90],
+            fontSize: 20
+        },
+        strokeColor: '#0f0',
+        strokeWidth: 2
+    });
+    var i_sort = board.create('functiongraph', [function (x) { return Math.pow(2, x / 8.0); }], {
+        withLabel: true,
+        name: "$$y = 2^{x/8}$$",
+        label: {
+            offset: [200, 50],
+            fontSize: 20
+        },
+        strokeColor: '#00f',
+        strokeWidth: 2
+    });
+    var ans_1 = board.create('intersection', [m_sort, i_sort, 0], {
+        withLabel: true,
+        name: "(1.10, 1.10)",
+        label: {
+            offset: [-2, 15]
+        },
+    });
+    var ans_2 = board.create('intersection', [m_sort, i_sort, 1], {
+        withLabel: true,
+        name: "(43.56, 43.56)",
+        label: {
+            offset: [-84, 0]
+        },
+    });
+</script>
+
+<p>From the above graph, we can see that the plots intersect at \(n = 1.1\) and \(n = 43.56\).</p>
+
+<p>Here, \(n\) is the input size so it must be an integer. So, the values of \(n\) for which insertion beats merge sort is \(2 \le n \le 43\).</p>
+
+<aside id="quick-tip" class="info">
+    <h4>Quick Tip </h4>
+    <div>
+<p>If you ever want to have a graphing calculator handy, hop onto <a href="https://www.desmos.com/calculator/pwh2p6qrj9" target="_blank">Desmos</a>. It’s pretty simple to use and you can create an account to keep your graphs saved. They have plenty other calculators and an awesome repository of <a href="https://www.desmos.com/art" target="_blank">arts created with graphs</a>.</p>
+</div>
+</aside>
+
+<hr />
+
+<h4 id="python-code">Python Code</h4>
+
+<p>Let’s start with \(n = 2\) and go up to see for what value of \(n\) it becomes smaller than \(2^{n/8}\).</p>
+
+<p>You can run the python code in the below editor and see that for \(n = 44\) onwards the relationship reverses.</p>
+
+<script src="/CLRS/assets/js/skulpt.min.js" type="text/javascript"></script>
+
+<script src="/CLRS/assets/js/skulpt-stdlib.js" type="text/javascript"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.min.js" integrity="sha512-GoORoNnxst42zE3rYPj4bNBm0Q6ZRXKNH2D9nEmNvVF/z24ywVnijAWVi/09iBiVDQVf3UlZHpzhAJIdd9BXqw==" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/mode-python.min.js" integrity="sha512-2Ke4vMGrMfYRM55pT1aA5bw7Pl82Sc7K5Hg8XZYZu+EQrb0AO1mNYTagwZm+MFVAImYS9Mlnm73zcgc01wPXxA==" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/theme-nord_dark.min.js" integrity="sha512-Yrb8fdpeml10Onax7VERUl9ea2bAU/OPQ3IASUNqed9o+EotsVU9L4mgB4jXZQWDjav4VD2HSjiWlwOmfKeJRQ==" crossorigin="anonymous"></script>
+
+<script>
+    // Output functions are configurable
+    // This one just appends some text to a pre element
+    function prependOut(text) {
+        var output = document.getElementById("code-editor-output");
+        output.innerHTML = output.innerHTML + text;
+    }
+
+    function builtinRead(x) {
+        if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined) 
+            throw "File not found: '" + x + "'";
+        return Sk.builtinFiles["files"][x];
+    }
+
+    // Grab the code, get a reference to output
+    // configure the output function and call Sk.importMainWithBody()
+    function runCode() {
+        // Get code from Ace editor and clear output
+        var prog = (editor.getValue());
+        var output = document.getElementById("code-editor-output");
+        output.innerHTML = '';
+
+        Sk.pre = "output";
+        Sk.configure({output: prependOut, read: builtinRead, __future__: Sk.python3});
+        var myPromise = Sk
+            .misceval
+            .asyncToPromise(function () {
+                return Sk.importMainWithBody("<stdin>", false, prog, true);
+            });
+        myPromise.then(function (mod) {
+            output.style.color = "#d8dee9";
+            console.log('success');
+        }, function (err) {
+            output.style.color = "#f00";
+            output.innerHTML = err.toString();
+            console.log(err.toString());
+        });
+    }
+</script>
+
+<div class="code-editor-wrapper">
+    <div id="code-editor">n = 2
+while n &gt; 2 ** (n / 8.0):
+    n += 1
+
+print("Minimum value of n for which merge sort runs faster is", n)</div>
+    <script>
+        var editor = ace.edit("code-editor");
+        editor
+            .renderer
+            .setShowGutter(true);
+        editor
+            .session
+            .setMode("ace/mode/python");
+        editor.setTheme("ace/theme/nord_dark");
+        editor.setFontSize("16px");
+        editor
+            .renderer
+            .setScrollMargin(15, 15)
+        editor.setOptions({autoScrollEditorIntoView: true, minLines: 8, maxLines: 20});
+        document.getElementById('code-editor').style.fontFamily = "'Courier New', Courier, monospace";
+        var code = editor.getValue();
+
+        function resetCode() {
+            editor.setValue(code, 1);
+            var output = document.getElementById("code-editor-output");
+            output.innerHTML = "";
+        }
+    </script>
+    <pre id="code-editor-output" class="code-editor-output"></pre>
+    <div class="code-editor-buttons">
+        <button class="code-editor-button" type="button" onclick="runCode()">Run</button>
+        <button class="code-editor-button" type="button" onclick="resetCode()">Reset</button>
+    </div>
+</div>
+
+    </div>
+    <hr class="solid"/>
+    <div class="article-footer">
+        <div class="article-footer-message">
+    <span style="font-size: 0.8em;">If you have any question or suggestion or you have found any error in this solution, please leave a comment below.</span>
+</div>
+        <div class="article-nav">
+    <div class="article-nav-left">
+        
+            <a href="/CLRS/01/E01.02-01/">
+                <i class="fa fa-2x fa-arrow-left"></i>
+            </a>
+            <span><strong>E 1.2-1</strong></span>
+        
+    </div>
+    <div class="article-nav-middle">
+        <a href="/CLRS/">
+            <strong>Solution Index</strong>
+        </a>
+    </div>
+    <div class="article-nav-right">
+        
+            <span><strong>E 1.2-3</strong></span>
+            <a href="/CLRS/01/E01.02-03/">
+                <i class="fa fa-2x fa-arrow-right"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7476503486911097"
+     data-ad-slot="5416910574"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+    </div>
+</article>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_observer = new IntersectionObserver(function (entries) {
+        // comments section reached
+        // start loading Disqus now
+        if (entries[0].isIntersecting) {
+            var disqus_shortname = 'atekihcan';
+            var disqus_identifier = '/CLRS/01/E01.02-02/';
+            var disqus_title = 'Exercise 1.2-2';
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+
+            // once executed, stop observing
+            disqus_observer.disconnect();
+        }
+    }, {threshold: [0]});
+    disqus_observer.observe(document.querySelector("#disqus_thread"));
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+        </main>
+        <footer class="site-footer">
+    <div>
+        &copy; Atekihcan 2007 - 2023
+    </div>
+</footer>
+
+<script>
+    // Left align KaTeX for pseudo codes
+    document.addEventListener("DOMContentLoaded", function() { 
+        var docs = document.querySelectorAll('.latex-pseudo-code > span > span');
+        for (var i = 0; i < docs.length; i++) {
+            docs[i].classList.add('fleqn');
+        }
+    });
+</script>
+
+    </body>
+</html>

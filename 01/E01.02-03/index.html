@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Legacy meta -->
+    <meta name="description" content="What is the smallest value of n such that an algorithm whose running time is 100n^2 runs faster than an algorithm whose running time is 2^n on the same machine?"/>
+    <meta name="keywords" content="CLRS, solutions, algorithms, Cormen"/>
+
+    <!--Schema-->
+    <link rel="author" href="Atekihcan">
+    <link rel="publisher" href="https://atekihcan.github.io">
+    <meta itemprop="name" content="CLRS Solutions | Exercise 1.2-3 | The Role of Algorithms in Computing"/>
+    <meta itemprop="description" content="What is the smallest value of n such that an algorithm whose running time is 100n^2 runs faster than an algorithm whose running time is 2^n on the same machine?"/>
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="CLRS Solutions | Exercise 1.2-3 | The Role of Algorithms in Computing" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://atekihcan.github.io/CLRS/01/E01.02-03/" />
+    <meta property="og:image" content="/CLRS/assets/img/01/1.2-3.jpg" />
+    <meta property="og:description" content="What is the smallest value of n such that an algorithm whose running time is 100n^2 runs faster than an algorithm whose running time is 2^n on the same machine?" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "CLRS Solutions | Exercise 1.2-3 | The Role of Algorithms in Computing",
+        "image": [
+            "/CLRS/assets/img/01/1.2-3.jpg"
+        ],
+        "datePublished": "2012-08-19T21:10:00+00:00",
+        "dateModified": "2020-09-22T10:30:00+00:00",
+        "author": {
+            "@type": "Person",
+            "name": "Atekihcan"
+        }
+    }
+    </script>
+    
+    <title>CLRS Solutions | Exercise 1.2-3 | The Role of Algorithms in Computing</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/CLRS/assets/img/favicon.png">
+
+    <!-- Normalize reset -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/normalize.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Katex -->
+    <link rel="stylesheet" href="/CLRS/assets/katex/katex.min.css" >
+    <script defer src="/CLRS/assets/katex/katex.min.js" ></script>
+    <script defer src="/CLRS/assets/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {trust: true});"></script>
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57470252-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-57470252-4', {
+            cookie_domain: 'https://atekihcan.github.io',
+            cookie_flags: 'SameSite=None;Secure'
+        });
+    </script>
+
+    <!-- Load site specific stuff at last -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/site.css">
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/syntax_highlight.css">
+
+    <script defer src="/CLRS/assets/js/site.js" ></script>
+</head>
+    <body class="site-body">
+        <header class="site-header">
+    <nav>
+        <i class="fa fa-database"></i>&nbsp;&nbsp;<a href="/CLRS/">Solutions for CLRS</a>&nbsp;&nbsp;<i class="fa fa-database"></i>
+    </nav>
+    <h1 class="page-title">
+        Exercise 1.2-3
+    </h1>
+</header>
+        <main class="site-main">
+            <article>
+    <div class="article-content">
+        <blockquote>
+  <p>What is the smallest value of \(n\) such that an algorithm whose running time is \(100n^2\) runs faster than an algorithm whose running time is \(2^n\) on the same machine?</p>
+</blockquote>
+
+<p>For A to run faster than B, \(100n^2\) must be smaller than \(2^n\).</p>
+
+<h4 id="calculation">Calculation</h4>
+
+<p>Intuitively we can realize that A (quadratic time complexity) will run much faster than B (exponential time complexity) for very large values of \(n\).</p>
+
+<p>Let’s start checking from \(n = 1\) and go up for values of \(n\) which are power of \(2\) to see where that happens.</p>
+
+\[\begin{alignedat}{4}
+&amp;n = 1  &amp;&amp;\Rightarrow 100 \times 1^2  &amp;&amp;= 100   &amp;&amp;&gt; 2^n \\
+&amp;n = 2  &amp;&amp;\Rightarrow 100 \times 2^2  &amp;&amp;= 400   &amp;&amp;&gt; 2^n \\
+&amp;n = 4  &amp;&amp;\Rightarrow 100 \times 4^2  &amp;&amp;= 1600  &amp;&amp;&gt; 2^n \\
+&amp;n = 8  &amp;&amp;\Rightarrow 100 \times 8^2  &amp;&amp;= 6400  &amp;&amp;&gt; 2^n \\
+&amp;n = 16 &amp;&amp;\Rightarrow 100 \times 16^2 &amp;&amp;= 25600 &amp;&amp;&lt; 2^n
+\end{alignedat}\]
+
+<p>Somewhere between 8 and 16, A starts to run faster than B. Let’s do what we were doing but now we are going to try middle value of the range, repeatedly (binary search).</p>
+
+\[n = 12 \Rightarrow 100 \times 12^2 = 14400 &gt; 2^n \\
+n = 14 \Rightarrow 100 \times 14^2 = 19600 &gt; 2^n \\
+n = 15 \Rightarrow 100 \times 15^2 = 22500 &lt; 2^n\]
+
+<p>So, at \(n = 15\), A starts to run faster than B.</p>
+
+<hr />
+
+<h4 id="code">Code</h4>
+
+<p>Let’s start with \(n = 2\) and go up to see for what value of \(n\) merge sort again starts to beat insertion sort.</p>
+
+<p>You can run the python code in the below editor and see that for \(n = 15\) onwards the relationship reverses.</p>
+
+<script src="/CLRS/assets/js/skulpt.min.js" type="text/javascript"></script>
+
+<script src="/CLRS/assets/js/skulpt-stdlib.js" type="text/javascript"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.min.js" integrity="sha512-GoORoNnxst42zE3rYPj4bNBm0Q6ZRXKNH2D9nEmNvVF/z24ywVnijAWVi/09iBiVDQVf3UlZHpzhAJIdd9BXqw==" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/mode-python.min.js" integrity="sha512-2Ke4vMGrMfYRM55pT1aA5bw7Pl82Sc7K5Hg8XZYZu+EQrb0AO1mNYTagwZm+MFVAImYS9Mlnm73zcgc01wPXxA==" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/theme-nord_dark.min.js" integrity="sha512-Yrb8fdpeml10Onax7VERUl9ea2bAU/OPQ3IASUNqed9o+EotsVU9L4mgB4jXZQWDjav4VD2HSjiWlwOmfKeJRQ==" crossorigin="anonymous"></script>
+
+<script>
+    // Output functions are configurable
+    // This one just appends some text to a pre element
+    function prependOut(text) {
+        var output = document.getElementById("code-editor-output");
+        output.innerHTML = output.innerHTML + text;
+    }
+
+    function builtinRead(x) {
+        if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined) 
+            throw "File not found: '" + x + "'";
+        return Sk.builtinFiles["files"][x];
+    }
+
+    // Grab the code, get a reference to output
+    // configure the output function and call Sk.importMainWithBody()
+    function runCode() {
+        // Get code from Ace editor and clear output
+        var prog = (editor.getValue());
+        var output = document.getElementById("code-editor-output");
+        output.innerHTML = '';
+
+        Sk.pre = "output";
+        Sk.configure({output: prependOut, read: builtinRead, __future__: Sk.python3});
+        var myPromise = Sk
+            .misceval
+            .asyncToPromise(function () {
+                return Sk.importMainWithBody("<stdin>", false, prog, true);
+            });
+        myPromise.then(function (mod) {
+            output.style.color = "#d8dee9";
+            console.log('success');
+        }, function (err) {
+            output.style.color = "#f00";
+            output.innerHTML = err.toString();
+            console.log(err.toString());
+        });
+    }
+</script>
+
+<div class="code-editor-wrapper">
+    <div id="code-editor">n = 1
+while 100 * n * n &gt; 2 ** n:
+    n += 1
+print("Minimum value of n for which A runs faster than B is", n)</div>
+    <script>
+        var editor = ace.edit("code-editor");
+        editor
+            .renderer
+            .setShowGutter(true);
+        editor
+            .session
+            .setMode("ace/mode/python");
+        editor.setTheme("ace/theme/nord_dark");
+        editor.setFontSize("16px");
+        editor
+            .renderer
+            .setScrollMargin(15, 15)
+        editor.setOptions({autoScrollEditorIntoView: true, minLines: 8, maxLines: 20});
+        document.getElementById('code-editor').style.fontFamily = "'Courier New', Courier, monospace";
+        var code = editor.getValue();
+
+        function resetCode() {
+            editor.setValue(code, 1);
+            var output = document.getElementById("code-editor-output");
+            output.innerHTML = "";
+        }
+    </script>
+    <pre id="code-editor-output" class="code-editor-output"></pre>
+    <div class="code-editor-buttons">
+        <button class="code-editor-button" type="button" onclick="runCode()">Run</button>
+        <button class="code-editor-button" type="button" onclick="resetCode()">Reset</button>
+    </div>
+</div>
+
+    </div>
+    <hr class="solid"/>
+    <div class="article-footer">
+        <div class="article-footer-message">
+    <span style="font-size: 0.8em;">If you have any question or suggestion or you have found any error in this solution, please leave a comment below.</span>
+</div>
+        <div class="article-nav">
+    <div class="article-nav-left">
+        
+            <a href="/CLRS/01/E01.02-02/">
+                <i class="fa fa-2x fa-arrow-left"></i>
+            </a>
+            <span><strong>E 1.2-2</strong></span>
+        
+    </div>
+    <div class="article-nav-middle">
+        <a href="/CLRS/">
+            <strong>Solution Index</strong>
+        </a>
+    </div>
+    <div class="article-nav-right">
+        
+            <span><strong>P 1-1</strong></span>
+            <a href="/CLRS/01/P01-01/">
+                <i class="fa fa-2x fa-arrow-right"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7476503486911097"
+     data-ad-slot="5416910574"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+    </div>
+</article>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_observer = new IntersectionObserver(function (entries) {
+        // comments section reached
+        // start loading Disqus now
+        if (entries[0].isIntersecting) {
+            var disqus_shortname = 'atekihcan';
+            var disqus_identifier = '/CLRS/01/E01.02-03/';
+            var disqus_title = 'Exercise 1.2-3';
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+
+            // once executed, stop observing
+            disqus_observer.disconnect();
+        }
+    }, {threshold: [0]});
+    disqus_observer.observe(document.querySelector("#disqus_thread"));
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+        </main>
+        <footer class="site-footer">
+    <div>
+        &copy; Atekihcan 2007 - 2023
+    </div>
+</footer>
+
+<script>
+    // Left align KaTeX for pseudo codes
+    document.addEventListener("DOMContentLoaded", function() { 
+        var docs = document.querySelectorAll('.latex-pseudo-code > span > span');
+        for (var i = 0; i < docs.length; i++) {
+            docs[i].classList.add('fleqn');
+        }
+    });
+</script>
+
+    </body>
+</html>

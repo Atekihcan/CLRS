@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Legacy meta -->
+    <meta name="description" content="Using the master method in Section 4.5, you can show that the solution to the recurrence T(n) = 4T(n/3) + n is... Show that a substitution proof with the assumption ... fails. Then show how to subtract off a lower-order term to make a substitution proof work."/>
+    <meta name="keywords" content="CLRS, solutions, algorithms, Cormen, recurrence, substitution"/>
+
+    <!--Schema-->
+    <link rel="author" href="Atekihcan">
+    <link rel="publisher" href="https://atekihcan.github.io">
+    <meta itemprop="name" content="CLRS Solutions | Exercise 4.3-7 | Divide-and-Conquer"/>
+    <meta itemprop="description" content="Using the master method in Section 4.5, you can show that the solution to the recurrence T(n) = 4T(n/3) + n is... Show that a substitution proof with the assumption ... fails. Then show how to subtract off a lower-order term to make a substitution proof work."/>
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="CLRS Solutions | Exercise 4.3-7 | Divide-and-Conquer" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://atekihcan.github.io/CLRS/04/E04.03-07/" />
+    <meta property="og:image" content="/CLRS/assets/img/04/4.3-7.jpg" />
+    <meta property="og:description" content="Using the master method in Section 4.5, you can show that the solution to the recurrence T(n) = 4T(n/3) + n is... Show that a substitution proof with the assumption ... fails. Then show how to subtract off a lower-order term to make a substitution proof work." />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "CLRS Solutions | Exercise 4.3-7 | Divide-and-Conquer",
+        "image": [
+            "/CLRS/assets/img/04/4.3-7.jpg"
+        ],
+        "datePublished": "2012-08-28T20:30:00+00:00",
+        "dateModified": "2021-01-21T10:30:00+00:00",
+        "author": {
+            "@type": "Person",
+            "name": "Atekihcan"
+        }
+    }
+    </script>
+    
+    <title>CLRS Solutions | Exercise 4.3-7 | Divide-and-Conquer</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/CLRS/assets/img/favicon.png">
+
+    <!-- Normalize reset -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/normalize.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Katex -->
+    <link rel="stylesheet" href="/CLRS/assets/katex/katex.min.css" >
+    <script defer src="/CLRS/assets/katex/katex.min.js" ></script>
+    <script defer src="/CLRS/assets/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {trust: true});"></script>
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57470252-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-57470252-4', {
+            cookie_domain: 'https://atekihcan.github.io',
+            cookie_flags: 'SameSite=None;Secure'
+        });
+    </script>
+
+    <!-- Load site specific stuff at last -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/site.css">
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/syntax_highlight.css">
+
+    <script defer src="/CLRS/assets/js/site.js" ></script>
+</head>
+    <body class="site-body">
+        <header class="site-header">
+    <nav>
+        <i class="fa fa-database"></i>&nbsp;&nbsp;<a href="/CLRS/">Solutions for CLRS</a>&nbsp;&nbsp;<i class="fa fa-database"></i>
+    </nav>
+    <h1 class="page-title">
+        Exercise 4.3-7
+    </h1>
+</header>
+        <main class="site-main">
+            <article>
+    <div class="article-content">
+        <blockquote>
+  <p>Using the master method in Section 4.5, you can show that the solution to the recurrence \(T(n) = 4T(n/3) + n\) is \(T(n) = \Theta(n^{\log_3 4})\). Show that a substitution proof with the assumption \(T(n) \le cn^{\log_3 4}\) fails. Then show how to subtract off a lower-order term to make a substitution proof work.</p>
+</blockquote>
+
+<p>Let us assume \(T(n) \le cn^{\log_3 4}\) for all \(n \ge n_0\), where \(c\) and \(n_0\) are positive constants.</p>
+
+\[\begin {aligned}
+T(n) &amp; = 4T(n/3) + n \\
+     &amp; \le 4c\left( \frac n 3\right)^{\log_3 4} + n \\
+     &amp; = 4c\left( \frac {n^{\log_3 4}} {3^{\log_3 4}}\right) + n \\
+     &amp; = 4c\left( \frac {n^{\log_3 4}} {4}\right) + n \\
+     &amp; = cn^{\log_3 4} + n
+\end {aligned}\]
+
+<p>We cannot proceed further with this to show our hypothesis is correct.</p>
+
+<p>Now, let us assume \(T(n) \le cn^{\log_3 4} - dn\) for all \(n \ge n_0\), where \(c\), \(d\), and \(n_0\) are positive constants.</p>
+
+\[\begin {aligned}
+T(n) &amp; = 4T(n/3) + n \\
+     &amp; \le 4\left(c\left(\frac n 3\right)^{\log_3 4} - \left(\frac {dn} 3\right)\right) + n \\
+     &amp; = 4c\left(\frac {n^{\log_3 4}} {3^{\log_3 4}}\right) - 4\left(\frac {dn} 3\right) + n \\
+     &amp; = 4c\left( \frac {n^{\log_3 4}} {4}\right) - 4\left(\frac {dn} 3\right) + n \\
+     &amp; = cn^{\log_3 4} - dn - dn/3 + n \\
+     &amp; = cn^{\log_3 4} - dn - (d/3 - 1) n \\
+     &amp; \le cn^{\log_3 4} - dn
+\end {aligned}\]
+
+<p>The last step holds as long as \((d/3 - 1) n \ge 0\).</p>
+
+<p>If we pick \(n_0 = 1\), then we need \(d \ge 3\).</p>
+
+    </div>
+    <hr class="solid"/>
+    <div class="article-footer">
+        <div class="article-footer-message">
+    <span style="font-size: 0.8em;">If you have any question or suggestion or you have found any error in this solution, please leave a comment below.</span>
+</div>
+        <div class="article-nav">
+    <div class="article-nav-left">
+        
+            <a href="/CLRS/04/E04.03-06/">
+                <i class="fa fa-2x fa-arrow-left"></i>
+            </a>
+            <span><strong>E 4.3-6</strong></span>
+        
+    </div>
+    <div class="article-nav-middle">
+        <a href="/CLRS/">
+            <strong>Solution Index</strong>
+        </a>
+    </div>
+    <div class="article-nav-right">
+        
+            <span><strong>E 4.3-8</strong></span>
+            <a href="/CLRS/04/E04.03-08/">
+                <i class="fa fa-2x fa-arrow-right"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7476503486911097"
+     data-ad-slot="5416910574"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+    </div>
+</article>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_observer = new IntersectionObserver(function (entries) {
+        // comments section reached
+        // start loading Disqus now
+        if (entries[0].isIntersecting) {
+            var disqus_shortname = 'atekihcan';
+            var disqus_identifier = '/CLRS/04/E04.03-07/';
+            var disqus_title = 'Exercise 4.3-7';
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+
+            // once executed, stop observing
+            disqus_observer.disconnect();
+        }
+    }, {threshold: [0]});
+    disqus_observer.observe(document.querySelector("#disqus_thread"));
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+        </main>
+        <footer class="site-footer">
+    <div>
+        &copy; Atekihcan 2007 - 2023
+    </div>
+</footer>
+
+<script>
+    // Left align KaTeX for pseudo codes
+    document.addEventListener("DOMContentLoaded", function() { 
+        var docs = document.querySelectorAll('.latex-pseudo-code > span > span');
+        for (var i = 0; i < docs.length; i++) {
+            docs[i].classList.add('fleqn');
+        }
+    });
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Legacy meta -->
+    <meta name="description" content="Correctness of bubblesort: Bubblesort is a popular, but inefficient, sorting algorithm. It works by repeatedly swapping adjacent elements that are out of order. Let A′ denote the output of Bubblesort(A). To prove that Bubblesort is correct, we need to prove that it terminates and that..."/>
+    <meta name="keywords" content="CLRS, solutions, algorithms, Cormen, Bubblesort, loop invariant"/>
+
+    <!--Schema-->
+    <link rel="author" href="Atekihcan">
+    <link rel="publisher" href="https://atekihcan.github.io">
+    <meta itemprop="name" content="CLRS Solutions | Problem 2-2 | Getting Started"/>
+    <meta itemprop="description" content="Correctness of bubblesort: Bubblesort is a popular, but inefficient, sorting algorithm. It works by repeatedly swapping adjacent elements that are out of order. Let A′ denote the output of Bubblesort(A). To prove that Bubblesort is correct, we need to prove that it terminates and that..."/>
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="CLRS Solutions | Problem 2-2 | Getting Started" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://atekihcan.github.io/CLRS/02/P02-02/" />
+    <meta property="og:image" content="/CLRS/assets/img/-2/2-2.jpg" />
+    <meta property="og:description" content="Correctness of bubblesort: Bubblesort is a popular, but inefficient, sorting algorithm. It works by repeatedly swapping adjacent elements that are out of order. Let A′ denote the output of Bubblesort(A). To prove that Bubblesort is correct, we need to prove that it terminates and that..." />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "CLRS Solutions | Problem 2-2 | Getting Started",
+        "image": [
+            "/CLRS/assets/img/-2/2-2.jpg"
+        ],
+        "datePublished": "2012-08-22T23:05:00+00:00",
+        "dateModified": "2020-10-09T20:30:00+00:00",
+        "author": {
+            "@type": "Person",
+            "name": "Atekihcan"
+        }
+    }
+    </script>
+    
+    <title>CLRS Solutions | Problem 2-2 | Getting Started</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/CLRS/assets/img/favicon.png">
+
+    <!-- Normalize reset -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/normalize.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Katex -->
+    <link rel="stylesheet" href="/CLRS/assets/katex/katex.min.css" >
+    <script defer src="/CLRS/assets/katex/katex.min.js" ></script>
+    <script defer src="/CLRS/assets/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {trust: true});"></script>
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57470252-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-57470252-4', {
+            cookie_domain: 'https://atekihcan.github.io',
+            cookie_flags: 'SameSite=None;Secure'
+        });
+    </script>
+
+    <!-- Load site specific stuff at last -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/site.css">
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/syntax_highlight.css">
+
+    <script defer src="/CLRS/assets/js/site.js" ></script>
+</head>
+    <body class="site-body">
+        <header class="site-header">
+    <nav>
+        <i class="fa fa-database"></i>&nbsp;&nbsp;<a href="/CLRS/">Solutions for CLRS</a>&nbsp;&nbsp;<i class="fa fa-database"></i>
+    </nav>
+    <h1 class="page-title">
+        Problem 2-2
+    </h1>
+</header>
+        <main class="site-main">
+            <article>
+    <div class="article-content">
+        
+<blockquote>
+  <p><strong><em>Correctness of bubblesort</em></strong></p>
+
+  <p>Bubblesort is a popular, but inefficient, sorting algorithm. It works by repeatedly swapping adjacent elements that are out of order.</p>
+
+  <div class="latex-pseudo-code">$$\textsc {Bubblesort }(A)$$$$\begin{aligned}1&amp; \quad  \textbf {for }i=1\textbf { to }A.length-1 \\2&amp; \quad \qquad  \textbf {for }j=A.length\textbf { downto }i+1 \\3&amp; \quad \qquad \qquad  \textbf {if }A[j]&lt;A[j-1] \\4&amp; \quad \qquad \qquad \qquad  \text {swap }A[j]\text { and }A[j-1] \\\end{aligned}$$</div>
+
+  <ol>
+    <li>Let \(A'\) denote the output of \(\textsc {Bubblesort(A)}\) . To prove that \(\textsc {Bubblesort}\) is correct, we need to prove that it terminates and that</li>
+  </ol>
+
+\[A'[1] \leq A'[2] \leq \cdots \leq A'[n] \tag{2.3}\]
+
+  <p class="indented">where \(n = A.length\). In order to show that \(\textsc {Bubblesort}\) actually sorts, what else do we need to prove?</p>
+
+  <p>The next two parts will prove inequality (2.3).</p>
+
+  <ol start="2">
+    <li>State precisely a loop invariant for the <strong>for</strong> loop in lines 2–4, and prove that this loop invariant holds. Your proof should use the structure of the loop invariant proof presented in this chapter.</li>
+    <li>Using the termination condition of the loop invariant proved in part (b), state a loop invariant for the <strong>for</strong> loop in lines 1–4 that will allow you to prove inequality (2.3). Your proof should use the structure of the loop invariant proof presented in this chapter.</li>
+    <li>What is the worst-case running time of bubblesort? How does it compare to the running time of insertion sort?</li>
+  </ol>
+</blockquote>
+
+<h4 id="a-required-proof-of-correctness">A. Required Proof of Correctness</h4>
+
+<p>We also need to prove that \(A'\) consists of the elements of \(A\) but in sorted order.</p>
+
+<h4 id="b-loop-invariant-for-inner-loop">B. Loop Invariant for Inner Loop</h4>
+
+<p>The loop invariant for the for loop in lines 2–4 can be stated as follows:</p>
+
+<blockquote>
+  <p>At the start of each iteration of the for loop, the subarray \(A[j \ldots n]\) consists of the elements originally in \(A[j \ldots n]\) before entering the loop but possibly in a different order and the first element is the smallest among them.</p>
+</blockquote>
+
+<p>And here is how the three necessary properties hold for the loop invariant:</p>
+
+<p><strong>Initialization:</strong> Initially the subarray contains only the last element \(A[n]\) and this is the smallest element of the subarray.</p>
+
+<p><strong>Maintenance:</strong> In every step we compare \(A[j]\) with \(A[j - 1]\) and make \(A[j - 1]\) the smallest among them. So, after the iteration, the length of the subarray increases by one and the first element is the smallest of the subarray.</p>
+
+<p><strong>Termination:</strong> The loop terminates when \(j = i + 1\). At that point also the length of the subarray increases by one and the first element is the smallest of the subarray as we swap \(A[i + 1]\) with \(A[i]\).</p>
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<p><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7476503486911097" data-ad-slot="5416910574" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+<h4 id="c-loop-invariant-for-the-outer-loop">C. Loop Invariant for the Outer Loop</h4>
+
+<p>The loop invariant for the for loop in lines 1–4 can be stated as follows:</p>
+
+<blockquote>
+  <p>At the start of each iteration of the for loop, the subarray \(A[1 \ldots i - 1]\) consists of the elements that are smaller than the elements in the subarray \(A[i \ldots n]\) in sorted order.</p>
+</blockquote>
+
+<p>And here is how the three necessary properties hold for the loop invariant:</p>
+
+<p><strong>Initialization:</strong> Initially the subarray \(A[1 \ldots i - 1]\) is empty and trivially this is the smallest element of the subarray.</p>
+
+<p><strong>Maintenance:</strong> From part <strong><em>(b)</em></strong>, after the execution of the inner loop, \(A[i]\) will be the smallest element of the subarray \(A[i \ldots n]\). And in the beginning of the outer loop, \(A[1 \ldots i - 1]\) consists of elements that are smaller than the elements of \(A[i \ldots n]\), in sorted order. So, after the execution of the outer loop, subarray \(A[1 \ldots i]\) will consists of elements that are smaller than the elements of \(A[i + 1 \ldots n]\), in sorted order.</p>
+
+<p><strong>Termination:</strong> The loop terminates when \(i = A.length\). At that point the array \(A[1 \ldots n]\) will consists of all elements in sorted order.</p>
+
+<h4 id="d-running-time-of-bubblesort">D. Running Time of Bubblesort</h4>
+
+<p>In the worst-case (reverse sorted array), bubblesort will iterate over the whole array for each element, i.e. for each element bubble sort will perform \(n\) comparisons and swaps. Therefore, worst-case running time of bubblesort is \(\Theta(n^2)\).</p>
+
+<p>Although insertion also runs at \(\Theta(n^2)\) worst-case time, the number of assignments (swaps) performed in bubblesort is way more than that of insertion sort. So, the constant factors in the running time will be much larger for bubblesort compared to that of insertion sort. This means, for the same input size, insertion sort will run faster than bubblesort.</p>
+
+<aside id="and-there-were-four" class="info">
+    <h4>And There Were Four </h4>
+    <div>
+<p>Have you noticed that including bubblesort, now we have introduced to 4 different sorting algorithms?</p>
+
+<ul>
+  <li>Insertion sort</li>
+  <li>Merge sort</li>
+  <li>Selection sort (<a href="/CLRS/02/E02.02-02/">E 2.2-2</a>)</li>
+  <li>Bubble sort</li>
+</ul>
+
+<p>Among these only merge sort runs at \(\Theta(n \lg n)\) time. Section II of the book will introduce two more sorting algorithms that can compete with that. We will also see some <em>sneaky</em> linear time sorting algorithms that are useful in special cases.</p>
+</div>
+</aside>
+
+    </div>
+    <hr class="solid"/>
+    <div class="article-footer">
+        <div class="article-footer-message">
+    <span style="font-size: 0.8em;">If you have any question or suggestion or you have found any error in this solution, please leave a comment below.</span>
+</div>
+        <div class="article-nav">
+    <div class="article-nav-left">
+        
+            <a href="/CLRS/02/P02-01/">
+                <i class="fa fa-2x fa-arrow-left"></i>
+            </a>
+            <span><strong>P 2-1</strong></span>
+        
+    </div>
+    <div class="article-nav-middle">
+        <a href="/CLRS/">
+            <strong>Solution Index</strong>
+        </a>
+    </div>
+    <div class="article-nav-right">
+        
+            <span><strong>P 2-3</strong></span>
+            <a href="/CLRS/02/P02-03/">
+                <i class="fa fa-2x fa-arrow-right"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7476503486911097"
+     data-ad-slot="5416910574"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+    </div>
+</article>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_observer = new IntersectionObserver(function (entries) {
+        // comments section reached
+        // start loading Disqus now
+        if (entries[0].isIntersecting) {
+            var disqus_shortname = 'atekihcan';
+            var disqus_identifier = '/CLRS/02/P02-02/';
+            var disqus_title = 'Problem 2-2';
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+
+            // once executed, stop observing
+            disqus_observer.disconnect();
+        }
+    }, {threshold: [0]});
+    disqus_observer.observe(document.querySelector("#disqus_thread"));
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+        </main>
+        <footer class="site-footer">
+    <div>
+        &copy; Atekihcan 2007 - 2023
+    </div>
+</footer>
+
+<script>
+    // Left align KaTeX for pseudo codes
+    document.addEventListener("DOMContentLoaded", function() { 
+        var docs = document.querySelectorAll('.latex-pseudo-code > span > span');
+        for (var i = 0; i < docs.length; i++) {
+            docs[i].classList.add('fleqn');
+        }
+    });
+</script>
+
+    </body>
+</html>

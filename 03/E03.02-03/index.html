@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Legacy meta -->
+    <meta name="description" content="Prove equation (3.19). Also prove that n != ω(2^n) and n!=o(n^n)."/>
+    <meta name="keywords" content="CLRS, solutions, algorithms, Cormen"/>
+
+    <!--Schema-->
+    <link rel="author" href="Atekihcan">
+    <link rel="publisher" href="https://atekihcan.github.io">
+    <meta itemprop="name" content="CLRS Solutions | Exercise 3.2-3 | Growth of Functions"/>
+    <meta itemprop="description" content="Prove equation (3.19). Also prove that n != ω(2^n) and n!=o(n^n)."/>
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="CLRS Solutions | Exercise 3.2-3 | Growth of Functions" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://atekihcan.github.io/CLRS/03/E03.02-03/" />
+    <meta property="og:image" content="/CLRS/assets/img/03/3.2-3.jpg" />
+    <meta property="og:description" content="Prove equation (3.19). Also prove that n != ω(2^n) and n!=o(n^n)." />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "CLRS Solutions | Exercise 3.2-3 | Growth of Functions",
+        "image": [
+            "/CLRS/assets/img/03/3.2-3.jpg"
+        ],
+        "datePublished": "2012-08-25T19:10:00+00:00",
+        "dateModified": "2020-10-12T22:30:00+00:00",
+        "author": {
+            "@type": "Person",
+            "name": "Atekihcan"
+        }
+    }
+    </script>
+    
+    <title>CLRS Solutions | Exercise 3.2-3 | Growth of Functions</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/CLRS/assets/img/favicon.png">
+
+    <!-- Normalize reset -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/normalize.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Katex -->
+    <link rel="stylesheet" href="/CLRS/assets/katex/katex.min.css" >
+    <script defer src="/CLRS/assets/katex/katex.min.js" ></script>
+    <script defer src="/CLRS/assets/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {trust: true});"></script>
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57470252-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-57470252-4', {
+            cookie_domain: 'https://atekihcan.github.io',
+            cookie_flags: 'SameSite=None;Secure'
+        });
+    </script>
+
+    <!-- Load site specific stuff at last -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/site.css">
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/syntax_highlight.css">
+
+    <script defer src="/CLRS/assets/js/site.js" ></script>
+</head>
+    <body class="site-body">
+        <header class="site-header">
+    <nav>
+        <i class="fa fa-database"></i>&nbsp;&nbsp;<a href="/CLRS/">Solutions for CLRS</a>&nbsp;&nbsp;<i class="fa fa-database"></i>
+    </nav>
+    <h1 class="page-title">
+        Exercise 3.2-3
+    </h1>
+</header>
+        <main class="site-main">
+            <article>
+    <div class="article-content">
+        <blockquote>
+  <p>Prove equation (3.19). Also prove that \(n! = \omega(2^n)\) and \(n! = o(n^n)\).</p>
+</blockquote>
+
+<p>Prove equation (3.19) states: \(\lg(n!) = \Theta(n \lg n)\)</p>
+
+<p>For this proof, we will use <strong><em>Stirling’s approximation</em></strong> as stated in the chapter text (equation 3.18).</p>
+
+<p>For large values of \(n\), \(\Theta \left(\frac 1 n\right)\) will be very small compared to 1. Hence, for very large values of \(n\) we can write \(n!\) as follows:</p>
+
+\[\begin {aligned}
+\lg(n!) &amp; \approx \lg\left(\sqrt{2πn} \left(\frac n e \right)^n \right) \\
+        &amp; = \lg\left(\sqrt{2πn}\right) + \lg\left(\frac n e \right)^n \\
+        &amp; = \lg\sqrt {2π} + \lg \sqrt n + n \lg\left(\frac n e \right) \\
+        &amp; = \lg\sqrt {2π} + \frac 1 2 \lg n + n \lg n - n \lg e \\
+        &amp; = \Theta(1) + \Theta(\lg n) + \Theta(n \lg n) - \Theta(n) \\
+        &amp; = \Theta(n \lg n)
+\end {aligned}\]
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<p><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7476503486911097" data-ad-slot="5416910574" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+<h4 id="small-omega">Small Omega</h4>
+
+<p>\(n! = \omega(2^n)\) can be shown using the limit definition as follows:</p>
+
+\[\begin{aligned}
+\lim_{n \to \infty} \frac {n!} {2^n} &amp; = \lim_{n \to \infty} \frac {\sqrt{2πn} \left(\frac n e \right)^n\left(1 + \Theta(\frac 1 n)\right)} {2^n} \\
+&amp; = \sqrt{2π} \times \lim_{n \to \infty} \sqrt n \left(\frac {n} {2e}\right)^n \times \lim_{n \to \infty} \left(1 + \Theta\left(\frac 1 n\right)\right) \\
+&amp; = \sqrt{2π} \times \infty \times 1 \\
+&amp; = \infty
+\end {aligned}\]
+
+<h4 id="small-oh">Small Oh</h4>
+
+<p>Similarly, \(n! = o(n^n)\) can be shown as follows:</p>
+
+\[\begin{aligned}
+\lim_{n \to \infty} \frac {n!} {n^n} &amp; = \lim_{n \to \infty} \frac {\sqrt{2πn} \left(\frac n e \right)^n\left(1 + \Theta(\frac 1 n)\right)} {n^n} \\
+&amp; = \sqrt{2π} \times \lim_{n \to \infty} \frac {\sqrt n} {e^n} \times \lim_{n \to \infty} \left(1 + \Theta\left(\frac 1 n\right)\right) \\
+&amp; = \sqrt{2π} \times 0 \times 1 \\
+&amp; = 0
+\end {aligned}\]
+
+<aside id="how-do-we-evaluate-the-limit" class="info">
+    <h4>How do we evaluate the limit </h4>
+    <div>
+<p>If you are wondering about how we evaluated the limit in the above section as \(0\), you might find this discussion on <a href="https://www.quora.com/How-do-I-find-lim_-x-to-infty-e-x-sqrt-x" target="_blank">Quora</a> useful. The rigorous mathematical proof involves using <a href="https://en.wikipedia.org/wiki/L%27H%C3%B4pital%27s_rule" target="_blank">L’Hospital’s Rule</a>.</p>
+
+<p>However, I have often found logically thinking and/or plotting out the functions to understand these better than using rigorous mathematics. In the above case, if we can visualize the graphs of \(\sqrt x\) and \(e^{-x}\), we’ll see that as \(x\) approaches larger values, \(e^{-x}\) falls down faster to zero than \(\sqrt x\) approaches larger value. Hence, the limit will evaluate to zero.</p>
+
+<p>You can find the graph of the combined function <a href="https://www.desmos.com/calculator/vcfuokwxqi" target="_blank">here</a> and verify that the limit approaches to zero much much faster.</p>
+</div>
+</aside>
+
+    </div>
+    <hr class="solid"/>
+    <div class="article-footer">
+        <div class="article-footer-message">
+    <span style="font-size: 0.8em;">If you have any question or suggestion or you have found any error in this solution, please leave a comment below.</span>
+</div>
+        <div class="article-nav">
+    <div class="article-nav-left">
+        
+            <a href="/CLRS/03/E03.02-02/">
+                <i class="fa fa-2x fa-arrow-left"></i>
+            </a>
+            <span><strong>E 3.2-2</strong></span>
+        
+    </div>
+    <div class="article-nav-middle">
+        <a href="/CLRS/">
+            <strong>Solution Index</strong>
+        </a>
+    </div>
+    <div class="article-nav-right">
+        
+            <span><strong>E 3.2-4</strong></span>
+            <a href="/CLRS/03/E03.02-04/">
+                <i class="fa fa-2x fa-arrow-right"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7476503486911097"
+     data-ad-slot="5416910574"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+    </div>
+</article>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_observer = new IntersectionObserver(function (entries) {
+        // comments section reached
+        // start loading Disqus now
+        if (entries[0].isIntersecting) {
+            var disqus_shortname = 'atekihcan';
+            var disqus_identifier = '/CLRS/03/E03.02-03/';
+            var disqus_title = 'Exercise 3.2-3';
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+
+            // once executed, stop observing
+            disqus_observer.disconnect();
+        }
+    }, {threshold: [0]});
+    disqus_observer.observe(document.querySelector("#disqus_thread"));
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+        </main>
+        <footer class="site-footer">
+    <div>
+        &copy; Atekihcan 2007 - 2023
+    </div>
+</footer>
+
+<script>
+    // Left align KaTeX for pseudo codes
+    document.addEventListener("DOMContentLoaded", function() { 
+        var docs = document.querySelectorAll('.latex-pseudo-code > span > span');
+        for (var i = 0; i < docs.length; i++) {
+            docs[i].classList.add('fleqn');
+        }
+    });
+</script>
+
+    </body>
+</html>

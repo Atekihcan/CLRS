@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Legacy meta -->
+    <meta name="description" content="Variations of O and Ω: Some authors define Ω in a slightly different way than we do; let’s use Ω∞​ (read “omega infinity”) for this alternative definition. We say that f(n)=Ω∞(g(n)) if there exists a positive constant c such that f(n)≥cg(n)≥0 for infinitely many integers n."/>
+    <meta name="keywords" content="CLRS, solutions, algorithms, Cormen, Omega Infinity"/>
+
+    <!--Schema-->
+    <link rel="author" href="Atekihcan">
+    <link rel="publisher" href="https://atekihcan.github.io">
+    <meta itemprop="name" content="CLRS Solutions | Problem 3-5 | Growth of Functions"/>
+    <meta itemprop="description" content="Variations of O and Ω: Some authors define Ω in a slightly different way than we do; let’s use Ω∞​ (read “omega infinity”) for this alternative definition. We say that f(n)=Ω∞(g(n)) if there exists a positive constant c such that f(n)≥cg(n)≥0 for infinitely many integers n."/>
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="CLRS Solutions | Problem 3-5 | Growth of Functions" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://atekihcan.github.io/CLRS/03/P03-05/" />
+    <meta property="og:image" content="/CLRS/assets/img/-5/3-5.jpg" />
+    <meta property="og:description" content="Variations of O and Ω: Some authors define Ω in a slightly different way than we do; let’s use Ω∞​ (read “omega infinity”) for this alternative definition. We say that f(n)=Ω∞(g(n)) if there exists a positive constant c such that f(n)≥cg(n)≥0 for infinitely many integers n." />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "CLRS Solutions | Problem 3-5 | Growth of Functions",
+        "image": [
+            "/CLRS/assets/img/-5/3-5.jpg"
+        ],
+        "datePublished": "2021-01-17T23:20:00+00:00",
+        "dateModified": "2021-01-17T23:20:00+00:00",
+        "author": {
+            "@type": "Person",
+            "name": "Atekihcan"
+        }
+    }
+    </script>
+    
+    <title>CLRS Solutions | Problem 3-5 | Growth of Functions</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/CLRS/assets/img/favicon.png">
+
+    <!-- Normalize reset -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/normalize.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Katex -->
+    <link rel="stylesheet" href="/CLRS/assets/katex/katex.min.css" >
+    <script defer src="/CLRS/assets/katex/katex.min.js" ></script>
+    <script defer src="/CLRS/assets/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {trust: true});"></script>
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57470252-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-57470252-4', {
+            cookie_domain: 'https://atekihcan.github.io',
+            cookie_flags: 'SameSite=None;Secure'
+        });
+    </script>
+
+    <!-- Load site specific stuff at last -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/site.css">
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/syntax_highlight.css">
+
+    <script defer src="/CLRS/assets/js/site.js" ></script>
+</head>
+    <body class="site-body">
+        <header class="site-header">
+    <nav>
+        <i class="fa fa-database"></i>&nbsp;&nbsp;<a href="/CLRS/">Solutions for CLRS</a>&nbsp;&nbsp;<i class="fa fa-database"></i>
+    </nav>
+    <h1 class="page-title">
+        Problem 3-5
+    </h1>
+</header>
+        <main class="site-main">
+            <article>
+    <div class="article-content">
+        <blockquote>
+  <p><strong><em>Variations of \(O\) and \(\Omega\)</em></strong></p>
+
+  <p>Some authors define \(\Omega\) in a slightly different way than we do; let’s use \(\mathop \Omega \limits^\infty\) (read “omega infinity”) for this alternative definition. We say that \(f(n) = \mathop \Omega \limits^\infty(g(n))\) if there exists a positive constant \(c\) such that \(f(n) \geq cg(n) \geq 0\) for infinitely many integers \(n\).</p>
+
+  <ol>
+    <li>
+      <p>Show that for any two functions \(f(n)\)and \(g(n)\) that are asymptotically nonnegative, either \(f(n) = O(g(n))\) or \(f(n) = \mathop \Omega \limits^\infty(g(n))\) or both, whereas this is not true if we use \(\Omega\) in place of \(\mathop \Omega \limits^\infty\).</p>
+    </li>
+    <li>
+      <p>Describe the potential advantages and disadvantages of using \(\mathop \Omega \limits^\infty\) instead of \(\Omega\) to characterize the running times of programs.</p>
+    </li>
+  </ol>
+
+  <p>Some authors also define \(O\) in a slightly different manner; let’s use \(O'\) for the alternative definition. We say that \(f(n) = O'(g(n))\) if and only if \(\vert f(n) \vert = O(g(n))\).</p>
+
+  <ol start="3">
+    <li>What happens to each direction of the “if and only if” in Theorem 3.1 if we substitute \(O'\) for \(\) but still use \(\Omega\)?</li>
+  </ol>
+
+  <p>Some authors define \(\widetilde{O}\) (read “soft-oh”) to mean \(O\) with logarithmic factors ignored:</p>
+
+\[\begin{aligned}\widetilde{O}(g(n)) = \{ f(n) : &amp;\text { there exists positive constants }c, k, \text { and } n_0 \\ &amp;\text { such that } 0 \leq f(n) \leq cg(n)\lg^k(n) \text { for all } n \geq n_0 \}\end{aligned}\]
+
+  <ol start="4">
+    <li>Define \(\widetilde{\Omega}\) and \(\widetilde{\Theta}\) in a similar manner. Prove the corresponding analog to Theorem 3.1.</li>
+  </ol>
+
+</blockquote>
+
+<h4 id="a-asymptotic-non-negative-functions">A. Asymptotic Non-negative Functions</h4>
+
+<p>Notice that if a function is asymptotically non-negative, only information we know about the function is that: asymptotically it’ll never be less than zero. However, it can either be monotonically increasing, or a positive contestant, or it can even oscillate between increasing decreasing.</p>
+
+<p>For example, consider the functions \(f(n) = 2\) and \(g(n) = 2 + sin(n)\).</p>
+
+<p>The below graph shows the functions, \(f(n)\) in green and \(g(n)\) in blue.</p>
+
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jsxgraph/1.1.0/jsxgraph.css" />
+
+<script type="text/javascript" charset="UTF-8" src="//cdnjs.cloudflare.com/ajax/libs/jsxgraph/1.1.0/jsxgraphcore.js"></script>
+
+<div id="graph-box" class="graph-box"></div>
+<div class="graph-credit">Graph rendered by <a href="https://jsxgraph.org/" target="_blank">JSXGraph</a>
+</div>
+
+<script type="text/javascript">
+    JXG.Options.text.useMathJax = true;
+    var board = JXG.JSXGraph.initBoard('graph-box', {
+        boundingbox: [-5, 4, 50, -1],
+        axis: true,
+        showCopyright: false,
+        showNavigation: false
+    });
+    var a = board.create('functiongraph', [function (x) { return 2; }], {
+        strokeColor: '#0f0',
+        strokeWidth: 2
+    });
+    var b = board.create('functiongraph', [function (x) { return 2 + Math.sin(x); }], {
+        strokeColor: '#00f',
+        strokeWidth: 2
+    });
+</script>
+
+<p>As it is evident from the graphs, asymptotically, both are non-negative.</p>
+
+<p>Also for infinitely many integers \(n\), \(f(n) \geq cg(n) \geq\), for positive constant \(c = 1\), i.e. \(f(n) = \mathop \Omega \limits^\infty(g(n))\). This happens whenever the blue graph is below the green one, and there is infinitely many such scenarios.</p>
+
+<p>However, as per definition of \(O\) or \(\Omega\), \(f(n)\) is neither \(O(g(n))\) nor \(\Omega(g(n))\).</p>
+
+<aside id="infinitely-many-vs-large-enough" class="info">
+    <h4>Infinitely Many vs Large Enough </h4>
+    <div>
+<p>The difference between regular \(\Omega\) and \(\mathop \Omega \limits^\infty\), is that in the regular case the definition involves <em>all \(n\) greater than a large enough \(n_0\), whereas in the other case it is for _infinitely many \(n\)</em>. Although the former includes the later, the opposite is not true as evident from the counter-example shown above.</p>
+
+<p>You can find more discussion on this in the <a href="https://cs.stackexchange.com/questions/12147/variations-of-omega-and-omega-infinity" target="_blank">CS Stack Exchange</a> forum.</p>
+</div>
+</aside>
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<p><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7476503486911097" data-ad-slot="5416910574" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+<h4 id="b-advantage-and-disadvantage">B. Advantage and Disadvantage</h4>
+
+<p>This directly follows from the previous section: the advantage being we can establish a relationship between any two functions, and the disadvantage being some of those relationships might not be precise enough to be of any use.</p>
+
+<h4 id="c-substitution-for-big-o">C. Substitution for Big-O</h4>
+
+<p>\(\vert f(n) \vert = O(g(n))\) implies \(0 \leq \vert f(n) \vert \leq cg(n)\)</p>
+
+<p>As long as \(f(n) \geq 0\), there is no difference between \(O\) and \(O'\). But when \(f(n) &lt; 0\), \(O\) notation does not cover such functions, but \(O'\) does.</p>
+
+<p>With this difference, there is no change in the “if” part but we cannot use the “only if” part anymore as we will need to use negative multiplier constants to find lower limit when \(f(n) &lt; 0\).</p>
+
+<h4 id="d-ignoring-logarithmic-factors">D. Ignoring Logarithmic Factors</h4>
+
+<p>As logarithmic functions are monotonically increasing, \(\widetilde{\Omega}\) and \(\widetilde{\Theta}\) can be defined similarly and theorem 3.1 can be restated without any other changes.</p>
+
+    </div>
+    <hr class="solid"/>
+    <div class="article-footer">
+        <div class="article-footer-message">
+    <span style="font-size: 0.8em;">If you have any question or suggestion or you have found any error in this solution, please leave a comment below.</span>
+</div>
+        <div class="article-nav">
+    <div class="article-nav-left">
+        
+            <a href="/CLRS/03/P03-04/">
+                <i class="fa fa-2x fa-arrow-left"></i>
+            </a>
+            <span><strong>P 3-4</strong></span>
+        
+    </div>
+    <div class="article-nav-middle">
+        <a href="/CLRS/">
+            <strong>Solution Index</strong>
+        </a>
+    </div>
+    <div class="article-nav-right">
+        
+            <span><strong>P 3-6</strong></span>
+            <a href="/CLRS/03/P03-06/">
+                <i class="fa fa-2x fa-arrow-right"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7476503486911097"
+     data-ad-slot="5416910574"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+    </div>
+</article>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_observer = new IntersectionObserver(function (entries) {
+        // comments section reached
+        // start loading Disqus now
+        if (entries[0].isIntersecting) {
+            var disqus_shortname = 'atekihcan';
+            var disqus_identifier = '/CLRS/03/P03-05/';
+            var disqus_title = 'Problem 3-5';
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+
+            // once executed, stop observing
+            disqus_observer.disconnect();
+        }
+    }, {threshold: [0]});
+    disqus_observer.observe(document.querySelector("#disqus_thread"));
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+        </main>
+        <footer class="site-footer">
+    <div>
+        &copy; Atekihcan 2007 - 2023
+    </div>
+</footer>
+
+<script>
+    // Left align KaTeX for pseudo codes
+    document.addEventListener("DOMContentLoaded", function() { 
+        var docs = document.querySelectorAll('.latex-pseudo-code > span > span');
+        for (var i = 0; i < docs.length; i++) {
+            docs[i].classList.add('fleqn');
+        }
+    });
+</script>
+
+    </body>
+</html>

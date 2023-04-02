@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Legacy meta -->
+    <meta name="description" content="Asymptotic notation properties: Let f(n) and g(n) be asymptotically positive functions. Prove or disprove each of the following conjectures."/>
+    <meta name="keywords" content="CLRS, solutions, algorithms, Cormen, solve recurrence, master theorem"/>
+
+    <!--Schema-->
+    <link rel="author" href="Atekihcan">
+    <link rel="publisher" href="https://atekihcan.github.io">
+    <meta itemprop="name" content="CLRS Solutions | Problem 4-1 | Divide-and-Conquer"/>
+    <meta itemprop="description" content="Asymptotic notation properties: Let f(n) and g(n) be asymptotically positive functions. Prove or disprove each of the following conjectures."/>
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="CLRS Solutions | Problem 4-1 | Divide-and-Conquer" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://atekihcan.github.io/CLRS/04/P04-01/" />
+    <meta property="og:image" content="/CLRS/assets/img/-1/4-1.jpg" />
+    <meta property="og:description" content="Asymptotic notation properties: Let f(n) and g(n) be asymptotically positive functions. Prove or disprove each of the following conjectures." />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "CLRS Solutions | Problem 4-1 | Divide-and-Conquer",
+        "image": [
+            "/CLRS/assets/img/-1/4-1.jpg"
+        ],
+        "datePublished": "2012-06-09T21:15:00+00:00",
+        "dateModified": "2020-10-17T22:30:00+00:00",
+        "author": {
+            "@type": "Person",
+            "name": "Atekihcan"
+        }
+    }
+    </script>
+    
+    <title>CLRS Solutions | Problem 4-1 | Divide-and-Conquer</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/CLRS/assets/img/favicon.png">
+
+    <!-- Normalize reset -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/normalize.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Katex -->
+    <link rel="stylesheet" href="/CLRS/assets/katex/katex.min.css" >
+    <script defer src="/CLRS/assets/katex/katex.min.js" ></script>
+    <script defer src="/CLRS/assets/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {trust: true});"></script>
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57470252-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-57470252-4', {
+            cookie_domain: 'https://atekihcan.github.io',
+            cookie_flags: 'SameSite=None;Secure'
+        });
+    </script>
+
+    <!-- Load site specific stuff at last -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/site.css">
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/syntax_highlight.css">
+
+    <script defer src="/CLRS/assets/js/site.js" ></script>
+</head>
+    <body class="site-body">
+        <header class="site-header">
+    <nav>
+        <i class="fa fa-database"></i>&nbsp;&nbsp;<a href="/CLRS/">Solutions for CLRS</a>&nbsp;&nbsp;<i class="fa fa-database"></i>
+    </nav>
+    <h1 class="page-title">
+        Problem 4-1
+    </h1>
+</header>
+        <main class="site-main">
+            <article>
+    <div class="article-content">
+        <blockquote>
+  <p><strong><em>Recurrence examples</em></strong></p>
+
+  <p>Give asymptotic upper and lower bounds for \(T(n)\) in each of the following recurrences. Assume that \(T(n)\) is constant for \(n \leq 2\). Make your bounds as tight as possible, and justify your answers.</p>
+
+  <ol>
+    <li>
+      <p>\(T(n) = 2T(n/2) + n^4\).</p>
+    </li>
+    <li>
+      <p>\(T(n) = T(7n/10) + n\).</p>
+    </li>
+    <li>
+      <p>\(T(n) = 16T(n/4) + n^2\).</p>
+    </li>
+    <li>
+      <p>\(T(n) = 7T(n/3) + n^2\).</p>
+    </li>
+    <li>
+      <p>\(T(n) = 7T(n/2) + n^2\).</p>
+    </li>
+    <li>
+      <p>\(T(n) = 2T(n/4) + \sqrt n\).</p>
+    </li>
+    <li>
+      <p>\(T(n) = T(n - 2) + n^2\).</p>
+    </li>
+  </ol>
+
+</blockquote>
+
+<p>Let’s revisit Master Theorem, as we’ll use that to solve all of these recurrences:</p>
+
+<blockquote>
+\[T(n) = aT(n/b) +f(n)\]
+
+  <ol>
+    <li>
+      <p>If \(f(n) = O(n^{\log_b a - \epsilon})\) for some constant \(\epsilon &gt; 0\), then \(T(n) = \Theta(n^{\log_b a})\).</p>
+    </li>
+    <li>
+      <p>If \(f(n) = \Theta(n^{\log_b a})\), then \(T(n) = \Theta(n^{\log_b a} \lg n)\).</p>
+    </li>
+    <li>
+      <p>If \(f(n) = \Omega(n^{\log_b a + \epsilon})\) for some constant \(\epsilon &gt; 0\), and if \(af(n/b) \leq cf(n)\) for some constant \(c &lt; 1\) and all sufficiently large \(n\), then \(T(n) = \Theta(f(n))\).</p>
+    </li>
+  </ol>
+</blockquote>
+
+<h4 id="a">A</h4>
+
+<p>Here, \(a = 2\) and \(b = 2\). So, \(\log_b a = 1\).</p>
+
+<p>And, \(f(n) = n^4 = n^{1 + 3} = \Omega(n^{\log_b a + \epsilon})\) for \(\epsilon = 3\).</p>
+
+<p>\(af(n/b) = 2f(n/2) = n^4/8 \leq cn^4\) for some constant \(1/8 &lt; c &lt; 1\) and \(n \geq 1\).</p>
+
+<p>We can apply case 3: \(T(n) = \Theta(n^4)\).</p>
+
+<h4 id="b">B</h4>
+
+<p>Here, \(a = 1\) and \(b = 10/7\). So, \(\log_b a = 0\).</p>
+
+<p>And, \(f(n) = n = n^{0 + 1} = \Omega(n^{\log_b a + \epsilon})\) for \(\epsilon = 1\).</p>
+
+<p>\(af(n/b) = f(7n/10) = 7n/10 \leq cn\) for some constant \(7/10 &lt; c &lt; 1\) and \(n \geq 1\).</p>
+
+<p>We can apply case 3: \(T(n) = \Theta(n)\).</p>
+
+<h4 id="c">C</h4>
+
+<p>Here, \(a = 16\) and \(b = 4\). So, \(\log_b a = 2\).</p>
+
+<p>And, \(f(n) = n^2 = \Theta(n^{\log_b a})\).</p>
+
+<p>We can apply case 2: \(T(n) = \Theta(n^2 \lg n)\).</p>
+
+<h4 id="d">D</h4>
+
+<p>Here, \(a = 7\) and \(b = 3\). So, \(\log_b a = 1.77\).</p>
+
+<p>And, \(f(n) = n^2 = n^{1.77 + 0.23} = \Omega(n^{\log_b a + \epsilon})\) for \(\epsilon = 0.23\).</p>
+
+<p>\(af(n/b) = 7f(7n/3) = 7n^2/9 \leq cn^2\) for some constant \(7/9 &lt; c &lt; 1\) and \(n \geq 1\).</p>
+
+<p>We can apply case 3: \(T(n) = \Theta(n^2)\).</p>
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<p><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7476503486911097" data-ad-slot="5416910574" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+<h4 id="e">E</h4>
+
+<p>Here, \(a = 7\) and \(b = 2\). So, \(\log_b a = 2.8\).</p>
+
+<p>And, \(f(n) = n^2 = n^{2.8 - 0.8} = O(n^{\log_b a - \epsilon})\) for \(\epsilon = 0.8\).</p>
+
+<p>We can apply case 1: \(T(n) = \Theta(n^{\lg 7})\).</p>
+
+<h4 id="f">F</h4>
+
+<p>Here, \(a = 2\) and \(b = 4\). So, \(\log_b a = 1/2\).</p>
+
+<p>And, \(f(n) = \sqrt n = \Theta(n^{\log_b a})\).</p>
+
+<p>We can apply case 2: \(T(n) = \Theta(\sqrt n \lg n)\).</p>
+
+<h4 id="g">G</h4>
+
+<p>This recurrence is not of the form where we can apply Master theorem. We’ll need to solve this in other methods that we know of.</p>
+
+<p>Let’s solve it by expanding the recurrence:</p>
+
+\[\begin {aligned}
+T(n) &amp;= T(n - 2) + n^2 \\
+     &amp;= T(n - 4) + (n - 2)^2 + n^2 \\
+     &amp;= T(n - 6) + (n - 4)^4 + (n - 2)^2 + n^2 \\
+     &amp;= T(0) + 2^2 + 4^2 + \cdots + (n - 4)^2 + (n - 2)^2 + n^2 \\
+     &amp;= T(0) + \sum_{i = 0}^{n/2} (n - 2i)^2 \\
+     &amp;= T(0) + \sum_{i = 0}^{n/2} n^2 - \sum_{i = 0}^{n/2} 4ni + \sum_{i = 0}^{n/2} 4i^2 \\
+     &amp;= T(0) + \Theta(n^3) - \Theta(n^3) + \Theta(n^3)\\
+     &amp;= \Theta(n^3)
+\end {aligned}\]
+
+    </div>
+    <hr class="solid"/>
+    <div class="article-footer">
+        <div class="article-footer-message">
+    <span style="font-size: 0.8em;">If you have any question or suggestion or you have found any error in this solution, please leave a comment below.</span>
+</div>
+        <div class="article-nav">
+    <div class="article-nav-left">
+        
+            <a href="/CLRS/04/E04.05-05/">
+                <i class="fa fa-2x fa-arrow-left"></i>
+            </a>
+            <span><strong>E 4.5-5</strong></span>
+        
+    </div>
+    <div class="article-nav-middle">
+        <a href="/CLRS/">
+            <strong>Solution Index</strong>
+        </a>
+    </div>
+    <div class="article-nav-right">
+        
+            <span><strong>E A.1-1</strong></span>
+            <a href="/CLRS/A/EA.01-01/">
+                <i class="fa fa-2x fa-arrow-right"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7476503486911097"
+     data-ad-slot="5416910574"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+    </div>
+</article>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_observer = new IntersectionObserver(function (entries) {
+        // comments section reached
+        // start loading Disqus now
+        if (entries[0].isIntersecting) {
+            var disqus_shortname = 'atekihcan';
+            var disqus_identifier = '/CLRS/04/P04-01/';
+            var disqus_title = 'Problem 4-1';
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+
+            // once executed, stop observing
+            disqus_observer.disconnect();
+        }
+    }, {threshold: [0]});
+    disqus_observer.observe(document.querySelector("#disqus_thread"));
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+        </main>
+        <footer class="site-footer">
+    <div>
+        &copy; Atekihcan 2007 - 2023
+    </div>
+</footer>
+
+<script>
+    // Left align KaTeX for pseudo codes
+    document.addEventListener("DOMContentLoaded", function() { 
+        var docs = document.querySelectorAll('.latex-pseudo-code > span > span');
+        for (var i = 0; i < docs.length; i++) {
+            docs[i].classList.add('fleqn');
+        }
+    });
+</script>
+
+    </body>
+</html>

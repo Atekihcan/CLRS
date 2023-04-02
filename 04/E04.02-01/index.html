@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Legacy meta -->
+    <meta name="description" content="Use Strassen’s algorithm to compute the matrix product ... Show your work."/>
+    <meta name="keywords" content="CLRS, solutions, algorithms, Cormen, matrix multiplication, Strassen’s algorithm"/>
+
+    <!--Schema-->
+    <link rel="author" href="Atekihcan">
+    <link rel="publisher" href="https://atekihcan.github.io">
+    <meta itemprop="name" content="CLRS Solutions | Exercise 4.2-1 | Divide-and-Conquer"/>
+    <meta itemprop="description" content="Use Strassen’s algorithm to compute the matrix product ... Show your work."/>
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="CLRS Solutions | Exercise 4.2-1 | Divide-and-Conquer" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://atekihcan.github.io/CLRS/04/E04.02-01/" />
+    <meta property="og:image" content="/CLRS/assets/img/04/4.2-1.jpg" />
+    <meta property="og:description" content="Use Strassen’s algorithm to compute the matrix product ... Show your work." />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "CLRS Solutions | Exercise 4.2-1 | Divide-and-Conquer",
+        "image": [
+            "/CLRS/assets/img/04/4.2-1.jpg"
+        ],
+        "datePublished": "2012-08-28T19:00:00+00:00",
+        "dateModified": "2021-01-21T10:30:00+00:00",
+        "author": {
+            "@type": "Person",
+            "name": "Atekihcan"
+        }
+    }
+    </script>
+    
+    <title>CLRS Solutions | Exercise 4.2-1 | Divide-and-Conquer</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/CLRS/assets/img/favicon.png">
+
+    <!-- Normalize reset -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/normalize.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Katex -->
+    <link rel="stylesheet" href="/CLRS/assets/katex/katex.min.css" >
+    <script defer src="/CLRS/assets/katex/katex.min.js" ></script>
+    <script defer src="/CLRS/assets/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {trust: true});"></script>
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57470252-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-57470252-4', {
+            cookie_domain: 'https://atekihcan.github.io',
+            cookie_flags: 'SameSite=None;Secure'
+        });
+    </script>
+
+    <!-- Load site specific stuff at last -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/site.css">
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/syntax_highlight.css">
+
+    <script defer src="/CLRS/assets/js/site.js" ></script>
+</head>
+    <body class="site-body">
+        <header class="site-header">
+    <nav>
+        <i class="fa fa-database"></i>&nbsp;&nbsp;<a href="/CLRS/">Solutions for CLRS</a>&nbsp;&nbsp;<i class="fa fa-database"></i>
+    </nav>
+    <h1 class="page-title">
+        Exercise 4.2-1
+    </h1>
+</header>
+        <main class="site-main">
+            <article>
+    <div class="article-content">
+        <blockquote>
+  <p>Use Strassen’s algorithm to compute the matrix product</p>
+
+  <p>\(\begin{pmatrix}
+    1 &amp; 3 \\
+    7 &amp; 5 \\
+    \end{pmatrix}
+    \begin{pmatrix}
+    6 &amp; 8 \\
+    4 &amp; 2 \\
+    \end{pmatrix}\).</p>
+
+  <p>Show your work.</p>
+</blockquote>
+
+<p>The sums:</p>
+
+\[\begin {aligned}
+&amp; S_1 = B_{12} - B_{22} = 8 - 2 = 6 \\
+&amp; S_2 = A_{11} + A_{12} = 1 + 3 = 4 \\
+&amp; S_3 = A_{21} + A_{22} = 7 + 5 = 12 \\
+&amp; S_4 = B_{21} - B_{11} = 4 - 6 = -2 \\
+&amp; S_5 = A_{11} + A_{22} = 1 + 5 = 6 \\
+&amp; S_6 = B_{11} + B_{22} = 6 + 2 = 8 \\
+&amp; S_7 = A_{12} - A_{22} = 3 - 5 = -2 \\
+&amp; S_8 = B_{21} + B_{22} = 4 + 2 = 6 \\
+&amp; S_9 = A_{11} - A_{21} = 1 - 7 = -6 \\
+&amp; S_{10} = B_{11} + B_{12} = 6 + 8 = 14
+\end {aligned}\]
+
+<p>The products:</p>
+
+\[\begin {aligned}
+&amp; P_1 = A_{11} \cdot S_1 = 6 \\
+&amp; P_2 = S_2 \cdot B{22} = 8 \\
+&amp; P_3 = S_3 \cdot B{11} = 72 \\
+&amp; P_4 = A_{22} \cdot S_4 = -10 \\
+&amp; P_5 = S_5 \cdot S_6 = 48 \\
+&amp; P_6 = S_7 \cdot S_8 = -12 \\
+&amp; P_7 = S_9 \cdot S_{10} = -84
+\end {aligned}\]
+
+<p>The result sub-matrix sums:</p>
+
+\[\begin {aligned}
+&amp; C_{11} = P_5 + P_4 - P_2 + P_6 = 18 \\
+&amp; C_{12} = P_1 + P_2 = 14 \\
+&amp; C_{21} = P_3 + P_4 = 62 \\
+&amp; C_{22} = P_5 + P_1 - P_3 - P_7 = 66
+\end {aligned}\]
+
+<p>So, the answer is \(\begin{pmatrix}
+    18 &amp; 14 \\
+    62 &amp; 66 \\
+\end{pmatrix}\).</p>
+
+    </div>
+    <hr class="solid"/>
+    <div class="article-footer">
+        <div class="article-footer-message">
+    <span style="font-size: 0.8em;">If you have any question or suggestion or you have found any error in this solution, please leave a comment below.</span>
+</div>
+        <div class="article-nav">
+    <div class="article-nav-left">
+        
+            <a href="/CLRS/04/E04.01-05/">
+                <i class="fa fa-2x fa-arrow-left"></i>
+            </a>
+            <span><strong>E 4.1-5</strong></span>
+        
+    </div>
+    <div class="article-nav-middle">
+        <a href="/CLRS/">
+            <strong>Solution Index</strong>
+        </a>
+    </div>
+    <div class="article-nav-right">
+        
+            <span><strong>E 4.2-2</strong></span>
+            <a href="/CLRS/04/E04.02-02/">
+                <i class="fa fa-2x fa-arrow-right"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7476503486911097"
+     data-ad-slot="5416910574"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+    </div>
+</article>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_observer = new IntersectionObserver(function (entries) {
+        // comments section reached
+        // start loading Disqus now
+        if (entries[0].isIntersecting) {
+            var disqus_shortname = 'atekihcan';
+            var disqus_identifier = '/CLRS/04/E04.02-01/';
+            var disqus_title = 'Exercise 4.2-1';
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+
+            // once executed, stop observing
+            disqus_observer.disconnect();
+        }
+    }, {threshold: [0]});
+    disqus_observer.observe(document.querySelector("#disqus_thread"));
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+        </main>
+        <footer class="site-footer">
+    <div>
+        &copy; Atekihcan 2007 - 2023
+    </div>
+</footer>
+
+<script>
+    // Left align KaTeX for pseudo codes
+    document.addEventListener("DOMContentLoaded", function() { 
+        var docs = document.querySelectorAll('.latex-pseudo-code > span > span');
+        for (var i = 0; i < docs.length; i++) {
+            docs[i].classList.add('fleqn');
+        }
+    });
+</script>
+
+    </body>
+</html>

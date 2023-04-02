@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Legacy meta -->
+    <meta name="description" content="Draw the recursion tree for T(n) = 4T(⌊n/2⌋) + cn, where c is a constant, and provide a tight asymptotic bound on its solution. Verify your bound by the substitution method."/>
+    <meta name="keywords" content="CLRS, solutions, algorithms, Cormen, recursion tree, substitution method"/>
+
+    <!--Schema-->
+    <link rel="author" href="Atekihcan">
+    <link rel="publisher" href="https://atekihcan.github.io">
+    <meta itemprop="name" content="CLRS Solutions | Exercise 4.4-7 | Divide-and-Conquer"/>
+    <meta itemprop="description" content="Draw the recursion tree for T(n) = 4T(⌊n/2⌋) + cn, where c is a constant, and provide a tight asymptotic bound on its solution. Verify your bound by the substitution method."/>
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="CLRS Solutions | Exercise 4.4-7 | Divide-and-Conquer" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://atekihcan.github.io/CLRS/04/E04.04-07/" />
+    <meta property="og:image" content="/CLRS/assets/img/04/4.4-7.jpg" />
+    <meta property="og:description" content="Draw the recursion tree for T(n) = 4T(⌊n/2⌋) + cn, where c is a constant, and provide a tight asymptotic bound on its solution. Verify your bound by the substitution method." />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "CLRS Solutions | Exercise 4.4-7 | Divide-and-Conquer",
+        "image": [
+            "/CLRS/assets/img/04/4.4-7.jpg"
+        ],
+        "datePublished": "2012-08-28T21:25:00+00:00",
+        "dateModified": "2021-01-31T17:50:00+00:00",
+        "author": {
+            "@type": "Person",
+            "name": "Atekihcan"
+        }
+    }
+    </script>
+    
+    <title>CLRS Solutions | Exercise 4.4-7 | Divide-and-Conquer</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/CLRS/assets/img/favicon.png">
+
+    <!-- Normalize reset -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/normalize.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Katex -->
+    <link rel="stylesheet" href="/CLRS/assets/katex/katex.min.css" >
+    <script defer src="/CLRS/assets/katex/katex.min.js" ></script>
+    <script defer src="/CLRS/assets/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {trust: true});"></script>
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57470252-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-57470252-4', {
+            cookie_domain: 'https://atekihcan.github.io',
+            cookie_flags: 'SameSite=None;Secure'
+        });
+    </script>
+
+    <!-- Load site specific stuff at last -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/site.css">
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/syntax_highlight.css">
+
+    <script defer src="/CLRS/assets/js/site.js" ></script>
+</head>
+    <body class="site-body">
+        <header class="site-header">
+    <nav>
+        <i class="fa fa-database"></i>&nbsp;&nbsp;<a href="/CLRS/">Solutions for CLRS</a>&nbsp;&nbsp;<i class="fa fa-database"></i>
+    </nav>
+    <h1 class="page-title">
+        Exercise 4.4-7
+    </h1>
+</header>
+        <main class="site-main">
+            <article>
+    <div class="article-content">
+        <blockquote>
+  <p>Draw the recursion tree for \(T(n) = 4T(\lfloor n/2 \rfloor) + cn\), where \(c\) is a constant, and provide a tight asymptotic bound on its solution. Verify your bound by the substitution method.</p>
+</blockquote>
+
+<p>Ignoring the floors, the recursion takes the form:</p>
+
+\[T(n) = 4T(n/2) + cn\]
+
+<p>Rate of increase in number of subproblems in each recursion = 4</p>
+
+<p>Rate of decrease in subproblem size = 2</p>
+
+<p>Hence at depth \(i = 0, 1, 2, \dots, \lg n\) of the tree, there are \(4^i\) nodes each of cost \(cn/2^i\).</p>
+
+<p>Hence, total cost of the tree is:</p>
+
+\[\begin {aligned}
+T(n) &amp; = \sum_{i = 0}^{\lg n} 4^i \cdot c\frac n {2^i} \\
+     &amp; = cn \cdot \sum_{i = 0}^{\lg n} 2^i \\
+     &amp; = cn \cdot \frac {2^{\lg n + 1} - 1} {2 - 1} \\
+     &amp; = cn \cdot (2\cdot2^{\lg n} - 1) \\
+     &amp; = cn \cdot (2n - 1) \\
+     &amp; = 2cn^2 - cn
+\end {aligned}\]
+
+<h4 id="asymptotic-upper-bound">Asymptotic upper bound</h4>
+
+\[\begin {aligned}
+T(n) &amp; = 2cn^2 - cn \\
+     &amp; \le 2cn^2 \\
+     &amp; = O(n^2)
+\end {aligned}\]
+
+<p>The last step holds as long as \(cn \ge 0\) and \(c \le n\).</p>
+
+<p>For example, \(n \ge n_0 = 2\) and \(c = 1\).</p>
+
+<h4 id="asymptotic-lower-bound">Asymptotic lower bound</h4>
+
+\[\begin {aligned}
+T(n) &amp; = 2cn^2 - cn \\
+     &amp; = cn^2 + (cn^2 - cn) \\
+     &amp; \ge cn^2 \\
+     &amp; = \Omega(n^2)
+\end {aligned}\]
+
+<p>Last step holds as long as \((cn^2 - cn) \ge 0\).</p>
+
+    </div>
+    <hr class="solid"/>
+    <div class="article-footer">
+        <div class="article-footer-message">
+    <span style="font-size: 0.8em;">If you have any question or suggestion or you have found any error in this solution, please leave a comment below.</span>
+</div>
+        <div class="article-nav">
+    <div class="article-nav-left">
+        
+            <a href="/CLRS/04/E04.04-06/">
+                <i class="fa fa-2x fa-arrow-left"></i>
+            </a>
+            <span><strong>E 4.4-6</strong></span>
+        
+    </div>
+    <div class="article-nav-middle">
+        <a href="/CLRS/">
+            <strong>Solution Index</strong>
+        </a>
+    </div>
+    <div class="article-nav-right">
+        
+            <span><strong>E 4.4-8</strong></span>
+            <a href="/CLRS/04/E04.04-08/">
+                <i class="fa fa-2x fa-arrow-right"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7476503486911097"
+     data-ad-slot="5416910574"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+    </div>
+</article>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_observer = new IntersectionObserver(function (entries) {
+        // comments section reached
+        // start loading Disqus now
+        if (entries[0].isIntersecting) {
+            var disqus_shortname = 'atekihcan';
+            var disqus_identifier = '/CLRS/04/E04.04-07/';
+            var disqus_title = 'Exercise 4.4-7';
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+
+            // once executed, stop observing
+            disqus_observer.disconnect();
+        }
+    }, {threshold: [0]});
+    disqus_observer.observe(document.querySelector("#disqus_thread"));
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+        </main>
+        <footer class="site-footer">
+    <div>
+        &copy; Atekihcan 2007 - 2023
+    </div>
+</footer>
+
+<script>
+    // Left align KaTeX for pseudo codes
+    document.addEventListener("DOMContentLoaded", function() { 
+        var docs = document.querySelectorAll('.latex-pseudo-code > span > span');
+        for (var i = 0; i < docs.length; i++) {
+            docs[i].classList.add('fleqn');
+        }
+    });
+</script>
+
+    </body>
+</html>

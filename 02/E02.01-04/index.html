@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Legacy meta -->
+    <meta name="description" content="Consider the problem of adding two n-bit binary integers, stored in two n element arrays A and B. The sum of the two integers should be stored in binary form in an (n + 1) element array C. State the problem formally and write pseudocode for adding the two integers."/>
+    <meta name="keywords" content="CLRS, solutions, algorithms, Cormen, binary addition, python code for binary addition"/>
+
+    <!--Schema-->
+    <link rel="author" href="Atekihcan">
+    <link rel="publisher" href="https://atekihcan.github.io">
+    <meta itemprop="name" content="CLRS Solutions | Exercise 2.1-4 | Getting Started"/>
+    <meta itemprop="description" content="Consider the problem of adding two n-bit binary integers, stored in two n element arrays A and B. The sum of the two integers should be stored in binary form in an (n + 1) element array C. State the problem formally and write pseudocode for adding the two integers."/>
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="CLRS Solutions | Exercise 2.1-4 | Getting Started" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://atekihcan.github.io/CLRS/02/E02.01-04/" />
+    <meta property="og:image" content="/CLRS/assets/img/02/2.1-4.jpg" />
+    <meta property="og:description" content="Consider the problem of adding two n-bit binary integers, stored in two n element arrays A and B. The sum of the two integers should be stored in binary form in an (n + 1) element array C. State the problem formally and write pseudocode for adding the two integers." />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "CLRS Solutions | Exercise 2.1-4 | Getting Started",
+        "image": [
+            "/CLRS/assets/img/02/2.1-4.jpg"
+        ],
+        "datePublished": "2012-08-22T20:15:00+00:00",
+        "dateModified": "2020-10-03T14:30:00+00:00",
+        "author": {
+            "@type": "Person",
+            "name": "Atekihcan"
+        }
+    }
+    </script>
+    
+    <title>CLRS Solutions | Exercise 2.1-4 | Getting Started</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/CLRS/assets/img/favicon.png">
+
+    <!-- Normalize reset -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/normalize.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Katex -->
+    <link rel="stylesheet" href="/CLRS/assets/katex/katex.min.css" >
+    <script defer src="/CLRS/assets/katex/katex.min.js" ></script>
+    <script defer src="/CLRS/assets/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {trust: true});"></script>
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57470252-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-57470252-4', {
+            cookie_domain: 'https://atekihcan.github.io',
+            cookie_flags: 'SameSite=None;Secure'
+        });
+    </script>
+
+    <!-- Load site specific stuff at last -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/site.css">
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/syntax_highlight.css">
+
+    <script defer src="/CLRS/assets/js/site.js" ></script>
+</head>
+    <body class="site-body">
+        <header class="site-header">
+    <nav>
+        <i class="fa fa-database"></i>&nbsp;&nbsp;<a href="/CLRS/">Solutions for CLRS</a>&nbsp;&nbsp;<i class="fa fa-database"></i>
+    </nav>
+    <h1 class="page-title">
+        Exercise 2.1-4
+    </h1>
+</header>
+        <main class="site-main">
+            <article>
+    <div class="article-content">
+        <blockquote>
+  <p>Consider the problem of adding two \(n\)-bit binary integers, stored in two \(n\) element arrays \(A\) and \(B\). The sum of the two integers should be stored in binary form in an \((n + 1)\) element array \(C\). State the problem formally and write pseudocode for adding the two integers.</p>
+</blockquote>
+
+<p>The problem can be formally stated as…</p>
+
+<p><strong>Input:</strong> Two \(n\) bit binary integers stored in two \(n\) element array of binary digits (either 0 or 1) \(A = \langle a_1, a_2, ... , a_n \rangle\) and \(B = \langle b_1, b_2, ... , b_n \rangle\).</p>
+
+<p><strong>Output:</strong> A \((n + 1)\) bit binary integer stored in \((n + 1)\) element array of binary digits (either 0 or 1) \(C = \langle c_1, c_2, ... , c_{n+1} \rangle\) such that \(C = A + B\).</p>
+
+<p>We also assume the binary digits are stored with least significant bit first, i.e. from right to left, first bit in index \(1\), second bit in index \(2\), and so on. Why we are doing this is discussed after the pseudocode.</p>
+
+<div class="latex-pseudo-code">$$\textsc {Add-Binary }(A, B)$$$$\begin{aligned}1&amp; \quad  n=\textsc {Max}(A.length,\,B.length) \\2&amp; \quad  \text {let }C[n+1]\text { be }\text { new }\text { array } \\3&amp; \quad  carry=0 \\4&amp; \quad  \textbf {for }i=1\textbf { to }n \\5&amp; \quad \qquad  C[i]=\textsc {}(A[i]+B[i]+carry)\mod2 \\6&amp; \quad \qquad  carry=\lfloor \textsc {}(A[i]+B[i]+carry)/2\rfloor  \\7&amp; \quad  C[n+1]=carry \\8&amp; \quad  \textbf {return }C \\\end{aligned}$$</div>
+
+<aside id="caveat" class="info">
+    <h4>Caveat </h4>
+    <div>
+<p>In the pseudocode we are iterating till maximum length of either array, which can cause <strong>index out of bound</strong> exception for the smaller array (smaller number as well). We are implicitly assuming the non-existent digit will be treated as <em>zero</em> in such cases.</p>
+
+<p>It has to be explicitly handled while writing actual code, as is done in the python implementation at <a href="#python-code">end of the page</a>.</p>
+</div>
+</aside>
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<p><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7476503486911097" data-ad-slot="5416910574" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+<h4 id="left-to-right-or-right-to-left">Left to Right or Right to Left</h4>
+
+<p>An earlier version of the solution presented here assumed the least significant bit was stored in index \(n\) instead of index \(1\). Which made the solution not only wrong (it did not handle all possible cases properly), it also caused a great deal of confusion in the comments section.</p>
+
+<p>Here is why assuming least significant bit in index \(n\) will make the problem unnecessarily complicated.</p>
+
+<p>Consider the following two binary additions</p>
+
+<p><img src="/CLRS/assets/img/02/2.1-4_binary_add.jpg" alt="Binary Addition" title="Binary addition bit order illustration" /></p>
+
+<p>The one on the left adds \(111_b\) and \(1_b\) to \(1000_b\). In this case, \(n = 3\) and we end up with final array \(C\) of length \(n + 1 = 4\). The array indices are shown in blue with the assumption of storing bits as we they appear visually from left to right, i.e. most significant bit in first index and least significant bit in last index, \(n\).</p>
+
+<p>In this particular case there is no complication, and we could have just designed our pseudocode to iterate from the opposite direction, from \(n\) <strong>downto</strong> \(1\), and stored the result of the addition in line 4 in \(C[i + 1]\) and the final \(carry\) in line 6 in \(C[1]\).</p>
+
+<p>However, note that for the addition on the right, \(110_b\) and \(1_b\) sums up to \(111_b\), and we end up with final array \(C\) of length \(n = 3\). In this case, \(C[1]\) is empty (highlighted with light red), and we are left with the additional task of shifting all the elements to the left to meet our initial assumption of having most significant bit at index \(1\).</p>
+
+<p>One can argue that having <em>zero</em> in the first index is not a deal breaker, but depending on the use case it might add up to redundant work. For example, let’s say we need to repeatedly do this addition. And every time we end up with a case like the right one. Then we would  keep on adding redundant <em>zeroes</em> in the beginning of the resulting array.</p>
+
+<h4 id="python-code">Python Code</h4>
+
+<script src="/CLRS/assets/js/skulpt.min.js" type="text/javascript"></script>
+
+<script src="/CLRS/assets/js/skulpt-stdlib.js" type="text/javascript"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.min.js" integrity="sha512-GoORoNnxst42zE3rYPj4bNBm0Q6ZRXKNH2D9nEmNvVF/z24ywVnijAWVi/09iBiVDQVf3UlZHpzhAJIdd9BXqw==" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/mode-python.min.js" integrity="sha512-2Ke4vMGrMfYRM55pT1aA5bw7Pl82Sc7K5Hg8XZYZu+EQrb0AO1mNYTagwZm+MFVAImYS9Mlnm73zcgc01wPXxA==" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/theme-nord_dark.min.js" integrity="sha512-Yrb8fdpeml10Onax7VERUl9ea2bAU/OPQ3IASUNqed9o+EotsVU9L4mgB4jXZQWDjav4VD2HSjiWlwOmfKeJRQ==" crossorigin="anonymous"></script>
+
+<script>
+    // Output functions are configurable
+    // This one just appends some text to a pre element
+    function prependOut(text) {
+        var output = document.getElementById("code-editor-output");
+        output.innerHTML = output.innerHTML + text;
+    }
+
+    function builtinRead(x) {
+        if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined) 
+            throw "File not found: '" + x + "'";
+        return Sk.builtinFiles["files"][x];
+    }
+
+    // Grab the code, get a reference to output
+    // configure the output function and call Sk.importMainWithBody()
+    function runCode() {
+        // Get code from Ace editor and clear output
+        var prog = (editor.getValue());
+        var output = document.getElementById("code-editor-output");
+        output.innerHTML = '';
+
+        Sk.pre = "output";
+        Sk.configure({output: prependOut, read: builtinRead, __future__: Sk.python3});
+        var myPromise = Sk
+            .misceval
+            .asyncToPromise(function () {
+                return Sk.importMainWithBody("<stdin>", false, prog, true);
+            });
+        myPromise.then(function (mod) {
+            output.style.color = "#d8dee9";
+            console.log('success');
+        }, function (err) {
+            output.style.color = "#f00";
+            output.innerHTML = err.toString();
+            console.log(err.toString());
+        });
+    }
+</script>
+
+<div class="code-editor-wrapper">
+    <div id="code-editor"># Bitwise binary addition of two lists
+# containing binary digits with least significant bit first
+def AddBinary(A, B):
+    carry = 0
+    n = max(len(A), len(B))
+    C = [0 for i in range(n + 1)]
+    for i in range(n):
+        # One of A and B has length less than n
+        # We need to treat index out of bound for that array
+        # This is not explicitly handled in pseudocode
+        a = A[i] if i &lt; len(A) else 0
+        b = B[i] if i &lt; len(B) else 0
+
+        # Modulo for sum and integer division for carry
+        C[i] = (a + b + carry) % 2
+        carry = (a + b + carry) // 2
+    C[n] = carry
+    return C
+
+# Utility function for converting decimal to binary
+def DecimalToBinary(num):
+    if num == 0:
+        return [0]
+    ret = []
+    while num &gt; 0:
+        ret.append(num &amp; 1)
+        num = num &gt;&gt; 1
+    return ret
+
+# Utility function for converting binary to decimal
+def BinaryToDecimal(lst):
+    num = 0
+    for i in range(len(lst)):
+        num += lst[i] &lt;&lt; i
+    return num
+
+# Test
+import random
+
+num_failed = 0
+total_tests = 100
+for i in range(total_tests):
+    # Create two random integers
+    a = random.randint(0, 10000)
+    b = random.randint(0, 10000)
+    a_ = DecimalToBinary(a)
+    b_ = DecimalToBinary(b)
+    sum = BinaryToDecimal(AddBinary(a_, b_))
+
+    # Check if the sum is correct
+    if sum != (a + b):
+        num_failed += 1
+        print(f"#{i:&lt;2} {a} + {b} = {sum} [Expected {(a + b)}]")
+
+if num_failed &gt; 0:
+    print(f"\nFailed {num_failed}/{total_tests}")
+else:
+    print(f"Passed {total_tests}/{total_tests} tests")</div>
+    <script>
+        var editor = ace.edit("code-editor");
+        editor
+            .renderer
+            .setShowGutter(true);
+        editor
+            .session
+            .setMode("ace/mode/python");
+        editor.setTheme("ace/theme/nord_dark");
+        editor.setFontSize("16px");
+        editor
+            .renderer
+            .setScrollMargin(15, 15)
+        editor.setOptions({autoScrollEditorIntoView: true, minLines: 8, maxLines: 20});
+        document.getElementById('code-editor').style.fontFamily = "'Courier New', Courier, monospace";
+        var code = editor.getValue();
+
+        function resetCode() {
+            editor.setValue(code, 1);
+            var output = document.getElementById("code-editor-output");
+            output.innerHTML = "";
+        }
+    </script>
+    <pre id="code-editor-output" class="code-editor-output"></pre>
+    <div class="code-editor-buttons">
+        <button class="code-editor-button" type="button" onclick="runCode()">Run</button>
+        <button class="code-editor-button" type="button" onclick="resetCode()">Reset</button>
+    </div>
+</div>
+
+    </div>
+    <hr class="solid"/>
+    <div class="article-footer">
+        <div class="article-footer-message">
+    <span style="font-size: 0.8em;">If you have any question or suggestion or you have found any error in this solution, please leave a comment below.</span>
+</div>
+        <div class="article-nav">
+    <div class="article-nav-left">
+        
+            <a href="/CLRS/02/E02.01-03/">
+                <i class="fa fa-2x fa-arrow-left"></i>
+            </a>
+            <span><strong>E 2.1-3</strong></span>
+        
+    </div>
+    <div class="article-nav-middle">
+        <a href="/CLRS/">
+            <strong>Solution Index</strong>
+        </a>
+    </div>
+    <div class="article-nav-right">
+        
+            <span><strong>E 2.2-1</strong></span>
+            <a href="/CLRS/02/E02.02-01/">
+                <i class="fa fa-2x fa-arrow-right"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7476503486911097"
+     data-ad-slot="5416910574"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+    </div>
+</article>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_observer = new IntersectionObserver(function (entries) {
+        // comments section reached
+        // start loading Disqus now
+        if (entries[0].isIntersecting) {
+            var disqus_shortname = 'atekihcan';
+            var disqus_identifier = '/CLRS/02/E02.01-04/';
+            var disqus_title = 'Exercise 2.1-4';
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+
+            // once executed, stop observing
+            disqus_observer.disconnect();
+        }
+    }, {threshold: [0]});
+    disqus_observer.observe(document.querySelector("#disqus_thread"));
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+        </main>
+        <footer class="site-footer">
+    <div>
+        &copy; Atekihcan 2007 - 2023
+    </div>
+</footer>
+
+<script>
+    // Left align KaTeX for pseudo codes
+    document.addEventListener("DOMContentLoaded", function() { 
+        var docs = document.querySelectorAll('.latex-pseudo-code > span > span');
+        for (var i = 0; i < docs.length; i++) {
+            docs[i].classList.add('fleqn');
+        }
+    });
+</script>
+
+    </body>
+</html>

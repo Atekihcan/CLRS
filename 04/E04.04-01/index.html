@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Legacy meta -->
+    <meta name="description" content="Use a recursion tree to determine a good asymptotic upper bound on the recurrence T(n) = 3T(⌊n/2⌋) + n. Use the substitution method to verify your answer."/>
+    <meta name="keywords" content="CLRS, solutions, algorithms, Cormen, recursion tree, substitution method"/>
+
+    <!--Schema-->
+    <link rel="author" href="Atekihcan">
+    <link rel="publisher" href="https://atekihcan.github.io">
+    <meta itemprop="name" content="CLRS Solutions | Exercise 4.4-1 | Divide-and-Conquer"/>
+    <meta itemprop="description" content="Use a recursion tree to determine a good asymptotic upper bound on the recurrence T(n) = 3T(⌊n/2⌋) + n. Use the substitution method to verify your answer."/>
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="CLRS Solutions | Exercise 4.4-1 | Divide-and-Conquer" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://atekihcan.github.io/CLRS/04/E04.04-01/" />
+    <meta property="og:image" content="/CLRS/assets/img/04/4.4-1.jpg" />
+    <meta property="og:description" content="Use a recursion tree to determine a good asymptotic upper bound on the recurrence T(n) = 3T(⌊n/2⌋) + n. Use the substitution method to verify your answer." />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "CLRS Solutions | Exercise 4.4-1 | Divide-and-Conquer",
+        "image": [
+            "/CLRS/assets/img/04/4.4-1.jpg"
+        ],
+        "datePublished": "2012-08-28T21:00:00+00:00",
+        "dateModified": "2021-01-31T14:30:00+00:00",
+        "author": {
+            "@type": "Person",
+            "name": "Atekihcan"
+        }
+    }
+    </script>
+    
+    <title>CLRS Solutions | Exercise 4.4-1 | Divide-and-Conquer</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/CLRS/assets/img/favicon.png">
+
+    <!-- Normalize reset -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/normalize.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Katex -->
+    <link rel="stylesheet" href="/CLRS/assets/katex/katex.min.css" >
+    <script defer src="/CLRS/assets/katex/katex.min.js" ></script>
+    <script defer src="/CLRS/assets/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {trust: true});"></script>
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57470252-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-57470252-4', {
+            cookie_domain: 'https://atekihcan.github.io',
+            cookie_flags: 'SameSite=None;Secure'
+        });
+    </script>
+
+    <!-- Load site specific stuff at last -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/site.css">
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/syntax_highlight.css">
+
+    <script defer src="/CLRS/assets/js/site.js" ></script>
+</head>
+    <body class="site-body">
+        <header class="site-header">
+    <nav>
+        <i class="fa fa-database"></i>&nbsp;&nbsp;<a href="/CLRS/">Solutions for CLRS</a>&nbsp;&nbsp;<i class="fa fa-database"></i>
+    </nav>
+    <h1 class="page-title">
+        Exercise 4.4-1
+    </h1>
+</header>
+        <main class="site-main">
+            <article>
+    <div class="article-content">
+        <blockquote>
+  <p>Use a recursion tree to determine a good asymptotic upper bound on the recurrence \(T(n) = 3T(\lfloor n/2 \rfloor) + n\). Use the substitution method to verify your answer.</p>
+</blockquote>
+
+<h4 id="recursion-tree">Recursion Tree</h4>
+
+<p>Ignoring the floor function, the recursion takes the form:</p>
+
+\[T(n) = 3T(n/2) + n\]
+
+<p>Rate of increase in number of subproblems in each recursion = 3</p>
+
+<p>Rate of decrease in subproblem size = 2</p>
+
+<p>Hence at depth \(i = 0, 1, 2, \dots, \lg n\) of the tree, there are \(3^i\) nodes, each of cost \(n/2^i\).</p>
+
+<p>Hence, total cost of the tree is:</p>
+
+\[\begin {aligned}
+T(n) &amp; = \sum_{i = 0}^{\lg n} 3^i \frac n {2^i} \\
+     &amp; = n \cdot \sum_{i = 0}^{\lg n} \left(\frac 3 2\right)^i \\
+     &amp; = n \cdot \frac {(3/2)^{\lg n + 1} - 1} {(3/2) - 1} \\
+     &amp; = 2n \cdot ((3/2)\cdot(3/2)^{\lg n} - 1) \\
+     &amp; = 3n \cdot (3/2)^{\lg n} - 2n \\
+     &amp; = 3n \cdot \frac {3^{\lg n}} {2^{\lg n}} - 2n \\
+     &amp; = 3n \cdot \frac {3^{\lg n}} n - 2n \\
+     &amp; = 3 \cdot 3^{\lg n} - 2n \\
+     &amp; = 3 \cdot n^{\lg 3} - 2n \\
+     &amp; = O(n^{\lg 3})
+\end {aligned}\]
+
+<p>The last step comes from the fact that \(n^{\lg 3} \approx n^{1.58} &gt; n\).</p>
+
+<h4 id="verification-using-substitution">Verification Using Substitution</h4>
+
+<p>If you notice carefully, the recurrence has almost exact same form (ignoring floor) as the modified recurrence in the <a href="/CLRS/04/E04.03-09/" target="_blank">previous exercise</a> after changing variables.</p>
+
+<p>We can follow the substitution method of that exercise to verify this as.</p>
+
+    </div>
+    <hr class="solid"/>
+    <div class="article-footer">
+        <div class="article-footer-message">
+    <span style="font-size: 0.8em;">If you have any question or suggestion or you have found any error in this solution, please leave a comment below.</span>
+</div>
+        <div class="article-nav">
+    <div class="article-nav-left">
+        
+            <a href="/CLRS/04/E04.03-09/">
+                <i class="fa fa-2x fa-arrow-left"></i>
+            </a>
+            <span><strong>E 4.3-9</strong></span>
+        
+    </div>
+    <div class="article-nav-middle">
+        <a href="/CLRS/">
+            <strong>Solution Index</strong>
+        </a>
+    </div>
+    <div class="article-nav-right">
+        
+            <span><strong>E 4.4-2</strong></span>
+            <a href="/CLRS/04/E04.04-02/">
+                <i class="fa fa-2x fa-arrow-right"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7476503486911097"
+     data-ad-slot="5416910574"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+    </div>
+</article>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_observer = new IntersectionObserver(function (entries) {
+        // comments section reached
+        // start loading Disqus now
+        if (entries[0].isIntersecting) {
+            var disqus_shortname = 'atekihcan';
+            var disqus_identifier = '/CLRS/04/E04.04-01/';
+            var disqus_title = 'Exercise 4.4-1';
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+
+            // once executed, stop observing
+            disqus_observer.disconnect();
+        }
+    }, {threshold: [0]});
+    disqus_observer.observe(document.querySelector("#disqus_thread"));
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+        </main>
+        <footer class="site-footer">
+    <div>
+        &copy; Atekihcan 2007 - 2023
+    </div>
+</footer>
+
+<script>
+    // Left align KaTeX for pseudo codes
+    document.addEventListener("DOMContentLoaded", function() { 
+        var docs = document.querySelectorAll('.latex-pseudo-code > span > span');
+        for (var i = 0; i < docs.length; i++) {
+            docs[i].classList.add('fleqn');
+        }
+    });
+</script>
+
+    </body>
+</html>

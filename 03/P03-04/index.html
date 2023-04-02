@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Legacy meta -->
+    <meta name="description" content="Asymptotic notation properties: Let f(n) and g(n) be asymptotically positive functions. Prove or disprove each of the following conjectures."/>
+    <meta name="keywords" content="CLRS, solutions, algorithms, Cormen, asymptotic bounds"/>
+
+    <!--Schema-->
+    <link rel="author" href="Atekihcan">
+    <link rel="publisher" href="https://atekihcan.github.io">
+    <meta itemprop="name" content="CLRS Solutions | Problem 3-4 | Growth of Functions"/>
+    <meta itemprop="description" content="Asymptotic notation properties: Let f(n) and g(n) be asymptotically positive functions. Prove or disprove each of the following conjectures."/>
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="CLRS Solutions | Problem 3-4 | Growth of Functions" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://atekihcan.github.io/CLRS/03/P03-04/" />
+    <meta property="og:image" content="/CLRS/assets/img/-4/3-4.jpg" />
+    <meta property="og:description" content="Asymptotic notation properties: Let f(n) and g(n) be asymptotically positive functions. Prove or disprove each of the following conjectures." />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "CLRS Solutions | Problem 3-4 | Growth of Functions",
+        "image": [
+            "/CLRS/assets/img/-4/3-4.jpg"
+        ],
+        "datePublished": "2012-08-25T23:15:00+00:00",
+        "dateModified": "2020-10-17T22:30:00+00:00",
+        "author": {
+            "@type": "Person",
+            "name": "Atekihcan"
+        }
+    }
+    </script>
+    
+    <title>CLRS Solutions | Problem 3-4 | Growth of Functions</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/CLRS/assets/img/favicon.png">
+
+    <!-- Normalize reset -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/normalize.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Katex -->
+    <link rel="stylesheet" href="/CLRS/assets/katex/katex.min.css" >
+    <script defer src="/CLRS/assets/katex/katex.min.js" ></script>
+    <script defer src="/CLRS/assets/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {trust: true});"></script>
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57470252-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-57470252-4', {
+            cookie_domain: 'https://atekihcan.github.io',
+            cookie_flags: 'SameSite=None;Secure'
+        });
+    </script>
+
+    <!-- Load site specific stuff at last -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/site.css">
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/syntax_highlight.css">
+
+    <script defer src="/CLRS/assets/js/site.js" ></script>
+</head>
+    <body class="site-body">
+        <header class="site-header">
+    <nav>
+        <i class="fa fa-database"></i>&nbsp;&nbsp;<a href="/CLRS/">Solutions for CLRS</a>&nbsp;&nbsp;<i class="fa fa-database"></i>
+    </nav>
+    <h1 class="page-title">
+        Problem 3-4
+    </h1>
+</header>
+        <main class="site-main">
+            <article>
+    <div class="article-content">
+        <blockquote>
+  <p><strong><em>Asymptotic notation properties</em></strong></p>
+
+  <p>Let \(f(n)\) and \(g(n)\) be asymptotically positive functions. Prove or disprove each of the following conjectures.</p>
+
+  <ol>
+    <li>
+      <p>\(f(n) = O(g(n))\) implies \(g(n) = O(f(n))\).</p>
+    </li>
+    <li>
+      <p>\(f(n) + g(n) = \Theta(min(f(n), g(n)))\).</p>
+    </li>
+    <li>
+      <p>\(f(n) = O(g(n))\) implies \(\lg (f(n)) = O(\lg(g(n)))\), where \(\lg(g(n)) \ge 1\) and \(f(n) \ge 1\) for all sufficiently large \(n\).</p>
+    </li>
+    <li>
+      <p>\(f(n) = O(g(n))\) implies \(2^{f(n)} = O\left(2^{g(n)}\right)\).</p>
+    </li>
+    <li>
+      <p>\(f(n) = O((f(n))^2)\).</p>
+    </li>
+    <li>
+      <p>\(f(n) = O(g(n))\) implies \(g(n) = \Omega(f(n))\).</p>
+    </li>
+    <li>
+      <p>\(f(n) = \Theta(f(n/2))\).</p>
+    </li>
+    <li>
+      <p>\(f(n) + o(f(n)) = \Theta(f(n))\).</p>
+    </li>
+  </ol>
+
+</blockquote>
+
+<p>Although all of these can be proven or disproven mathematically, while disproving I’ll try to use counterexamples.</p>
+
+<h4 id="a-false">A. False</h4>
+
+<p>Let \(f(n) = n\) and \(g(n) = n^2\). \(n = O(n^2)\) but \(n^2 \ne O(n)\).</p>
+
+<h4 id="b-false">B. False</h4>
+
+<p>Take the same example as above. \(n^2 + n \ne \Theta(min(n^2, n)) = \Theta(min(n))\).</p>
+
+<h4 id="c-true">C. True</h4>
+
+<p>\(f(n) = O(g(n))\) means \(0 \le f(n) \le c \cdot g(n)\) for all \(n \ge n_0\) for some constants \(c, n_0 &gt; 0\).</p>
+
+<p>Hence, \(0 \le \lg (f(n)) \le \lg c + \lg (g(n)) \le k \cdot \lg(g(n))\).</p>
+
+<p>Therefore, \(\lg (f(n)) = O(\lg(g(n)))\).</p>
+
+<h4 id="d-false">D. False</h4>
+
+<p>Let \(f(n) = 2n\) and \(g(n) = n\). Hence, \(f(n) = O(g(n))\) but \(2^{2n} = 4^n \ne O\left(2^n\right)\).</p>
+
+<p>Last part was shown in <a href="/CLRS/03/E03.01-04/" target="_blank">Exercise 3.1-4</a>.</p>
+
+<h4 id="e-false">E. False</h4>
+
+<p>This conjecture holds as long as \(f(n) \ge 1\) for sufficiently large values of \(n\), \(0 \le f(n) \le c \cdot (f(n))^2\), i.e. \(f(n) = O((f(n))^2)\).</p>
+
+<p>However, if \(f(n) &lt; 1\), this conjecture does not hold.</p>
+
+<h4 id="f-true">F. True</h4>
+
+<p>\(f(n) = O(g(n))\) implies \(0 \le f(n) \le c \cdot g(n)\) for all \(n \ge n_0\) such that the constants \(c, n_0 &gt; 0\).</p>
+
+<p>This inequality can be rearranged as \(0 \le \frac 1 c \cdot f(n) \leq g(n)\), i.e. \(g(n) = \Omega(f(n))\).</p>
+
+<h4 id="g-false">G. False</h4>
+
+<p>Let \(f(n) = 4^n\). \(4^n \ne \Theta(4^{n/2}) = \Theta(2^n))\).</p>
+
+<h4 id="h-true">H. True</h4>
+
+<p>Let’s assume \(g(n) = o(f(n))\).</p>
+
+<p>Hence, there exists positive constants \(c\) and \(n_0\) such that for all \(n \geq n_0\):</p>
+
+\[0 \leq g(n) &lt; cf(n) \\[1ex]
+f(n) \leq f(n) + g(n) \leq f(n) + cf(n) \\[1ex]
+f(n) \leq f(n) + o(f(n)) \leq (1 + c)f(n)\]
+
+<p>Therefore, \(f(n) + o(f(n)) = \Theta(f(n))\).</p>
+
+    </div>
+    <hr class="solid"/>
+    <div class="article-footer">
+        <div class="article-footer-message">
+    <span style="font-size: 0.8em;">If you have any question or suggestion or you have found any error in this solution, please leave a comment below.</span>
+</div>
+        <div class="article-nav">
+    <div class="article-nav-left">
+        
+            <a href="/CLRS/03/P03-03/">
+                <i class="fa fa-2x fa-arrow-left"></i>
+            </a>
+            <span><strong>P 3-3</strong></span>
+        
+    </div>
+    <div class="article-nav-middle">
+        <a href="/CLRS/">
+            <strong>Solution Index</strong>
+        </a>
+    </div>
+    <div class="article-nav-right">
+        
+            <span><strong>P 3-5</strong></span>
+            <a href="/CLRS/03/P03-05/">
+                <i class="fa fa-2x fa-arrow-right"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7476503486911097"
+     data-ad-slot="5416910574"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+    </div>
+</article>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_observer = new IntersectionObserver(function (entries) {
+        // comments section reached
+        // start loading Disqus now
+        if (entries[0].isIntersecting) {
+            var disqus_shortname = 'atekihcan';
+            var disqus_identifier = '/CLRS/03/P03-04/';
+            var disqus_title = 'Problem 3-4';
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+
+            // once executed, stop observing
+            disqus_observer.disconnect();
+        }
+    }, {threshold: [0]});
+    disqus_observer.observe(document.querySelector("#disqus_thread"));
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+        </main>
+        <footer class="site-footer">
+    <div>
+        &copy; Atekihcan 2007 - 2023
+    </div>
+</footer>
+
+<script>
+    // Left align KaTeX for pseudo codes
+    document.addEventListener("DOMContentLoaded", function() { 
+        var docs = document.querySelectorAll('.latex-pseudo-code > span > span');
+        for (var i = 0; i < docs.length; i++) {
+            docs[i].classList.add('fleqn');
+        }
+    });
+</script>
+
+    </body>
+</html>

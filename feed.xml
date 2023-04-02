@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom">
+    <channel>
+        <title>CLRS Solutions</title>
+        <description>Solutions to exercise and problems of Introduction to Algorithms by CLRS (Cormen, Leiserson, Rivest, and Stein)</description>
+        <link>https://atekihcan.github.io/CLRS/</link>
+        <atom:link href="https://atekihcan.github.io/CLRS/feed.xml" rel="self" type="application/rss+xml" />
+        <pubDate>Sun, 02 Apr 2023 06:00:17 +0000</pubDate>
+        <lastBuildDate>Sun, 02 Apr 2023 06:00:17 +0000</lastBuildDate>
+        <generator>Jekyll v4.2.0</generator>
+        
+            <item>
+                <title>Exercise 1.1-1</title>
+                <description>&lt;blockquote&gt;
+  &lt;p&gt;Give a real-world example that requires sorting or a real-world example that requires computing a convex hull.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Sorting&lt;/strong&gt; : Sorting listed products in an online marketplace by price or listing blog posts alphabetically or by date&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Finding Convex Hull&lt;/strong&gt; : Finding shortest path between two points with some solid obstacles between them like solving a game maze or self-driving cars &lt;a href=&quot;https://brilliant.org/wiki/convex-hull/#applications&quot; target=&quot;_blank&quot;&gt;more examples&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+                <pubDate>Sun, 02 Apr 2023 06:00:17 +0000</pubDate>
+                <link>https://atekihcan.github.io/CLRS/01/E01.01-01/</link>
+                <guid isPermaLink="true">https://atekihcan.github.io/CLRS/01/E01.01-01/</guid>
+                
+                
+            </item>
+        
+            <item>
+                <title>Exercise 1.1-2</title>
+                <description>&lt;blockquote&gt;
+  &lt;p&gt;Other than speed, what other measures of efficiency might one use in a real-world setting?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;memory&quot;&gt;Memory&lt;/h4&gt;
+
+&lt;p&gt;This is probably the most obvious one other than speed. Not only we want to utilize available memory efficiently, we might want to reduce number of memory accesses, avoid leaking memories etc.&lt;/p&gt;
+
+&lt;p&gt;One example is learning based approaches often needs to work with very large amount of data. If the dataset is larger than available system RAM, we will have to design our algorithm to be able to run &lt;em&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/External_memory_algorithm&quot; target=&quot;_blank&quot;&gt;out of core&lt;/a&gt;&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;power-consumption&quot;&gt;Power Consumption&lt;/h4&gt;
+
+&lt;p&gt;This is particularly relevant when we are developing our algorithm for portable devices like smartphones or smartwatches etc. In such sometimes we want to settle for relatively less power hungry algorithm algorithm that does the job good enough instead of going with more power consuming complex algorithms that produce better results.&lt;/p&gt;
+
+&lt;p&gt;One example is anything to do with GPUs. Usually personal computers have GPUs that can consume 75-300 watts, whereas smartphone GPUs have a typical power budget of merely 1 Watt.&lt;/p&gt;
+</description>
+                <pubDate>Sun, 02 Apr 2023 06:00:17 +0000</pubDate>
+                <link>https://atekihcan.github.io/CLRS/01/E01.01-02/</link>
+                <guid isPermaLink="true">https://atekihcan.github.io/CLRS/01/E01.01-02/</guid>
+                
+                
+            </item>
+        
+            <item>
+                <title>Exercise 1.1-3</title>
+                <description>&lt;blockquote&gt;
+  &lt;p&gt;Select a data structure that you have seen previously, and discuss its strengths and limitations.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;strengths-of-linked-list&quot;&gt;Strengths of Linked List&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Simpler addition and removal of elements, \(O(1)\) time complexity&lt;/li&gt;
+  &lt;li&gt;Does not need contiguous memory space&lt;/li&gt;
+  &lt;li&gt;New element can be easily inserted in any location&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;limitations-of-linked-list&quot;&gt;Limitations of Linked List&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Accessing an element by index or by value means traversing the list, \(O(n)\) time complexity&lt;/li&gt;
+  &lt;li&gt;Additional memory is required for storing the address (pointer) of the next/previous element.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;strengths-of-array&quot;&gt;Strengths of Array&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Accessing any element by index is simple, \(O(1)\) time complexity&lt;/li&gt;
+  &lt;li&gt;No additional memory required to store address&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;limitations-of-array&quot;&gt;Limitations of Array&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Addition or removal of elements from any index but the last means re-arranging the whole list, \(O(n)\) time complexity&lt;/li&gt;
+  &lt;li&gt;Accessing an element by value means traversing the list, \(O(n)\) time complexity&lt;/li&gt;
+  &lt;li&gt;Needs contiguous memory&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+                <pubDate>Sun, 02 Apr 2023 06:00:17 +0000</pubDate>
+                <link>https://atekihcan.github.io/CLRS/01/E01.01-03/</link>
+                <guid isPermaLink="true">https://atekihcan.github.io/CLRS/01/E01.01-03/</guid>
+                
+                
+            </item>
+        
+            <item>
+                <title>Exercise 1.1-4</title>
+                <description>&lt;blockquote&gt;
+  &lt;p&gt;How are the shortest-path and travelling-salesman problems given above similar? How are they different?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;They are similar in the sense that both traverses a graph and tries to find out the shortest path with minimum cost (sum of the weights).&lt;/p&gt;
+
+&lt;p&gt;They are different because &lt;strong&gt;shortest-path problem&lt;/strong&gt; finds a path &lt;em&gt;between two points&lt;/em&gt; such that sum of the weights is minimized. Whereas, &lt;strong&gt;travelling-salesman problem&lt;/strong&gt; finds the path &lt;em&gt;covering all the points&lt;/em&gt; (start and end point is same) such that sum of the weights is minimized. Also, shortest-path problem is &lt;a href=&quot;https://en.wikipedia.org/wiki/P_(complexity)&quot; target=&quot;_blank&quot;&gt;P complex&lt;/a&gt; and travelling-salesman is &lt;a href=&quot;https://en.wikipedia.org/wiki/NP-completeness&quot; target=&quot;_blank&quot;&gt;NP-complete&lt;/a&gt;.&lt;/p&gt;
+</description>
+                <pubDate>Sun, 02 Apr 2023 06:00:17 +0000</pubDate>
+                <link>https://atekihcan.github.io/CLRS/01/E01.01-04/</link>
+                <guid isPermaLink="true">https://atekihcan.github.io/CLRS/01/E01.01-04/</guid>
+                
+                
+            </item>
+        
+            <item>
+                <title>Exercise 1.1-5</title>
+                <description>&lt;blockquote&gt;
+  &lt;p&gt;Come up with a real-world problem in which only the best solution will do. Then come up with one in which a solution that is “approximately” the best is good enough.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Taking the example of sorting…&lt;/p&gt;
+
+&lt;p&gt;Best sorting algorithm is required when we need to sort a huge amount of data as soon as possible. For example, Sorting blog posts by date or items in an online store by price.&lt;/p&gt;
+
+&lt;p&gt;“Approximately” best sorting algorithm will work when we need to sort a small amount of data and/or without any time constraint. For example, analyzing data of a medical survey to make a conclusion after few days. Or finding out the ranking in a competition where 5 people participated.&lt;/p&gt;
+</description>
+                <pubDate>Sun, 02 Apr 2023 06:00:17 +0000</pubDate>
+                <link>https://atekihcan.github.io/CLRS/01/E01.01-05/</link>
+                <guid isPermaLink="true">https://atekihcan.github.io/CLRS/01/E01.01-05/</guid>
+                
+                
+            </item>
+        
+            <item>
+                <title>Exercise 1.2-1</title>
+                <description>&lt;blockquote&gt;
+  &lt;p&gt;Give an example of an application that requires algorithmic content at the application level, and discuss the function of the algorithms involved.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If you think about it, such examples are everywhere these days, much more than when CLRS was first published (1990). Here are few such examples…&lt;/p&gt;
+
+&lt;h5 id=&quot;file-explorer&quot;&gt;File Explorer&lt;/h5&gt;
+
+&lt;p&gt;Applies sorting algorithm whenever the user wants to sort the files according to the filenames or file type or date modified.&lt;/p&gt;
+
+&lt;h5 id=&quot;netflix-or-any-streaming-app&quot;&gt;Netflix or Any streaming app&lt;/h5&gt;
+
+&lt;p&gt;Applies a handful of &lt;a href=&quot;https://en.wikipedia.org/wiki/Video_codec&quot; target=&quot;_blank&quot;&gt;algorithms&lt;/a&gt; to achieve video decoding and some for &lt;a href=&quot;https://help.netflix.com/en/node/100639&quot; target=&quot;_blank&quot;&gt;recommending new content&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h5 id=&quot;any-game&quot;&gt;Any Game&lt;/h5&gt;
+
+&lt;p&gt;Applies &lt;a href=&quot;https://en.wikipedia.org/wiki/Clipping_(computer_graphics)&quot; target=&quot;_blank&quot;&gt;clipping algorithm&lt;/a&gt; to discard objects that are outside the viewport.&lt;/p&gt;
+</description>
+                <pubDate>Sun, 02 Apr 2023 06:00:17 +0000</pubDate>
+                <link>https://atekihcan.github.io/CLRS/01/E01.02-01/</link>
+                <guid isPermaLink="true">https://atekihcan.github.io/CLRS/01/E01.02-01/</guid>
+                
+                
+            </item>
+        
+            <item>
+                <title>Exercise 1.2-2</title>
+                <description>&lt;blockquote&gt;
+  &lt;p&gt;Suppose we are comparing implementations of insertion sort and merge sort on the same machine. For inputs of size \(n\), insertion sort runs in \(8n^2\) steps, while merge sort runs in \(64n \lg n\) steps. For which values of \(n\) does insertion sort beat merge sort?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;For insertion sort to beat merge sort for inputs of size \(n\), \(8n^2\) must be less than \(64n \lg n\).&lt;/p&gt;
+
+\[\begin{alignedat}{2}
+               &amp;amp; 8n^2                 &amp;amp;&amp;amp;&amp;lt; 64n \lg n \\
+\Rightarrow \, &amp;amp; \cancel {8n} \cdot n &amp;amp;&amp;amp;&amp;lt; \cancel {8n} \cdot 8\lg n \\
+\Rightarrow \, &amp;amp; n                    &amp;amp;&amp;amp;&amp;lt; 8\lg n \\
+\Rightarrow \, &amp;amp; n/8                  &amp;amp;&amp;amp;&amp;lt; \lg n \\
+\Rightarrow \, &amp;amp; 2^{n/8}              &amp;amp;&amp;amp;&amp;lt; n
+\end{alignedat}\]
+
+&lt;p&gt;This is not a purely polynomial equation in \(n\). To find the required range of values of \(n\), there are a few different methods we can use…&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Manually calculate the values of these expressions for different values of \(n\)&lt;/li&gt;
+  &lt;li&gt;Use &lt;a href=&quot;https://en.wikipedia.org/wiki/Newton%27s_method&quot; target=&quot;_blank&quot;&gt;Newton’s Method&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Plot these functions and find their intersections&lt;/li&gt;
+  &lt;li&gt;Write a piece of code to found the values.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For this exercise, I’ll briefly describe all of these methods but going forward I’ll mostly use calculations that can be done with scientific calculator (to help the students visiting these pages) and python codes (to help myself).&lt;/p&gt;
+
+&lt;h4 id=&quot;calculation&quot;&gt;Calculation&lt;/h4&gt;
+
+&lt;p&gt;It is obvious that insertion sort runs at quadratic time which is definitely worse than merge sort’s linearithmic time for very large values of \(n\). We know for \(n = 1\), merge sort beats insertion sort. But for values greater than that, insertion sort beats merge sort. So, we will start checking from \(n = 2\) and go up to see for what value of \(n\) merge sort again starts to beat insertion sort.&lt;/p&gt;
+
+&lt;p&gt;Notice that for \(n &amp;lt; 8\), \(2^{n/8}\) will be a fraction. So, let’s start with \(n = 8\) and check for values of \(n\) which are powers of 2.&lt;/p&gt;
+
+\[\begin{alignedat}{4}
+&amp;amp;n = 8  &amp;amp;&amp;amp;\Rightarrow 2^{8/8}  &amp;amp;&amp;amp;= 2   &amp;amp;&amp;amp;&amp;lt; n \\
+&amp;amp;n = 16 &amp;amp;&amp;amp;\Rightarrow 2^{16/8} &amp;amp;&amp;amp;= 4   &amp;amp;&amp;amp;&amp;lt; n \\
+&amp;amp;n = 32 &amp;amp;&amp;amp;\Rightarrow 2^{32/8} &amp;amp;&amp;amp;= 16  &amp;amp;&amp;amp;&amp;lt; n \\
+&amp;amp;n = 64 &amp;amp;&amp;amp;\Rightarrow 2^{64/8} &amp;amp;&amp;amp;= 256 &amp;amp;&amp;amp;&amp;gt; n
+\end{alignedat}\]
+
+&lt;p&gt;Note that we don’t need to continue anymore as we have found an approximate range of values for \(n\) where merge sort starts to beat insertion sort; somewhere between 32 and 64. Let’s do what we were doing but now we are going to try middle value of either range, repeatedly (or in other words, binary search, if you have been reading ahead).&lt;/p&gt;
+
+\[\begin{alignedat}{2}
+&amp;amp;n = 48 \Rightarrow 2^{48/8} = 64   &amp;amp;&amp;amp;&amp;gt; n \\
+&amp;amp;n = 40 \Rightarrow 2^{40/8} = 32   &amp;amp;&amp;amp;&amp;lt; n \\
+&amp;amp;n = 44 \Rightarrow 2^{44/8} = 44.8 &amp;amp;&amp;amp;&amp;gt; n \\
+&amp;amp;n = 42 \Rightarrow 2^{42/8} = 38.4 &amp;amp;&amp;amp;&amp;lt; n \\
+&amp;amp;n = 43 \Rightarrow 2^{43/8} = 42.4 &amp;amp;&amp;amp;&amp;lt; n
+\end{alignedat}\]
+
+&lt;p&gt;So, at \(n = 44\), merge sort starts to beat insertion sort again. Therefore, for \(2 \le n \le 43\), insertion sort beats merge sort.&lt;/p&gt;
+
+&lt;aside id=&quot;want-some-more&quot; class=&quot;info&quot;&gt;
+    &lt;h4&gt;Want some more? &lt;/h4&gt;
+    &lt;div&gt;
+&lt;p&gt;This problem is discussed in detail in the &lt;a href=&quot;https://math.stackexchange.com/questions/2593003/how-to-solve-the-logarithmic-equation-which-has-both-n-and-logn&quot; target=&quot;_blank&quot;&gt;Mathematics Stack Exchange&lt;/a&gt; forum. There you will find mention of &lt;a href=&quot;https://en.wikipedia.org/wiki/Lambert_W_function&quot; target=&quot;_blank&quot;&gt;Lambert \(W\) functions&lt;/a&gt; and some more methods that can be used  to solve this problem. Also a link to this page in the comments.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/aside&gt;
+
+&lt;hr /&gt;
+
+&lt;script&gt;
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName(&quot;support-message&quot;);
+          console.log(placeholders);
+          for (var i = 0; i &lt; placeholders.length; i++) {
+               placeholders[i].style.display = &quot;block&quot;;
+          }
+     }
+&lt;/script&gt;
+
+&lt;script async=&quot;&quot; src=&quot;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot; onerror=&quot;showSupportMessage();&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Display_Horizontal --&gt;
+&lt;p&gt;&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:block&quot; data-ad-client=&quot;ca-pub-7476503486911097&quot; data-ad-slot=&quot;5416910574&quot; data-ad-format=&quot;auto&quot; data-full-width-responsive=&quot;true&quot;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;&lt;/p&gt;
+&lt;aside class=&quot;support-message&quot;&gt;
+     &lt;header&gt;Looks like you hate ads as much as I do!&lt;/header&gt;
+     &lt;section&gt;
+     &lt;p&gt;And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.&lt;/p&gt;
+     
+     &lt;p&gt;Either way try to leave a message in the &lt;a href=&quot;#disqus_thread&quot;&gt;comments section&lt;/a&gt; to show some support.&lt;/p&gt;
+     &lt;/section&gt;
+&lt;/aside&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;newtons-method&quot;&gt;Newton’s Method&lt;/h4&gt;
+
+&lt;p&gt;To apply &lt;a href=&quot;https://en.wikipedia.org/wiki/Newton%27s_method&quot; target=&quot;_blank&quot;&gt;Newton’s Method&lt;/a&gt; of approximation, we need to ballpark two values of \(n\) on either side of the actual solution and hit-and-try for the actual one following binary search principle. This is the principle we have almost followed in the previous section but the proper process involves calculus and way too time consuming for me to write about.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;graphical-plot&quot;&gt;Graphical Plot&lt;/h4&gt;
+
+&lt;p&gt;Another method to find the solutions is to plot the functions \(y = 2^{x/8}\) and \(y = x\) and finding points where they intersect.&lt;/p&gt;
+
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;//cdnjs.cloudflare.com/ajax/libs/jsxgraph/1.1.0/jsxgraph.css&quot; /&gt;
+
+&lt;script type=&quot;text/javascript&quot; charset=&quot;UTF-8&quot; src=&quot;//cdnjs.cloudflare.com/ajax/libs/jsxgraph/1.1.0/jsxgraphcore.js&quot;&gt;&lt;/script&gt;
+
+&lt;div id=&quot;graph-box&quot; class=&quot;graph-box&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;graph-credit&quot;&gt;Graph rendered by &lt;a href=&quot;https://jsxgraph.org/&quot; target=&quot;_blank&quot;&gt;JSXGraph&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    JXG.Options.text.useMathJax = true;
+    var board = JXG.JSXGraph.initBoard('graph-box', {
+        boundingbox: [-5, 50, 50, -5],
+        axis: true,
+        showCopyright: false,
+        showNavigation: false
+    });
+    var m_sort = board.create('functiongraph', [function (x) { return x; }], {
+        withLabel: true,
+        name: &quot;$$y = x$$&quot;,
+        label: {
+            offset: [24, 90],
+            fontSize: 20
+        },
+        strokeColor: '#0f0',
+        strokeWidth: 2
+    });
+    var i_sort = board.create('functiongraph', [function (x) { return Math.pow(2, x / 8.0); }], {
+        withLabel: true,
+        name: &quot;$$y = 2^{x/8}$$&quot;,
+        label: {
+            offset: [200, 50],
+            fontSize: 20
+        },
+        strokeColor: '#00f',
+        strokeWidth: 2
+    });
+    var ans_1 = board.create('intersection', [m_sort, i_sort, 0], {
+        withLabel: true,
+        name: &quot;(1.10, 1.10)&quot;,
+        label: {
+            offset: [-2, 15]
+        },
+    });
+    var ans_2 = board.create('intersection', [m_sort, i_sort, 1], {
+        withLabel: true,
+        name: &quot;(43.56, 43.56)&quot;,
+        label: {
+            offset: [-84, 0]
+        },
+    });
+&lt;/script&gt;
+
+&lt;p&gt;From the above graph, we can see that the plots intersect at \(n = 1.1\) and \(n = 43.56\).&lt;/p&gt;
+
+&lt;p&gt;Here, \(n\) is the input size so it must be an integer. So, the values of \(n\) for which insertion beats merge sort is \(2 \le n \le 43\).&lt;/p&gt;
+
+&lt;aside id=&quot;quick-tip&quot; class=&quot;info&quot;&gt;
+    &lt;h4&gt;Quick Tip &lt;/h4&gt;
+    &lt;div&gt;
+&lt;p&gt;If you ever want to have a graphing calculator handy, hop onto &lt;a href=&quot;https://www.desmos.com/calculator/pwh2p6qrj9&quot; target=&quot;_blank&quot;&gt;Desmos&lt;/a&gt;. It’s pretty simple to use and you can create an account to keep your graphs saved. They have plenty other calculators and an awesome repository of &lt;a href=&quot;https://www.desmos.com/art&quot; target=&quot;_blank&quot;&gt;arts created with graphs&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/aside&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;python-code&quot;&gt;Python Code&lt;/h4&gt;
+
+&lt;p&gt;Let’s start with \(n = 2\) and go up to see for what value of \(n\) it becomes smaller than \(2^{n/8}\).&lt;/p&gt;
+
+&lt;p&gt;You can run the python code in the below editor and see that for \(n = 44\) onwards the relationship reverses.&lt;/p&gt;
+
+&lt;script src=&quot;/CLRS/assets/js/skulpt.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+
+&lt;script src=&quot;/CLRS/assets/js/skulpt-stdlib.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.min.js&quot; integrity=&quot;sha512-GoORoNnxst42zE3rYPj4bNBm0Q6ZRXKNH2D9nEmNvVF/z24ywVnijAWVi/09iBiVDQVf3UlZHpzhAJIdd9BXqw==&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/mode-python.min.js&quot; integrity=&quot;sha512-2Ke4vMGrMfYRM55pT1aA5bw7Pl82Sc7K5Hg8XZYZu+EQrb0AO1mNYTagwZm+MFVAImYS9Mlnm73zcgc01wPXxA==&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/theme-nord_dark.min.js&quot; integrity=&quot;sha512-Yrb8fdpeml10Onax7VERUl9ea2bAU/OPQ3IASUNqed9o+EotsVU9L4mgB4jXZQWDjav4VD2HSjiWlwOmfKeJRQ==&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+    // Output functions are configurable
+    // This one just appends some text to a pre element
+    function prependOut(text) {
+        var output = document.getElementById(&quot;code-editor-output&quot;);
+        output.innerHTML = output.innerHTML + text;
+    }
+
+    function builtinRead(x) {
+        if (Sk.builtinFiles === undefined || Sk.builtinFiles[&quot;files&quot;][x] === undefined) 
+            throw &quot;File not found: '&quot; + x + &quot;'&quot;;
+        return Sk.builtinFiles[&quot;files&quot;][x];
+    }
+
+    // Grab the code, get a reference to output
+    // configure the output function and call Sk.importMainWithBody()
+    function runCode() {
+        // Get code from Ace editor and clear output
+        var prog = (editor.getValue());
+        var output = document.getElementById(&quot;code-editor-output&quot;);
+        output.innerHTML = '';
+
+        Sk.pre = &quot;output&quot;;
+        Sk.configure({output: prependOut, read: builtinRead, __future__: Sk.python3});
+        var myPromise = Sk
+            .misceval
+            .asyncToPromise(function () {
+                return Sk.importMainWithBody(&quot;&lt;stdin&gt;&quot;, false, prog, true);
+            });
+        myPromise.then(function (mod) {
+            output.style.color = &quot;#d8dee9&quot;;
+            console.log('success');
+        }, function (err) {
+            output.style.color = &quot;#f00&quot;;
+            output.innerHTML = err.toString();
+            console.log(err.toString());
+        });
+    }
+&lt;/script&gt;
+
+&lt;div class=&quot;code-editor-wrapper&quot;&gt;
+    &lt;div id=&quot;code-editor&quot;&gt;n = 2
+while n &amp;gt; 2 ** (n / 8.0):
+    n += 1
+
+print(&quot;Minimum value of n for which merge sort runs faster is&quot;, n)&lt;/div&gt;
+    &lt;script&gt;
+        var editor = ace.edit(&quot;code-editor&quot;);
+        editor
+            .renderer
+            .setShowGutter(true);
+        editor
+            .session
+            .setMode(&quot;ace/mode/python&quot;);
+        editor.setTheme(&quot;ace/theme/nord_dark&quot;);
+        editor.setFontSize(&quot;16px&quot;);
+        editor
+            .renderer
+            .setScrollMargin(15, 15)
+        editor.setOptions({autoScrollEditorIntoView: true, minLines: 8, maxLines: 20});
+        document.getElementById('code-editor').style.fontFamily = &quot;'Courier New', Courier, monospace&quot;;
+        var code = editor.getValue();
+
+        function resetCode() {
+            editor.setValue(code, 1);
+            var output = document.getElementById(&quot;code-editor-output&quot;);
+            output.innerHTML = &quot;&quot;;
+        }
+    &lt;/script&gt;
+    &lt;pre id=&quot;code-editor-output&quot; class=&quot;code-editor-output&quot;&gt;&lt;/pre&gt;
+    &lt;div class=&quot;code-editor-buttons&quot;&gt;
+        &lt;button class=&quot;code-editor-button&quot; type=&quot;button&quot; onclick=&quot;runCode()&quot;&gt;Run&lt;/button&gt;
+        &lt;button class=&quot;code-editor-button&quot; type=&quot;button&quot; onclick=&quot;resetCode()&quot;&gt;Reset&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</description>
+                <pubDate>Sun, 02 Apr 2023 06:00:17 +0000</pubDate>
+                <link>https://atekihcan.github.io/CLRS/01/E01.02-02/</link>
+                <guid isPermaLink="true">https://atekihcan.github.io/CLRS/01/E01.02-02/</guid>
+                
+                
+            </item>
+        
+            <item>
+                <title>Exercise 1.2-3</title>
+                <description>&lt;blockquote&gt;
+  &lt;p&gt;What is the smallest value of \(n\) such that an algorithm whose running time is \(100n^2\) runs faster than an algorithm whose running time is \(2^n\) on the same machine?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;For A to run faster than B, \(100n^2\) must be smaller than \(2^n\).&lt;/p&gt;
+
+&lt;h4 id=&quot;calculation&quot;&gt;Calculation&lt;/h4&gt;
+
+&lt;p&gt;Intuitively we can realize that A (quadratic time complexity) will run much faster than B (exponential time complexity) for very large values of \(n\).&lt;/p&gt;
+
+&lt;p&gt;Let’s start checking from \(n = 1\) and go up for values of \(n\) which are power of \(2\) to see where that happens.&lt;/p&gt;
+
+\[\begin{alignedat}{4}
+&amp;amp;n = 1  &amp;amp;&amp;amp;\Rightarrow 100 \times 1^2  &amp;amp;&amp;amp;= 100   &amp;amp;&amp;amp;&amp;gt; 2^n \\
+&amp;amp;n = 2  &amp;amp;&amp;amp;\Rightarrow 100 \times 2^2  &amp;amp;&amp;amp;= 400   &amp;amp;&amp;amp;&amp;gt; 2^n \\
+&amp;amp;n = 4  &amp;amp;&amp;amp;\Rightarrow 100 \times 4^2  &amp;amp;&amp;amp;= 1600  &amp;amp;&amp;amp;&amp;gt; 2^n \\
+&amp;amp;n = 8  &amp;amp;&amp;amp;\Rightarrow 100 \times 8^2  &amp;amp;&amp;amp;= 6400  &amp;amp;&amp;amp;&amp;gt; 2^n \\
+&amp;amp;n = 16 &amp;amp;&amp;amp;\Rightarrow 100 \times 16^2 &amp;amp;&amp;amp;= 25600 &amp;amp;&amp;amp;&amp;lt; 2^n
+\end{alignedat}\]
+
+&lt;p&gt;Somewhere between 8 and 16, A starts to run faster than B. Let’s do what we were doing but now we are going to try middle value of the range, repeatedly (binary search).&lt;/p&gt;
+
+\[n = 12 \Rightarrow 100 \times 12^2 = 14400 &amp;gt; 2^n \\
+n = 14 \Rightarrow 100 \times 14^2 = 19600 &amp;gt; 2^n \\
+n = 15 \Rightarrow 100 \times 15^2 = 22500 &amp;lt; 2^n\]
+
+&lt;p&gt;So, at \(n = 15\), A starts to run faster than B.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;code&quot;&gt;Code&lt;/h4&gt;
+
+&lt;p&gt;Let’s start with \(n = 2\) and go up to see for what value of \(n\) merge sort again starts to beat insertion sort.&lt;/p&gt;
+
+&lt;p&gt;You can run the python code in the below editor and see that for \(n = 15\) onwards the relationship reverses.&lt;/p&gt;
+
+&lt;script src=&quot;/CLRS/assets/js/skulpt.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+
+&lt;script src=&quot;/CLRS/assets/js/skulpt-stdlib.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.min.js&quot; integrity=&quot;sha512-GoORoNnxst42zE3rYPj4bNBm0Q6ZRXKNH2D9nEmNvVF/z24ywVnijAWVi/09iBiVDQVf3UlZHpzhAJIdd9BXqw==&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/mode-python.min.js&quot; integrity=&quot;sha512-2Ke4vMGrMfYRM55pT1aA5bw7Pl82Sc7K5Hg8XZYZu+EQrb0AO1mNYTagwZm+MFVAImYS9Mlnm73zcgc01wPXxA==&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/theme-nord_dark.min.js&quot; integrity=&quot;sha512-Yrb8fdpeml10Onax7VERUl9ea2bAU/OPQ3IASUNqed9o+EotsVU9L4mgB4jXZQWDjav4VD2HSjiWlwOmfKeJRQ==&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+    // Output functions are configurable
+    // This one just appends some text to a pre element
+    function prependOut(text) {
+        var output = document.getElementById(&quot;code-editor-output&quot;);
+        output.innerHTML = output.innerHTML + text;
+    }
+
+    function builtinRead(x) {
+        if (Sk.builtinFiles === undefined || Sk.builtinFiles[&quot;files&quot;][x] === undefined) 
+            throw &quot;File not found: '&quot; + x + &quot;'&quot;;
+        return Sk.builtinFiles[&quot;files&quot;][x];
+    }
+
+    // Grab the code, get a reference to output
+    // configure the output function and call Sk.importMainWithBody()
+    function runCode() {
+        // Get code from Ace editor and clear output
+        var prog = (editor.getValue());
+        var output = document.getElementById(&quot;code-editor-output&quot;);
+        output.innerHTML = '';
+
+        Sk.pre = &quot;output&quot;;
+        Sk.configure({output: prependOut, read: builtinRead, __future__: Sk.python3});
+        var myPromise = Sk
+            .misceval
+            .asyncToPromise(function () {
+                return Sk.importMainWithBody(&quot;&lt;stdin&gt;&quot;, false, prog, true);
+            });
+        myPromise.then(function (mod) {
+            output.style.color = &quot;#d8dee9&quot;;
+            console.log('success');
+        }, function (err) {
+            output.style.color = &quot;#f00&quot;;
+            output.innerHTML = err.toString();
+            console.log(err.toString());
+        });
+    }
+&lt;/script&gt;
+
+&lt;div class=&quot;code-editor-wrapper&quot;&gt;
+    &lt;div id=&quot;code-editor&quot;&gt;n = 1
+while 100 * n * n &amp;gt; 2 ** n:
+    n += 1
+print(&quot;Minimum value of n for which A runs faster than B is&quot;, n)&lt;/div&gt;
+    &lt;script&gt;
+        var editor = ace.edit(&quot;code-editor&quot;);
+        editor
+            .renderer
+            .setShowGutter(true);
+        editor
+            .session
+            .setMode(&quot;ace/mode/python&quot;);
+        editor.setTheme(&quot;ace/theme/nord_dark&quot;);
+        editor.setFontSize(&quot;16px&quot;);
+        editor
+            .renderer
+            .setScrollMargin(15, 15)
+        editor.setOptions({autoScrollEditorIntoView: true, minLines: 8, maxLines: 20});
+        document.getElementById('code-editor').style.fontFamily = &quot;'Courier New', Courier, monospace&quot;;
+        var code = editor.getValue();
+
+        function resetCode() {
+            editor.setValue(code, 1);
+            var output = document.getElementById(&quot;code-editor-output&quot;);
+            output.innerHTML = &quot;&quot;;
+        }
+    &lt;/script&gt;
+    &lt;pre id=&quot;code-editor-output&quot; class=&quot;code-editor-output&quot;&gt;&lt;/pre&gt;
+    &lt;div class=&quot;code-editor-buttons&quot;&gt;
+        &lt;button class=&quot;code-editor-button&quot; type=&quot;button&quot; onclick=&quot;runCode()&quot;&gt;Run&lt;/button&gt;
+        &lt;button class=&quot;code-editor-button&quot; type=&quot;button&quot; onclick=&quot;resetCode()&quot;&gt;Reset&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</description>
+                <pubDate>Sun, 02 Apr 2023 06:00:17 +0000</pubDate>
+                <link>https://atekihcan.github.io/CLRS/01/E01.02-03/</link>
+                <guid isPermaLink="true">https://atekihcan.github.io/CLRS/01/E01.02-03/</guid>
+                
+                
+            </item>
+        
+            <item>
+                <title>Problem 1-1</title>
+                <description>&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;&lt;em&gt;Comparison of Running Times&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;p&gt;For each function \(f(n)\) and time \(t\) in the following table, determine the largest size \(n\) of a problem that can be solved in time \(t\), assuming that the algorithm to solve the problem takes \(f (n)\) microseconds.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In \(f(n)\) microseconds, largest size of problem that can be solved is \(n\). To find the largest size of problem that can be solved in time \(t\), we need to solve the following equation for \(n\)&lt;/p&gt;
+
+\[f(n) = t \text{ in microseconds}\]
+
+&lt;p&gt;Once we calculate the largest size of problem that can be solved in \(1\) second (let’s say \(N\)), it is easy to do so for other time units. But &lt;strong&gt;&lt;em&gt;remember&lt;/em&gt;&lt;/strong&gt;, \(N\) is an integer, so you should not just multiply \(N\) with conversion factor- the answer will be off by huge amount for higher time complexities. Instead you should multiply in the beginning of the calculation.&lt;/p&gt;
+
+&lt;p&gt;Here are the calculations for largest size of problem that can be run in \(1\) second…&lt;/p&gt;
+
+\[\begin{alignedat}{3}
+&amp;amp;\lg N   &amp;amp;&amp;amp;= 10^6 &amp;amp;&amp;amp;\Rightarrow N = 2^{10^6} \\
+&amp;amp;\sqrt N &amp;amp;&amp;amp;= 10^6 &amp;amp;&amp;amp;\Rightarrow N = 10^{12} \\
+&amp;amp; N      &amp;amp;&amp;amp;= 10^6 &amp;amp;&amp;amp;\Rightarrow N = 10^6 \\
+&amp;amp;N \lg N &amp;amp;&amp;amp;= 10^6 &amp;amp;&amp;amp;\Rightarrow N = 62746 \\
+&amp;amp;N^2     &amp;amp;&amp;amp;= 10^6 &amp;amp;&amp;amp;\Rightarrow N = 10^3 \\
+&amp;amp;N^3     &amp;amp;&amp;amp;= 10^6 &amp;amp;&amp;amp;\Rightarrow N = 10^2 \\
+&amp;amp;2^N     &amp;amp;&amp;amp;= 10^6 &amp;amp;&amp;amp;\Rightarrow N = 6 \times \lg 10 = 19 \\
+&amp;amp;N!      &amp;amp;&amp;amp;= 10^6 &amp;amp;&amp;amp;\Rightarrow N = 9
+\end{alignedat}\]
+
+&lt;p&gt;Among all the calculations, finding \(N\) for \(n \lg n\) and \(n!\) are not so obvious. For these two we’ll need to use calculator or a small snippet of code as shown below.&lt;/p&gt;
+
+&lt;aside id=&quot;did-you-know&quot; class=&quot;info&quot;&gt;
+    &lt;h4&gt;Did you know? &lt;/h4&gt;
+    &lt;div&gt;
+&lt;p&gt;The apparent missing details of the calculation in this problem is discussed in detail in the &lt;a href=&quot;https://math.stackexchange.com/questions/3283606/simplify-n-log-2n-106&quot; target=&quot;_blank&quot;&gt;Mathematics Stack Exchange&lt;/a&gt; forum. There you will find mention of &lt;a href=&quot;https://en.wikipedia.org/wiki/Lambert_W_function&quot; target=&quot;_blank&quot;&gt;Lambert \(W\) functions&lt;/a&gt; and some more methods that can be used to solve this problem.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/aside&gt;
+
+&lt;h4 id=&quot;python-code&quot;&gt;Python Code&lt;/h4&gt;
+
+&lt;script src=&quot;/CLRS/assets/js/skulpt.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+
+&lt;script src=&quot;/CLRS/assets/js/skulpt-stdlib.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.min.js&quot; integrity=&quot;sha512-GoORoNnxst42zE3rYPj4bNBm0Q6ZRXKNH2D9nEmNvVF/z24ywVnijAWVi/09iBiVDQVf3UlZHpzhAJIdd9BXqw==&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/mode-python.min.js&quot; integrity=&quot;sha512-2Ke4vMGrMfYRM55pT1aA5bw7Pl82Sc7K5Hg8XZYZu+EQrb0AO1mNYTagwZm+MFVAImYS9Mlnm73zcgc01wPXxA==&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/theme-nord_dark.min.js&quot; integrity=&quot;sha512-Yrb8fdpeml10Onax7VERUl9ea2bAU/OPQ3IASUNqed9o+EotsVU9L4mgB4jXZQWDjav4VD2HSjiWlwOmfKeJRQ==&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+    // Output functions are configurable
+    // This one just appends some text to a pre element
+    function prependOut(text) {
+        var output = document.getElementById(&quot;code-editor-output&quot;);
+        output.innerHTML = output.innerHTML + text;
+    }
+
+    function builtinRead(x) {
+        if (Sk.builtinFiles === undefined || Sk.builtinFiles[&quot;files&quot;][x] === undefined) 
+            throw &quot;File not found: '&quot; + x + &quot;'&quot;;
+        return Sk.builtinFiles[&quot;files&quot;][x];
+    }
+
+    // Grab the code, get a reference to output
+    // configure the output function and call Sk.importMainWithBody()
+    function runCode() {
+        // Get code from Ace editor and clear output
+        var prog = (editor.getValue());
+        var output = document.getElementById(&quot;code-editor-output&quot;);
+        output.innerHTML = '';
+
+        Sk.pre = &quot;output&quot;;
+        Sk.configure({output: prependOut, read: builtinRead, __future__: Sk.python3});
+        var myPromise = Sk
+            .misceval
+            .asyncToPromise(function () {
+                return Sk.importMainWithBody(&quot;&lt;stdin&gt;&quot;, false, prog, true);
+            });
+        myPromise.then(function (mod) {
+            output.style.color = &quot;#d8dee9&quot;;
+            console.log('success');
+        }, function (err) {
+            output.style.color = &quot;#f00&quot;;
+            output.innerHTML = err.toString();
+            console.log(err.toString());
+        });
+    }
+&lt;/script&gt;
+
+&lt;div class=&quot;code-editor-wrapper&quot;&gt;
+    &lt;div id=&quot;code-editor&quot;&gt;from math import *
+
+# for n lg n
+n = 1
+while n * log(n, 2) &amp;lt; 1000000:
+    n += 1
+
+print(&quot;Minimum value of n (n lg n) :&quot;, n - 1)
+
+# for n!
+n = 1
+while factorial(n) &amp;lt; 1000000:
+    n += 1
+
+print(&quot;Minimum value of n (n!)     :&quot;, n - 1)&lt;/div&gt;
+    &lt;script&gt;
+        var editor = ace.edit(&quot;code-editor&quot;);
+        editor
+            .renderer
+            .setShowGutter(true);
+        editor
+            .session
+            .setMode(&quot;ace/mode/python&quot;);
+        editor.setTheme(&quot;ace/theme/nord_dark&quot;);
+        editor.setFontSize(&quot;16px&quot;);
+        editor
+            .renderer
+            .setScrollMargin(15, 15)
+        editor.setOptions({autoScrollEditorIntoView: true, minLines: 8, maxLines: 20});
+        document.getElementById('code-editor').style.fontFamily = &quot;'Courier New', Courier, monospace&quot;;
+        var code = editor.getValue();
+
+        function resetCode() {
+            editor.setValue(code, 1);
+            var output = document.getElementById(&quot;code-editor-output&quot;);
+            output.innerHTML = &quot;&quot;;
+        }
+    &lt;/script&gt;
+    &lt;pre id=&quot;code-editor-output&quot; class=&quot;code-editor-output&quot;&gt;&lt;/pre&gt;
+    &lt;div class=&quot;code-editor-buttons&quot;&gt;
+        &lt;button class=&quot;code-editor-button&quot; type=&quot;button&quot; onclick=&quot;runCode()&quot;&gt;Run&lt;/button&gt;
+        &lt;button class=&quot;code-editor-button&quot; type=&quot;button&quot; onclick=&quot;resetCode()&quot;&gt;Reset&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</description>
+                <pubDate>Sun, 02 Apr 2023 06:00:17 +0000</pubDate>
+                <link>https://atekihcan.github.io/CLRS/01/P01-01/</link>
+                <guid isPermaLink="true">https://atekihcan.github.io/CLRS/01/P01-01/</guid>
+                
+                
+            </item>
+        
+            <item>
+                <title>Exercise 2.1-1</title>
+                <description>&lt;blockquote&gt;
+  &lt;p&gt;Using Figure 2.2 as a model, illustrate the operation of \(\textsc {Insertion-Sort}\) on the array \(A = \langle 31, 41, 59, 26, 41, 58 \rangle\).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/CLRS/assets/img/02/2.1-2_insertion_sort.jpg&quot; alt=&quot;Insertion Sort&quot; title=&quot;Insertion sort illustration&quot; /&gt;&lt;/p&gt;
+
+&lt;aside id=&quot;additional-notes&quot; class=&quot;info&quot;&gt;
+    &lt;h4&gt;Additional Notes &lt;/h4&gt;
+    &lt;div&gt;
+&lt;p&gt;An interesting point to note here is that there were two \(41\)s in the array. And the relative order of these two have been maintained (state 4 and 5) in the final sorted array. In other words, the first \(41\) appearing in the original unsorted array is still still the first \(41\) in the final sorted array.&lt;/p&gt;
+
+&lt;p&gt;This is a notable property for &lt;em&gt;some&lt;/em&gt; sorting algorithms, like insertion sort in this case. This property is known as &lt;a href=&quot;https://www.geeksforgeeks.org/stability-in-sorting-algorithms/&quot; target=&quot;_blank&quot;&gt;stability&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/aside&gt;
+
+&lt;aside id=&quot;did-you-notice&quot; class=&quot;info&quot;&gt;
+    &lt;h4&gt;Did you Notice? &lt;/h4&gt;
+    &lt;div&gt;
+&lt;p&gt;This exact array was used in the first chapter to introduce the first algorithm example in this book: &lt;strong&gt;&lt;em&gt;sorting&lt;/em&gt;&lt;/strong&gt;. You’ll find it in the page 5 of the book.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/aside&gt;
+</description>
+                <pubDate>Sun, 02 Apr 2023 06:00:17 +0000</pubDate>
+                <link>https://atekihcan.github.io/CLRS/02/E02.01-01/</link>
+                <guid isPermaLink="true">https://atekihcan.github.io/CLRS/02/E02.01-01/</guid>
+                
+                
+            </item>
+        
+    </channel>
+</rss>

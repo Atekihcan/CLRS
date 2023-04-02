@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Legacy meta -->
+    <meta name="description" content="Consider the regularity condition af(n/b) ≤ cf(n)for some constant c < 1, which is part of case 3 of the master theorem. Give an example of constants a ≥ 1 and b > 1 and a function f(n) that satisfies all the conditions in case 3 of the master theorem except the regularity condition."/>
+    <meta name="keywords" content="CLRS, solutions, algorithms, Cormen, master theorem, regularity condition"/>
+
+    <!--Schema-->
+    <link rel="author" href="Atekihcan">
+    <link rel="publisher" href="https://atekihcan.github.io">
+    <meta itemprop="name" content="CLRS Solutions | Exercise 4.5-5 | Divide-and-Conquer"/>
+    <meta itemprop="description" content="Consider the regularity condition af(n/b) ≤ cf(n)for some constant c < 1, which is part of case 3 of the master theorem. Give an example of constants a ≥ 1 and b > 1 and a function f(n) that satisfies all the conditions in case 3 of the master theorem except the regularity condition."/>
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="CLRS Solutions | Exercise 4.5-5 | Divide-and-Conquer" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://atekihcan.github.io/CLRS/04/E04.05-05/" />
+    <meta property="og:image" content="/CLRS/assets/img/04/4.5-5.jpg" />
+    <meta property="og:description" content="Consider the regularity condition af(n/b) ≤ cf(n)for some constant c < 1, which is part of case 3 of the master theorem. Give an example of constants a ≥ 1 and b > 1 and a function f(n) that satisfies all the conditions in case 3 of the master theorem except the regularity condition." />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "CLRS Solutions | Exercise 4.5-5 | Divide-and-Conquer",
+        "image": [
+            "/CLRS/assets/img/04/4.5-5.jpg"
+        ],
+        "datePublished": "2021-03-14T00:10:00+00:00",
+        "dateModified": "2021-03-14T00:10:00+00:00",
+        "author": {
+            "@type": "Person",
+            "name": "Atekihcan"
+        }
+    }
+    </script>
+    
+    <title>CLRS Solutions | Exercise 4.5-5 | Divide-and-Conquer</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/CLRS/assets/img/favicon.png">
+
+    <!-- Normalize reset -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/normalize.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Katex -->
+    <link rel="stylesheet" href="/CLRS/assets/katex/katex.min.css" >
+    <script defer src="/CLRS/assets/katex/katex.min.js" ></script>
+    <script defer src="/CLRS/assets/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {trust: true});"></script>
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57470252-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-57470252-4', {
+            cookie_domain: 'https://atekihcan.github.io',
+            cookie_flags: 'SameSite=None;Secure'
+        });
+    </script>
+
+    <!-- Load site specific stuff at last -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/site.css">
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/syntax_highlight.css">
+
+    <script defer src="/CLRS/assets/js/site.js" ></script>
+</head>
+    <body class="site-body">
+        <header class="site-header">
+    <nav>
+        <i class="fa fa-database"></i>&nbsp;&nbsp;<a href="/CLRS/">Solutions for CLRS</a>&nbsp;&nbsp;<i class="fa fa-database"></i>
+    </nav>
+    <h1 class="page-title">
+        Exercise 4.5-5
+    </h1>
+</header>
+        <main class="site-main">
+            <article>
+    <div class="article-content">
+        <blockquote>
+  <p>Consider the regularity condition \(af(n/b) \leq cf(n)\) for some constant \(c &lt; 1\), which is part of case 3 of the master theorem. Give an example of constants \(a \geq 1\) and \(b &gt; 1\) and a function \(f(n)\) that satisfies all the conditions in case 3 of the master theorem except the regularity condition.</p>
+</blockquote>
+
+<p>Let’s get the simplest part of this exercise out of our way.</p>
+
+<p>Picking the values for the constants.</p>
+
+<p>Let’s pick \(a = 1\), \(b = 2\), and \(\epsilon = 1\).</p>
+
+<p>Now we need to find a function \(f(n)\) such that \(f(n) = \Omega(n^{\log_b a+\epsilon}) = \Omega(n)\)</p>
+
+<p>So, \(f(n)\) is a function that is asymptotically larger than \(n\), but fails to satisfy the regularity condition.</p>
+
+<h4 id="what-does-that-mean">What does that mean</h4>
+
+<p>The regularity condition for the example values we chose:</p>
+
+\[f(n/2) \leq cf(n)\]
+
+<p>for some constant \(c &lt; 1\) and \(n\) is sufficiently large.</p>
+
+<p>This means we cannot choose any monotonically increasing function, as for such functions usually we can show that \(f(n/2) \leq f(n)/2\), or in other words the regularity condition will hold with \(c = 1/2\).</p>
+
+<p>This is a hint that we need to look into functions that changes direction, like trigonometric  functions.</p>
+
+<p>\(f(n) = n \cos n\) is a good example.</p>
+
+<p>To make it \(\Omega(n)\), we can use \(f(n) = 2n - n \cos n\), so that it is never less than \(n\).</p>
+
+<aside id="what-else-can-we-pick" class="info">
+    <h4>What else can we pick? </h4>
+    <div>
+<p>Actually we can pick anything of the form</p>
+
+\[f(n) = xn - yn \cos n\]
+
+<p>where \((x - y) = 1\).</p>
+</div>
+</aside>
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<p><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7476503486911097" data-ad-slot="5416910574" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+<h4 id="regularity-condition">Regularity Condition</h4>
+
+<p>We also have to show that regularity condition does not hold for this.</p>
+
+<p>If regularity condition was satisfied for the \(f(n)\) we chose,</p>
+
+\[\begin{aligned}
+f(n/2) &amp;\leq cf(n) \\
+2 \cdot \frac n 2 - \frac n 2 \cdot \cos (n/2) &amp;\leq c(2n - n \cos n) \\
+2 - \cos (n/2) &amp;\leq 2c(2 - \cos n) \\
+2 - \cos (n/2) &amp;\leq c(4 - 2\cos n) \\
+\frac {2 - \cos (n/2)} {4 - 2\cos n} &amp;\leq c
+\end{aligned}\]
+
+<p>If we have \(n \approx 2\pi\), for example, \(n = 6\),</p>
+
+\[\begin{aligned}
+\cos n &amp;\approx 1 \\
+\cos (n/2) &amp;\approx -1
+\end{aligned}\]
+
+<p>So, to satisfy the regularity condition we need,</p>
+
+\[\begin{aligned}
+c &amp;\geq \frac {2 - \cos (n/2)} {4 - 2\cos n} \\
+c &amp;\geq \frac {2 - (-1)} {4 - 2 \cdot 1} \\
+c &amp;\geq \frac 3 2 \\
+\end{aligned}\]
+
+<p>But this is in violation of \(c &lt; 1\)</p>
+
+<p>And this will happen for any \(n = 2k\pi\), for some \(k \in \N\).</p>
+
+<p>In other words even for sufficiently large \(n\), we cannot have \(c &lt; 1\) to satisfy the regularity condition for this example function.</p>
+
+    </div>
+    <hr class="solid"/>
+    <div class="article-footer">
+        <div class="article-footer-message">
+    <span style="font-size: 0.8em;">If you have any question or suggestion or you have found any error in this solution, please leave a comment below.</span>
+</div>
+        <div class="article-nav">
+    <div class="article-nav-left">
+        
+            <a href="/CLRS/04/E04.05-04/">
+                <i class="fa fa-2x fa-arrow-left"></i>
+            </a>
+            <span><strong>E 4.5-4</strong></span>
+        
+    </div>
+    <div class="article-nav-middle">
+        <a href="/CLRS/">
+            <strong>Solution Index</strong>
+        </a>
+    </div>
+    <div class="article-nav-right">
+        
+            <span><strong>P 4-1</strong></span>
+            <a href="/CLRS/04/P04-01/">
+                <i class="fa fa-2x fa-arrow-right"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7476503486911097"
+     data-ad-slot="5416910574"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+    </div>
+</article>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_observer = new IntersectionObserver(function (entries) {
+        // comments section reached
+        // start loading Disqus now
+        if (entries[0].isIntersecting) {
+            var disqus_shortname = 'atekihcan';
+            var disqus_identifier = '/CLRS/04/E04.05-05/';
+            var disqus_title = 'Exercise 4.5-5';
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+
+            // once executed, stop observing
+            disqus_observer.disconnect();
+        }
+    }, {threshold: [0]});
+    disqus_observer.observe(document.querySelector("#disqus_thread"));
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+        </main>
+        <footer class="site-footer">
+    <div>
+        &copy; Atekihcan 2007 - 2023
+    </div>
+</footer>
+
+<script>
+    // Left align KaTeX for pseudo codes
+    document.addEventListener("DOMContentLoaded", function() { 
+        var docs = document.querySelectorAll('.latex-pseudo-code > span > span');
+        for (var i = 0; i < docs.length; i++) {
+            docs[i].classList.add('fleqn');
+        }
+    });
+</script>
+
+    </body>
+</html>

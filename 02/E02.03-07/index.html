@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Legacy meta -->
+    <meta name="description" content="Describe a Θ(nlg⁡n)-time algorithm that, given a set S of n integers and another integer x, determines whether or not there exist two elements in S whose sum is exactly x."/>
+    <meta name="keywords" content="CLRS, solutions, algorithms, Cormen"/>
+
+    <!--Schema-->
+    <link rel="author" href="Atekihcan">
+    <link rel="publisher" href="https://atekihcan.github.io">
+    <meta itemprop="name" content="CLRS Solutions | Exercise 2.3-7 | Getting Started"/>
+    <meta itemprop="description" content="Describe a Θ(nlg⁡n)-time algorithm that, given a set S of n integers and another integer x, determines whether or not there exist two elements in S whose sum is exactly x."/>
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="CLRS Solutions | Exercise 2.3-7 | Getting Started" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://atekihcan.github.io/CLRS/02/E02.03-07/" />
+    <meta property="og:image" content="/CLRS/assets/img/02/2.3-7.jpg" />
+    <meta property="og:description" content="Describe a Θ(nlg⁡n)-time algorithm that, given a set S of n integers and another integer x, determines whether or not there exist two elements in S whose sum is exactly x." />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "CLRS Solutions | Exercise 2.3-7 | Getting Started",
+        "image": [
+            "/CLRS/assets/img/02/2.3-7.jpg"
+        ],
+        "datePublished": "2012-08-22T22:30:00+00:00",
+        "dateModified": "2020-10-07T20:30:00+00:00",
+        "author": {
+            "@type": "Person",
+            "name": "Atekihcan"
+        }
+    }
+    </script>
+    
+    <title>CLRS Solutions | Exercise 2.3-7 | Getting Started</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/CLRS/assets/img/favicon.png">
+
+    <!-- Normalize reset -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/normalize.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Katex -->
+    <link rel="stylesheet" href="/CLRS/assets/katex/katex.min.css" >
+    <script defer src="/CLRS/assets/katex/katex.min.js" ></script>
+    <script defer src="/CLRS/assets/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {trust: true});"></script>
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57470252-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-57470252-4', {
+            cookie_domain: 'https://atekihcan.github.io',
+            cookie_flags: 'SameSite=None;Secure'
+        });
+    </script>
+
+    <!-- Load site specific stuff at last -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/site.css">
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/syntax_highlight.css">
+
+    <script defer src="/CLRS/assets/js/site.js" ></script>
+</head>
+    <body class="site-body">
+        <header class="site-header">
+    <nav>
+        <i class="fa fa-database"></i>&nbsp;&nbsp;<a href="/CLRS/">Solutions for CLRS</a>&nbsp;&nbsp;<i class="fa fa-database"></i>
+    </nav>
+    <h1 class="page-title">
+        Exercise 2.3-7
+    </h1>
+</header>
+        <main class="site-main">
+            <article>
+    <div class="article-content">
+        <blockquote>
+  <p>Describe a \(\Theta(n \lg n)\)-time algorithm that, given a set \(S\) of \(n\) integers and another integer \(x\), determines whether or not there exist two elements in \(S\) whose sum is exactly \(x\).</p>
+</blockquote>
+
+<p>If the running time constraint was not there, we might have intuitively used the brute-force method of picking one element at a time and iterating over the set to check if there exists another element in the set such that sum of them is \(x\). Even in average case, this brute-force algorithm will run at \(\Theta(n^2)\) time (as we have to iterate over the set for each element).</p>
+
+<p>But we have to think of a \(\Theta(n \lg n)\)-time algorithm.</p>
+
+<aside id="quick-tip" class="info">
+    <h4>Quick Tip </h4>
+    <div>
+<p>Every time we see \(\lg n\), we should think of divide-and-conquer algorithms. It inherently means how many times \(n\) can be divided by \(2\), i.e. repeated division of \(n\) elements in two  groups.</p>
+</div>
+</aside>
+
+<p>So, the problem asks for a search algorithm and we already know <strong><em>binary search</em></strong> is an efficient one at that which runs at \(\Theta(\lg n)\) time for a sorted array (see <a href="/CLRS/02/E02.03-05/">Exercise 2.3-5</a>).</p>
+
+<p>So, we can sort the array with merge sort (\(\Theta(n \lg n)\)) and then for each element \(S[i]\) in the array, we can do a binary search for \(x - S[i]\) on the sorted array (\(\Theta(n \lg n)\)). So, the overall algorithm will run at \(\Theta(n \lg n)\) time.</p>
+
+<div class="latex-pseudo-code">$$\textsc {Sum-Search }(S, x)$$$$\begin{aligned}1&amp; \quad  \textsc {Merge-Sort}(S,\,1,\,S.length) \\2&amp; \quad  \textbf {for }i=1\textbf { to }S.length \\3&amp; \quad \qquad  index=\textsc {Binary-Search}(S,\,x-S[i]) \\4&amp; \quad \qquad  \textbf {if }index\not=\text { NIL }\text { and }index\not=i \\5&amp; \quad \qquad \qquad  \textbf {return }true \\6&amp; \quad  \textbf {return }false \\\end{aligned}$$</div>
+
+<p>Note the additional conditional check for \(index\) not being equal to \(i\) in line 4. This is necessary for avoiding cases where the expected sum, \(x\), is twice of any element. An algorithm without this conditional check, will wrongly return <strong>true</strong> in such cases. This was pointed out by Ravi in the comments.</p>
+
+<aside id="is-it-the-best-we-can-do" class="info">
+    <h4>Is it the best we can do </h4>
+    <div>
+<p>Definitely not! There are much better algorithms available for solving this problem, some which actually runs at linear time. Check out <a href="https://www.geeksforgeeks.org/given-an-array-a-and-a-number-x-check-for-pair-in-a-with-sum-as-x/" target="_blank">this GeeksforGeeks article</a> for a detailed discussion on some other methods.</p>
+
+<p>We are not discussing those solutions here as the problem specifically asked for a \(\Theta(n \lg n)\) algorithm, and some of the better algorithm needs understanding of <em>hash table</em> data structure, that has not been introduced yet in the book. The motivation for this solution was to solve this problem with  what we have learnt till now.</p>
+
+<p>However, another \(\Theta(n \lg n)\) algorithm is discussed below, which is slightly different for the searching part.</p>
+</div>
+</aside>
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<p><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7476503486911097" data-ad-slot="5416910574" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+<p>This problem can be solved in another way which still uses a \(\Theta(n \lg n)\) sorting procedure but instead of using \(\textsc {Binary-Search}\), it uses a <strong><em>two-way search</em></strong>, i.e. simultaneous search from both end of the array, to check if two elements sums up to expected sum, \(x\).</p>
+
+<div class="latex-pseudo-code">$$\textsc {Sum-Search }(S, x)$$$$\begin{aligned}1&amp; \quad  \textsc {Merge-Sort}(S,\,1,\,S.length) \\2&amp; \quad  left=1 \\3&amp; \quad  right=S.length \\4&amp; \quad  \textbf {while }\textsc {}(left&lt;right) \\5&amp; \quad \qquad  \textbf {if }S[left]+S[right]==x \\6&amp; \quad \qquad \qquad  \textbf {return }true \\7&amp; \quad \qquad  \textbf {else }\textbf { if }S[left+S[right]&lt;x \\8&amp; \quad \qquad \qquad  left=left+1 \\9&amp; \quad \qquad  \textbf {else } \\10&amp; \quad \qquad \qquad  right=right-1 \\11&amp; \quad  \textbf {return }false \\\end{aligned}$$</div>
+
+
+    </div>
+    <hr class="solid"/>
+    <div class="article-footer">
+        <div class="article-footer-message">
+    <span style="font-size: 0.8em;">If you have any question or suggestion or you have found any error in this solution, please leave a comment below.</span>
+</div>
+        <div class="article-nav">
+    <div class="article-nav-left">
+        
+            <a href="/CLRS/02/E02.03-06/">
+                <i class="fa fa-2x fa-arrow-left"></i>
+            </a>
+            <span><strong>E 2.3-6</strong></span>
+        
+    </div>
+    <div class="article-nav-middle">
+        <a href="/CLRS/">
+            <strong>Solution Index</strong>
+        </a>
+    </div>
+    <div class="article-nav-right">
+        
+            <span><strong>P 2-1</strong></span>
+            <a href="/CLRS/02/P02-01/">
+                <i class="fa fa-2x fa-arrow-right"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7476503486911097"
+     data-ad-slot="5416910574"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+    </div>
+</article>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_observer = new IntersectionObserver(function (entries) {
+        // comments section reached
+        // start loading Disqus now
+        if (entries[0].isIntersecting) {
+            var disqus_shortname = 'atekihcan';
+            var disqus_identifier = '/CLRS/02/E02.03-07/';
+            var disqus_title = 'Exercise 2.3-7';
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+
+            // once executed, stop observing
+            disqus_observer.disconnect();
+        }
+    }, {threshold: [0]});
+    disqus_observer.observe(document.querySelector("#disqus_thread"));
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+        </main>
+        <footer class="site-footer">
+    <div>
+        &copy; Atekihcan 2007 - 2023
+    </div>
+</footer>
+
+<script>
+    // Left align KaTeX for pseudo codes
+    document.addEventListener("DOMContentLoaded", function() { 
+        var docs = document.querySelectorAll('.latex-pseudo-code > span > span');
+        for (var i = 0; i < docs.length; i++) {
+            docs[i].classList.add('fleqn');
+        }
+    });
+</script>
+
+    </body>
+</html>

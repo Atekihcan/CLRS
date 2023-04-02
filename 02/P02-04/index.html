@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Legacy meta -->
+    <meta name="description" content="Inversions: Let A[1..n] be an array of n distinct numbers. If i < j and A[i] > A[j], then the pair (i, j) is called an inversion of A. List the five inversions of the array [2, 3, 8, 6, 1]. What array with elements from the set {1,2,…,n} has the most inversions? How many does it have?"/>
+    <meta name="keywords" content="CLRS, solutions, algorithms, Cormen, inversions"/>
+
+    <!--Schema-->
+    <link rel="author" href="Atekihcan">
+    <link rel="publisher" href="https://atekihcan.github.io">
+    <meta itemprop="name" content="CLRS Solutions | Problem 2-4 | Getting Started"/>
+    <meta itemprop="description" content="Inversions: Let A[1..n] be an array of n distinct numbers. If i < j and A[i] > A[j], then the pair (i, j) is called an inversion of A. List the five inversions of the array [2, 3, 8, 6, 1]. What array with elements from the set {1,2,…,n} has the most inversions? How many does it have?"/>
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="CLRS Solutions | Problem 2-4 | Getting Started" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://atekihcan.github.io/CLRS/02/P02-04/" />
+    <meta property="og:image" content="/CLRS/assets/img/-4/2-4.jpg" />
+    <meta property="og:description" content="Inversions: Let A[1..n] be an array of n distinct numbers. If i < j and A[i] > A[j], then the pair (i, j) is called an inversion of A. List the five inversions of the array [2, 3, 8, 6, 1]. What array with elements from the set {1,2,…,n} has the most inversions? How many does it have?" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "CLRS Solutions | Problem 2-4 | Getting Started",
+        "image": [
+            "/CLRS/assets/img/-4/2-4.jpg"
+        ],
+        "datePublished": "2012-08-22T23:15:00+00:00",
+        "dateModified": "2020-10-10T22:30:00+00:00",
+        "author": {
+            "@type": "Person",
+            "name": "Atekihcan"
+        }
+    }
+    </script>
+    
+    <title>CLRS Solutions | Problem 2-4 | Getting Started</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/CLRS/assets/img/favicon.png">
+
+    <!-- Normalize reset -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/normalize.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Katex -->
+    <link rel="stylesheet" href="/CLRS/assets/katex/katex.min.css" >
+    <script defer src="/CLRS/assets/katex/katex.min.js" ></script>
+    <script defer src="/CLRS/assets/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {trust: true});"></script>
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57470252-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-57470252-4', {
+            cookie_domain: 'https://atekihcan.github.io',
+            cookie_flags: 'SameSite=None;Secure'
+        });
+    </script>
+
+    <!-- Load site specific stuff at last -->
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/site.css">
+    <link media="all" rel="stylesheet" href="/CLRS/assets/css/syntax_highlight.css">
+
+    <script defer src="/CLRS/assets/js/site.js" ></script>
+</head>
+    <body class="site-body">
+        <header class="site-header">
+    <nav>
+        <i class="fa fa-database"></i>&nbsp;&nbsp;<a href="/CLRS/">Solutions for CLRS</a>&nbsp;&nbsp;<i class="fa fa-database"></i>
+    </nav>
+    <h1 class="page-title">
+        Problem 2-4
+    </h1>
+</header>
+        <main class="site-main">
+            <article>
+    <div class="article-content">
+        <blockquote>
+  <p><strong><em>Inversions</em></strong></p>
+
+  <p>Let \(A[1 \ldots n]\) be an array of \(n\) distinct numbers. If \(i &lt; j\) and \(A[i] &gt; A[j]\), then the pair \((i, j)\) is called an <strong><em>inversion</em></strong> of \(A\).</p>
+
+  <ol>
+    <li>List the five inversions of the array \(\langle 2, 3, 8, 6, 1 \rangle\).</li>
+    <li>What array with elements from the set \(\{1, 2, \ldots , n\}\) has the most inversions? How many does it have?</li>
+    <li>What is the relationship between the running time of insertion sort and the number of inversions in the input array? Justify your answer.</li>
+    <li>Give an algorithm that determines the number of inversions in any permutation on \(n\) elements in \(\Theta(n \lg n)\) worst-case time. (<em>Hint:</em> Modify merge sort.)</li>
+  </ol>
+</blockquote>
+
+<h4 id="a-list-of-inversions">A. List of Inversions</h4>
+
+<p>Inversions in the given array are: (1, 5), (2, 5), (3, 4), (3, 5), and (4, 5). (<em>Note:</em> Inversions are specified by indices of the array, not by values.)</p>
+
+<h4 id="b-array-with-most-inversions">B. Array With Most Inversions</h4>
+
+<p>The array with elements from the set \({1, 2, \dots , n}\) with the most inversions will have the elements in reverse sorted order, i.e. \(\langle n, n - 1, \dots, 2, 1 \rangle\).</p>
+
+<p>As the array has \(n\) unique elements in reverse sorted order, for every unique pair of \((i, j)\), there will be an inversion. So, total number of inversion = number of ways to choose 2 distinct integer from the set \({1, 2, \dots , n}\) = \(^nC_2\) = \(\frac {n( n - 1)} 2\).</p>
+
+<p>Another way to find number of inversions in such an array, is to notice that there will be \(n - 1\) inversions with the first index as the first element of the inversion pair, \(n -2\) inversions with the second index as the first element of the inversion pair, and so on. And finally, zero inversions with the \(n\)-th index as the first element of the inversion pair.</p>
+
+<p>In other words, total number of inversions = \((n - 1) + (n - 2) + \cdots + 1 = \frac {n(n -1 )} 2\).</p>
+
+<h4 id="c-relationship-with-insertion-sort">C. Relationship With Insertion Sort</h4>
+
+<p>If we take a look at the pseudocode for insertion sort with the definition of <em>inversions</em> in mind, we will realize that more the number of inversions in an array, the more times the inner <strong>while</strong> loop will run.</p>
+
+<p>This is also in line with our findings in sub-problem <strong><em>b</em></strong>. Maximum number of inversions are possible when the array is reverse sorted.</p>
+
+<p>So, the higher the number of inversions in an array, the longer insertion sort will take to sort the array.</p>
+
+<h4 id="d-algorithm-to-calculate-inversions">D. Algorithm to Calculate Inversions</h4>
+
+<p>Although a hint to modify merge sort is already given, without that also we should think of divide-and-conquer algorithms whenever we see running time with \(\lg n\) term.</p>
+
+<p>As was done in merge sort, we need to recursively divide the array into halves and count number of inversions in the sub-arrays. This will result in \(\lg n\) steps and \(\Theta(n)\) operations in each step to count the inversions. All in all a \(\Theta(n \lg n)\) algorithm.</p>
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<p><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7476503486911097" data-ad-slot="5416910574" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+<p>The problem did not specifically asked to write pseudocode, but we can do that as well for the sake of completion.</p>
+
+<p>We can rewrite \(\textsc {Merge-Sort}\) as follows to repeatedly subdivide the array and count number of inversions in each half.</p>
+
+<div class="latex-pseudo-code">$$\textsc {Count-Inversions }(A, p, r)$$$$\begin{aligned}1&amp; \quad  \textbf {if }p\geq\,\,r \\2&amp; \quad \qquad  \textbf {return }0 \\3&amp; \quad  q=\lfloor \textsc {}(p+r)/2\rfloor  \\4&amp; \quad  left=\textsc {Count-Inversions}(A,\,p,\,q) \\5&amp; \quad  right=\textsc {Count-Inversions}(A,\,q+1,\,r) \\6&amp; \quad  inversions=left+right+\textsc {Merge}(A,\,p,\,q,\,r) \\7&amp; \quad  \textbf {return }inversions \\\end{aligned}$$</div>
+
+<p>And here is the modified \(\textsc {Merge-Sort}\) pseudocode that actually counts the number of inversion in linear time.</p>
+
+<div class="latex-pseudo-code">$$\textsc {Merge }(A, p, p, r)$$$$\begin{aligned}1&amp; \quad  n_{1}=q-p+1 \\2&amp; \quad  n_{2}=r-q \\3&amp; \quad  \text {let }L[1..n_{1]}\text { and }R[1..n_{2]}\text { be }\text { new }\text { arrays } \\4&amp; \quad  \textbf {for }i=1\textbf { to }n_{1} \\5&amp; \quad \qquad  L[i]=A[p+i-1] \\6&amp; \quad  \textbf {for }j=1\textbf { to }n_{2} \\7&amp; \quad \qquad  R[j]=A[q+j] \\8&amp; \quad  L[n_{1}+1]=\infty \\9&amp; \quad  R[n_{2}+1]=\infty \\10&amp; \quad  i=1 \\11&amp; \quad  j=1 \\12&amp; \quad  inversions=0 \\13&amp; \quad  \textbf {for }k=p\textbf { to }r \\14&amp; \quad \qquad  \textbf {if }L[i]\leq\,\,R[j] \\15&amp; \quad \qquad \qquad  A[k]=L[i] \\16&amp; \quad \qquad \qquad  i=i+1 \\17&amp; \quad \qquad  \textbf {else } \\18&amp; \quad \qquad \qquad  inversions=inversions+\textsc {}(n_{1}-i+1) \\19&amp; \quad \qquad \qquad  A[k]=R[j] \\20&amp; \quad \qquad \qquad  j=j+1 \\21&amp; \quad  \textbf {return }inversions \\\end{aligned}$$</div>
+
+
+    </div>
+    <hr class="solid"/>
+    <div class="article-footer">
+        <div class="article-footer-message">
+    <span style="font-size: 0.8em;">If you have any question or suggestion or you have found any error in this solution, please leave a comment below.</span>
+</div>
+        <div class="article-nav">
+    <div class="article-nav-left">
+        
+            <a href="/CLRS/02/P02-03/">
+                <i class="fa fa-2x fa-arrow-left"></i>
+            </a>
+            <span><strong>P 2-3</strong></span>
+        
+    </div>
+    <div class="article-nav-middle">
+        <a href="/CLRS/">
+            <strong>Solution Index</strong>
+        </a>
+    </div>
+    <div class="article-nav-right">
+        
+            <span><strong>E 3.1-1</strong></span>
+            <a href="/CLRS/03/E03.01-01/">
+                <i class="fa fa-2x fa-arrow-right"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+<script>
+     function showSupportMessage() {
+          var placeholders = document.getElementsByClassName("support-message");
+          console.log(placeholders);
+          for (var i = 0; i < placeholders.length; i++) {
+               placeholders[i].style.display = "block";
+          }
+     }
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="showSupportMessage();"></script>
+
+<!-- Display_Horizontal -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7476503486911097"
+     data-ad-slot="5416910574"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<aside class="support-message">
+     <header>Looks like you hate ads as much as I do!</header>
+     <section>
+     <p>And there is nothing wrong with that! However, the ads on this website are unobtrusive and used as section divider. It'd be great if you can whitelist this website from your adblocker and give it a try. If you don't like the experience, you can always turn it back on.</p>
+     
+     <p>Either way try to leave a message in the <a href="#disqus_thread">comments section</a> to show some support.</p>
+     </section>
+</aside>
+
+    </div>
+</article>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_observer = new IntersectionObserver(function (entries) {
+        // comments section reached
+        // start loading Disqus now
+        if (entries[0].isIntersecting) {
+            var disqus_shortname = 'atekihcan';
+            var disqus_identifier = '/CLRS/02/P02-04/';
+            var disqus_title = 'Problem 2-4';
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+
+            // once executed, stop observing
+            disqus_observer.disconnect();
+        }
+    }, {threshold: [0]});
+    disqus_observer.observe(document.querySelector("#disqus_thread"));
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+        </main>
+        <footer class="site-footer">
+    <div>
+        &copy; Atekihcan 2007 - 2023
+    </div>
+</footer>
+
+<script>
+    // Left align KaTeX for pseudo codes
+    document.addEventListener("DOMContentLoaded", function() { 
+        var docs = document.querySelectorAll('.latex-pseudo-code > span > span');
+        for (var i = 0; i < docs.length; i++) {
+            docs[i].classList.add('fleqn');
+        }
+    });
+</script>
+
+    </body>
+</html>

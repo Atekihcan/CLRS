@@ -24,7 +24,18 @@ That means:
 * Providing practical example or working code whenever possible
 * Explaining the logical thought process on how to reach the solution
 
-> ### ***2020 Edit***
+### ***2025 Edit***
+>
+> *As of 2025, I'm now intrigued by the idea of using LLMs like Claude to help complete this project:*
+>
+> * Learn "vibe coding" - using AI assistants to automate repetitive development tasks but maintain quality control.
+> * Automate the initial solution creation process while keeping the pedagogical quality that defines this project.
+> * **Important:** All solutions are still manually reviewed and edited before publishing. Claude handles the initial draft creation, but the final quality control and intuition-building explanations remain human-curated.
+> * This hybrid approach allows me to maintain the [motivation](#motivation) of building intuitive, accessible solutions while scaling the content creation process.
+> * And Claude Code Web is offering $250 in free credits as of November 2025, making this a perfect opportunity to explore AI-assisted development and get a lot of pending chapters done in bulk.
+> * Overall, you can assume anything after chapter 4 is done with the help of Claude.
+
+### ***2020 Edit***
 >
 > *As of 2020, I also plan to use this website for some selfish reasons:*
 >

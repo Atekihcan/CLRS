@@ -4,3 +4,7 @@ _site/
 
 # Any other temporary build files
 *.out
+
+*.pdf
+book/
+CLAUDE.md

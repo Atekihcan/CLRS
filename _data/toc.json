@@ -115,6 +115,16 @@
                     "name": "Recurrence Examples"
                 }
             ]
+        },
+        {
+            "name": "Probabilistic Analysis and Randomized Algorithms",
+            "sections": [
+                {
+                    "name": "The Hiring Problem",
+                    "exercise_count": 3
+                }
+            ],
+            "problems": []
         }
     ],
     "appendices": [

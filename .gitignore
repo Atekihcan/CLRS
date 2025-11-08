@@ -5,6 +5,12 @@ _site/
 # Any other temporary build files
 *.out
 
-*.pdf
-book/
-CLAUDE.md
+# Mac
+.DS_Store
+
+# Python
+*.py[czd]
+__pycache__/
+env/
+venv/
+

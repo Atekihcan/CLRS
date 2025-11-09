@@ -1,5 +1,5 @@
 :root {
-    /* Color Schemes */
+    /* Light Mode Colors (Default) */
     --accent-dark: hsl(255, 60%, 40%);
     --accent-light: hsl(255, 100%, 60%);
     --accent-lighter: hsl(255, 60%, 80%);
@@ -10,6 +10,27 @@
     --problem-body: hsl(32, 70%, 90%);
     --problem-accent: hsl(32, 70%, 50%);
     --code-body: hsl(32, 100%, 99%);
+
+    /* Semantic Colors - Light Mode */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f5;
+    --text-primary: #17252A;
+    --text-secondary: #555;
+    --text-muted: #999;
+    --border-primary: #000000;
+    --border-secondary: #ccc;
+    --border-light: #eee;
+    --selection-bg: hsl(255, 60%, 80%);
+    --selection-text: #000000;
+    --copy-btn-bg: rgba(255, 255, 255, 0.9);
+    --copy-btn-hover: #f5f5f5;
+    --copy-btn-active: #e0e0e0;
+    --copy-btn-success: #d4edda;
+    --copy-btn-success-border: #28a745;
+    --code-editor-bg: #2e3440;
+    --code-editor-text: #d8dee9;
+    --thead-bg: #999;
+
     /* Fonts */
     --head-font: 'Arial Black', 'Gadget', 'Roboto-Black', sans-serif;
     --thin-font: Arial, Helvetica, sans-serif;
@@ -17,9 +38,43 @@
     --mono-font: 'Courier New', Courier, monospace;
 }
 
+[data-theme="dark"] {
+    /* Dark Mode Color Overrides */
+    --accent-dark: hsl(255, 70%, 65%);
+    --accent-light: hsl(255, 80%, 70%);
+    --accent-lighter: hsl(255, 50%, 45%);
+    --mute-dark: #555;
+    --mute-light: #3a3a3a;
+    --main-text: #e0e0e0;
+    --light-text: #1a1a1a;
+    --problem-body: hsl(32, 30%, 20%);
+    --problem-accent: hsl(32, 60%, 55%);
+    --code-body: hsl(32, 20%, 15%);
+
+    /* Semantic Colors - Dark Mode */
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #252525;
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --text-muted: #888;
+    --border-primary: #555;
+    --border-secondary: #666;
+    --border-light: #3a3a3a;
+    --selection-bg: hsl(255, 50%, 35%);
+    --selection-text: #ffffff;
+    --copy-btn-bg: rgba(42, 42, 42, 0.9);
+    --copy-btn-hover: #3a3a3a;
+    --copy-btn-active: #252525;
+    --copy-btn-success: #1e4620;
+    --copy-btn-success-border: #28a745;
+    --code-editor-bg: #1e1e1e;
+    --code-editor-text: #d8dee9;
+    --thead-bg: #4a4a4a;
+}
+
 ::selection {
-    color: black;
-    background-color: var(--accent-lighter);
+    color: var(--selection-text);
+    background-color: var(--selection-bg);
 }
 
 
@@ -31,13 +86,17 @@
     box-sizing: border-box;
 }
 
+html {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 html,
 body {
     height: 100%;
     font-size: 18px;
-    color: var(--main-text);
+    color: var(--text-primary);
     font-family: var(--body-font);
-    background-color: var(--light-text);
+    background-color: var(--bg-primary);
 }
 
 h1,
@@ -147,6 +206,55 @@ figure {
     font-family: var(--body-font);
     text-align: center;
     border-bottom: 1px solid var(--mute-dark);
+}
+
+.site-header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.site-header .nav-left {
+    flex: 1;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.theme-toggle:hover {
+    background-color: var(--bg-secondary);
+}
+
+.theme-toggle svg {
+    color: var(--text-primary);
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover svg {
+    transform: rotate(15deg);
+}
+
+.theme-toggle .moon-icon {
+    display: none;
+}
+
+[data-theme="dark"] .theme-toggle .sun-icon {
+    display: none;
+}
+
+[data-theme="dark"] .theme-toggle .moon-icon {
+    display: inline;
 }
 
 .site-main {
@@ -350,8 +458,8 @@ h5 .katex {
 
 .latex-pseudo-code {
     position: relative;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
+    border-top: 2px solid var(--border-primary);
+    border-bottom: 2px solid var(--border-primary);
 }
 
 blockquote .latex-pseudo-code {
@@ -370,8 +478,8 @@ blockquote .latex-pseudo-code {
     top: 8px;
     right: 8px;
     padding: 6px 8px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border: 1px solid #ccc;
+    background-color: var(--copy-btn-bg);
+    border: 1px solid var(--border-secondary);
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -382,29 +490,29 @@ blockquote .latex-pseudo-code {
 }
 
 .copy-code-btn:hover {
-    background-color: #f5f5f5;
-    border-color: #999;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: var(--copy-btn-hover);
+    border-color: var(--text-muted);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .copy-code-btn:active {
-    background-color: #e0e0e0;
+    background-color: var(--copy-btn-active);
     transform: translateY(1px);
 }
 
 .copy-code-btn.copied {
-    background-color: #d4edda;
-    border-color: #28a745;
+    background-color: var(--copy-btn-success);
+    border-color: var(--copy-btn-success-border);
 }
 
 .copy-code-btn .check-icon {
     display: none;
-    color: #28a745;
+    color: var(--copy-btn-success-border);
 }
 
 .copy-code-btn .copy-icon {
     display: inline;
-    color: #333;
+    color: var(--text-primary);
 }
 
 /* Ensure button is accessible and doesn't interfere with code */
@@ -439,7 +547,7 @@ td {
 }
 
 thead {
-    background-color: #999;
+    background-color: var(--thead-bg);
 }
 
 
@@ -477,9 +585,9 @@ thead {
     border: 0px;
     padding: 10px;
     border-radius: unset;
-    border-top: 2px solid #999;
-    color: #d8dee9;
-    background-color: #2e3440;
+    border-top: 2px solid var(--text-muted);
+    color: var(--code-editor-text);
+    background-color: var(--code-editor-bg);
     font-size: 16px;
 }
 
@@ -494,15 +602,17 @@ thead {
     text-decoration: none;
     padding: 10px 0px;
     text-transform: uppercase;
-    background-color: #ccc;
+    background-color: var(--border-secondary);
+    color: var(--text-primary);
     border: unset;
     font-family: var(--head-font);
+    transition: all 0.2s ease;
 }
 
 .code-editor-button:hover {
-    color: #ccc;
-    background-color: #000;
-    box-shadow: 0 5px 5px 0 rgba(1, 1, 1, .3);
+    color: var(--bg-primary);
+    background-color: var(--text-primary);
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, .3);
 }
 
 
@@ -595,7 +705,7 @@ thead {
     display: none;
     text-align: center;
     font-size: 0.8em;
-    border: 1px dashed black;
+    border: 1px dashed var(--border-primary);
     padding: 16px;
 }
 

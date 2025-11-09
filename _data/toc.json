@@ -113,6 +113,21 @@
             "problems": [
                 {
                     "name": "Recurrence Examples"
+                },
+                {
+                    "name": "Parameter-passing Costs"
+                },
+                {
+                    "name": "More Recurrence Examples"
+                },
+                {
+                    "name": "Fibonacci Numbers"
+                },
+                {
+                    "name": "Chip Testing"
+                },
+                {
+                    "name": "Monge Arrays"
                 }
             ]
         },

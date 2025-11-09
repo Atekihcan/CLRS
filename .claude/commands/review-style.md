@@ -2,7 +2,11 @@
 description: Review existing solutions and suggest style/quality improvements
 ---
 
+{% if {2} == 0 %}
+Review solutions for **Chapter {1} Problems** and provide improvement suggestions.
+{% else %}
 Review solutions for **Chapter {1}, Section {2}** and provide improvement suggestions.
+{% endif %}
 
 ## Review Focus Areas:
 
@@ -42,7 +46,17 @@ Check this order:
 
 ## Process:
 
-1. Read all existing solutions for Chapter {1}, Section {2}
+{% if {2} == 0 %}
+1. Read all existing problem solutions for Chapter {1} (P{1:02d}-*.md)
+2. Analyze current quality and style
+3. **Report findings and suggestions**:
+   - What's working well
+   - What could be improved
+   - Specific suggestions for each problem
+   - Categorize suggestions (critical, important, nice-to-have)
+4. Check consistency across all problem solutions
+{% else %}
+1. Read all existing solutions for Chapter {1}, Section {2} (E{1:02d}.{2:02d}-*.md)
 2. Analyze current quality and style
 3. **Report findings and suggestions**:
    - What's working well
@@ -50,6 +64,7 @@ Check this order:
    - Specific suggestions for each exercise
    - Categorize suggestions (critical, important, nice-to-have)
 4. Check consistency across all solutions in the section
+{% endif %}
 
 ## Important:
 
@@ -63,7 +78,11 @@ Check this order:
 
 ## Report Format:
 
+{% if {2} == 0 %}
+For each problem, provide:
+{% else %}
 For each exercise, provide:
+{% endif %}
 - Overall assessment
 - Strengths (what's done well)
 - Improvement opportunities (categorized)
@@ -75,4 +94,8 @@ End with:
 - Priority recommendations
 - Ask: "Would you like me to implement any of these suggestions?"
 
+{% if {2} == 0 %}
+Use TodoWrite to track progress through each problem.
+{% else %}
 Use TodoWrite to track progress through each exercise.
+{% endif %}

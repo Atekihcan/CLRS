@@ -2,7 +2,11 @@
 description: Review solutions against quality checklist and report findings
 ---
 
+{% if {2} == 0 %}
+Perform a comprehensive quality check on the solutions for **Chapter {1} Problems**.
+{% else %}
 Perform a comprehensive quality check on the solutions for **Chapter {1}, Section {2}**.
+{% endif %}
 
 ## Quality Checklist:
 
@@ -27,18 +31,30 @@ Perform a comprehensive quality check on the solutions for **Chapter {1}, Sectio
 - [ ] Proper markdown formatting
 
 ### Images:
-- [ ] All exercise images exist in `assets/img/{1:02d}/`
+- [ ] All images exist in `assets/img/{1:02d}/`
 - [ ] Images are ~35-45 KB each
-- [ ] Naming convention: `{1}.{2}-N.jpg`
+{% if {2} == 0 %}
+- [ ] Naming convention for problems: `{1}-N.jpg` (no section number)
+{% else %}
+- [ ] Naming convention for exercises: `{1}.{2}-N.jpg`
+{% endif %}
 
 ### Configuration:
 - [ ] `_data/toc.json` updated correctly
+{% if {2} == 0 %}
+- [ ] Problem count is accurate
+{% else %}
 - [ ] Section name matches book exactly
 - [ ] Exercise count is accurate
+{% endif %}
 
 ## Process:
 
-1. Read all solution files for Chapter {1}, Section {2}
+{% if {2} == 0 %}
+1. Read all problem solution files for Chapter {1} (P{1:02d}-*.md)
+{% else %}
+1. Read all solution files for Chapter {1}, Section {2} (E{1:02d}.{2:02d}-*.md)
+{% endif %}
 2. Check each item in the checklist
 3. **Report all findings** - both issues and good practices
 4. Build site locally to verify: `./build.sh`

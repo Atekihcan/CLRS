@@ -524,9 +524,281 @@ blockquote .latex-pseudo-code {
     opacity: 1;
 }
 
+/* ============================================
+   Print Styles
+   ============================================ */
+
 @media print {
-    .copy-code-btn {
-        display: none;
+    /* Reset to light mode colors for print */
+    :root,
+    [data-theme="dark"] {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f5f5f5;
+        --text-primary: #000000;
+        --text-secondary: #333333;
+        --text-muted: #666666;
+        --border-primary: #000000;
+        --border-secondary: #cccccc;
+        --main-text: #000000;
+        --light-text: #ffffff;
+        --thead-bg: #e0e0e0;
+        --code-editor-bg: #f5f5f5;
+        --code-editor-text: #000000;
+    }
+
+    /* General print settings */
+    * {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+        background: white;
+        color: black;
+    }
+
+    /* Hide interactive and navigation elements */
+    .theme-toggle,
+    .copy-code-btn,
+    .site-footer,
+    .article-nav,
+    .article-footer-message,
+    .support-message,
+    #disqus_thread,
+    .disqus,
+    [id^="disqus"],
+    [class*="disqus"],
+    .comment,
+    .comments,
+    .code-editor-button,
+    .code-editor-wrapper,
+    #python-implementation,
+    #code-implementation,
+    #implementation,
+    .chapter-title:not(.ignore),
+    nav {
+        display: none !important;
+    }
+
+    /* Hide Disqus iframes and embeds */
+    iframe[src*="disqus"] {
+        display: none !important;
+    }
+
+    /* Header - simplified for print */
+    .site-header {
+        border-bottom: 2px solid #000;
+        padding-bottom: 10pt;
+        margin-bottom: 20pt;
+    }
+
+    .site-header h1 {
+        font-size: 18pt;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Page title */
+    .page-title {
+        font-size: 16pt;
+        margin-top: 10pt;
+    }
+
+    /* Headings */
+    h2 {
+        font-size: 14pt;
+        margin-top: 16pt;
+        margin-bottom: 8pt;
+        page-break-after: avoid;
+    }
+
+    h3 {
+        font-size: 13pt;
+        margin-top: 12pt;
+        margin-bottom: 6pt;
+        page-break-after: avoid;
+    }
+
+    h4 {
+        font-size: 12pt;
+        margin-top: 10pt;
+        margin-bottom: 5pt;
+        page-break-after: avoid;
+    }
+
+    h5 {
+        font-size: 11pt;
+        margin-top: 8pt;
+        margin-bottom: 4pt;
+        page-break-after: avoid;
+    }
+
+    /* Prevent orphans and widows */
+    p,
+    li {
+        orphans: 3;
+        widows: 3;
+    }
+
+    /* Links - show URLs for external links */
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
+
+    a[href^="http"]:after {
+        content: " (" attr(href) ")";
+        font-size: 90%;
+        font-style: italic;
+    }
+
+    /* Don't show URLs for internal navigation */
+    a[href^="#"]:after,
+    a[href^="/"]:after {
+        content: "";
+    }
+
+    /* Pseudo-code blocks */
+    .latex-pseudo-code {
+        border: 2px solid #000;
+        padding: 10pt;
+        page-break-inside: avoid;
+        margin: 10pt 0;
+        background: white !important;
+    }
+
+    .latex-pseudo-code .katex {
+        font-size: 11pt;
+    }
+
+    /* Code blocks */
+    pre,
+    code {
+        border: 1px solid #000;
+        page-break-inside: avoid;
+        background: #f5f5f5 !important;
+        font-size: 10pt;
+    }
+
+    .highlight {
+        page-break-inside: avoid;
+    }
+
+    /* Aside boxes */
+    aside {
+        border: 2px solid #000;
+        padding: 10pt;
+        margin: 10pt 0;
+        page-break-inside: avoid;
+        background: white !important;
+    }
+
+    aside h4 {
+        background: #e0e0e0 !important;
+        color: #000 !important;
+        border: none !important;
+        padding: 5pt;
+        margin: -10pt -10pt 10pt -10pt;
+    }
+
+    aside div {
+        background: white !important;
+        border: none !important;
+        padding: 0 !important;
+    }
+
+    /* Tables */
+    table {
+        border-collapse: collapse;
+        page-break-inside: avoid;
+        margin: 10pt 0;
+        font-size: 10pt;
+    }
+
+    th,
+    td {
+        border: 1px solid #000;
+        padding: 4pt 8pt;
+    }
+
+    thead {
+        background: #e0e0e0 !important;
+        font-weight: bold;
+    }
+
+    /* Images */
+    img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+    }
+
+    figure {
+        page-break-inside: avoid;
+    }
+
+
+    /* Blockquotes */
+    blockquote {
+        border-left: 4px solid #000;
+        padding-left: 10pt;
+        margin-left: 0;
+        page-break-inside: avoid;
+    }
+
+    /* Lists */
+    ul,
+    ol {
+        page-break-inside: avoid;
+    }
+
+    /* KaTeX math - ensure visibility */
+    .katex {
+        font-size: 11pt;
+    }
+
+    .katex-display {
+        margin: 10pt 0;
+        page-break-inside: avoid;
+    }
+
+    /* Remove all shadows and transitions */
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+
+    /* Page breaks */
+    .article-content > h2,
+    .article-content > h3 {
+        page-break-before: auto;
+    }
+
+    /* Prevent breaking after headings */
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+    }
+
+    /* Keep related content together */
+    .latex-pseudo-code,
+    pre,
+    aside,
+    table,
+    figure,
+    blockquote {
+        page-break-inside: avoid;
+    }
+
+    /* Add page header */
+    @page {
+        margin: 2cm;
+        font-weight: bold;
+        @top-center {
+            content: "CLRS Solutions";
+        }
     }
 }
 

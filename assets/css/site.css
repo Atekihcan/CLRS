@@ -209,18 +209,22 @@ figure {
 }
 
 .site-header nav {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
     padding: 5px 0;
 }
 
 .site-header .nav-left {
-    flex: 1;
+    grid-column: 2;
+    text-align: center;
+    white-space: nowrap;
 }
 
 /* Theme Toggle Button */
 .theme-toggle {
+    grid-column: 3;
+    justify-self: end;
     background: none;
     border: none;
     cursor: pointer;
@@ -721,12 +725,178 @@ thead {
 
 /* Extra small devices (phones, 600px and down) */
 
-@media only screen and (max-width: 600px) {}
+@media only screen and (max-width: 600px) {
+    /* Reduce font size for smaller screens */
+    body {
+        font-size: 16px;
+    }
+
+    /* Header optimizations */
+    .site-header h1 {
+        font-size: 1.5em;
+        padding-bottom: 15px;
+    }
+
+    .site-header nav {
+        font-size: 0.85em;
+    }
+
+    .site-header .nav-left {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Larger touch target for theme toggle */
+    .theme-toggle {
+        padding: 12px;
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    /* Article navigation - wrap layout on mobile */
+    .article-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 15px 0;
+        justify-content: space-between;
+    }
+
+    .article-nav-middle {
+        order: -1;
+        width: 100%;
+        font-size: 1.5em;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .article-nav-left,
+    .article-nav-right {
+        flex: 1;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+    }
+
+    .article-nav-left {
+        justify-content: flex-start;
+    }
+
+    .article-nav-right {
+        justify-content: flex-end;
+    }
+
+    .article-nav>div>span {
+        min-width: 50px;
+        text-align: center;
+    }
+
+    /* Pseudo-code optimizations */
+    .latex-pseudo-code {
+        font-size: 0.85em;
+    }
+
+    .copy-code-btn {
+        padding: 8px 10px;
+        min-width: 44px;
+        min-height: 44px;
+        right: 4px;
+        top: 4px;
+    }
+
+    .copy-code-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    /* Aside boxes - reduce padding */
+    aside h4 {
+        padding: 8px;
+        font-size: 0.85em;
+    }
+
+    aside div {
+        padding: 8px;
+    }
+
+    /* Tables - improve scrolling */
+    table {
+        font-size: 0.9em;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    th,
+    td {
+        padding: 4px 8px;
+    }
+
+    /* Chapter navigation - adjust grid */
+    .clrs-section {
+        grid-template-columns: 30px 1fr;
+        padding: 8px;
+        font-size: 0.95em;
+    }
+
+    .chapter-title {
+        padding-left: 8px;
+    }
+
+    .chapter-title h4 {
+        font-size: 1em;
+    }
+
+    /* Code editor - prevent overflow */
+    .code-editor-wrapper {
+        margin: 0px -10px;
+    }
+
+    .code-editor-button {
+        min-width: 80px;
+        padding: 12px 8px;
+        font-size: 0.9em;
+    }
+
+    /* Reduce vertical spacing */
+    .article-content {
+        margin-bottom: 40px;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    h3 {
+        font-size: 1.3em;
+    }
+
+    h4 {
+        font-size: 1.1em;
+    }
+
+    h5 {
+        font-size: 1em;
+    }
+}
 
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 
-@media only screen and (min-width: 600px) {}
+@media only screen and (min-width: 600px) {
+    /* Slightly larger touch targets than mobile but smaller than desktop */
+    .theme-toggle {
+        min-width: 40px;
+        min-height: 40px;
+    }
+
+    .copy-code-btn {
+        min-width: 40px;
+        min-height: 40px;
+    }
+}
 
 
 /* Medium devices (landscape tablets, 768px and up) */

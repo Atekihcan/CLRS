@@ -85,7 +85,7 @@ ol {
 
 ul li,
 ol li {
-    margin: 15px 0px 0px 30px;
+    margin: 10px 0px 0px 30px;
 }
 
 ul li:last-of-type,
@@ -265,13 +265,22 @@ hr {
     margin-bottom: 0px;
 }
 
-.article-content blockquote:first-of-type ol>li {
+.article-content blockquote:first-of-type ol {
     list-style: lower-alpha;
 }
 
 .article-content blockquote:first-of-type ol>li::marker {
     font-style: italic;
     font-weight: 700;
+}
+
+.article-content blockquote:first-of-type ol.numeric-list {
+    margin-bottom: 30px;
+}
+
+.article-content blockquote:first-of-type ol.numeric-list>li::marker {
+    font-style: normal;
+    font-weight: normal;
 }
 
 blockquote p {

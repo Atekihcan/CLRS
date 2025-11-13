@@ -137,6 +137,10 @@
                 {
                     "name": "The Hiring Problem",
                     "exercise_count": 3
+                },
+                {
+                    "name": "Indicator Random Variables",
+                    "exercise_count": 5
                 }
             ],
             "problems": []

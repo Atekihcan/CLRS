@@ -26,8 +26,8 @@ Generate complete solutions for **Chapter {1} Problems** of CLRS.
 
 3. **Images** (`assets/img/{1:02d}/`)
    - Generate social media preview images for ALL problems
-   - Use: `utils/generate_ch{1}_images.py` (create this script)
-   - Use `CreateImage(chapter={1}, section=0, problem_id=N)` for problems
+   - Use `GenerateImage.py` directly: `from utils.GenerateImage import CreateImage`
+   - Call `CreateImage(chapter={1}, section=0, problem_id=N)` for problems
    - Image naming: `{1}-N.jpg` (no section number)
    - Verify all images generated successfully
 
@@ -58,7 +58,8 @@ Generate complete solutions for **Chapter {1}, Section {2}** of CLRS.
 
 3. **Images** (`assets/img/{1:02d}/`)
    - Generate social media preview images for ALL exercises
-   - Use: `utils/generate_ch{1}_images.py` (create this script)
+   - Use `GenerateImage.py` directly: `from utils.GenerateImage import CreateImage`
+   - Call `CreateImage(chapter={1}, section={2}, problem_id=N)` for exercises
    - Verify all images generated successfully
 
 4. **Table of Contents**
@@ -70,12 +71,40 @@ Generate complete solutions for **Chapter {1}, Section {2}** of CLRS.
 
 **Structure:**
 1. Problem statement (exact quote from book)
-2. Intuitive explanation in plain language
-3. Approach/strategy
+2. **INTUITION FIRST** - Plain language explanation before any math
+3. Approach/strategy with concrete examples
 4. Detailed solution with step-by-step walkthrough
 5. Mathematical analysis (if needed)
 6. Implementation code (if applicable)
 7. Edge cases/insights in aside boxes
+
+**Writing Style:**
+- **NO subheadings like "Intuition:", "Recurrence:", "Solution:"** - let the text flow naturally
+- **NO em-dashes (—)** - use commas, parentheses, or split into separate sentences
+- Start each method/part with intuitive explanation in paragraph form
+- Use concrete analogies (e.g., dictionary, photocopying pages)
+- Explain recurrence equations after establishing intuition
+- For multi-part problems, use section headers like "### A.", "### B.", not "### Part (a):"
+
+**Mathematical Formatting:**
+- Use `\begin{align*}...\end{align*}` for multi-step equations
+- Example:
+  ```latex
+  $$\begin{align*}
+  f(n) &= \Theta(n) \\
+       &= \Theta(n^{\log_2 2}) \\
+       &= \Theta(n^{\log_b a})
+  \end{align*}$$
+  ```
+- Avoid bulleted lists with LaTeX - use aligned equations instead
+- Single-line equations can use `$$...$$`
+
+**Ads Placement:**
+- **Insert `{% include ads.html %}` for moderate to long solutions**
+- Place at natural content breaks (e.g., between major parts)
+- For 2-part problems: after Part A, possibly after Part B if content is long
+- For 3+ part problems: after every 1-2 parts depending on length
+- Reference: See `_solutions/02/P02-02.md` for good example
 
 **External Links:**
 - Optional but valuable for key concepts
@@ -86,9 +115,11 @@ Generate complete solutions for **Chapter {1}, Section {2}** of CLRS.
 - Example: `[convex hull](https://en.wikipedia.org/wiki/Convex_hull){:target="_blank"}`
 
 **Quality Standards:**
+- **Intuition before mathematics** - this is the #1 priority
 - Accessible to learners (don't assume advanced CS background)
+- Use concrete examples and analogies
 - Build progressive understanding
-- Use "Did you notice?" asides for insights
+- Use aside boxes for insights, edge cases, and "why" explanations
 - Cross-reference related exercises when relevant
 - Test all code implementations
 

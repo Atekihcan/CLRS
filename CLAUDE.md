@@ -126,12 +126,42 @@ Key settings in `_config.yml`:
 When creating solutions, follow this order:
 
 1. **Problem Statement** - Quote the exact problem from the book
-2. **Intuitive Explanation** - Explain the "why" in plain language
+2. **Intuitive Explanation** - Explain the "why" in plain language with concrete examples
 3. **Approach/Strategy** - Describe the solution approach
 4. **Detailed Solution** - Step-by-step walkthrough
 5. **Mathematical Analysis** - Formal proofs, complexity analysis (if needed)
 6. **Implementation** - Code examples (if applicable)
 7. **Edge Cases/Insights** - Use aside boxes for additional observations
+
+### Writing Style
+
+**Natural Flow - No Artificial Subheadings:**
+- **DO NOT use subheadings like "Intuition:", "Recurrence:", "Solution:"**
+- **DO NOT use em-dashes (—)** - use commas, parentheses, or split into separate sentences
+- Let the text flow naturally in paragraph form
+- Start each method/part with intuitive explanation before equations
+- Use concrete analogies (e.g., dictionary, cooking, traffic, bank etc.)
+- Section headers for multi-part problems: "### A.", "### B." (not "### Part (a):")
+
+**Mathematical Formatting:**
+- Use `\begin{align*}...\end{align*}` for multi-step equations
+- Example:
+  ```latex
+  $$\begin{align*}
+  f(n) &= \Theta(n) \\
+       &= \Theta(n^{\log_2 2}) \\
+       &= \Theta(n^{\log_b a})
+  \end{align*}$$
+  ```
+- **Avoid bulleted lists with LaTeX** - use aligned equations instead
+- Single-line equations use `$$...$$`
+
+**Ads Placement:**
+- Insert `{% include ads.html %}` for moderate to long solutions
+- Place at natural content breaks (e.g., between major parts)
+- For 2-part problems: after Part A, possibly after Part B if content is long
+- For 3+ part problems: after every 1-2 parts depending on length
+- Reference: `_solutions/02/P02-02.md` and `_solutions/04/P04-02.md` for examples
 
 ### External Links
 
@@ -179,7 +209,7 @@ description: "The exact problem statement from the book"
 ### Visual Elements
 
 **Asides (Side boxes):**
-Use for additional insights, edge cases, or interesting observations:
+Use for additional insights, edge cases, "why" explanations, or interesting observations:
 ```markdown
 {% capture note %}
 Content here...
@@ -187,9 +217,16 @@ Content here...
 {% include aside.html title='Box Title' %}
 ```
 
+Examples of good aside titles:
+- "Why did we end up with linear time?"
+- "How bad is this?"
+- "Why is Method 3 okay for merge sort?"
+- "Why This Matters"
+
 **LaTeX Math:**
 - Use `$$...$$ ` for display math (block)
 - Use `$$...$$` for inline math
+- **Use `\begin{align*}...\end{align*}` for multi-step derivations**
 - Use `\textsc{ProcedureName}` for procedure names in text
 - Use `\bm{variable}` for bold variables
 
@@ -197,8 +234,14 @@ Content here...
 
 Before considering a solution complete:
 
-- [ ] Problem statement quoted correctly
-- [ ] Intuitive explanation provided
+- [ ] Problem statement quoted correctly and completely
+- [ ] **Intuitive explanation provided FIRST** (before mathematics)
+- [ ] Concrete examples and analogies used
+- [ ] **No artificial subheadings** like "Intuition:", "Recurrence:", "Solution:"
+- [ ] **No em-dashes (—)** - use commas, parentheses, or split sentences
+- [ ] Section headers use "### A.", "### B." format (not "### Part (a):")
+- [ ] Multi-step equations use `\begin{align*}...\end{align*}`
+- [ ] **Ads inserted at natural breaks** for moderate/long solutions
 - [ ] Solution is technically correct
 - [ ] Code tested (if applicable)
 - [ ] Images generated
@@ -274,26 +317,35 @@ Generates complete solutions for a chapter/section including:
 
 **Example:** `/generate-solutions 5 2` generates solutions for Chapter 5, Section 5.2
 
-### `/quality-check {chapter} {section}`
+### `/review-solutions {chapter} {section}`
 
-Reviews solutions against the quality checklist:
-- Checks content quality, code quality, formatting
-- Verifies images and configuration
-- Runs build verification
-- Reports findings categorized by severity
-- **Asks permission before making changes**
+Performs comprehensive review of solutions for quality, correctness, and style:
 
-**Example:** `/quality-check 5 1` reviews Chapter 5, Section 5.1
+**Mechanical Checks:**
+- Files, images, and configuration
+- Build verification
+- Naming conventions
 
-### `/review-style {chapter} {section}`
+**Content Correctness:**
+- Technical accuracy
+- Code quality (if applicable)
+- Problem statements
 
-Reviews pedagogical quality and style:
-- Analyzes intuition-first approach
-- Checks content structure and accessibility
-- Reviews external links and visual elements
-- Suggests specific improvements
-- **Asks permission before implementing changes**
+**Style & Pedagogy:**
+- Intuition-first approach
+- Natural writing flow (no artificial subheadings, no em-dashes)
+- Mathematical formatting (`\begin{align*}`)
+- Ads placement
+- Asides and visual elements
 
-**Example:** `/review-style 5 1` reviews Chapter 5, Section 5.1 style
+**Reports findings categorized by:**
+- ❌ Critical (must fix): build errors, incorrect solutions
+- ⚠️ Important (should fix): missing intuition, wrong formatting
+- 💡 Suggestions (nice to have): style improvements
+- ✓ Strengths: what's working well
+
+**Asks permission before making any changes**
+
+**Example:** `/review-solutions 5 1` reviews Chapter 5, Section 5.1
 
 All commands use the TodoWrite tool to track progress and provide detailed reports.

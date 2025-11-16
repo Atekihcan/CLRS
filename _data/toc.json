@@ -42,7 +42,7 @@
                     "name": "Correctness of Bubblesort"
                 },
                 {
-                    "name": "Correctness of Horner’s Rule"
+                    "name": "Correctness of Horner\u2019s Rule"
                 },
                 {
                     "name": "Inversions"
@@ -75,7 +75,7 @@
                     "name": "Asymptotic Notation Properties"
                 },
                 {
-                    "name": "Variations of O and Ω"
+                    "name": "Variations of O and \u03a9"
                 },
                 {
                     "name": "Iterated Functions"
@@ -157,6 +157,70 @@
                 },
                 {
                     "name": "Searching an Unsorted Array"
+                }
+            ]
+        },
+        {
+            "name": "Chapter 6",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Chapter 7",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Chapter 8",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Chapter 9",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Chapter 10",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Hash Tables",
+            "sections": [
+                {
+                    "name": "Direct-address Tables",
+                    "exercise_count": 4
+                },
+                {
+                    "name": "Hash Tables",
+                    "exercise_count": 6
+                },
+                {
+                    "name": "Hash Functions",
+                    "exercise_count": 6
+                },
+                {
+                    "name": "Open Addressing",
+                    "exercise_count": 5
+                },
+                {
+                    "name": "Perfect Hashing",
+                    "exercise_count": 1
+                }
+            ],
+            "problems": [
+                {
+                    "name": "Longest-probe Bound for Hashing"
+                },
+                {
+                    "name": "Slot-size Bound for Chaining"
+                },
+                {
+                    "name": "Quadratic Probing"
+                },
+                {
+                    "name": "Hashing and Authentication"
                 }
             ]
         }

@@ -94,7 +94,7 @@ Generate complete solutions for **Chapter {1}, Section {2}** of CLRS.
 - Start each method/part with intuitive explanation in paragraph form
 - Use concrete analogies (e.g., dictionary, photocopying pages)
 - Explain recurrence equations after establishing intuition
-- For multi-part problems, use section headers like "### A.", "### B.", not "### Part (a):"
+- For multi-part problems, use section headers like "### A", "### B", not "### Part (a):"
 
 **Mathematical Formatting:**
 - Use `\begin{align*}...\end{align*}` for multi-step equations

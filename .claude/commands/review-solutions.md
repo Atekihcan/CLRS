@@ -101,7 +101,7 @@ Perform a comprehensive review of solutions for **Chapter {1}, Section {2}**.
 - [ ] **NO artificial subheadings** like "Intuition:", "Recurrence:", "Solution:"
 - [ ] **NO em-dashes (—)** - uses commas, parentheses, or split sentences
 - [ ] Text flows naturally in paragraph form
-- [ ] Section headers use "### A.", "### B." format (not "### Part (a):")
+- [ ] Section headers use "### A", "### B" format (not "### Part (a):")
 - [ ] Each method/part starts with intuitive explanation before equations
 
 **Pseudocode Formatting:**
@@ -171,7 +171,7 @@ Provide a detailed report with findings categorized by severity:
 - Em-dashes present
 - Wrong equation formatting (bullets instead of `\begin{align*}`)
 - Missing ads in long solutions
-- Wrong section headers ("Part (a)" instead of "A.")
+- Wrong section headers ("Part (a)" instead of "A")
 - Hardcoded LaTeX pseudocode in blockquotes (should use `{% capture code %}` pattern)
 - LaTeX formatting inside `{% capture code %}` blocks (should be plain text)
 - Code performance issues (execution > 0.5s, too many trials/examples)

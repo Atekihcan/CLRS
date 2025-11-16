@@ -145,6 +145,10 @@
                 {
                     "name": "Randomized Algorithms",
                     "exercise_count": 7
+                },
+                {
+                    "name": "Probabilistic Analysis and Further Uses of Indicator Random Variables",
+                    "exercise_count": 7
                 }
             ],
             "problems": []

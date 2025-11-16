@@ -159,6 +159,42 @@
                     "name": "Searching an Unsorted Array"
                 }
             ]
+        },
+        {
+            "name": "Heapsort",
+            "sections": [
+                {
+                    "name": "Heaps",
+                    "exercise_count": 7
+                },
+                {
+                    "name": "Maintaining the Heap Property",
+                    "exercise_count": 6
+                },
+                {
+                    "name": "Building a Heap",
+                    "exercise_count": 3
+                },
+                {
+                    "name": "The Heapsort Algorithm",
+                    "exercise_count": 5
+                },
+                {
+                    "name": "Priority Queues",
+                    "exercise_count": 9
+                }
+            ],
+            "problems": [
+                {
+                    "name": "Building a Heap using Insertion"
+                },
+                {
+                    "name": "Analysis of d-ary Heaps"
+                },
+                {
+                    "name": "Young Tableaus"
+                }
+            ]
         }
     ],
     "appendices": [

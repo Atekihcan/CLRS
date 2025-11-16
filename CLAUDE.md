@@ -205,6 +205,19 @@ description: "The exact problem statement from the book"
 - Use CLRS convention (small caps for procedure names)
 - Use `{% capture code %}...{% endcapture %}` and `{% include clrs_code.html %}`
 - Keep it readable and close to the book's style
+- **Code blocks must use plain text - NO LaTeX formatting:**
+  - ✓ `n = A.length` (correct)
+  - ✗ `$$n = A.\textit{length}$$` (wrong - no LaTeX)
+  - ✓ `Random(1, n)` (correct)
+  - ✗ `$$\textsc{Random}$$(1, $$n$$)` (wrong - no LaTeX)
+  - ✓ `if x ≠ y` or `if x != y` (correct - use Unicode or !=)
+  - ✗ `**if** $$x \ne y$$` (wrong - no LaTeX or bold)
+- **When pseudocode appears in the problem statement (blockquote):**
+  - Define code BEFORE the blockquote: `{% capture code %}...{% endcapture %}`
+  - Include inside blockquote: `> {%- include clrs_code.html title="ProcedureName(A)" -%}`
+  - Use hyphens (`{%-` and `-%}`) to suppress whitespace
+  - **DO NOT hardcode LaTeX pseudocode inside blockquotes** (e.g., `> $$\textsc{Procedure}$$($$A$$)`)
+  - Example: See `_solutions/02/P02-02.md` for correct pattern
 
 ### Visual Elements
 

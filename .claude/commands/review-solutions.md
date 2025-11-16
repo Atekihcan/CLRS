@@ -79,6 +79,14 @@ Perform a comprehensive review of solutions for **Chapter {1}, Section {2}**.
 - [ ] Comments explain key steps
 - [ ] Code properly referenced in solution markdown
 - [ ] Practical examples, not just algorithm skeleton
+- [ ] **Code performance is optimized for browser execution:**
+  - [ ] Default execution completes in < 0.5 seconds (no browser freeze)
+  - [ ] Simulation trials: 500-1000 (not 10,000+)
+  - [ ] Test sizes: 2-3 examples (not 5-6)
+  - [ ] Individual examples: 3-5 iterations (not 10+)
+- [ ] **No orphaned code files** - all .py files in `_includes/code/` are referenced in solution markdown
+- [ ] Code files only created when they enhance understanding (simulations, randomized algorithms)
+- [ ] Code integrated at end of solution with `### Interactive Simulation` section
 
 ### 3. Style & Pedagogy
 
@@ -95,6 +103,17 @@ Perform a comprehensive review of solutions for **Chapter {1}, Section {2}**.
 - [ ] Text flows naturally in paragraph form
 - [ ] Section headers use "### A.", "### B." format (not "### Part (a):")
 - [ ] Each method/part starts with intuitive explanation before equations
+
+**Pseudocode Formatting:**
+- [ ] **Code blocks use plain text - NO LaTeX inside `{% capture code %}`:**
+  - [ ] No `$$...$$`, `\textsc`, `\textit`, `**bold**` inside code blocks
+  - [ ] Use plain text: `n = A.length`, `Random(1, n)`, `if x ≠ y`
+  - [ ] Reference: Check code blocks don't have LaTeX formatting
+- [ ] **Pseudocode in blockquotes uses proper pattern:**
+  - [ ] Code defined BEFORE blockquote with `{% capture code %}`
+  - [ ] Included inside blockquote with `{%- include clrs_code.html title="..." -%}`
+  - [ ] **NO hardcoded LaTeX pseudocode** like `> $$\textsc{Procedure}$$($$A$$)` with line numbers
+  - [ ] Reference: `_solutions/02/P02-02.md` for correct pattern
 
 **Mathematical Formatting:**
 - [ ] **Multi-step equations use `\begin{align*}...\end{align*}`** (not bulleted lists)
@@ -153,6 +172,11 @@ Provide a detailed report with findings categorized by severity:
 - Wrong equation formatting (bullets instead of `\begin{align*}`)
 - Missing ads in long solutions
 - Wrong section headers ("Part (a)" instead of "A.")
+- Hardcoded LaTeX pseudocode in blockquotes (should use `{% capture code %}` pattern)
+- LaTeX formatting inside `{% capture code %}` blocks (should be plain text)
+- Code performance issues (execution > 0.5s, too many trials/examples)
+- Orphaned code files not referenced in markdown
+- Code created for problems that don't benefit from simulation
 
 ### 💡 Suggestions (Nice to Have)
 - Could use better analogies

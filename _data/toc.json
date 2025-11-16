@@ -171,9 +171,48 @@
             "problems": []
         },
         {
-            "name": "Placeholder Chapter 8",
-            "sections": [],
-            "problems": []
+            "name": "Sorting in Linear Time",
+            "sections": [
+                {
+                    "name": "Lower bounds for sorting",
+                    "exercise_count": 4
+                },
+                {
+                    "name": "Counting sort",
+                    "exercise_count": 4
+                },
+                {
+                    "name": "Radix sort",
+                    "exercise_count": 5
+                },
+                {
+                    "name": "Bucket sort",
+                    "exercise_count": 5
+                }
+            ],
+            "problems": [
+                {
+                    "name": "Probabilistic lower bounds on comparison sorting"
+                },
+                {
+                    "name": "Sorting in place in linear time"
+                },
+                {
+                    "name": "Sorting variable-length items"
+                },
+                {
+                    "name": "Water jugs"
+                },
+                {
+                    "name": "Average sorting"
+                },
+                {
+                    "name": "Lower bound on merging sorted lists"
+                },
+                {
+                    "name": "The 0-1 sorting lemma and columnsort"
+                }
+            ]
         },
         {
             "name": "Placeholder Chapter 9",
@@ -181,9 +220,36 @@
             "problems": []
         },
         {
-            "name": "Placeholder Chapter 10",
-            "sections": [],
-            "problems": []
+            "name": "Elementary Data Structures",
+            "sections": [
+                {
+                    "name": "Stacks and Queues",
+                    "exercise_count": 7
+                },
+                {
+                    "name": "Linked Lists",
+                    "exercise_count": 8
+                },
+                {
+                    "name": "Implementing Pointers and Objects",
+                    "exercise_count": 5
+                },
+                {
+                    "name": "Representing Rooted Trees",
+                    "exercise_count": 6
+                }
+            ],
+            "problems": [
+                {
+                    "name": "Comparisons Among Lists"
+                },
+                {
+                    "name": "Mergeable Heaps Using Linked Lists"
+                },
+                {
+                    "name": "Searching a Sorted Compact List"
+                }
+            ]
         },
         {
             "name": "Placeholder Chapter 11",

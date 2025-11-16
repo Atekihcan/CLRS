@@ -16,7 +16,7 @@ def count_inversions(arr):
 
     return inversions
 
-def simulate_expected_inversions(n, num_trials=1000):
+def simulate_expected_inversions(n, num_trials=500):
     """
     Generate random permutations and compute average inversions.
 
@@ -38,15 +38,15 @@ def simulate_expected_inversions(n, num_trials=1000):
 
     return total_inversions / num_trials
 
-# Test with different array sizes
+# Test with small array sizes
 print("Expected number of inversions in random permutations")
 print("=" * 60)
 
-for size in [5, 10, 20, 50, 100]:
+for size in [5, 10]:
     empirical_average = simulate_expected_inversions(size)
     theoretical_expected = size * (size - 1) / 4
 
-    print(f"n = {size:3d} elements")
+    print(f"n = {size:2d} elements")
     print(f"  Theoretical: {theoretical_expected:.2f}")
     print(f"  Empirical:   {empirical_average:.2f}")
     print(f"  Difference:  {abs(empirical_average - theoretical_expected):.2f}")
@@ -54,20 +54,17 @@ for size in [5, 10, 20, 50, 100]:
 
 # Examples with specific arrays
 print("=" * 60)
-print("Examples with n = 5:")
+print("Specific examples with n = 5:")
 print()
 
 # Sorted array (no inversions)
 sorted_arr = [1, 2, 3, 4, 5]
-print(f"Sorted array {sorted_arr}")
-print(f"  Inversions: {count_inversions(sorted_arr)}")
-print()
+print(f"Sorted:  {sorted_arr} -> {count_inversions(sorted_arr)} inversions")
 
 # Reverse sorted (maximum inversions)
 reverse_arr = [5, 4, 3, 2, 1]
-max_inversions = 5 * 4 // 2  # n(n-1)/2
-print(f"Reverse array {reverse_arr}")
-print(f"  Inversions: {count_inversions(reverse_arr)} (maximum = {max_inversions})")
+max_inv = 5 * 4 // 2
+print(f"Reverse: {reverse_arr} -> {count_inversions(reverse_arr)} inversions (max = {max_inv})")
 print()
 
 # Random examples
@@ -78,4 +75,4 @@ for i in range(3):
     inv_count = count_inversions(random_arr)
     print(f"  {random_arr}: {inv_count} inversions")
 
-print(f"\nExpected inversions for n=5: {5 * 4 / 4:.2f}")
+print(f"\nExpected for n=5: {5 * 4 / 4:.1f} inversions")

@@ -18,7 +18,7 @@ def hat_check_simulation(n):
 
     return matches
 
-def simulate_expected_matches(n, num_trials=10000):
+def simulate_expected_matches(n, num_trials=1000):
     """
     Simulate the hat-check problem many times and compute average matches.
 
@@ -36,11 +36,11 @@ def simulate_expected_matches(n, num_trials=10000):
 print("Hat-Check Problem: Expected number of matches")
 print("=" * 60)
 
-for num_customers in [3, 5, 10, 50, 100, 1000]:
+for num_customers in [5, 10, 100]:
     empirical_average = simulate_expected_matches(num_customers)
     theoretical_expected = 1.0  # Always 1!
 
-    print(f"n = {num_customers:4d} customers")
+    print(f"n = {num_customers:3d} customers")
     print(f"  Theoretical: {theoretical_expected:.4f}")
     print(f"  Empirical:   {empirical_average:.4f}")
     print(f"  Difference:  {abs(empirical_average - theoretical_expected):.4f}")
@@ -48,11 +48,10 @@ for num_customers in [3, 5, 10, 50, 100, 1000]:
 
 # Detailed example
 print("=" * 60)
-print("Detailed example with n = 10 customers:")
-print("Running 10 simulations:")
+print("Five individual simulations with n = 10:")
 
-for trial in range(10):
+for trial in range(5):
     matches = hat_check_simulation(10)
-    print(f"  Trial {trial + 1:2d}: {matches} customer(s) got their own hat")
+    print(f"  Trial {trial + 1}: {matches} customer(s) got their own hat")
 
 print(f"\nTheoretical expected value: 1 (regardless of n!)")

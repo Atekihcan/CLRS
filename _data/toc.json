@@ -159,6 +159,71 @@
                     "name": "Searching an Unsorted Array"
                 }
             ]
+        },
+        {
+            "name": "Placeholder Chapter 6",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Placeholder Chapter 7",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Placeholder Chapter 8",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Placeholder Chapter 9",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Placeholder Chapter 10",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Placeholder Chapter 11",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Placeholder Chapter 12",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Placeholder Chapter 13",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Augmenting Data Structures",
+            "sections": [
+                {
+                    "name": "Dynamic Order Statistics",
+                    "exercise_count": 8
+                },
+                {
+                    "name": "How to Augment a Data Structure",
+                    "exercise_count": 4
+                },
+                {
+                    "name": "Interval Trees",
+                    "exercise_count": 7
+                }
+            ],
+            "problems": [
+                {
+                    "name": "Point of Maximum Overlap"
+                },
+                {
+                    "name": "Josephus Permutation"
+                }
+            ]
         }
     ],
     "appendices": [

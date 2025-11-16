@@ -31,8 +31,8 @@ Generate complete solutions for **Chapter {1} Problems** of CLRS.
 
 3. **Images** (`assets/img/{1:02d}/`)
    - Generate social media preview images for ALL problems
-   - Use `GenerateImage.py` directly: `from utils.GenerateImage import CreateImage`
-   - Call `CreateImage(chapter={1}, section=0, problem_id=N)` for problems
+   - Use command-line interface: `python3 utils/GenerateImage.py {1} 0 N`
+   - Arguments: chapter, section (0 for problems), problem_id
    - Image naming: `{1}-N.jpg` (no section number)
    - Verify all images generated successfully
 
@@ -68,8 +68,8 @@ Generate complete solutions for **Chapter {1}, Section {2}** of CLRS.
 
 3. **Images** (`assets/img/{1:02d}/`)
    - Generate social media preview images for ALL exercises
-   - Use `GenerateImage.py` directly: `from utils.GenerateImage import CreateImage`
-   - Call `CreateImage(chapter={1}, section={2}, problem_id=N)` for exercises
+   - Use command-line interface: `python3 utils/GenerateImage.py {1} {2} N`
+   - Arguments: chapter, section, problem_id
    - Verify all images generated successfully
 
 4. **Table of Contents**

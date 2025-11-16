@@ -33,7 +33,7 @@ Perform a comprehensive review of solutions for **Chapter {1}, Section {2}**.
 - [ ] Naming: `E{1:02d}.{2:02d}-NN.md` for exercises
 - [ ] Images exist: `assets/img/{1:02d}/{1}.{2}-N.jpg`
 {% endif %}
-- [ ] Images are ~35-45 KB each
+- [ ] Images are ~30-75 KB each
 - [ ] `_data/toc.json` updated correctly
 {% if {2} == 0 %}
 - [ ] Problem count matches actual number of solutions

@@ -7,7 +7,17 @@ from the CLRS (Introduction to Algorithms) textbook. Each image includes:
 - The exercise/problem identifier
 - The section/problem title from toc.json
 
-Usage:
+Command-Line Usage:
+    # Generate an exercise image
+    python3 utils/GenerateImage.py 5 1 2
+
+    # Generate a problem image (use 0 for section)
+    python3 utils/GenerateImage.py 5 0 3
+
+    # Generate appendix exercise image
+    python3 utils/GenerateImage.py A 1 1
+
+Python API Usage:
     from GenerateImage import CreateImage, CreateImageDirect
 
     # Generate an exercise image
@@ -25,8 +35,10 @@ convention: {chapter}.{section}-{problem_id}.jpg for exercises, or
 {chapter}-{problem_id}.jpg for problems.
 """
 
+import argparse
 import json
 import os
+import sys
 from typing import Any, Union
 from PIL import Image, ImageDraw, ImageFont
 
@@ -116,7 +128,7 @@ def _draw_image_template(
 
     # "CLRS SOLUTIONS" text
     draw.text(
-        (center_x, HEADER_Y + HEADER_HEIGHT/2),
+        (center_x, HEADER_Y + HEADER_HEIGHT - 20),
         "CLRS SOLUTIONS",
         font=arial_black_40,
         fill=COLOR_WHITE,
@@ -245,3 +257,71 @@ def CreateImage(chapter: Union[int, str], section: int, problem_id: int) -> None
     # Save image
     output_path = os.path.join(image_folder, image_filename)
     img.save(output_path)
+
+
+def main() -> int:
+    """
+    Command-line interface for generating CLRS solution images.
+
+    Returns:
+        Exit code (0 for success, 1 for error)
+    """
+    parser = argparse.ArgumentParser(
+        description="Generate social media preview images for CLRS solutions",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  # Generate image for Exercise 5.1-2
+  python GenerateImage.py 5 1 2
+
+  # Generate image for Problem 5-3 (use 0 for section)
+  python GenerateImage.py 5 0 3
+
+  # Generate image for Appendix A Exercise A.1-1
+  python GenerateImage.py A 1 1
+        """
+    )
+
+    parser.add_argument(
+        "chapter",
+        help="Chapter number (integer) or appendix letter (e.g., 'A', 'B')"
+    )
+    parser.add_argument(
+        "section",
+        type=int,
+        help="Section number (use 0 for chapter problems, >0 for section exercises)"
+    )
+    parser.add_argument(
+        "problem_id",
+        type=int,
+        help="Exercise/problem number within the section"
+    )
+
+    args = parser.parse_args()
+
+    # Convert chapter to int if it's a digit, otherwise keep as string (appendix)
+    try:
+        chapter = int(args.chapter)
+    except ValueError:
+        chapter = args.chapter.upper()
+        if not chapter.isalpha() or len(chapter) != 1:
+            print(f"Error: Chapter must be a number or a single letter (A-Z)", file=sys.stderr)
+            return 1
+
+    try:
+        CreateImage(chapter, args.section, args.problem_id)
+
+        # Print success message
+        if args.section > 0:
+            print(f"✓ Generated image for Exercise {chapter}.{args.section}-{args.problem_id}")
+        else:
+            print(f"✓ Generated image for Problem {chapter}-{args.problem_id}")
+
+        return 0
+    except Exception as e:
+        print(f"Error: {e}", file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

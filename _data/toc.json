@@ -42,7 +42,7 @@
                     "name": "Correctness of Bubblesort"
                 },
                 {
-                    "name": "Correctness of Horner’s Rule"
+                    "name": "Correctness of Horner\u2019s Rule"
                 },
                 {
                     "name": "Inversions"
@@ -75,7 +75,7 @@
                     "name": "Asymptotic Notation Properties"
                 },
                 {
-                    "name": "Variations of O and Ω"
+                    "name": "Variations of O and \u03a9"
                 },
                 {
                     "name": "Iterated Functions"
@@ -157,6 +157,234 @@
                 },
                 {
                     "name": "Searching an Unsorted Array"
+                }
+            ]
+        },
+        {
+            "name": "Heapsort",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Quicksort",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Sorting in Linear Time",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Medians and Order Statistics",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Elementary Data Structures",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Hash Tables",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Binary Search Trees",
+            "sections": [
+                {
+                    "name": "What is a binary search tree?",
+                    "exercise_count": 5
+                },
+                {
+                    "name": "Querying a binary search tree",
+                    "exercise_count": 9
+                },
+                {
+                    "name": "Insertion and deletion",
+                    "exercise_count": 6
+                },
+                {
+                    "name": "Randomly built binary search trees",
+                    "exercise_count": 5
+                }
+            ],
+            "problems": [
+                {
+                    "name": "Binary search trees with equal keys"
+                },
+                {
+                    "name": "Radix trees"
+                },
+                {
+                    "name": "Average node depth in a randomly built binary search tree"
+                },
+                {
+                    "name": "Number of different binary trees"
+                }
+            ]
+        },
+        {
+            "name": "Red-Black Trees",
+            "sections": [
+                {
+                    "name": "Properties of red-black trees",
+                    "exercise_count": 7
+                },
+                {
+                    "name": "Rotations",
+                    "exercise_count": 5
+                },
+                {
+                    "name": "Insertion",
+                    "exercise_count": 6
+                },
+                {
+                    "name": "Deletion",
+                    "exercise_count": 7
+                }
+            ],
+            "problems": [
+                {
+                    "name": "Persistent dynamic sets"
+                },
+                {
+                    "name": "Join operation on red-black trees"
+                },
+                {
+                    "name": "AVL trees"
+                },
+                {
+                    "name": "Treaps"
+                }
+            ]
+        },
+        {
+            "name": "Placeholder Chapter 6",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Placeholder Chapter 7",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Placeholder Chapter 8",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Placeholder Chapter 9",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Placeholder Chapter 10",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Hash Tables",
+            "sections": [
+                {
+                    "name": "Direct-address tables",
+                    "exercise_count": 4
+                },
+                {
+                    "name": "Hash tables",
+                    "exercise_count": 6
+                },
+                {
+                    "name": "Hash functions",
+                    "exercise_count": 6
+                },
+                {
+                    "name": "Open addressing",
+                    "exercise_count": 5
+                },
+                {
+                    "name": "Perfect hashing",
+                    "exercise_count": 1
+                }
+            ],
+            "problems": [
+                {
+                    "name": "Longest-probe bound for hashing"
+                },
+                {
+                    "name": "Slot-size bound for chaining"
+                },
+                {
+                    "name": "Quadratic probing"
+                },
+                {
+                    "name": "Hashing and authentication"
+                }
+            ]
+        },
+        {
+            "name": "Heapsort",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Quicksort",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Sorting in Linear Time",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Medians and Order Statistics",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Elementary Data Structures",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Hash Tables",
+            "sections": [
+                {
+                    "name": "Direct-address tables",
+                    "exercise_count": 4
+                },
+                {
+                    "name": "Hash tables",
+                    "exercise_count": 6
+                },
+                {
+                    "name": "Hash functions",
+                    "exercise_count": 6
+                },
+                {
+                    "name": "Open addressing",
+                    "exercise_count": 5
+                },
+                {
+                    "name": "Perfect hashing",
+                    "exercise_count": 1
+                }
+            ],
+            "problems": [
+                {
+                    "name": "Longest-probe bound for hashing"
+                },
+                {
+                    "name": "Slot-size bound for chaining"
+                },
+                {
+                    "name": "Quadratic probing"
+                },
+                {
+                    "name": "Hashing and authentication"
                 }
             ]
         }

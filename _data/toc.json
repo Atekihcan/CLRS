@@ -159,6 +159,52 @@
                     "name": "Searching an Unsorted Array"
                 }
             ]
+        },
+        {
+            "name": "Heapsort",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Quicksort",
+            "sections": [
+                {
+                    "name": "Description of Quicksort",
+                    "exercise_count": 4
+                },
+                {
+                    "name": "Performance of Quicksort",
+                    "exercise_count": 6
+                },
+                {
+                    "name": "A Randomized Version of Quicksort",
+                    "exercise_count": 2
+                },
+                {
+                    "name": "Analysis of Quicksort",
+                    "exercise_count": 6
+                }
+            ],
+            "problems": [
+                {
+                    "name": "Hoare Partition Correctness"
+                },
+                {
+                    "name": "Quicksort with Equal Element Values"
+                },
+                {
+                    "name": "Alternative Quicksort Analysis"
+                },
+                {
+                    "name": "Stack Depth for Quicksort"
+                },
+                {
+                    "name": "Median-of-3 Partition"
+                },
+                {
+                    "name": "Fuzzy Sorting of Intervals"
+                }
+            ]
         }
     ],
     "appendices": [

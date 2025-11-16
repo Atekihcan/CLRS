@@ -104,6 +104,16 @@ Perform a comprehensive review of solutions for **Chapter {1}, Section {2}**.
 - [ ] Section headers use "### A", "### B" format (not "### Part (a):")
 - [ ] Each method/part starts with intuitive explanation before equations
 
+**Problem Statement Formatting:**
+- [ ] **Multi-part problems in blockquotes use numbered lists (1., 2., 3...)**
+- [ ] **NO bold letters** (**a.**, **b.**, **c.**) in problem statements
+- [ ] Compare with reference: `_solutions/05/P05-01.md`
+
+**Algorithm/Procedure Names:**
+- [ ] **Algorithm names use $$\textsc{ProcedureName}$$ format EVERYWHERE**
+- [ ] **NO ALL CAPS** for algorithm names (problem statements AND solution text)
+- [ ] Applies to both blockquotes and regular text - book uses small caps throughout
+
 **Pseudocode Formatting:**
 - [ ] **Code blocks use plain text - NO LaTeX inside `{% capture code %}`:**
   - [ ] No `$$...$$`, `\textsc`, `\textit`, `**bold**` inside code blocks
@@ -172,6 +182,8 @@ Provide a detailed report with findings categorized by severity:
 - Wrong equation formatting (bullets instead of `\begin{align*}`)
 - Missing ads in long solutions
 - Wrong section headers ("Part (a)" instead of "A")
+- **Problem statements using bold letters (**a.**, **b.**) instead of numbered lists (1., 2.)**
+- **Algorithm names in ALL CAPS instead of $$\textsc{...}$$ format (applies to both problem statements and solution text)**
 - Hardcoded LaTeX pseudocode in blockquotes (should use `{% capture code %}` pattern)
 - LaTeX formatting inside `{% capture code %}` blocks (should be plain text)
 - Code performance issues (execution > 0.5s, too many trials/examples)

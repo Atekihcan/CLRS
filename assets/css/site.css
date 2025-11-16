@@ -395,6 +395,12 @@ hr {
     font-weight: normal;
 }
 
+.article-content blockquote ol li .katex-display,
+.article-content blockquote ol li .katex-display>.katex,
+.article-content blockquote ol li .katex-display>.katex>.katex-html {
+    display: inline;
+}
+
 blockquote p {
     margin: 5px auto;
 }

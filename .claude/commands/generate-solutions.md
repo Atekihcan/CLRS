@@ -96,6 +96,29 @@ Generate complete solutions for **Chapter {1}, Section {2}** of CLRS.
 - Explain recurrence equations after establishing intuition
 - For multi-part problems, use section headers like "### A", "### B", not "### Part (a):"
 
+**Problem Statement Formatting:**
+- **Use numbered lists (1., 2., 3...) for multi-part problems in blockquotes**
+- **DO NOT use bold letters** like **a.**, **b.**, **c.** in problem statements
+- Example (correct):
+  ```markdown
+  > 1. Write pseudocode for...
+  > 2. Suppose that there is...
+  ```
+- Example (incorrect):
+  ```markdown
+  > **a.** Write pseudocode for...
+  > **b.** Suppose that there is...
+  ```
+
+**Algorithm/Procedure Names:**
+- **ALWAYS use $$\textsc{ProcedureName}$$ format** for algorithm/procedure names
+- **This applies EVERYWHERE:** problem statements (blockquotes) and solution text
+- **DO NOT use ALL CAPS** - the book uses small caps formatting ($$\textsc{...}$$)
+- Example (correct): "$$\textsc{Random-Search}$$ has two major drawbacks..."
+- Example (incorrect): "RANDOM-SEARCH has two major drawbacks..."
+- Example (correct in blockquote): "> What is the running time of $$\textsc{Merge-Sort}$$?"
+- Example (incorrect in blockquote): "> What is the running time of MERGE-SORT?"
+
 **Mathematical Formatting:**
 - Use `\begin{align*}...\end{align*}` for multi-step equations
 - Example:

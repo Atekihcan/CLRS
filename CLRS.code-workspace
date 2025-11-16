@@ -1,7 +1,14 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	]
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "markdownlint.config": {
+      "MD033": {
+        "allowed_elements": ["ol", "li", "p", "div"]
+      }
+    }
+  }
 }

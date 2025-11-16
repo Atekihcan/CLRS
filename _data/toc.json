@@ -151,7 +151,14 @@
                     "exercise_count": 7
                 }
             ],
-            "problems": []
+            "problems": [
+                {
+                    "name": "Probabilistic Counting"
+                },
+                {
+                    "name": "Searching an Unsorted Array"
+                }
+            ]
         }
     ],
     "appendices": [

@@ -2,6 +2,7 @@
 _site/
 .jekyll-cache/
 bin/
+.bundle/
 
 # Any other temporary build files
 *.out

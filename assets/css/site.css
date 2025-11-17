@@ -30,6 +30,7 @@
     --code-editor-bg: #2e3440;
     --code-editor-text: #d8dee9;
     --thead-bg: #999;
+    --img-inversion: 0%;
 
     /* Fonts */
     --head-font: 'Arial Black', 'Gadget', 'Roboto-Black', sans-serif;
@@ -70,6 +71,7 @@
     --code-editor-bg: #1e1e1e;
     --code-editor-text: #d8dee9;
     --thead-bg: #4a4a4a;
+    --img-inversion: 90%;
 }
 
 ::selection {
@@ -172,6 +174,7 @@ img {
     display: block;
     max-width: 100%;
     margin: 0px auto;
+    filter: invert(var(--img-inversion));
 }
 
 img.emoji {
@@ -1203,6 +1206,9 @@ thead {
     .problem-list>span {
         min-width: 100px;
     }
+    img {
+        max-width: 600px;
+    }
 }
 
 
@@ -1216,6 +1222,9 @@ thead {
     }
     .clrs-toc {
         width: calc(992px - 40px);
+    }
+    img {
+        max-width: 600px;
     }
 }
 

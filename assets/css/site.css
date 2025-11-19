@@ -9,7 +9,8 @@
     --light-text: #fff;
     --problem-body: hsl(32, 70%, 90%);
     --problem-accent: hsl(32, 70%, 50%);
-    --code-body: hsl(32, 100%, 99%);
+    --code-bg: #e0e0e0;
+    --code-body: #c7254e;
 
     /* Semantic Colors - Light Mode */
     --bg-primary: #ffffff;
@@ -50,7 +51,8 @@
     --light-text: #1a1a1a;
     --problem-body: hsl(32, 30%, 20%);
     --problem-accent: hsl(32, 60%, 55%);
-    --code-body: hsl(32, 20%, 15%);
+    --code-bg: #333333;
+    --code-body: #ffc107;
 
     /* Semantic Colors - Dark Mode */
     --bg-primary: #1a1a1a;
@@ -487,6 +489,15 @@ h5 .katex {
 blockquote .latex-pseudo-code {
     border-top: none;
     border-bottom: none;
+}
+
+code {
+    font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+    font-size: 0.7em;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    color: var(--code-body);
+    background-color: var(--code-bg);
 }
 
 .latex-pseudo-code .katex-display {

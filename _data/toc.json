@@ -183,17 +183,6 @@
                     "name": "Priority Queues",
                     "exercise_count": 9
                 }
-            ],
-            "problems": [
-                {
-                    "name": "Building a Heap using Insertion"
-                },
-                {
-                    "name": "Analysis of d-ary Heaps"
-                },
-                {
-                    "name": "Young Tableaus"
-                }
             ]
         }
     ],

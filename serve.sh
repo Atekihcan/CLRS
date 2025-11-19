@@ -11,4 +11,4 @@ echo ""
 echo "Press Ctrl+C to stop the server"
 echo ""
 
-bundle exec jekyll serve --livereload
+bundle exec jekyll serve --livereload --host 0.0.0.0

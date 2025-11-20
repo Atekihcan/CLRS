@@ -16,3 +16,5 @@ __pycache__/
 env/
 venv/
 
+# Latex
+utils/latex/_out/

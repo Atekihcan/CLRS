@@ -6,5 +6,6 @@
         "katex",
         "linenos",
         "pseudocode"
-    ]
+    ],
+    "latex-workshop.latex.outDir": "_out"
 }

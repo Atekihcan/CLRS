@@ -1,0 +1,166 @@
+\documentclass[tikz,border=5pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+
+\begin{document}
+
+% Common styles
+\tikzset{
+  level distance=12mm,
+  level 1/.style={sibling distance=64mm},
+  level 2/.style={sibling distance=32mm},
+  level 3/.style={sibling distance=16mm},
+  level 4/.style={sibling distance=8mm},
+  treenode/.style={
+    draw,
+    circle,
+    minimum size=8mm,
+    inner sep=0pt,
+    fill=gray!20,
+    font=\normalsize
+  },
+  orphan/.style={
+    edge from parent/.style={draw=none}
+  },
+  orphannode/.style={
+    treenode,
+    fill=gray!70,
+    font=\bfseries
+  },
+  every label/.style={font=\scriptsize}
+}
+
+% ========================================
+% Image 1: Initial heap
+% A = ⟨15, 13, 9, 5, 12, 8, 7, 4, 0, 6, 2, 1⟩
+% ========================================
+\begin{tikzpicture}
+\node[treenode,label=above:1]{15}
+  child { node[treenode,label=above:2]{13}
+    child { node[treenode,label=above:4]{5}
+      child { node[treenode,label=above:8]{4}}
+      child { node[treenode,label=above:9]{0}}
+    }
+    child { node[treenode,label=above:5]{12}
+      child { node[treenode,label=above:10]{6}}
+      child { node[treenode,label=above:11]{2}}
+    }
+  }
+  child { node[treenode,label=above:3]{9}
+    child { node[treenode,label=above:6]{8}
+      child { node[treenode,label=above:12]{1}}
+      child[missing]
+    }
+    child { node[treenode,label=above:7]{7}}
+  };
+\end{tikzpicture}
+
+\newpage
+
+% ========================================
+% Image 2: After moving last element to root
+% A = ⟨1, 13, 9, 5, 12, 8, 7, 4, 0, 6, 2⟩ (heap-size = 11)
+% ========================================
+\begin{tikzpicture}
+\node[treenode,label=above:1,fill=gray!60]{1}
+  child { node[treenode,label=above:2]{13}
+    child { node[treenode,label=above:4]{5}
+      child { node[treenode,label=above:8]{4}}
+      child { node[treenode,label=above:9]{0}}
+    }
+    child { node[treenode,label=above:5]{12}
+      child { node[treenode,label=above:10]{6}}
+      child { node[treenode,label=above:11]{2}}
+    }
+  }
+  child { node[treenode,label=above:3]{9}
+    child { node[treenode,label=above:6]{8}
+      child[orphan] { node[orphannode]{15}}
+      child[missing]
+    }
+    child { node[treenode,label=above:7]{7}}
+  };
+\end{tikzpicture}
+
+\newpage
+
+% ========================================
+% Image 3: After swapping 1 with 13
+% A = ⟨13, 1, 9, 5, 12, 8, 7, 4, 0, 6, 2⟩
+% ========================================
+\begin{tikzpicture}
+\node[treenode,label=above:1]{13}
+  child { node[treenode,label=above:2,fill=gray!60]{1}
+    child { node[treenode,label=above:4]{5}
+      child { node[treenode,label=above:8]{4}}
+      child { node[treenode,label=above:9]{0}}
+    }
+    child { node[treenode,label=above:5]{12}
+      child { node[treenode,label=above:10]{6}}
+      child { node[treenode,label=above:11]{2}}
+    }
+  }
+  child { node[treenode,label=above:3]{9}
+    child { node[treenode,label=above:6]{8}
+      child[orphan] { node[orphannode]{15}}
+      child[missing]
+    }
+    child { node[treenode,label=above:7]{7}}
+  };
+\end{tikzpicture}
+
+\newpage
+
+% ========================================
+% Image 4: After swapping 1 with 12
+% A = ⟨13, 12, 9, 5, 1, 8, 7, 4, 0, 6, 2⟩
+% ========================================
+\begin{tikzpicture}
+\node[treenode,label=above:1]{13}
+  child { node[treenode,label=above:2]{12}
+    child { node[treenode,label=above:4]{5}
+      child { node[treenode,label=above:8]{4}}
+      child { node[treenode,label=above:9]{0}}
+    }
+    child { node[treenode,label=above:5,fill=gray!60]{1}
+      child { node[treenode,label=above:10]{6}}
+      child { node[treenode,label=above:11]{2}}
+    }
+  }
+  child { node[treenode,label=above:3]{9}
+    child { node[treenode,label=above:6]{8}
+      child[orphan] { node[orphannode]{15}}
+      child[missing]
+    }
+    child { node[treenode,label=above:7]{7}}
+  };
+\end{tikzpicture}
+
+\newpage
+
+% ========================================
+% Image 5: Final - After swapping 1 with 6
+% A = ⟨13, 12, 9, 5, 6, 8, 7, 4, 0, 1, 2⟩
+% ========================================
+\begin{tikzpicture}
+\node[treenode,label=above:1]{13}
+  child { node[treenode,label=above:2]{12}
+    child { node[treenode,label=above:4]{5}
+      child { node[treenode,label=above:8]{4}}
+      child { node[treenode,label=above:9]{0}}
+    }
+    child { node[treenode,label=above:5]{6}
+      child { node[treenode,label=above:10]{1}}
+      child { node[treenode,label=above:11]{2}}
+    }
+  }
+  child { node[treenode,label=above:3]{9}
+    child { node[treenode,label=above:6]{8}
+      child[orphan] { node[orphannode]{15}}
+      child[missing]
+    }
+    child { node[treenode,label=above:7]{7}}
+  };
+\end{tikzpicture}
+
+\end{document}

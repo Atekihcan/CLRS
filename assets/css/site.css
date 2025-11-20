@@ -311,7 +311,7 @@ figure {
 }
 
 .article-footer-message {
-    padding-bottom: 20px;
+    padding-bottom: 26px;
 }
 
 .article-nav {
@@ -414,6 +414,11 @@ blockquote p {
     padding-left: 30px;
 }
 
+.article-content blockquote blockquote {
+    border-left: unset !important;
+    padding: 0 !important;
+    padding-left: 30px !important;
+}
 
 /* aside */
 

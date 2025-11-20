@@ -35,8 +35,8 @@ $$\begin{aligned}
 {%- assign num_tabs = 1 -%}
 {%- assign booleans = "and,or" | split : ',' -%}
 {%- assign constants = "TRUE,FALSE,NIL" | split : ',' -%}
-{%- assign keywords = "swap,exchange,with,let,be,a,new,array,arrays,matrix,matrices,partition,sort,using,as,keys" | split : ',' -%}
-{%- assign conditionals = "if,elseif,else,for,while,to,downto,contiune,break,return,error" | split : ',' -%}
+{%- assign keywords = "swap,exchange,with,let,be,a,an,new,array,arrays,matrix,matrices,partition,sort,using,as,keys,is,empty,total,number,of,size,across,all,each,same,than,fewer,contained,length,first,from,minimum,same,list,lists,min-heap,max-heap" | split : ',' -%}
+{%- assign conditionals = "if,elseif,else,for,while,to,downto,contiune,break,return,error,and,or,not" | split : ',' -%}
 {%- assign symbols = "0,1,2,3,4,5,6,7,8,9,+,-,*,/,%,^,(,),[,],{,}" | split: ',' -%}
 {%- assign delimiters = "floor,ceil" | split : ',' -%}
 {%- assign lines = code | newline_to_br | strip_newlines | split : "<br />" -%}
@@ -83,24 +83,53 @@ $$\begin{aligned}
     {%- assign latex_line = latex_line | replace : '...', '\dots' -%}
 
     {%- comment -%}
+    Pre-process quoted strings to preserve spaces and ensure proper rendering
+    {%- endcomment -%}
+    {%- assign quote_parts = latex_line | split: '"' -%}
+    {%- assign processed_line = "" -%}
+    {%- assign quotes = "" -%}
+    {%- for part in quote_parts -%}
+        {%- assign is_even = forloop.index0 | modulo: 2 -%}
+        {%- if is_even == 0 -%}
+            {%- comment -%}Outside quotes{%- endcomment -%}
+            {%- assign processed_line = processed_line | append: part -%}
+        {%- else -%}
+            {%- comment -%}Inside quotes - store and replace with placeholder{%- endcomment -%}
+            {%- assign quote_index = forloop.index0 | divided_by: 2 -%}
+            {%- if quotes == "" -%}
+                {%- assign quotes = part -%}
+            {%- else -%}
+                {%- assign quotes = quotes | append: '|||' | append: part -%}
+            {%- endif -%}
+            {%- assign processed_line = processed_line | append: '__QUOTE' | append: quote_index | append: '__' -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {%- assign quote_array = quotes | split: '|||' -%}
+
+    {%- comment -%}
     Tokenize and parse
     {%- endcomment -%}
     {%- assign latex = "" -%}
-    {%- assign tokens = latex_line | split : " " -%}
+    {%- assign tokens = processed_line | split : " " -%}
     {%- assign is_comment = 0 -%}
     {%- for token in tokens -%}
         {%- comment -%}
-        If starts with comment literal parse each word like text
+        Check if this token starts a comment (can be anywhere in the line)
         {%- endcomment -%}
-        {%- if forloop.index == 1 and token == '//' -%}
+        {%- if token == '//' -%}
             {%- assign is_comment = 1 -%}
         {%- endif -%}
         {%- if is_comment == 1 -%}
             {%- if token == '//' -%}
-                {%- assign latex = latex | append : '\textbf {' | append: token | append : ' } ' -%}
+                {%- if forloop.index == 1 -%}
+                    {%- assign latex = latex | append : '\textbf {' | append: token | append : ' } ' -%}
+                {%- else -%}
+                    {%- assign latex = latex | append : '\quad \textbf {' | append: token | append : ' } ' -%}
+                {%- endif -%}
             {%- else -%}
                 {%- assign is_word = 1 -%}
-                {%- for sym in symbols -%}
+                {%- assign non_hyphen_symbols = "0,1,2,3,4,5,6,7,8,9,+,*,/,%,^,(,),[,],{,}" | split: ',' -%}
+                {%- for sym in non_hyphen_symbols -%}
                     {%- if token contains sym -%}
                         {%- assign is_word = 0 -%}
                     {%- endif -%}
@@ -108,7 +137,7 @@ $$\begin{aligned}
                 {%- if is_word == 0 -%}
                     {%- assign latex = latex | append: token -%}
                 {%- else -%}
-                    {%- assign latex = latex | append : '\text { ' | append: token | append : ' }' -%}
+                    {%- assign latex = latex | append : '\text { ' | append: token | append : '}\,' -%}
                 {%- endif -%}
             {%- endif -%}
             {%- continue -%}
@@ -121,9 +150,9 @@ $$\begin{aligned}
             Handle keywords
             {%- endcomment -%}
             {%- if forloop.index == 1 -%}
-                {%- assign latex = latex | append : '\text {' | append: token | append : ' }' -%}
+                {%- assign latex = latex | append : '\text {' | append: token | append : '}' -%}
             {%- else -%}
-                {%- assign latex = latex | append : '\text { ' | append: token | append : ' }' -%}
+                {%- assign latex = latex | append : '\,\text {' | append: token | append : '}' -%}
             {%- endif -%}
             {%- elsif conditionals contains token -%}
             {%- if forloop.index == 1 -%}
@@ -131,6 +160,14 @@ $$\begin{aligned}
             {%- else -%}
                 {%- assign latex = latex | append : '\textbf { ' | append: token | append : ' }' -%}
             {%- endif -%}
+        {%- elsif token contains '__QUOTE' -%}
+            {%- comment -%}
+            Handle quoted string placeholders
+            {%- endcomment -%}
+            {%- assign quote_idx_str = token | replace: '__QUOTE', '' | replace: '__', '' -%}
+            {%- assign quote_idx = quote_idx_str | plus: 0 -%}
+            {%- assign quote_text = quote_array[quote_idx] -%}
+            {%- assign latex = latex | append : '\text {\textquotedblleft ' | append: quote_text | append : '\textquotedblright} ' -%}
         {%- else -%}
             {%- if token contains '(' -%}
                 {%- comment -%}
@@ -185,9 +222,17 @@ $$\begin{aligned}
                 Handle subscript
                 {%- endcomment -%}
                 {%- assign token_parts = token | split : '_' -%}
-                {%- assign latex = latex | append: token_parts[0] | append: '_{' | append: token_parts[1] | append: '}' -%}
+                {%- if forloop.index == 1 -%}
+                    {%- assign latex = latex | append: token_parts[0] | append: '_{' | append: token_parts[1] | append: '}' -%}
+                {%- else -%}
+                    {%- assign latex = latex | append: '\,' | append: token_parts[0] | append: '_{' | append: token_parts[1] | append: '}' -%}
+                {%- endif -%}
             {%- else -%}
-                {%- assign latex = latex | append: token -%}
+                {%- if forloop.index == 1 -%}
+                    {%- assign latex = latex | append: token -%}
+                {%- else -%}
+                    {%- assign latex = latex | append: '\,' | append: token -%}
+                {%- endif -%}
             {%- endif -%}
         {%- endif -%}
     {%- endfor -%}

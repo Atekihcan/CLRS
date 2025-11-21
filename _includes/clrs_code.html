@@ -214,10 +214,71 @@ $$\begin{aligned}
             {%- assign quote_text = quote_array[quote_idx] -%}
             {%- assign latex = latex | append : '\text {\textquotedblleft ' | append: quote_text | append : '\textquotedblright} ' -%}
         {%- else -%}
-            {%- if token contains '(' -%}
+            {%- comment -%}
+            Check if token is array access with function call inside (e.g., A[Parent(i)])
+            Only handle complete tokens (no spaces inside) for single-argument functions
+            {%- endcomment -%}
+            {%- assign is_array_with_func = 0 -%}
+            {%- assign first_char = token | slice: 0, 1 -%}
+            {%- assign second_char = token | slice: 1, 1 -%}
+            {%- if token contains '[' and token contains '(' and token contains ']' -%}
+                {%- comment -%}Must be complete: A[Function(...)] in single token{%- endcomment -%}
+                {%- assign uppercase_letters = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z" | split: ',' -%}
+                {%- if uppercase_letters contains first_char and second_char == '[' -%}
+                    {%- assign is_array_with_func = 1 -%}
+                {%- endif -%}
+            {%- endif -%}
+            {%- if is_array_with_func == 1 -%}
+                {%- comment -%}
+                Handle array access with function call: A[Parent(i)]
+                Split into A[ + function call + ]
+                {%- endcomment -%}
+                {%- assign bracket_parts = token | split: '[' -%}
+                {%- assign array_name = bracket_parts[0] -%}
+                {%- assign index_part = bracket_parts[1] | replace: ']', '' -%}
+                {%- comment -%}Process the index part for function calls{%- endcomment -%}
+                {%- assign index_latex = '' -%}
+                {%- if index_part contains '(' -%}
+                    {%- assign func_parts = index_part | split: '(' -%}
+                    {%- assign func_name = func_parts[0] -%}
+                    {%- assign func_args = func_parts[1] | replace: ')', '' -%}
+                    {%- comment -%}Strip primes from function name{%- endcomment -%}
+                    {%- assign func_prime_cnt = 0 -%}
+                    {%- assign func_clean = func_name -%}
+                    {%- assign func_size = func_name | size -%}
+                    {%- if func_size > 0 -%}
+                        {%- assign func_last = func_name | slice: -1 -%}
+                        {%- if func_last == '`' or func_last == "'" -%}
+                            {%- assign func_prime_cnt = 1 -%}
+                            {%- assign new_sz = func_size | minus: 1 -%}
+                            {%- assign func_clean = func_name | slice: 0, new_sz -%}
+                        {%- endif -%}
+                    {%- endif -%}
+                    {%- assign index_latex = '\textsc {' | append: func_clean | append: '}' -%}
+                    {%- if func_prime_cnt == 1 -%}
+                        {%- assign index_latex = index_latex | append: "'" -%}
+                    {%- endif -%}
+                    {%- assign index_latex = index_latex | append: '(' | append: func_args | append: ')' -%}
+                {%- else -%}
+                    {%- assign index_latex = index_part -%}
+                {%- endif -%}
+                {%- if forloop.index == 1 -%}
+                    {%- assign latex = latex | append: array_name | append: '[' | append: index_latex | append: ']' -%}
+                {%- else -%}
+                    {%- assign latex = latex | append: '\,' | append: array_name | append: '[' | append: index_latex | append: ']' -%}
+                {%- endif -%}
+            {%- elsif token contains '(' -%}
                 {%- comment -%}
                 Handle function names if there are parentheses
+                But check if this is incomplete array access first
                 {%- endcomment -%}
+                {%- assign is_incomplete_array = 0 -%}
+                {%- if token contains '[' -%}
+                    {%- unless token contains ']' -%}
+                        {%- assign is_incomplete_array = 1 -%}
+                    {%- endunless -%}
+                {%- endif -%}
+                {%- if is_incomplete_array == 0 -%}
                 {%-if delim_s != '' -%}
                     {%- assign brace_count = brace_count | plus: 1 -%}
                 {%- endif -%}
@@ -287,6 +348,14 @@ $$\begin{aligned}
                         {%- endif -%}
                     {%- endif -%}
                 {%- endfor -%}
+                {%- else -%}
+                    {%- comment -%}Incomplete array access - treat as regular token{%- endcomment -%}
+                    {%- if forloop.index == 1 -%}
+                        {%- assign latex = latex | append: token -%}
+                    {%- else -%}
+                        {%- assign latex = latex | append: '\,' | append: token -%}
+                    {%- endif -%}
+                {%- endif -%}
             {%- elsif token contains ')' and delim_s != '' -%}
                 {%- comment -%}
                 Handle function ending

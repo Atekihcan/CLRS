@@ -1,0 +1,44 @@
+\documentclass[tikz,border=5pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+
+\begin{document}
+
+% Common styles
+\tikzset{
+  level distance=12mm,
+  level 1/.style={sibling distance=32mm},
+  treenode/.style={
+    draw,
+    circle,
+    minimum size=8mm,
+    inner sep=0pt,
+    fill=gray!20,
+    font=\normalsize
+  },
+  every label/.style={font=\scriptsize}
+}
+
+% ========================================
+% Image 1: Build-Max-Heap result
+% A = ⟨3, 2, 1⟩
+% ========================================
+\begin{tikzpicture}
+\node[treenode,label=above:1]{3}
+  child { node[treenode,label=above:2]{2}}
+  child { node[treenode,label=above:3]{1}};
+\end{tikzpicture}
+
+\newpage
+
+% ========================================
+% Image 2: Build-Max-Heap' result
+% A = ⟨3, 1, 2⟩
+% ========================================
+\begin{tikzpicture}
+\node[treenode,label=above:1]{3}
+  child { node[treenode,label=above:2]{1}}
+  child { node[treenode,label=above:3]{2}};
+\end{tikzpicture}
+
+\end{document}

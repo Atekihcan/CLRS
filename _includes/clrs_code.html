@@ -19,10 +19,55 @@
     {%- assign function_parts = title | split : '(' -%}
     {%- for part in function_parts -%}
         {%- if forloop.index == 1 -%}
+            {%- comment -%}Detect and strip prime symbols from procedure name{%- endcomment -%}
+            {%- assign prime_count = 0 -%}
+            {%- assign clean_name = part -%}
+            {%- assign part_size = part | size -%}
+            {%- if part_size > 0 -%}
+                {%- assign last_char = part | slice: -1 -%}
+                {%- if last_char == '`' or last_char == "'" -%}
+                    {%- assign prime_count = 1 -%}
+                    {%- assign new_size = part_size | minus: 1 -%}
+                    {%- assign clean_name = part | slice: 0, new_size -%}
+                    {%- assign clean_size = clean_name | size -%}
+                    {%- if clean_size > 0 -%}
+                        {%- assign second_last = clean_name | slice: -1 -%}
+                        {%- if second_last == '`' or second_last == "'" -%}
+                            {%- assign prime_count = 2 -%}
+                            {%- assign new_size = clean_size | minus: 1 -%}
+                            {%- assign clean_name = clean_name | slice: 0, new_size -%}
+                            {%- assign clean_size = clean_name | size -%}
+                            {%- if clean_size > 0 -%}
+                                {%- assign third_last = clean_name | slice: -1 -%}
+                                {%- if third_last == '`' or third_last == "'" -%}
+                                    {%- assign prime_count = 3 -%}
+                                    {%- assign new_size = clean_size | minus: 1 -%}
+                                    {%- assign clean_name = clean_name | slice: 0, new_size -%}
+                                {%- endif -%}
+                            {%- endif -%}
+                        {%- endif -%}
+                    {%- endif -%}
+                {%- endif -%}
+            {%- endif -%}
             {%- if has_parameters == 0 -%}
-                {%- assign latex = latex | append : '\textsc {' | append: part | append : ' }' -%}
+                {%- assign latex = latex | append : '\textsc {' | append: clean_name | append : ' }' -%}
+                {%- if prime_count == 1 -%}
+                    {%- assign latex = latex | append: "'" -%}
+                {%- elsif prime_count == 2 -%}
+                    {%- assign latex = latex | append: "''" -%}
+                {%- elsif prime_count == 3 -%}
+                    {%- assign latex = latex | append: "'''" -%}
+                {%- endif -%}
             {%- else -%}
-                {%- assign latex = latex | append : '\textsc {' | append: part | append : ' }(' -%}
+                {%- assign latex = latex | append : '\textsc {' | append: clean_name | append : ' }' -%}
+                {%- if prime_count == 1 -%}
+                    {%- assign latex = latex | append: "'" -%}
+                {%- elsif prime_count == 2 -%}
+                    {%- assign latex = latex | append: "''" -%}
+                {%- elsif prime_count == 3 -%}
+                    {%- assign latex = latex | append: "'''" -%}
+                {%- endif -%}
+                {%- assign latex = latex | append: '(' -%}
             {%- endif -%}
         {%- else -%}
             {%- assign latex = latex | append: part -%}
@@ -190,7 +235,45 @@ $$\begin{aligned}
                             {%- endif -%}
                             {%- assign latex = latex | append : delim_s -%}
                         {%- else -%}
-                            {%- assign latex = latex | append : '\textsc {' | append: part | append : '}(' -%}
+                            {%- comment -%}Detect and strip prime symbols from function name{%- endcomment -%}
+                            {%- assign func_prime_count = 0 -%}
+                            {%- assign func_clean_name = part -%}
+                            {%- assign func_part_size = part | size -%}
+                            {%- if func_part_size > 0 -%}
+                                {%- assign func_last_char = part | slice: -1 -%}
+                                {%- if func_last_char == '`' or func_last_char == "'" -%}
+                                    {%- assign func_prime_count = 1 -%}
+                                    {%- assign func_new_size = func_part_size | minus: 1 -%}
+                                    {%- assign func_clean_name = part | slice: 0, func_new_size -%}
+                                    {%- assign func_clean_size = func_clean_name | size -%}
+                                    {%- if func_clean_size > 0 -%}
+                                        {%- assign func_second_last = func_clean_name | slice: -1 -%}
+                                        {%- if func_second_last == '`' or func_second_last == "'" -%}
+                                            {%- assign func_prime_count = 2 -%}
+                                            {%- assign func_new_size = func_clean_size | minus: 1 -%}
+                                            {%- assign func_clean_name = func_clean_name | slice: 0, func_new_size -%}
+                                            {%- assign func_clean_size = func_clean_name | size -%}
+                                            {%- if func_clean_size > 0 -%}
+                                                {%- assign func_third_last = func_clean_name | slice: -1 -%}
+                                                {%- if func_third_last == '`' or func_third_last == "'" -%}
+                                                    {%- assign func_prime_count = 3 -%}
+                                                    {%- assign func_new_size = func_clean_size | minus: 1 -%}
+                                                    {%- assign func_clean_name = func_clean_name | slice: 0, func_new_size -%}
+                                                {%- endif -%}
+                                            {%- endif -%}
+                                        {%- endif -%}
+                                    {%- endif -%}
+                                {%- endif -%}
+                            {%- endif -%}
+                            {%- assign latex = latex | append : '\textsc {' | append: func_clean_name | append : '}' -%}
+                            {%- if func_prime_count == 1 -%}
+                                {%- assign latex = latex | append: "'" -%}
+                            {%- elsif func_prime_count == 2 -%}
+                                {%- assign latex = latex | append: "''" -%}
+                            {%- elsif func_prime_count == 3 -%}
+                                {%- assign latex = latex | append: "'''" -%}
+                            {%- endif -%}
+                            {%- assign latex = latex | append: '(' -%}
                         {%- endif -%}
                     {%- else -%}
                         {%- if part contains '_' -%}

@@ -195,6 +195,94 @@
                     "name": "Young Tableaus"
                 }
             ]
+        },
+        {
+            "name": "Quicksort",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Sorting in Linear Time",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Medians and Order Statistics",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Elementary Data Structures",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Hash Tables",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Binary Search Trees",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Red-Black Trees",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Augmenting Data Structures",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Dynamic Programming",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Greedy Algorithms",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Amortized Analysis",
+            "sections": [
+                {
+                    "name": "Aggregate Analysis",
+                    "exercise_count": 3
+                },
+                {
+                    "name": "The Accounting Method",
+                    "exercise_count": 3
+                },
+                {
+                    "name": "The Potential Method",
+                    "exercise_count": 7
+                },
+                {
+                    "name": "Dynamic Tables",
+                    "exercise_count": 3
+                }
+            ],
+            "problems": [
+                {
+                    "name": "Bit-reversed Binary Counter"
+                },
+                {
+                    "name": "Making Binary Search Dynamic"
+                },
+                {
+                    "name": "Amortized Weight-balanced Trees"
+                },
+                {
+                    "name": "The Cost of Restructuring Red-black Trees"
+                },
+                {
+                    "name": "Competitive Analysis of Self-organizing Lists with Move-to-front"
+                }
+            ]
         }
     ],
     "appendices": [

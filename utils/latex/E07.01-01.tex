@@ -1,0 +1,469 @@
+
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[
+  paperwidth=120mm,
+  paperheight=315mm,
+  margin=10mm
+]{geometry}
+\pagestyle{empty}
+\begin{document}
+\def\w{8mm}
+\begin{center}
+
+\begin{tikzpicture}[
+  cell/.style={draw, minimum width=\w, minimum height=\w, anchor=center},
+  shadedA/.style={cell, fill=gray!40}, shadedB/.style={cell, fill=gray!60}]
+\node[text=gray!30] at (0*\w,-7mm) {1};
+\node[text=gray!30] at (1*\w,-7mm) {2};
+\node[text=gray!30] at (2*\w,-7mm) {3};
+\node[text=gray!30] at (3*\w,-7mm) {4};
+\node[text=gray!30] at (4*\w,-7mm) {5};
+\node[text=gray!30] at (5*\w,-7mm) {6};
+\node[text=gray!30] at (6*\w,-7mm) {7};
+\node[text=gray!30] at (7*\w,-7mm) {8};
+\node[text=gray!30] at (8*\w,-7mm) {9};
+\node[text=gray!30] at (9*\w,-7mm) {10};
+\node[text=gray!30] at (10*\w,-7mm) {11};
+\node[text=gray!30] at (11*\w,-7mm) {12};
+\node[cell] at (0*\w,0) {13};
+\node[cell] at (1*\w,0) {19};
+\node[cell] at (2*\w,0) {9};
+\node[cell] at (3*\w,0) {5};
+\node[cell] at (4*\w,0) {12};
+\node[cell] at (5*\w,0) {8};
+\node[cell] at (6*\w,0) {7};
+\node[cell] at (7*\w,0) {4};
+\node[cell] at (8*\w,0) {21};
+\node[cell] at (9*\w,0) {2};
+\node[cell] at (10*\w,0) {6};
+\node[cell] at (11*\w,0) {11};
+\draw[line width=2mm] (-0.5*\w,-4.5mm) -- (-0.5*\w,4.5mm);
+\draw[line width=2mm] (-0.5*\w,-4.5mm) -- (-0.5*\w,4.5mm);
+\draw[line width=2mm] (10.5*\w,-4.5mm) -- (10.5*\w,4.5mm);
+\node at (-1*\w,7mm) {$i$};
+\node at (0*\w,7mm) {$j$};
+\end{tikzpicture}
+\vspace{3mm}
+\begin{tikzpicture}[
+  cell/.style={draw, minimum width=\w, minimum height=\w, anchor=center},
+  shadedA/.style={cell, fill=gray!40}, shadedB/.style={cell, fill=gray!60}]
+\node[text=gray!30] at (0*\w,-7mm) {1};
+\node[text=gray!30] at (1*\w,-7mm) {2};
+\node[text=gray!30] at (2*\w,-7mm) {3};
+\node[text=gray!30] at (3*\w,-7mm) {4};
+\node[text=gray!30] at (4*\w,-7mm) {5};
+\node[text=gray!30] at (5*\w,-7mm) {6};
+\node[text=gray!30] at (6*\w,-7mm) {7};
+\node[text=gray!30] at (7*\w,-7mm) {8};
+\node[text=gray!30] at (8*\w,-7mm) {9};
+\node[text=gray!30] at (9*\w,-7mm) {10};
+\node[text=gray!30] at (10*\w,-7mm) {11};
+\node[text=gray!30] at (11*\w,-7mm) {12};
+\node[shadedB] at (0*\w,0) {13};
+\node[cell] at (1*\w,0) {19};
+\node[cell] at (2*\w,0) {9};
+\node[cell] at (3*\w,0) {5};
+\node[cell] at (4*\w,0) {12};
+\node[cell] at (5*\w,0) {8};
+\node[cell] at (6*\w,0) {7};
+\node[cell] at (7*\w,0) {4};
+\node[cell] at (8*\w,0) {21};
+\node[cell] at (9*\w,0) {2};
+\node[cell] at (10*\w,0) {6};
+\node[cell] at (11*\w,0) {11};
+\draw[line width=2mm] (-0.5*\w,-4.5mm) -- (-0.5*\w,4.5mm);
+\draw[line width=2mm] (0.5*\w,-4.5mm) -- (0.5*\w,4.5mm);
+\draw[line width=2mm] (10.5*\w,-4.5mm) -- (10.5*\w,4.5mm);
+\node at (-1*\w,7mm) {$i$};
+\node at (1*\w,7mm) {$j$};
+\end{tikzpicture}
+\vspace{3mm}
+\begin{tikzpicture}[
+  cell/.style={draw, minimum width=\w, minimum height=\w, anchor=center},
+  shadedA/.style={cell, fill=gray!40}, shadedB/.style={cell, fill=gray!60}]
+\node[text=gray!30] at (0*\w,-7mm) {1};
+\node[text=gray!30] at (1*\w,-7mm) {2};
+\node[text=gray!30] at (2*\w,-7mm) {3};
+\node[text=gray!30] at (3*\w,-7mm) {4};
+\node[text=gray!30] at (4*\w,-7mm) {5};
+\node[text=gray!30] at (5*\w,-7mm) {6};
+\node[text=gray!30] at (6*\w,-7mm) {7};
+\node[text=gray!30] at (7*\w,-7mm) {8};
+\node[text=gray!30] at (8*\w,-7mm) {9};
+\node[text=gray!30] at (9*\w,-7mm) {10};
+\node[text=gray!30] at (10*\w,-7mm) {11};
+\node[text=gray!30] at (11*\w,-7mm) {12};
+\node[shadedB] at (0*\w,0) {13};
+\node[shadedB] at (1*\w,0) {19};
+\node[cell] at (2*\w,0) {9};
+\node[cell] at (3*\w,0) {5};
+\node[cell] at (4*\w,0) {12};
+\node[cell] at (5*\w,0) {8};
+\node[cell] at (6*\w,0) {7};
+\node[cell] at (7*\w,0) {4};
+\node[cell] at (8*\w,0) {21};
+\node[cell] at (9*\w,0) {2};
+\node[cell] at (10*\w,0) {6};
+\node[cell] at (11*\w,0) {11};
+\draw[line width=2mm] (-0.5*\w,-4.5mm) -- (-0.5*\w,4.5mm);
+\draw[line width=2mm] (1.5*\w,-4.5mm) -- (1.5*\w,4.5mm);
+\draw[line width=2mm] (10.5*\w,-4.5mm) -- (10.5*\w,4.5mm);
+\node at (-1*\w,7mm) {$i$};
+\node at (2*\w,7mm) {$j$};
+\end{tikzpicture}
+\vspace{3mm}
+\begin{tikzpicture}[
+  cell/.style={draw, minimum width=\w, minimum height=\w, anchor=center},
+  shadedA/.style={cell, fill=gray!40}, shadedB/.style={cell, fill=gray!60}]
+\node[text=gray!30] at (0*\w,-7mm) {1};
+\node[text=gray!30] at (1*\w,-7mm) {2};
+\node[text=gray!30] at (2*\w,-7mm) {3};
+\node[text=gray!30] at (3*\w,-7mm) {4};
+\node[text=gray!30] at (4*\w,-7mm) {5};
+\node[text=gray!30] at (5*\w,-7mm) {6};
+\node[text=gray!30] at (6*\w,-7mm) {7};
+\node[text=gray!30] at (7*\w,-7mm) {8};
+\node[text=gray!30] at (8*\w,-7mm) {9};
+\node[text=gray!30] at (9*\w,-7mm) {10};
+\node[text=gray!30] at (10*\w,-7mm) {11};
+\node[text=gray!30] at (11*\w,-7mm) {12};
+\node[shadedA] at (0*\w,0) {9};
+\node[shadedB] at (1*\w,0) {19};
+\node[shadedB] at (2*\w,0) {13};
+\node[cell] at (3*\w,0) {5};
+\node[cell] at (4*\w,0) {12};
+\node[cell] at (5*\w,0) {8};
+\node[cell] at (6*\w,0) {7};
+\node[cell] at (7*\w,0) {4};
+\node[cell] at (8*\w,0) {21};
+\node[cell] at (9*\w,0) {2};
+\node[cell] at (10*\w,0) {6};
+\node[cell] at (11*\w,0) {11};
+\draw[line width=2mm] (0.5*\w,-4.5mm) -- (0.5*\w,4.5mm);
+\draw[line width=2mm] (2.5*\w,-4.5mm) -- (2.5*\w,4.5mm);
+\draw[line width=2mm] (10.5*\w,-4.5mm) -- (10.5*\w,4.5mm);
+\node at (-1*\w,-5mm) {};
+\node at (0*\w,7mm) {$i$};
+\node at (3*\w,7mm) {$j$};
+\end{tikzpicture}
+\vspace{3mm}
+\begin{tikzpicture}[
+  cell/.style={draw, minimum width=\w, minimum height=\w, anchor=center},
+  shadedA/.style={cell, fill=gray!40}, shadedB/.style={cell, fill=gray!60}]
+\node[text=gray!30] at (0*\w,-7mm) {1};
+\node[text=gray!30] at (1*\w,-7mm) {2};
+\node[text=gray!30] at (2*\w,-7mm) {3};
+\node[text=gray!30] at (3*\w,-7mm) {4};
+\node[text=gray!30] at (4*\w,-7mm) {5};
+\node[text=gray!30] at (5*\w,-7mm) {6};
+\node[text=gray!30] at (6*\w,-7mm) {7};
+\node[text=gray!30] at (7*\w,-7mm) {8};
+\node[text=gray!30] at (8*\w,-7mm) {9};
+\node[text=gray!30] at (9*\w,-7mm) {10};
+\node[text=gray!30] at (10*\w,-7mm) {11};
+\node[text=gray!30] at (11*\w,-7mm) {12};
+\node[shadedA] at (0*\w,0) {9};
+\node[shadedA] at (1*\w,0) {5};
+\node[shadedB] at (2*\w,0) {13};
+\node[shadedB] at (3*\w,0) {19};
+\node[cell] at (4*\w,0) {12};
+\node[cell] at (5*\w,0) {8};
+\node[cell] at (6*\w,0) {7};
+\node[cell] at (7*\w,0) {4};
+\node[cell] at (8*\w,0) {21};
+\node[cell] at (9*\w,0) {2};
+\node[cell] at (10*\w,0) {6};
+\node[cell] at (11*\w,0) {11};
+\draw[line width=2mm] (1.5*\w,-4.5mm) -- (1.5*\w,4.5mm);
+\draw[line width=2mm] (3.5*\w,-4.5mm) -- (3.5*\w,4.5mm);
+\draw[line width=2mm] (10.5*\w,-4.5mm) -- (10.5*\w,4.5mm);
+\node at (-1*\w,-5mm) {};
+\node at (1*\w,7mm) {$i$};
+\node at (4*\w,7mm) {$j$};
+\end{tikzpicture}
+\vspace{3mm}
+\begin{tikzpicture}[
+  cell/.style={draw, minimum width=\w, minimum height=\w, anchor=center},
+  shadedA/.style={cell, fill=gray!40}, shadedB/.style={cell, fill=gray!60}]
+\node[text=gray!30] at (0*\w,-7mm) {1};
+\node[text=gray!30] at (1*\w,-7mm) {2};
+\node[text=gray!30] at (2*\w,-7mm) {3};
+\node[text=gray!30] at (3*\w,-7mm) {4};
+\node[text=gray!30] at (4*\w,-7mm) {5};
+\node[text=gray!30] at (5*\w,-7mm) {6};
+\node[text=gray!30] at (6*\w,-7mm) {7};
+\node[text=gray!30] at (7*\w,-7mm) {8};
+\node[text=gray!30] at (8*\w,-7mm) {9};
+\node[text=gray!30] at (9*\w,-7mm) {10};
+\node[text=gray!30] at (10*\w,-7mm) {11};
+\node[text=gray!30] at (11*\w,-7mm) {12};
+\node[shadedA] at (0*\w,0) {9};
+\node[shadedA] at (1*\w,0) {5};
+\node[shadedB] at (2*\w,0) {13};
+\node[shadedB] at (3*\w,0) {19};
+\node[shadedB] at (4*\w,0) {12};
+\node[cell] at (5*\w,0) {8};
+\node[cell] at (6*\w,0) {7};
+\node[cell] at (7*\w,0) {4};
+\node[cell] at (8*\w,0) {21};
+\node[cell] at (9*\w,0) {2};
+\node[cell] at (10*\w,0) {6};
+\node[cell] at (11*\w,0) {11};
+\draw[line width=2mm] (1.5*\w,-4.5mm) -- (1.5*\w,4.5mm);
+\draw[line width=2mm] (4.5*\w,-4.5mm) -- (4.5*\w,4.5mm);
+\draw[line width=2mm] (10.5*\w,-4.5mm) -- (10.5*\w,4.5mm);
+\node at (-1*\w,-5mm) {};
+\node at (1*\w,7mm) {$i$};
+\node at (5*\w,7mm) {$j$};
+\end{tikzpicture}
+\vspace{3mm}
+\begin{tikzpicture}[
+  cell/.style={draw, minimum width=\w, minimum height=\w, anchor=center},
+  shadedA/.style={cell, fill=gray!40}, shadedB/.style={cell, fill=gray!60}]
+\node[text=gray!30] at (0*\w,-7mm) {1};
+\node[text=gray!30] at (1*\w,-7mm) {2};
+\node[text=gray!30] at (2*\w,-7mm) {3};
+\node[text=gray!30] at (3*\w,-7mm) {4};
+\node[text=gray!30] at (4*\w,-7mm) {5};
+\node[text=gray!30] at (5*\w,-7mm) {6};
+\node[text=gray!30] at (6*\w,-7mm) {7};
+\node[text=gray!30] at (7*\w,-7mm) {8};
+\node[text=gray!30] at (8*\w,-7mm) {9};
+\node[text=gray!30] at (9*\w,-7mm) {10};
+\node[text=gray!30] at (10*\w,-7mm) {11};
+\node[text=gray!30] at (11*\w,-7mm) {12};
+\node[shadedA] at (0*\w,0) {9};
+\node[shadedA] at (1*\w,0) {5};
+\node[shadedA] at (2*\w,0) {8};
+\node[shadedB] at (3*\w,0) {19};
+\node[shadedB] at (4*\w,0) {12};
+\node[shadedB] at (5*\w,0) {13};
+\node[cell] at (6*\w,0) {7};
+\node[cell] at (7*\w,0) {4};
+\node[cell] at (8*\w,0) {21};
+\node[cell] at (9*\w,0) {2};
+\node[cell] at (10*\w,0) {6};
+\node[cell] at (11*\w,0) {11};
+\draw[line width=2mm] (2.5*\w,-4.5mm) -- (2.5*\w,4.5mm);
+\draw[line width=2mm] (5.5*\w,-4.5mm) -- (5.5*\w,4.5mm);
+\draw[line width=2mm] (10.5*\w,-4.5mm) -- (10.5*\w,4.5mm);
+\node at (-1*\w,-5mm) {};
+\node at (2*\w,7mm) {$i$};
+\node at (6*\w,7mm) {$j$};
+\end{tikzpicture}
+\vspace{3mm}
+\begin{tikzpicture}[
+  cell/.style={draw, minimum width=\w, minimum height=\w, anchor=center},
+  shadedA/.style={cell, fill=gray!40}, shadedB/.style={cell, fill=gray!60}]
+\node[text=gray!30] at (0*\w,-7mm) {1};
+\node[text=gray!30] at (1*\w,-7mm) {2};
+\node[text=gray!30] at (2*\w,-7mm) {3};
+\node[text=gray!30] at (3*\w,-7mm) {4};
+\node[text=gray!30] at (4*\w,-7mm) {5};
+\node[text=gray!30] at (5*\w,-7mm) {6};
+\node[text=gray!30] at (6*\w,-7mm) {7};
+\node[text=gray!30] at (7*\w,-7mm) {8};
+\node[text=gray!30] at (8*\w,-7mm) {9};
+\node[text=gray!30] at (9*\w,-7mm) {10};
+\node[text=gray!30] at (10*\w,-7mm) {11};
+\node[text=gray!30] at (11*\w,-7mm) {12};
+\node[shadedA] at (0*\w,0) {9};
+\node[shadedA] at (1*\w,0) {5};
+\node[shadedA] at (2*\w,0) {8};
+\node[shadedA] at (3*\w,0) {7};
+\node[shadedB] at (4*\w,0) {12};
+\node[shadedB] at (5*\w,0) {13};
+\node[shadedB] at (6*\w,0) {19};
+\node[cell] at (7*\w,0) {4};
+\node[cell] at (8*\w,0) {21};
+\node[cell] at (9*\w,0) {2};
+\node[cell] at (10*\w,0) {6};
+\node[cell] at (11*\w,0) {11};
+\draw[line width=2mm] (3.5*\w,-4.5mm) -- (3.5*\w,4.5mm);
+\draw[line width=2mm] (6.5*\w,-4.5mm) -- (6.5*\w,4.5mm);
+\draw[line width=2mm] (10.5*\w,-4.5mm) -- (10.5*\w,4.5mm);
+\node at (-1*\w,-5mm) {};
+\node at (3*\w,7mm) {$i$};
+\node at (7*\w,7mm) {$j$};
+\end{tikzpicture}
+\vspace{3mm}
+\begin{tikzpicture}[
+  cell/.style={draw, minimum width=\w, minimum height=\w, anchor=center},
+  shadedA/.style={cell, fill=gray!40}, shadedB/.style={cell, fill=gray!60}]
+\node[text=gray!30] at (0*\w,-7mm) {1};
+\node[text=gray!30] at (1*\w,-7mm) {2};
+\node[text=gray!30] at (2*\w,-7mm) {3};
+\node[text=gray!30] at (3*\w,-7mm) {4};
+\node[text=gray!30] at (4*\w,-7mm) {5};
+\node[text=gray!30] at (5*\w,-7mm) {6};
+\node[text=gray!30] at (6*\w,-7mm) {7};
+\node[text=gray!30] at (7*\w,-7mm) {8};
+\node[text=gray!30] at (8*\w,-7mm) {9};
+\node[text=gray!30] at (9*\w,-7mm) {10};
+\node[text=gray!30] at (10*\w,-7mm) {11};
+\node[text=gray!30] at (11*\w,-7mm) {12};
+\node[shadedA] at (0*\w,0) {9};
+\node[shadedA] at (1*\w,0) {5};
+\node[shadedA] at (2*\w,0) {8};
+\node[shadedA] at (3*\w,0) {7};
+\node[shadedA] at (4*\w,0) {4};
+\node[shadedB] at (5*\w,0) {13};
+\node[shadedB] at (6*\w,0) {19};
+\node[shadedB] at (7*\w,0) {12};
+\node[cell] at (8*\w,0) {21};
+\node[cell] at (9*\w,0) {2};
+\node[cell] at (10*\w,0) {6};
+\node[cell] at (11*\w,0) {11};
+\draw[line width=2mm] (4.5*\w,-4.5mm) -- (4.5*\w,4.5mm);
+\draw[line width=2mm] (7.5*\w,-4.5mm) -- (7.5*\w,4.5mm);
+\draw[line width=2mm] (10.5*\w,-4.5mm) -- (10.5*\w,4.5mm);
+\node at (-1*\w,-5mm) {};
+\node at (4*\w,7mm) {$i$};
+\node at (8*\w,7mm) {$j$};
+\end{tikzpicture}
+\vspace{3mm}
+\begin{tikzpicture}[
+  cell/.style={draw, minimum width=\w, minimum height=\w, anchor=center},
+  shadedA/.style={cell, fill=gray!40}, shadedB/.style={cell, fill=gray!60}]
+\node[text=gray!30] at (0*\w,-7mm) {1};
+\node[text=gray!30] at (1*\w,-7mm) {2};
+\node[text=gray!30] at (2*\w,-7mm) {3};
+\node[text=gray!30] at (3*\w,-7mm) {4};
+\node[text=gray!30] at (4*\w,-7mm) {5};
+\node[text=gray!30] at (5*\w,-7mm) {6};
+\node[text=gray!30] at (6*\w,-7mm) {7};
+\node[text=gray!30] at (7*\w,-7mm) {8};
+\node[text=gray!30] at (8*\w,-7mm) {9};
+\node[text=gray!30] at (9*\w,-7mm) {10};
+\node[text=gray!30] at (10*\w,-7mm) {11};
+\node[text=gray!30] at (11*\w,-7mm) {12};
+\node[shadedA] at (0*\w,0) {9};
+\node[shadedA] at (1*\w,0) {5};
+\node[shadedA] at (2*\w,0) {8};
+\node[shadedA] at (3*\w,0) {7};
+\node[shadedA] at (4*\w,0) {4};
+\node[shadedB] at (5*\w,0) {13};
+\node[shadedB] at (6*\w,0) {19};
+\node[shadedB] at (7*\w,0) {12};
+\node[shadedB] at (8*\w,0) {21};
+\node[cell] at (9*\w,0) {2};
+\node[cell] at (10*\w,0) {6};
+\node[cell] at (11*\w,0) {11};
+\draw[line width=2mm] (4.5*\w,-4.5mm) -- (4.5*\w,4.5mm);
+\draw[line width=2mm] (8.5*\w,-4.5mm) -- (8.5*\w,4.5mm);
+\draw[line width=2mm] (10.5*\w,-4.5mm) -- (10.5*\w,4.5mm);
+\node at (-1*\w,-5mm) {};
+\node at (4*\w,7mm) {$i$};
+\node at (9*\w,7mm) {$j$};
+\end{tikzpicture}
+\vspace{3mm}
+\begin{tikzpicture}[
+  cell/.style={draw, minimum width=\w, minimum height=\w, anchor=center},
+  shadedA/.style={cell, fill=gray!40}, shadedB/.style={cell, fill=gray!60}]
+\node[text=gray!30] at (0*\w,-7mm) {1};
+\node[text=gray!30] at (1*\w,-7mm) {2};
+\node[text=gray!30] at (2*\w,-7mm) {3};
+\node[text=gray!30] at (3*\w,-7mm) {4};
+\node[text=gray!30] at (4*\w,-7mm) {5};
+\node[text=gray!30] at (5*\w,-7mm) {6};
+\node[text=gray!30] at (6*\w,-7mm) {7};
+\node[text=gray!30] at (7*\w,-7mm) {8};
+\node[text=gray!30] at (8*\w,-7mm) {9};
+\node[text=gray!30] at (9*\w,-7mm) {10};
+\node[text=gray!30] at (10*\w,-7mm) {11};
+\node[text=gray!30] at (11*\w,-7mm) {12};
+\node[shadedA] at (0*\w,0) {9};
+\node[shadedA] at (1*\w,0) {5};
+\node[shadedA] at (2*\w,0) {8};
+\node[shadedA] at (3*\w,0) {7};
+\node[shadedA] at (4*\w,0) {4};
+\node[shadedA] at (5*\w,0) {2};
+\node[shadedB] at (6*\w,0) {19};
+\node[shadedB] at (7*\w,0) {12};
+\node[shadedB] at (8*\w,0) {21};
+\node[shadedB] at (9*\w,0) {13};
+\node[cell] at (10*\w,0) {6};
+\node[cell] at (11*\w,0) {11};
+\draw[line width=2mm] (5.5*\w,-4.5mm) -- (5.5*\w,4.5mm);
+\draw[line width=2mm] (9.5*\w,-4.5mm) -- (9.5*\w,4.5mm);
+\draw[line width=2mm] (10.5*\w,-4.5mm) -- (10.5*\w,4.5mm);
+\node at (-1*\w,-5mm) {};
+\node at (5*\w,7mm) {$i$};
+\node at (10*\w,7mm) {$j$};
+\end{tikzpicture}
+\vspace{3mm}
+\begin{tikzpicture}[
+  cell/.style={draw, minimum width=\w, minimum height=\w, anchor=center},
+  shadedA/.style={cell, fill=gray!40}, shadedB/.style={cell, fill=gray!60}]
+\node[text=gray!30] at (0*\w,-7mm) {1};
+\node[text=gray!30] at (1*\w,-7mm) {2};
+\node[text=gray!30] at (2*\w,-7mm) {3};
+\node[text=gray!30] at (3*\w,-7mm) {4};
+\node[text=gray!30] at (4*\w,-7mm) {5};
+\node[text=gray!30] at (5*\w,-7mm) {6};
+\node[text=gray!30] at (6*\w,-7mm) {7};
+\node[text=gray!30] at (7*\w,-7mm) {8};
+\node[text=gray!30] at (8*\w,-7mm) {9};
+\node[text=gray!30] at (9*\w,-7mm) {10};
+\node[text=gray!30] at (10*\w,-7mm) {11};
+\node[text=gray!30] at (11*\w,-7mm) {12};
+\node[shadedA] at (0*\w,0) {9};
+\node[shadedA] at (1*\w,0) {5};
+\node[shadedA] at (2*\w,0) {8};
+\node[shadedA] at (3*\w,0) {7};
+\node[shadedA] at (4*\w,0) {4};
+\node[shadedA] at (5*\w,0) {2};
+\node[shadedA] at (6*\w,0) {6};
+\node[shadedB] at (7*\w,0) {12};
+\node[shadedB] at (8*\w,0) {21};
+\node[shadedB] at (9*\w,0) {13};
+\node[shadedB] at (10*\w,0) {19};
+\node[cell] at (11*\w,0) {11};
+\draw[line width=2mm] (6.5*\w,-4.5mm) -- (6.5*\w,4.5mm);
+\draw[line width=2mm] (10.5*\w,-4.5mm) -- (10.5*\w,4.5mm);
+\draw[line width=2mm] (10.5*\w,-4.5mm) -- (10.5*\w,4.5mm);
+\node at (-1*\w,-5mm) {};
+\node at (6*\w,7mm) {$i$};
+\node at (11*\w,7mm) {$j$};
+\end{tikzpicture}
+\vspace{3mm}
+\begin{tikzpicture}[
+  cell/.style={draw, minimum width=\w, minimum height=\w, anchor=center},
+  shadedA/.style={cell, fill=gray!40}, shadedB/.style={cell, fill=gray!60}]
+\node[text=gray!30] at (0*\w,-7mm) {1};
+\node[text=gray!30] at (1*\w,-7mm) {2};
+\node[text=gray!30] at (2*\w,-7mm) {3};
+\node[text=gray!30] at (3*\w,-7mm) {4};
+\node[text=gray!30] at (4*\w,-7mm) {5};
+\node[text=gray!30] at (5*\w,-7mm) {6};
+\node[text=gray!30] at (6*\w,-7mm) {7};
+\node[text=gray!30] at (7*\w,-7mm) {8};
+\node[text=gray!30] at (8*\w,-7mm) {9};
+\node[text=gray!30] at (9*\w,-7mm) {10};
+\node[text=gray!30] at (10*\w,-7mm) {11};
+\node[text=gray!30] at (11*\w,-7mm) {12};
+\node[shadedA] at (0*\w,0) {9};
+\node[shadedA] at (1*\w,0) {5};
+\node[shadedA] at (2*\w,0) {8};
+\node[shadedA] at (3*\w,0) {7};
+\node[shadedA] at (4*\w,0) {4};
+\node[shadedA] at (5*\w,0) {2};
+\node[shadedA] at (6*\w,0) {6};
+\node[cell] at (7*\w,0) {11};
+\node[shadedB] at (8*\w,0) {21};
+\node[shadedB] at (9*\w,0) {13};
+\node[shadedB] at (10*\w,0) {19};
+\node[shadedB] at (11*\w,0) {12};
+\draw[line width=2mm] (6.5*\w,-4.5mm) -- (6.5*\w,4.5mm);
+\draw[line width=2mm] (11.5*\w,-4.5mm) -- (11.5*\w,4.5mm);
+\draw[line width=2mm] (7.5*\w,-4.5mm) -- (7.5*\w,4.5mm);
+\node at (-1*\w,-5mm) {};
+\node at (6*\w,7mm) {$i$};
+\node at (12*\w,7mm) {$j$};
+\end{tikzpicture}
+\vspace{3mm}
+
+\end{center}
+\end{document}

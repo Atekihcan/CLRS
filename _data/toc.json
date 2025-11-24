@@ -195,6 +195,109 @@
                     "name": "Young Tableaus"
                 }
             ]
+        },
+        {
+            "name": "Quicksort",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Sorting in Linear Time",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Medians and Order Statistics",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Elementary Data Structures",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Hash Tables",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Binary Search Trees",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Red-Black Trees",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Augmenting Data Structures",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Dynamic Programming",
+            "sections": [
+                {
+                    "name": "Rod Cutting",
+                    "exercise_count": 5
+                },
+                {
+                    "name": "Matrix-chain Multiplication",
+                    "exercise_count": 6
+                },
+                {
+                    "name": "Elements of Dynamic Programming",
+                    "exercise_count": 6
+                },
+                {
+                    "name": "Longest Common Subsequence",
+                    "exercise_count": 6
+                },
+                {
+                    "name": "Optimal Binary Search Trees",
+                    "exercise_count": 4
+                }
+            ],
+            "problems": [
+                {
+                    "name": "Longest Simple Path in a Directed Acyclic Graph"
+                },
+                {
+                    "name": "Longest Palindrome Subsequence"
+                },
+                {
+                    "name": "Bitonic Euclidean Traveling-salesman Problem"
+                },
+                {
+                    "name": "Printing Neatly"
+                },
+                {
+                    "name": "Edit Distance"
+                },
+                {
+                    "name": "Planning a Company Party"
+                },
+                {
+                    "name": "Viterbi Algorithm"
+                },
+                {
+                    "name": "Image Compression by Seam Carving"
+                },
+                {
+                    "name": "Breaking a String"
+                },
+                {
+                    "name": "Planning an Investment Strategy"
+                },
+                {
+                    "name": "Inventory Planning"
+                },
+                {
+                    "name": "Signing Free-agent Baseball Players"
+                }
+            ]
         }
     ],
     "appendices": [

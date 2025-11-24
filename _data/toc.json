@@ -195,6 +195,93 @@
                     "name": "Young Tableaus"
                 }
             ]
+        },
+        {
+            "name": "Quicksort",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Sorting in Linear Time",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Medians and Order Statistics",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Elementary Data Structures",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Hash Tables",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Binary Search Trees",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Red-Black Trees",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Augmenting Data Structures",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Dynamic Programming",
+            "sections": [],
+            "problems": []
+        },
+        {
+            "name": "Greedy Algorithms",
+            "sections": [
+                {
+                    "name": "An Activity-Selection Problem",
+                    "exercise_count": 5
+                },
+                {
+                    "name": "Elements of the Greedy Strategy",
+                    "exercise_count": 7
+                },
+                {
+                    "name": "Huffman Codes",
+                    "exercise_count": 9
+                },
+                {
+                    "name": "Matroids and Greedy Methods",
+                    "exercise_count": 5
+                },
+                {
+                    "name": "A Task-Scheduling Problem as a Matroid",
+                    "exercise_count": 2
+                }
+            ],
+            "problems": [
+                {
+                    "name": "Coin Changing"
+                },
+                {
+                    "name": "Scheduling to Minimize Average Completion Time"
+                },
+                {
+                    "name": "Acyclic Subgraphs"
+                },
+                {
+                    "name": "Scheduling Variations"
+                },
+                {
+                    "name": "Off-line Caching"
+                }
+            ]
         }
     ],
     "appendices": [

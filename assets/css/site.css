@@ -467,6 +467,7 @@ aside.info div {
     outline: none;
 }
 
+h3 .katex,
 h4 .katex,
 h5 .katex {
     text-transform: initial;
@@ -974,6 +975,7 @@ thead {
 
 .clrs-section {
     display: grid;
+    grid-row-gap: 5px;
     grid-template-rows: auto;
     grid-template-columns: 36px 1fr;
     grid-template-areas: "section-id section-title" ".          problem-list";

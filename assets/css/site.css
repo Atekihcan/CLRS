@@ -940,7 +940,8 @@ thead {
 .clrs-toc {
     display: flex;
     flex-direction: column;
-    margin: 10px -10px 60px -10px;
+    margin-top: 10px;
+    margin-bottom: 50px;
 }
 
 .clrs-chapter {

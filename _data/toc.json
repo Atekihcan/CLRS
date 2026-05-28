@@ -236,6 +236,50 @@
                     "name": "Fuzzy Sorting of Intervals"
                 }
             ]
+        },
+        {
+            "name": "Sorting in Linear Time",
+            "sections": [
+                {
+                    "name": "Lower Bounds for Sorting",
+                    "exercise_count": 4
+                },
+                {
+                    "name": "Counting Sort",
+                    "exercise_count": 4
+                },
+                {
+                    "name": "Radix Sort",
+                    "exercise_count": 5
+                },
+                {
+                    "name": "Bucket Sort",
+                    "exercise_count": 5
+                }
+            ],
+            "problems": [
+                {
+                    "name": "Probabilistic Lower Bounds on Comparison Sorting"
+                },
+                {
+                    "name": "Sorting Variable-Length Items"
+                },
+                {
+                    "name": "Sorting in Place in Linear Time"
+                },
+                {
+                    "name": "Water Jugs"
+                },
+                {
+                    "name": "Average Sorting"
+                },
+                {
+                    "name": "The 0-1 Sorting Lemma and Columnsort"
+                },
+                {
+                    "name": "Lower Bound on Merging Sorted Lists"
+                }
+            ]
         }
     ],
     "appendices": [

@@ -262,10 +262,10 @@
                     "name": "Probabilistic Lower Bounds on Comparison Sorting"
                 },
                 {
-                    "name": "Sorting Variable-Length Items"
+                    "name": "Sorting in Place in Linear Time"
                 },
                 {
-                    "name": "Sorting in Place in Linear Time"
+                    "name": "Sorting Variable-Length Items"
                 },
                 {
                     "name": "Water Jugs"
@@ -274,10 +274,10 @@
                     "name": "Average Sorting"
                 },
                 {
-                    "name": "The 0-1 Sorting Lemma and Columnsort"
+                    "name": "Lower Bound on Merging Sorted Lists"
                 },
                 {
-                    "name": "Lower Bound on Merging Sorted Lists"
+                    "name": "The 0-1 Sorting Lemma and Columnsort"
                 }
             ]
         }

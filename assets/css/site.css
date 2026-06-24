@@ -276,8 +276,7 @@ figure {
     font-family: var(--body-font);
     text-align: center;
     font-size: 0.8em;
-    color: var(--light-text);
-    background-color: var(--main-text);
+    border-top: 1px solid var(--mute-dark);
 }
 
 

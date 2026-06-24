@@ -158,6 +158,12 @@ Generate complete solutions for **Chapter {1}, Section {2}** of CLRS.
 
 ## Code Performance Guidelines:
 
+**CRITICAL: Pseudocode vs Python:**
+- **Algorithm descriptions in solutions MUST use CLRS-style pseudocode** via `{% capture code %}...{% endcapture %}` and `{% include clrs_code.html %}`
+- **NEVER use ` ```python ` code blocks** for algorithm/procedure descriptions
+- Python code blocks are ONLY for interactive Skulpt simulations stored in `_includes/code/`
+- The procedure name goes in the `title` parameter only, NOT repeated as line 1 of the code body
+
 **When to Create Interactive Code:**
 - ✓ Algorithm visualizations where behavior is non-obvious
 - ✓ Examples that can be shown with hands-on code

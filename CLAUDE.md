@@ -202,8 +202,10 @@ description: "The exact problem statement from the book"
 - Show practical examples, not just algorithm implementation
 
 **Pseudocode:**
+- **Algorithm descriptions in solutions MUST use CLRS-style pseudocode**, not Python or any other programming language
+- **NEVER use ` ```python ` code blocks** for algorithm/procedure descriptions — use `{% capture code %}...{% endcapture %}` and `{% include clrs_code.html %}`
+- Python code blocks (` ```python `) are ONLY for interactive Skulpt simulations in `_includes/code/`
 - Use CLRS convention (small caps for procedure names)
-- Use `{% capture code %}...{% endcapture %}` and `{% include clrs_code.html %}`
 - Keep it readable and close to the book's style
 - **Code blocks must use plain text - NO LaTeX formatting:**
   - ✓ `n = A.length` (correct)

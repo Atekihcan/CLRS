@@ -27,6 +27,8 @@ module CLRSCode
       total number of size across all each same than fewer
       contained length first from minimum list lists
       min-heap max-heap true false
+      insert into concatenate append remove delete output print
+      by in order at on set add such that this the of
     ],
 
     # Constants - rendered with \textsc

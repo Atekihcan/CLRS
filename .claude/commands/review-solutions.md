@@ -87,6 +87,8 @@ Perform a comprehensive review of solutions for **Chapter {1}, Section {2}**.
 - [ ] **No orphaned code files** - all .py files in `_includes/code/` are referenced in solution markdown
 - [ ] Code files only created when they enhance understanding (simulations, randomized algorithms)
 - [ ] Code integrated at end of solution with `### Interactive Simulation` section
+- [ ] **No Python code blocks (` ```python `) used for algorithm descriptions** — algorithms MUST use CLRS pseudocode via `{% capture code %}` and `{% include clrs_code.html %}`
+- [ ] Procedure name in `title` parameter only, not repeated as line 1 of code body
 
 ### 3. Style & Pedagogy
 
@@ -189,6 +191,8 @@ Provide a detailed report with findings categorized by severity:
 - Code performance issues (execution > 0.5s, too many trials/examples)
 - Orphaned code files not referenced in markdown
 - Code created for problems that don't benefit from simulation
+- **Python code blocks (` ```python `) used for algorithm descriptions instead of CLRS pseudocode**
+- Procedure name duplicated in both `title` parameter and line 1 of code body
 
 ### 💡 Suggestions (Nice to Have)
 - Could use better analogies

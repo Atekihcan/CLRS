@@ -1,0 +1,28 @@
+# CLRS Solutions
+
+> Solutions to exercises and problems from "Introduction to Algorithms" (3rd edition) by Cormen, Leiserson, Rivest, and Stein (CLRS).
+
+This website provides intuition-first explanations for CLRS textbook exercises and problems. Solutions prioritize building understanding over formal proofs, with concrete examples, analogies, and working code where applicable.
+
+## Coverage
+
+- Chapter 1: The Role of Algorithms in Computing
+- Chapter 2: Getting Started
+- Chapter 3: Growth of Functions
+- Chapter 4: Divide-and-Conquer
+- Chapter 5: Probabilistic Analysis and Randomized Algorithms
+- Chapter 6: Heapsort
+- Chapter 7: Quicksort
+- Chapter 8: Sorting in Linear Time
+- Appendix A: Summations
+
+## URL Pattern
+
+Solutions are at: https://atekihcan.github.io/CLRS/{chapter}/{id}/
+
+- Exercises: E{chapter}.{section}-{number} (e.g., E05.02-04)
+- Problems: P{chapter}-{number} (e.g., P05-01)
+
+## Sitemap
+
+Full sitemap: https://atekihcan.github.io/CLRS/sitemap.xml

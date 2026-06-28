@@ -37,9 +37,13 @@
         {%- assign description = site.description | strip_html | truncate: 255 -%}
     {%- endif -%}
 
-    <!-- Legacy meta -->
+    {%- assign canonical = page.url | prepend: site.baseurl | prepend: site.url -%}
+    {%- assign abs_image = image | prepend: site.url -%}
+
+    <!-- Meta -->
     <meta name="description" content="{{ description }}"/>
     <meta name="keywords" content="{{ keywords }}"/>
+    <link rel="canonical" href="{{ canonical }}"/>
 
     <!--Schema-->
     <link rel="author" href="{{ site.author }}">
@@ -50,9 +54,16 @@
     <!-- OpenGraph -->
     <meta property="og:title" content="{{ title }}" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="{{ page.url | prepend: site.baseurl | prepend: site.url  }}" />
-    <meta property="og:image" content="{{ image }}" />
+    <meta property="og:url" content="{{ canonical }}" />
+    <meta property="og:image" content="{{ abs_image }}" />
     <meta property="og:description" content="{{ description }}" />
+    <meta property="og:site_name" content="{{ site.title }}" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ title }}" />
+    <meta name="twitter:description" content="{{ description }}" />
+    <meta name="twitter:image" content="{{ abs_image }}" />
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -61,7 +72,7 @@
         "@type": "Article",
         "headline": "{{ title }}",
         "image": [
-            "{{ image }}"
+            "{{ abs_image }}"
         ],
         "datePublished": "{{ page.published | date_to_xmlschema }}",
         {% if page.modified -%}
@@ -75,5 +86,5 @@
         }
     }
     </script>
-    
+
     <title>{{ title }}</title>

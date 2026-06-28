@@ -1,26 +1,44 @@
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_observer = new IntersectionObserver(function (entries) {
-        // comments section reached
-        // start loading Disqus now
-        if (entries[0].isIntersecting) {
-            var disqus_shortname = '{{ site.disqus_shortname }}';
-            var disqus_identifier = '{{ page.url | prepend: site.baseurl }}';
-            var disqus_title = '{{ page.title }}';
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function () {
-                var dsq = document.createElement('script');
-                dsq.type = 'text/javascript';
-                dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
+<script>
+    function getGiscusTheme() {
+        var savedTheme = localStorage.getItem('theme');
+        if (savedTheme) return savedTheme === 'dark' ? 'dark' : 'light';
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
 
-            // once executed, stop observing
-            disqus_observer.disconnect();
+    function setGiscusTheme(theme) {
+        var iframe = document.querySelector('iframe.giscus-frame');
+        if (iframe) {
+            iframe.contentWindow.postMessage(
+                { giscus: { setConfig: { theme: theme } } },
+                'https://giscus.app'
+            );
         }
-    }, {threshold: [0]});
-    disqus_observer.observe(document.querySelector("#disqus_thread"));
+    }
+
+    // Load Giscus with correct initial theme
+    var giscusScript = document.createElement('script');
+    giscusScript.src = 'https://giscus.app/client.js';
+    giscusScript.setAttribute('data-repo', 'Atekihcan/CLRS');
+    giscusScript.setAttribute('data-repo-id', 'MDEwOlJlcG9zaXRvcnkzNTE2MzI4MQ==');
+    giscusScript.setAttribute('data-category', 'Comments');
+    giscusScript.setAttribute('data-category-id', 'DIC_kwDOAhiMkc4DAEhW');
+    giscusScript.setAttribute('data-mapping', 'pathname');
+    giscusScript.setAttribute('data-strict', '0');
+    giscusScript.setAttribute('data-reactions-enabled', '1');
+    giscusScript.setAttribute('data-emit-metadata', '0');
+    giscusScript.setAttribute('data-input-position', 'top');
+    giscusScript.setAttribute('data-theme', getGiscusTheme());
+    giscusScript.setAttribute('data-lang', 'en');
+    giscusScript.setAttribute('data-loading', 'lazy');
+    giscusScript.setAttribute('crossorigin', 'anonymous');
+    giscusScript.async = true;
+    document.currentScript.parentElement.appendChild(giscusScript);
+
+    // Sync theme when site toggle is clicked
+    var toggle = document.getElementById('theme-toggle');
+    if (toggle) {
+        toggle.addEventListener('click', function() {
+            setTimeout(function() { setGiscusTheme(getGiscusTheme()); }, 50);
+        });
+    }
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
-</noscript>

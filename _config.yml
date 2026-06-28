@@ -4,10 +4,9 @@ author:             Atekihcan
 email:              contact@atekihcan.com
 description:        "Solutions to exercises and problems of Introduction to Algorithms by CLRS (Cormen, Leiserson, Rivest, and Stein) with intuitive explanations, step-by-step proofs, and working Python code"
 keywords:           "CLRS, solutions, algorithms, Cormen"
-disqus_shortname:   atekihcan
 
 # Handling Reading
-exclude:            ['README.md', 'LICENSE.md']
+exclude:            ['README.md', 'LICENSE.md', 'disqus_comments_archive.md']
 
 # Conversion
 markdown:           kramdown

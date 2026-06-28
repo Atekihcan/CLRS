@@ -67,6 +67,13 @@
 
     <!-- Structured Data -->
     {%- if page.collection -%}
+    {%- if chapter_int > 0 -%}
+        {%- assign chapter_name = site.data.toc.chapters[chapter_index].name -%}
+        {%- assign chapter_label = "Chapter " | append: chapter | append: ": " | append: chapter_name -%}
+    {%- else -%}
+        {%- assign chapter_name = site.data.toc.appendices[chapter_index].name -%}
+        {%- assign chapter_label = "Appendix " | append: chapter | append: ": " | append: chapter_name -%}
+    {%- endif -%}
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -85,6 +92,31 @@
             "@type": "Person",
             "name": "{{ site.author }}"
         }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "CLRS Solutions",
+                "item": "{{ site.url }}{{ site.baseurl }}/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "{{ chapter_label }}",
+                "item": "{{ site.url }}{{ site.baseurl }}/#{{ chapter }}"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{{ page.title }}"
+            }
+        ]
     }
     </script>
     {%- else -%}

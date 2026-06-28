@@ -66,6 +66,7 @@
     <meta name="twitter:image" content="{{ abs_image }}" />
 
     <!-- Structured Data -->
+    {%- if page.collection -%}
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -86,5 +87,20 @@
         }
     }
     </script>
+    {%- else -%}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "{{ site.title }}",
+        "url": "{{ site.url }}{{ site.baseurl }}/",
+        "description": "{{ description }}",
+        "author": {
+            "@type": "Person",
+            "name": "{{ site.author }}"
+        }
+    }
+    </script>
+    {%- endif -%}
 
     <title>{{ title }}</title>

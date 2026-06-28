@@ -3,6 +3,14 @@
     <!-- favicon -->
     <link rel="shortcut icon" type="image/png" href="{{ '/assets/img/favicon.png' | prepend: site.baseurl }}">
 
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}" />
+
+    <!-- Preconnect to external origins -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+
     <!-- Normalize reset -->
     <link media="all" rel="stylesheet" href="{{ '/assets/css/normalize.css' | prepend: site.baseurl }}">
 
@@ -13,6 +21,19 @@
     <link rel="stylesheet" href="{{ '/assets/katex/katex.min.css' | prepend: site.baseurl }}" >
     <script defer src="{{ '/assets/katex/katex.min.js' | prepend: site.baseurl }}" ></script>
     <script defer src="{{ '/assets/katex/contrib/auto-render.min.js' | prepend: site.baseurl }}" onload="renderMathInElement(document.body, {trust: true});"></script>
+
+    <!-- AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+            data-ad-client="ca-pub-7476503486911097"
+            onerror="showSupportMessage();"></script>
+    <script>
+        function showSupportMessage() {
+            var placeholders = document.getElementsByClassName("support-message");
+            for (var i = 0; i < placeholders.length; i++) {
+                placeholders[i].style.display = "block";
+            }
+        }
+    </script>
 
     <!-- Google Analytics -->
     {% include analytics.html %}

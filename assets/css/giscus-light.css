@@ -1,0 +1,92 @@
+main {
+    --color-prettylights-syntax-comment: #6a737d;
+    --color-prettylights-syntax-constant: #005cc5;
+    --color-prettylights-syntax-entity: #6f42c1;
+    --color-prettylights-syntax-storage-modifier-import: #17252a;
+    --color-prettylights-syntax-entity-tag: #22863a;
+    --color-prettylights-syntax-keyword: #d73a49;
+    --color-prettylights-syntax-string: #032f62;
+    --color-prettylights-syntax-variable: #e36209;
+    --color-prettylights-syntax-brackethighlighter-unmatched: #cb2431;
+    --color-prettylights-syntax-invalid-illegal-text: #f6f8fa;
+    --color-prettylights-syntax-invalid-illegal-bg: #cb2431;
+    --color-prettylights-syntax-carriage-return-text: #f6f8fa;
+    --color-prettylights-syntax-carriage-return-bg: #d73a49;
+    --color-prettylights-syntax-string-regexp: #22863a;
+    --color-prettylights-syntax-markup-list: #735c0f;
+    --color-prettylights-syntax-markup-heading: #005cc5;
+    --color-prettylights-syntax-markup-italic: #17252a;
+    --color-prettylights-syntax-markup-bold: #17252a;
+    --color-prettylights-syntax-markup-deleted-text: #b31d28;
+    --color-prettylights-syntax-markup-deleted-bg: #ffeef0;
+    --color-prettylights-syntax-markup-inserted-text: #22863a;
+    --color-prettylights-syntax-markup-inserted-bg: #f0fff4;
+    --color-prettylights-syntax-markup-changed-text: #e36209;
+    --color-prettylights-syntax-markup-changed-bg: #ffebda;
+    --color-prettylights-syntax-markup-ignored-text: #f6f8fa;
+    --color-prettylights-syntax-markup-ignored-bg: #005cc5;
+    --color-prettylights-syntax-meta-diff-range: #6f42c1;
+    --color-prettylights-syntax-brackethighlighter-angle: #6a737d;
+    --color-prettylights-syntax-sublimelinter-gutter-mark: #959da5;
+    --color-prettylights-syntax-constant-other-reference-link: #032f62;
+    --color-btn-text: #17252a;
+    --color-btn-bg: #f5f5f5;
+    --color-btn-border: #ccc;
+    --color-btn-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+    --color-btn-inset-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    --color-btn-hover-bg: #eee;
+    --color-btn-hover-border: #ccc;
+    --color-btn-active-bg: #e0e0e0;
+    --color-btn-active-border: #ccc;
+    --color-btn-selected-bg: #e0e0e0;
+    --color-btn-primary-text: #fff;
+    --color-btn-primary-bg: hsl(255, 60%, 40%);
+    --color-btn-primary-border: hsl(255, 60%, 35%);
+    --color-btn-primary-shadow: 0 0 transparent;
+    --color-btn-primary-inset-shadow: 0 0 transparent;
+    --color-btn-primary-hover-bg: hsl(255, 60%, 35%);
+    --color-btn-primary-hover-border: hsl(255, 60%, 30%);
+    --color-btn-primary-selected-bg: hsl(255, 60%, 35%);
+    --color-btn-primary-selected-shadow: 0 0 transparent;
+    --color-btn-primary-disabled-text: rgb(255 255 255 / 50%);
+    --color-btn-primary-disabled-bg: hsl(255, 30%, 60%);
+    --color-btn-primary-disabled-border: hsl(255, 30%, 55%);
+    --color-action-list-item-default-hover-bg: rgba(0, 0, 0, 0.04);
+    --color-segmented-control-bg: #eee;
+    --color-segmented-control-button-bg: #fff;
+    --color-segmented-control-button-selected-border: #ccc;
+    --color-fg-default: #17252a;
+    --color-fg-muted: #555;
+    --color-fg-subtle: #999;
+    --color-canvas-default: #fff;
+    --color-canvas-overlay: #fff;
+    --color-canvas-inset: #f5f5f5;
+    --color-canvas-subtle: #f5f5f5;
+    --color-border-default: #ccc;
+    --color-border-muted: #eee;
+    --color-neutral-muted: rgba(0, 0, 0, 0.08);
+    --color-accent-fg: hsl(255, 60%, 40%);
+    --color-accent-emphasis: hsl(255, 100%, 60%);
+    --color-accent-muted: hsl(255, 60%, 80%);
+    --color-accent-subtle: hsl(255, 60%, 95%);
+    --color-success-fg: #22863a;
+    --color-attention-fg: #b08800;
+    --color-attention-muted: rgba(176, 136, 0, 0.4);
+    --color-attention-subtle: rgba(176, 136, 0, 0.1);
+    --color-danger-fg: #cb2431;
+    --color-danger-muted: rgba(203, 36, 49, 0.4);
+    --color-danger-subtle: rgba(203, 36, 49, 0.1);
+    --color-primer-shadow-inset: inset 0 1px 0 rgba(0, 0, 0, 0.04);
+    --color-scale-gray-7: #e0e0e0;
+    --color-scale-blue-8: hsl(255, 60%, 90%);
+    --color-social-reaction-bg-hover: var(--color-scale-gray-7);
+    --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-8);
+}
+
+main .pagination-loader-container {
+    background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line.svg");
+}
+
+main .gsc-loading-image {
+    background-image: url("https://github.githubassets.com/images/mona-loading-default.gif");
+}

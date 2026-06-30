@@ -1,8 +1,10 @@
 <script>
+    var giscusBaseUrl = '{{ "/" | absolute_url }}assets/css/';
     function getGiscusTheme() {
         var savedTheme = localStorage.getItem('theme');
-        if (savedTheme) return savedTheme === 'dark' ? 'dark' : 'light';
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        var mode = savedTheme ? (savedTheme === 'dark' ? 'dark' : 'light')
+            : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        return giscusBaseUrl + 'giscus-' + mode + '.css';
     }
 
     function setGiscusTheme(theme) {

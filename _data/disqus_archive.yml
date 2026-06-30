@@ -1,0 +1,101 @@
+# Archived Disqus comments, exported 2026-06-28
+# Keyed by solution path (matches page.path after stripping _solutions/ and .md)
+# Body supports HTML (<code>) and KaTeX: \(...\) for inline math, $$...$$ for display math
+
+"02/E02.01-02":
+  - author: jmac
+    date: "Jul 19, 2023"
+    body: "The book considers the indexes of an array in the range of \\([1, n]\\) so it's okay."
+
+"02/E02.01-03":
+  - author: bernie_haxx
+    date: "Jan 13, 2025"
+    body: "Hi, I was asking about this statement on the maintenance part of the loop schema, does the subarray \\(A[1..i]\\) may or may not contain the value \\(v\\) before the next iteration? Like the last portion, cause it doesn't make sense if \\(A[1..i]\\) is the unchecked subarray."
+
+"02/E02.01-04":
+  - author: Ovidiu Oprea
+    date: "May 25, 2023"
+    body: "Thank you for creating this website. I had put off the book indefinitely because I got stuck early, at 1.2-2. This website helped me because I could see that this was really advanced maths that was needed and there was no shame in using a hit-and-miss method instead or designing a simple computer program to bear the brunt."
+
+"02/E02.03-03":
+  - author: sverde
+    date: "Jul 4, 2023"
+    body: "I think that the fourth step in the formula is not correct: \\(2 \\cdot 2^k(\\lg 2^k + 1)\\). The correct way is \\(2 \\cdot 2^k(\\lg 2^k + 2)\\), isn't it?"
+  - author: Pizzaboo
+    date: "Sep 8, 2023"
+    body: "No, the answer is correct."
+  - author: sverde
+    date: "Sep 8, 2023"
+    body: >
+      Yes, you're right. For the record:
+      \\(= 2 \cdot 2^k \cdot \log(2^k) + 2 \cdot 2^k\\)
+      \\(= 2^{k+1} \cdot \log(2^k) + 2^{k+1}\\)
+      \\(= 2^{k+1}(\log(2^k) + 1)\\)
+      \\(= 2^{k+1}(\log(2^k) + \log 2)\\)
+
+"02/E02.03-04":
+  - author: Saurabh Verma
+    date: "Apr 27, 2023"
+    body: "I think you are getting the solution wrong. Subroutine in line 3 is called for value \\(n\\) once the line 2 function is ready with sorted array \\(A[1 \\ldots n-1]\\). This is simple \"divide and conquer approach\"."
+
+"02/E02.03-05":
+  - author: Stv Cl
+    date: "Mar 10, 2023"
+    body: "Hi, sorry for my bad English. There is an error in <code>Iterative-Binary-Search</code>. <code>low</code> and <code>high</code> must be index, and not value."
+  - author: Ovidiu Oprea
+    date: "Jun 4, 2023"
+    body: "Tried the recursive variant in Python and it doesn't return your value unless you set <code>return Recursive-Binary-Search(A, v, mid + 1, high)</code> and <code>return Recursive-Binary-Search(A, v, low, mid - 1)</code> in the elseif and else branches. Otherwise you get <code>None</code> or the return of your first run through the recursive function. The <code>return mid</code> is overridden."
+  - author: Andrea Attardo
+    date: "Oct 24, 2022"
+    body: "I got it now. Thanks for clarifying."
+  - author: Atekihcan
+    date: "Oct 24, 2022"
+    body: "We are comparing the middle element, and then checking half of rest of the elements in the array, which is \\((n - 1)/2\\), as you are taking out the middle element from the consideration, hence \\((n - 1)\\). But practically either way, worst case runtime is going to be \\(\\lg(n)\\). \\(n\\) or \\((n - 1)\\) is not going to make any difference there. Try taking a practical example, say an array with 1024 elements. If you consider \\(n/2\\), you'll reach down to 1 element in 10 steps. If you consider \\((n - 1)/2\\), same 10 steps will be required to reach down to 1 element, just that in every step, you'll have two arrays, but not of same size."
+
+"02/E02.03-07":
+  - author: Stv Cl
+    date: "Mar 8, 2023"
+    body: "Hi, sorry for my English, but if you look at the code, first apply merge sort, then apply binary search in addition a loop for. So they are not nested. This is \\(\\Theta(n \\lg n) + \\Theta(n \\lg n) = \\Theta(n \\lg n)\\)."
+  - author: Saurabh Verma
+    date: "May 3, 2023"
+    body: "The other method, total time for 2-11 isn't \\(n \\lg n\\). Right? Therefore not a suitable solution."
+  - author: 5can
+    date: "Dec 28, 2023"
+    body: "First line is \\(n \\lg n\\), other is \\(n\\), so is \\(n \\lg n\\)."
+  - author: Andres Calderon Romero
+    date: "Feb 19, 2025"
+    body: "I hate ads but not you. Go ahead!"
+
+"02/P02-01":
+  - author: Stv Cl
+    date: "Mar 10, 2023"
+    body: "But, what will be the value of \\(k\\)?"
+  - author: shadowReader
+    date: "Oct 3, 2024"
+    body: "The recursive equation for complexity is \\(T(n) = 2T(n/2) + \\Theta(n)\\) as it is for normal merge sort. But \\(T(k) = \\Theta(k^2)\\) since it is insertion sort. Solving this gives your required answer."
+
+"03/P03-06":
+  - author: bernie_haxx
+    date: "Jan 26, 2025"
+    body: "True."
+
+"04/E04.03-02":
+  - author: sverde
+    date: "Jun 21, 2023"
+    body: "\\(\\lg(n/2 + 1) + 1 < \\lg(n + 2/2) + 1\\), this doesn't hold for \\(n = 1\\)."
+
+"04/E04.04-03":
+  - author: artem
+    date: "Aug 25, 2023"
+    body: "I think so, cost of node in \\(i\\)-th level isn't equal to \\(n/2^i + 2\\). It's equal to \\((n + 4 \\cdot 2^i - 4)/2^i\\) (geometric progression)."
+  - author: Mark
+    date: "Feb 24, 2026"
+    body: "Thanks."
+
+"05/E05.04-07":
+  - author: Ilya
+    date: "Nov 30, 2025"
+    body: "I'm sorry, but the way you arrive at the upper bound is flawed. In particular, the very last inequality \\(n^{-1/2} < 1/n\\) is obviously false, since \\(n^{-1/2} = 1/\\sqrt{n}\\) which is asymptotically larger than \\(1/n\\). Also, the statement you're aiming to prove here is actually different from the original problem statement: you're trying to prove the upper bound for the event that no streak of length \\(s\\) occurs, while you should've been trying to prove the upper bound for the event that no streak of length \\(s+1\\) occurs. This is not to blame you or anything, just pointing out that, as of late 2025, it looks like there's still no correct solution to this hellish exercise, at least none that are available on the internet."
+  - author: Atekihcan
+    date: "May 28, 2026"
+    body: "Thanks for your comment. I am not sure what was going through my mind when I wrote the previous solution haha. I have taken another shot at this hellspawn. And admittedly I needed some help from Claude to sharpen my final reasoning. Hope it holds now. Claude also pointed out a more rigorous proof, but I'm just leaving it as a note as I'm not really sure if that belongs here."

@@ -447,6 +447,67 @@ aside.info div {
 }
 
 
+/* Disqus archive */
+
+.disqus-archive {
+    margin: 20px 0 40px;
+    padding: 0 20px;
+}
+
+.disqus-archive-title {
+    font-family: var(--thin-font);
+    font-size: 0.75em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 4px;
+}
+
+.disqus-archive-note {
+    font-family: var(--thin-font);
+    font-size: 0.75em;
+    color: var(--text-muted);
+    font-style: italic;
+    margin: 0 0 12px;
+}
+
+.disqus-archive-comment {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.disqus-archive-comment:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.disqus-archive-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.disqus-archive-author {
+    font-family: var(--thin-font);
+    font-size: 0.8em;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+.disqus-archive-date {
+    font-family: var(--thin-font);
+    font-size: 0.7em;
+    color: var(--text-muted);
+}
+
+.disqus-archive-body {
+    font-family: var(--thin-font);
+    font-size: 0.82em;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
 /* KaTeX override */
 
 .katex-display.fleqn>.katex {
@@ -608,6 +669,7 @@ code {
     [class*="disqus"],
     .comment,
     .comments,
+    .disqus-archive,
     .code-editor-button,
     .code-editor-wrapper,
     #python-implementation,

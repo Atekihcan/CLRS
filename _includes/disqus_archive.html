@@ -1,0 +1,17 @@
+{% assign page_key = page.path | remove: "_solutions/" | remove: ".md" %}
+{% assign archived = site.data.disqus_archive[page_key] %}
+{% if archived %}
+<div class="disqus-archive">
+    <p class="disqus-archive-title">Archived Comments</p>
+    <p class="disqus-archive-note">These comments were imported from the previous Disqus comment system.</p>
+    {% for comment in archived %}
+    <div class="disqus-archive-comment">
+        <div class="disqus-archive-meta">
+            <span class="disqus-archive-author">{{ comment.author }}</span>
+            <span class="disqus-archive-date">{{ comment.date }}</span>
+        </div>
+        <div class="disqus-archive-body">{{ comment.body | newline_to_br }}</div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
